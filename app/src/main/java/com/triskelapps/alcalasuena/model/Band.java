@@ -1,5 +1,9 @@
 package com.triskelapps.alcalasuena.model;
 
+import android.net.Uri;
+
+import com.triskelapps.alcalasuena.api.common.ApiClient;
+
 /**
  * Created by julio on 18/05/17.
  */
@@ -16,6 +20,14 @@ public class Band {
     private int num_members;
     private String city;
 
+    public Uri getImageUrlFull() {
+        if (getProfile_image() == null) {
+            return null;
+        }
+
+        String urlFull = ApiClient.BASE_URL + getProfile_image();
+        return Uri.parse(urlFull);
+    }
 
 
     public int getId() {
