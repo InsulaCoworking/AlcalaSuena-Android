@@ -1,0 +1,20 @@
+<!-- GENERIC -->
+<resources>
+    <string name="back">Back</string>
+    <string name="no_connection">No internet connection</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="continue_str">Continue</string>
+    <string name="accept">Accept</string>
+    <string name="attention">Attention</string>
+    <string name="cancel">Cancel</string>
+    <string name="success2">Success</string>
+    <string name="error">Error</string>
+    <string name="edit">Edit</string>
+    <string name="save">Save</string>
+    <string name="data_saved">Data saved</string>
+    <string name="error_retrieving_data">Error retrieving data</string>
+    <string name="loading">Loading…</string>
+    <string name="searching">Searching…</string>
+    <string name="close">Close</string>
+</resources>
