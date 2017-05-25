@@ -1,0 +1,100 @@
+INSTRUCCIONES DE IMPRESIÓN DE ADOBE INDESIGN PARA EL INFORME DEL PROVEEDOR DE SERVICIOS
+
+NOMBRE DEL DOCUMENTO: PROGRAMA.indd
+
+FECHA DEL PAQUETE: 25/05/2017 11:54
+Fecha de creación: 25/05/2017
+Fecha de modificación: 25/05/2017
+
+INFORMACIÓN DE CONTACTO
+
+Nombre de la empresa: 
+Contacto: 
+Dirección: 
+
+
+
+
+
+Teléfono: 
+Fax: 
+Correo electrónico: 
+
+INSTRUCCIONES ESPECIALES Y OTRAS NOTAS
+
+
+
+
+
+
+Plugins externos 0
+Objetos no opacos: En la página1, 2
+
+FUENTES
+10 fuente(s) utilizada(s); 0 No disponibles, 0 Incrustado, 1 incompleta(s), 0 protegida(s)
+
+Fuentes empaquetadas
+- Nombre: Aller-Bold; Tipo: OpenType TrueType, Estado: OK
+- Nombre: Aller-Light; Tipo: OpenType TrueType, Estado: OK
+- Nombre: Calibri; Tipo: OpenType TrueType, Estado: OK
+- Nombre: Calibri-Bold; Tipo: OpenType TrueType, Estado: OK
+- Nombre: DINAlternate-Light; Tipo: TrueType, Estado: OK
+- Nombre: MyriadPro-Bold; Tipo: OpenType Type 1, Estado: OK
+- Nombre: Numberpile-Regular; Tipo: TrueType, Estado: OK
+- Nombre: OldPress; Tipo: TrueType, Estado: OK
+- Nombre: OldPress-Italic; Tipo: TrueType, Estado: incompleta(s)
+- Nombre: Ronnia-Bold; Tipo: OpenType Type 1, Estado: OK
+
+
+COLORES Y TINTAS
+4 tinta(s) de cuatricromía; 0 tinta(s) plana(s)
+
+- Nombre y tipo: Cian de cuatricromía; Ángulo: 71,565; Líneas/pulgada: 63,245
+- Nombre y tipo: Magenta de cuatricromía; Ángulo: 18,434; Líneas/pulgada: 63,245
+- Nombre y tipo: Amarillo de cuatricromía; Ángulo: 0,000; Líneas/pulgada: 66,666
+- Nombre y tipo: Negro de cuatricromía; Ángulo: 45,000; Líneas/pulgada: 70,710
+
+
+VÍNCULOS E IMÁGENES
+(Sólo vínculos incrustados y que faltan)
+Vínculos e imágenes: 17 vínculo(s) encontrado(s); 0 modificado(s), 0 No disponibles 0 inaccesible(s)
+Imágenes: 0 Incrustado, 1 con espacio de color RGB
+
+
+CONFIGURACIÓN DE IMPRESIÓN
+PPD: PDFCreator 0.9.6, (PDFCreator)
+Imprimir en: Impresora
+Número de copias: 1
+Páginas enfrentadas: No
+Páginas pares/impares: Ambas
+Páginas: Todas
+Prueba: No
+Mosaico: Ninguno
+Escala: 100%, 100%
+Posición de la página: Superior izquierda
+Imprimir capas: Capas visibles, imprimibles
+Marcas de impresión: Ninguna
+Sangrado: 0 mm, 0 mm, 0 mm, 0 mm
+Color: CMYK compuesto
+Modo de reventado: Ninguno
+Enviar datos de la imagen: Submuestreo optimizado
+Sustitución de imagen OPI/DCS: No
+Tamaño de página: A3
+Dimensiones del papel: 209,903 mm x 297,039 mm
+Orientación: Vertical
+Negativo: No
+Modo de volteo: Desactivado
+
+
+LISTA DEL PAQUETE DE ARCHIVOS
+
+1. PROGRAMA.indd; tipo: Documento de Adobe InDesign; tamaño: 4004K
+2. Aller.ttf; tipo: Archivo de fuentes; tamaño: 125K
+3. Aller_Lt.ttf; tipo: Archivo de fuentes; tamaño: 129K
+4. CALIBRI_0.TTF; tipo: Archivo de fuentes; tamaño: 344K
+5. CALIBRIB_0.TTF; tipo: Archivo de fuentes; tamaño: 343K
+6. DIN Alternate Light.ttf; tipo: Archivo de fuentes; tamaño: 28K
+7. MyriadPro-Bold_0.otf; tipo: Archivo de fuentes; tamaño: 95K
+8. numberpile.ttf; tipo: Archivo de fuentes; tamaño: 63K
+9. Old Press Italic.ttf; tipo: Archivo de fuentes; tamaño: 967K
+10. RonniaBold.otf; tipo: Archivo de fuentes; tamaño: 149K

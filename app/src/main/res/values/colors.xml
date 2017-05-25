@@ -2,13 +2,16 @@
 <resources>
     <color name="colorPrimary">#3f51b5</color>
     <color name="colorPrimaryDark">#303f9f</color>
-    <color name="colorAccent">#ffff71</color>
+    <color name="colorAccent">#4beae2</color>
+    <color name="colorAccentOrig">#ffff71</color>
     <color name="grey">#AAA</color>
     <color name="tab_selected">#ffff71</color>
     <color name="tab_unselected">#bfbfbf</color>
     <color name="transp_black">#B000</color>
 
+    <color name="red_general">#BD080F</color>
 
     <color name="btn_menu">#5aaedf</color>
     <color name="colorAccentTransp">#9dffff71</color>
+    <color name="colorAccentDark">#0ab7af</color>
 </resources>

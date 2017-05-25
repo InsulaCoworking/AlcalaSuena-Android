@@ -29,8 +29,14 @@
                     android:id="@+id/tv_title_toolbar"
                     style="@style/TextBase.White"
                     android:textSize="18sp"
-                    android:text="@string/app_name"/>
+                    android:text="@string/app_name"
+                    android:visibility="gone"/>
 
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@mipmap/img_title_alcalasuena"/>
 
             </android.support.v7.widget.Toolbar>
 

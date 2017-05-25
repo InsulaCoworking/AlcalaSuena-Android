@@ -1,0 +1,210 @@
+%!Adobe-FontList 1.18
+%Locale:0xc0a
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:Aller-Bold
+FamilyName:Aller
+StyleName:Bold
+FullName:Aller Bold
+MenuName:Aller
+StyleBits:2
+WritingScript:Roman
+OutlineFileName:D:\TRABAJOS\Carpeta PROGRAMA\Document fonts\Aller.ttf
+DataFormat:sfntData
+hasSVG:no
+FileLength:128368
+FileModTime:1219419702
+WeightClass:700
+WidthClass:5
+AngleClass:0
+NameArray:0,Mac,18,Aller Bold
+NameArray:0,Mac,4,Aller Bold
+NameArray:0,Win,1,Aller
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:Aller-Light
+FamilyName:Aller Light
+StyleName:Regular
+FullName:Aller Light
+MenuName:Aller Light
+StyleBits:0
+WritingScript:Roman
+OutlineFileName:D:\TRABAJOS\Carpeta PROGRAMA\Document fonts\Aller_Lt.ttf
+DataFormat:sfntData
+hasSVG:no
+FileLength:132780
+FileModTime:1219419702
+WeightClass:400
+WidthClass:5
+AngleClass:0
+NameArray:0,Mac,18,Aller Light
+NameArray:0,Mac,4,Aller Light
+NameArray:0,Win,1,Aller Light
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:Calibri-Bold
+FamilyName:Calibri
+StyleName:Bold
+FullName:Calibri Bold
+MenuName:Calibri
+StyleBits:2
+WritingScript:Roman
+OutlineFileName:D:\TRABAJOS\Carpeta PROGRAMA\Document fonts\CALIBRIB_0.TTF
+DataFormat:sfntData
+hasSVG:no
+FileLength:351544
+FileModTime:1157969564
+WeightClass:700
+WidthClass:5
+AngleClass:0
+NameArray:0,Mac,4,Calibri Bold
+NameArray:0,Win,1,Calibri
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:Calibri
+FamilyName:Calibri
+StyleName:Regular
+FullName:Calibri
+MenuName:Calibri
+StyleBits:0
+WritingScript:Roman
+OutlineFileName:D:\TRABAJOS\Carpeta PROGRAMA\Document fonts\CALIBRI_0.TTF
+DataFormat:sfntData
+hasSVG:no
+FileLength:352736
+FileModTime:1157969566
+WeightClass:400
+WidthClass:5
+AngleClass:0
+NameArray:0,Mac,4,Calibri
+NameArray:0,Win,1,Calibri
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:DINAlternate-Light
+FamilyName:DIN Alternate Light
+StyleName:Regular
+FullName:DIN Alternate Light
+MenuName:DIN Alternate Light
+StyleBits:0
+WritingScript:Roman
+OutlineFileName:D:\TRABAJOS\Carpeta PROGRAMA\Document fonts\DIN Alternate Light.ttf
+DataFormat:sfntData
+hasSVG:no
+FileLength:29456
+FileModTime:1259621456
+WeightClass:300
+WidthClass:5
+AngleClass:0
+NameArray:0,Mac,4,DIN Alternate Light
+NameArray:0,Win,1,DIN Alternate Light
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:MyriadPro-Bold
+FamilyName:Myriad Pro
+StyleName:Bold
+FullName:Myriad Pro Bold
+MenuName:Myriad Pro
+StyleBits:2
+WritingScript:Roman
+OutlineFileName:D:\TRABAJOS\Carpeta PROGRAMA\Document fonts\MyriadPro-Bold_0.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+FileLength:97332
+FileModTime:1217254608
+WeightClass:700
+WidthClass:5
+AngleClass:0
+DesignSize:110
+NameArray:0,Mac,4,Myriad Pro Bold
+NameArray:0,Win,1,Myriad Pro
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:Numberpile-Regular
+FamilyName:Numberpile
+StyleName:Regular
+FullName:Numberpile-Regular
+MenuName:Numberpile
+StyleBits:0
+WritingScript:Roman
+OutlineFileName:D:\TRABAJOS\Carpeta PROGRAMA\Document fonts\numberpile.ttf
+DataFormat:sfntData
+hasSVG:no
+FileLength:64768
+FileModTime:1336599314
+WeightClass:400
+WidthClass:5
+AngleClass:0
+NameArray:0,Mac,18,Numberpile-Regular
+NameArray:0,Mac,4,Numberpile-Regular
+NameArray:0,Win,1,Numberpile
+NameArray:0,Win,16,Numberpile
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:OldPress-Italic
+FamilyName:Old Press
+StyleName:Italic
+FullName:Old Press Italic
+MenuName:Old Press
+StyleBits:1
+WritingScript:Roman
+OutlineFileName:D:\TRABAJOS\Carpeta PROGRAMA\Document fonts\Old Press Italic.ttf
+DataFormat:sfntData
+hasSVG:no
+FileLength:990956
+FileModTime:1371558462
+WeightClass:400
+WidthClass:5
+AngleClass:1
+NameArray:0,Mac,4,Old Press Italic
+NameArray:0,Win,1,Old Press
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:Ronnia-Bold
+FamilyName:Ronnia
+StyleName:Bold
+FullName:Ronnia Bold
+MenuName:Ronnia
+StyleBits:2
+WritingScript:Roman
+OutlineFileName:D:\TRABAJOS\Carpeta PROGRAMA\Document fonts\RonniaBold.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+FileLength:153032
+FileModTime:1174992568
+WeightClass:700
+WidthClass:5
+AngleClass:0
+NameArray:0,Mac,4,Ronnia Bold
+NameArray:0,Win,1,Ronnia
+%EndFont
+

@@ -23,7 +23,7 @@
     </style>
 
     <style name="TextTab" parent="TextBase">
-        <item name="android:textColor">@color/text_tab</item>
+        <item name="android:textColor">@color/colorAccent</item>
     </style>
 
     <style name="BtnMenu" parent="TextBase">

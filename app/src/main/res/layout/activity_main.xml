@@ -12,12 +12,13 @@
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@mipmap/img_background_main" />
+        android:src="@mipmap/img_chica_gris_bg_transp" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/transp_black" />
+        android:background="@color/red_general"
+        android:alpha="0.5"/>
 
     <LinearLayout
         android:id="@+id/container"
