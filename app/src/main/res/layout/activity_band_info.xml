@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/img_background_main" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transp_black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
+
+        <include layout="@layout/toolbar" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/tv_band_name"
+                    style="@style/TextBase.Accent"
+                    android:textSize="32sp" />
+
+
+                <ImageView
+                    android:id="@+id/img_band"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:adjustViewBounds="true"
+                    android:maxHeight="200dp"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/img_bloco_virado_grupo" />
+
+                <TextView
+                    android:id="@+id/tv_band_genre"
+                    style="@style/TextBase.Accent"
+                    android:text="Jazz" />
+
+                <TextView
+                    android:id="@+id/tv_band_description"
+                    style="@style/TextBase.White"
+                    android:layout_marginBottom="10dp"
+                    android:text="asdlfkjasldf asñdkfjñalsf jñlaskfj ñlaskfjñalskfjñ asfjñ asklf lñaskjlkasjdf ñlasf ñlaskf lña" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/img_facebook"
+                        style="@style/ImgSocialIcon"
+                        android:src="@mipmap/ic_facebook" />
+
+                    <ImageView
+                        android:id="@+id/img_twitter"
+                        style="@style/ImgSocialIcon"
+                        android:src="@mipmap/ic_twitter" />
+
+                    <ImageView
+                        android:id="@+id/img_youtube"
+                        style="@style/ImgSocialIcon"
+                        android:src="@mipmap/ic_youtube" />
+
+                    <ImageView
+                        android:id="@+id/img_bandcamp"
+                        style="@style/ImgSocialIcon"
+                        android:src="@mipmap/ic_bandcamp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</RelativeLayout>

@@ -8,6 +8,8 @@ import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
+import static android.webkit.URLUtil.isValidUrl;
+
 /**
  * Created by julio on 18/05/17.
  */
@@ -15,6 +17,7 @@ import io.realm.annotations.PrimaryKey;
 public class Band extends RealmObject {
 
     public static final String NAME = "name";
+    public static final String ID = "id";
 
     @PrimaryKey private int id;
     private String genre;
@@ -26,6 +29,7 @@ public class Band extends RealmObject {
     private String band_image;
     private int num_members;
     private String city;
+    private String facebook_link, twitter_link, youtube_link, bandcamp_link;
     private RealmList<Event> events;
 
     public Uri getImageUrlFull() {
@@ -117,6 +121,54 @@ public class Band extends RealmObject {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getFacebook_link() {
+
+        if (isValidUrl(facebook_link)) {
+            return facebook_link;
+        }
+        return null;
+    }
+
+    public void setFacebook_link(String facebook_link) {
+        this.facebook_link = facebook_link;
+    }
+
+    public String getTwitter_link() {
+
+        if (isValidUrl(twitter_link)) {
+            return twitter_link;
+        }
+        return null;
+    }
+
+    public void setTwitter_link(String twitter_link) {
+        this.twitter_link = twitter_link;
+    }
+
+    public String getYoutube_link() {
+
+        if (isValidUrl(youtube_link)) {
+            return youtube_link;
+        }
+        return null;
+    }
+
+    public void setYoutube_link(String youtube_link) {
+        this.youtube_link = youtube_link;
+    }
+
+    public String getBandcamp_link() {
+
+        if (isValidUrl(bandcamp_link)) {
+            return bandcamp_link;
+        }
+        return null;
+    }
+
+    public void setBandcamp_link(String bandcamp_link) {
+        this.bandcamp_link = bandcamp_link;
     }
 
     @Override

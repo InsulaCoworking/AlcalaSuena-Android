@@ -24,7 +24,7 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_marginRight="10dp"
-                android:background="@mipmap/ic_launcher_round"
+                android:src="@mipmap/ic_launcher_round"
                 android:scaleType="centerCrop" />
 
 

@@ -1,8 +1,8 @@
 package com.triskelapps.alcalasuena.ui.bands;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -12,6 +12,7 @@ import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BaseActivity;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.model.Band;
+import com.triskelapps.alcalasuena.views.SpaceItemDecoration;
 
 import java.util.List;
 
@@ -22,6 +23,12 @@ public class BandsActivity extends BaseActivity implements BandsView, TextWatche
     private BandsPresenter presenter;
     private EditText editSearch;
     private View viewNoResults;
+
+    @Override
+    public BasePresenter getPresenter() {
+        return presenter;
+    }
+
 
     private void findViews() {
         editSearch = (EditText) findViewById(R.id.edit_search);
@@ -42,7 +49,8 @@ public class BandsActivity extends BaseActivity implements BandsView, TextWatche
 
         configureSecondLevelActivity();
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         recyclerBands.setLayoutManager(layoutManager);
 
 
@@ -50,8 +58,8 @@ public class BandsActivity extends BaseActivity implements BandsView, TextWatche
 //                layoutManager.getOrientation());
 //        recyclerBands.addItemDecoration(dividerItemDecoration);
 
-//        SpaceItemDecoration spaceItemDecoration = new SpaceItemDecoration(20);
-//        recyclerBands.addItemDecoration(spaceItemDecoration);
+        SpaceItemDecoration spaceItemDecoration = new SpaceItemDecoration(getResources().getDimensionPixelSize(R.dimen.separation_card_grid));
+        recyclerBands.addItemDecoration(spaceItemDecoration);
 
 
         presenter.onCreate();
@@ -63,6 +71,18 @@ public class BandsActivity extends BaseActivity implements BandsView, TextWatche
         presenter.onResume();
     }
 
+    // INTERACTIONS
+
+    @Override
+    public void onItemClick(View view, int position, int idBand) {
+
+        presenter.onBandClicked(idBand);
+
+    }
+
+
+
+    // PRESENTER CALLBACKS
     @Override
     public void showBands(List<Band> bands) {
 
@@ -78,11 +98,6 @@ public class BandsActivity extends BaseActivity implements BandsView, TextWatche
 
         viewNoResults.setVisibility(bands != null && !bands.isEmpty() ? View.GONE : View.VISIBLE);
 
-    }
-
-    @Override
-    public BasePresenter getPresenter() {
-        return presenter;
     }
 
 
@@ -101,8 +116,4 @@ public class BandsActivity extends BaseActivity implements BandsView, TextWatche
 
     }
 
-    @Override
-    public void onItemClick(View view, int position) {
-
-    }
 }

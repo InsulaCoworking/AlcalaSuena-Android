@@ -24,6 +24,8 @@
         </activity>
         <activity android:name=".ui.bands.BandsActivity"
             android:windowSoftInputMode="stateHidden"/>
+
+        <activity android:name=".ui.band_info.BandInfoActivity" />
     </application>
 
 </manifest>

@@ -6,6 +6,7 @@ import android.content.Intent;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.interactor.BandInteractor;
 import com.triskelapps.alcalasuena.model.Band;
+import com.triskelapps.alcalasuena.ui.band_info.BandInfoPresenter;
 
 import java.util.List;
 
@@ -62,5 +63,9 @@ import java.util.List;
 
         List<Band> bands = bandInteractor.getBandsDB(text);
         view.showBands(bands);
+    }
+
+    public void onBandClicked(int idBand) {
+        context.startActivity(BandInfoPresenter.newBandInfoActivity(context, idBand));
     }
 }

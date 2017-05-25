@@ -51,7 +51,7 @@ import java.util.List;
 
     private boolean mustUpdateData() {
         // TODO check last update date with server
-        return false;
+        return true;
     }
 
     private void updateDataFromApi() {

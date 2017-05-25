@@ -11,6 +11,11 @@
     </style>
 
     <style name="TextBase.White">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="TextBase.Bold">
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="TextBase.Accent">

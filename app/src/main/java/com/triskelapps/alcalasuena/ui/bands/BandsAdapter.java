@@ -44,7 +44,7 @@ public class BandsAdapter extends RecyclerView.Adapter<BandsAdapter.ViewHolder> 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View contactView = LayoutInflater.from(context).inflate(R.layout.row_band, parent, false);
+        View contactView = LayoutInflater.from(context).inflate(R.layout.grid_item_band, parent, false);
 
         // Return a new holder instance
         ViewHolder viewHolder = new ViewHolder(contactView);
@@ -61,29 +61,25 @@ public class BandsAdapter extends RecyclerView.Adapter<BandsAdapter.ViewHolder> 
         holder.tvBandDescription.setText(band.getDescription());
         Picasso.with(context)
                 .load(band.getImageUrlFull())
+                .placeholder(R.mipmap.img_default_grid)
+                .error(R.mipmap.img_default_grid)
                 .into(holder.imgBand);
 
 //        int color = ContextCompat.getColor(context, band.getImageUrlFull() != null ? android.R.color.white : android.R.color.black);
 //        holder.tvBandName.setTextColor(color);
 //        holder.tvBandGenre.setTextColor(color);
 
-//        addClickListener(holder.rootView, position);
+        addClickListener(holder.rootView, position, band.getId());
     }
 
-    private void addClickListener(View view, final int position) {
+    private void addClickListener(View view, final int position, final int id) {
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (v instanceof TextView) {
-                    String textNumber = ((TextView) v).getText().toString();
-                    Integer number = Integer.parseInt(textNumber);
-                    setSelectedNumber(number);
-                }
-
                 if (itemClickListener != null) {
-                    itemClickListener.onItemClick(v, position);
+                    itemClickListener.onItemClick(v, position, id);
                 }
             }
         });
@@ -131,6 +127,6 @@ public class BandsAdapter extends RecyclerView.Adapter<BandsAdapter.ViewHolder> 
     }
 
     public interface OnItemClickListener {
-        void onItemClick(View view, int position);
+        void onItemClick(View view, int position, int id);
     }
 }
