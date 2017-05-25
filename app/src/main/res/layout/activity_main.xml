@@ -1,34 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.triskelapps.alcalasuena.MainActivity">
+    tools:context="com.triskelapps.alcalasuena.ui.MainActivity">
 
-    <FrameLayout
-        android:id="@+id/content"
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/img_background_main" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transp_black" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_bands"
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:fitsSystemWindows="true">
+
+        <include layout="@layout/toolbar" />
+
+        <android.support.v4.widget.DrawerLayout
+            android:id="@+id/drawer_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
+            android:layout_height="match_parent">
 
-    </FrameLayout>
+            <include layout="@layout/content_main" />
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="?android:attr/windowBackground"
-        app:menu="@menu/navigation" />
+            <fragment
+                android:id="@+id/menu_fragment"
+                android:name="com.triskelapps.alcalasuena.ui.menu.MenuFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                tools:layout="@layout/fragment_menu" />
 
-</LinearLayout>
+            <fragment
+                android:id="@+id/filter_bands_fragment"
+                android:name="com.triskelapps.alcalasuena.ui.filter.FilterBandsFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                tools:layout="@layout/fragment_filter_bands"
+                android:layout_marginLeft="50dp"/>
+
+        </android.support.v4.widget.DrawerLayout>
+
+
+        <!--<android.support.design.widget.BottomNavigationView-->
+        <!--android:id="@+id/navigation"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="bottom"-->
+        <!--android:background="?android:attr/windowBackground"-->
+        <!--app:menu="@menu/navigation"-->
+        <!--android:visibility="gone"/>-->
+
+    </LinearLayout>
+</RelativeLayout>

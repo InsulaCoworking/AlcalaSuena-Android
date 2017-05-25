@@ -11,7 +11,25 @@
     </style>
 
     <style name="TextBase.White">
-        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="TextBase.Accent">
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+    <style name="TextTab" parent="TextBase">
+        <item name="android:textColor">@color/text_tab</item>
+    </style>
+
+    <style name="BtnMenu" parent="TextBase">
+        <item name="android:layout_width">200dp</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:gravity">center</item>
+        <item name="backgroundTint">@color/btn_menu</item>
     </style>
 
 </resources>

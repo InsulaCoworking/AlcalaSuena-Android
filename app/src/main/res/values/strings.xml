@@ -3,4 +3,21 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="friday">Viernes</string>
+    <string name="june">junio</string>
+    <string name="saturday">Sábado</string>
+    <string name="sunday">Domingo</string>
+    <string name="friday_abrev">VIE</string>
+    <string name="saturday_abrev">SAB</string>
+    <string name="sunday_abrev">DOM</string>
+    <string name="bands">Bandas</string>
+    <string name="map">Mapa</string>
+    <string name="compartir">Compartir</string>
+
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="filter">Filtrar</string>
+    <string name="search_band">Buscar banda</string>
+    <string name="no_results_found">No se han encontrado resultados para esa búsqueda</string>
+
 </resources>

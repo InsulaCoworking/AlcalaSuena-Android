@@ -24,7 +24,6 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_marginRight="10dp"
-                android:layout_centerVertical="true"
                 android:background="@mipmap/ic_launcher_round"
                 android:scaleType="centerCrop" />
 
@@ -33,7 +32,7 @@
                 android:id="@+id/tv_band_name"
                 style="@style/TextBase"
                 android:layout_toRightOf="@+id/img_band"
-                android:layout_toLeftOf="@+id/img_arrow"
+                android:layout_toLeftOf="@+id/img_starred"
                 android:textSize="22sp"
                 android:lines="1"/>
 
@@ -42,28 +41,36 @@
                 style="@style/TextBase"
                 android:layout_alignLeft="@+id/tv_band_name"
                 android:layout_below="@+id/tv_band_name"
-                android:layout_toLeftOf="@+id/img_arrow"
                 android:text="Jazz"/>
 
-            <TextView
-                android:id="@+id/tv_band_description"
-                style="@style/TextBase"
-                android:lines="3"
-                android:textSize="14sp"
-                android:layout_alignLeft="@+id/tv_band_name"
-                android:layout_toLeftOf="@+id/img_arrow"
-                android:layout_below="@+id/tv_band_genre"
-                android:text="asdlfkjasldf asñdkfjñalsf jñlaskfj ñlaskfjñalskfjñ asfjñ asklf lñaskjlkasjdf ñlasf ñlaskf lña"/>
-
-
             <ImageView
-                android:id="@+id/img_arrow"
+                android:id="@+id/img_starred"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:src="@drawable/img_star_selectable"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@mipmap/ic_arrow_right"
+                android:padding="5dp"
                 android:tint="@color/colorAccent"/>
+
+            <TextView
+                android:id="@+id/tv_event_venue"
+                style="@style/TextBase"
+                android:layout_alignLeft="@+id/tv_band_name"
+                android:layout_below="@+id/tv_band_genre"
+                android:layout_alignBottom="@+id/img_band"
+                android:layout_toLeftOf="@+id/tv_event_time"
+                android:gravity="bottom"
+                android:text="Pza Palacio"/>
+
+            <TextView
+                android:id="@+id/tv_event_time"
+                style="@style/TextBase"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/img_starred"
+                android:layout_alignBottom="@+id/tv_event_venue"
+                android:gravity="bottom"
+                android:textSize="25sp"
+                android:text="20:00"/>
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 

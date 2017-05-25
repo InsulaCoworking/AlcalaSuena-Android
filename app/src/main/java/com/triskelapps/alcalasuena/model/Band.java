@@ -4,14 +4,21 @@ import android.net.Uri;
 
 import com.triskelapps.alcalasuena.api.common.ApiClient;
 
+import io.realm.RealmList;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
 /**
  * Created by julio on 18/05/17.
  */
 
-public class Band {
-    private int id;
+public class Band extends RealmObject {
+
+    public static final String NAME = "name";
+
+    @PrimaryKey private int id;
     private String genre;
-    private String tag;
+    private Tag tag;
     private String profile_image;
     private String description;
     private String name;
@@ -19,6 +26,7 @@ public class Band {
     private String band_image;
     private int num_members;
     private String city;
+    private RealmList<Event> events;
 
     public Uri getImageUrlFull() {
         if (getProfile_image() == null) {
@@ -46,11 +54,11 @@ public class Band {
         this.genre = genre;
     }
 
-    public String getTag() {
+    public Tag getTag() {
         return tag;
     }
 
-    public void setTag(String tag) {
+    public void setTag(Tag tag) {
         this.tag = tag;
     }
 
@@ -74,8 +82,9 @@ public class Band {
         return name;
     }
 
-    public void setName(String name) {
+    public Band setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getEmbed_code() {
@@ -115,4 +124,11 @@ public class Band {
         return "ClassPojo [id = " + id + ", genre = " + genre + ", tag = " + tag + ", profile_image = " + profile_image + ", description = " + description + ", name = " + name + ", embed_code = " + embed_code + ", band_image = " + band_image + ", num_members = " + num_members + ", city = " + city + "]";
     }
 
+    public RealmList<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(RealmList<Event> events) {
+        this.events = events;
+    }
 }

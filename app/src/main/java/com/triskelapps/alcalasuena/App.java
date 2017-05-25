@@ -7,6 +7,10 @@ import android.preference.PreferenceManager;
 
 import com.squareup.picasso.OkHttpDownloader;
 import com.squareup.picasso.Picasso;
+import com.triskelapps.alcalasuena.interactor.BandInteractor;
+
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 /**
  * Created by julio on 17/06/16.
@@ -25,6 +29,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
 
+        configureRealm();
 
         Picasso.Builder builder = new Picasso.Builder(this);
         builder.downloader(new OkHttpDownloader(this, Integer.MAX_VALUE));
@@ -33,6 +38,34 @@ public class App extends Application {
         built.setLoggingEnabled(true);
         Picasso.setSingletonInstance(built);
 
+
+//        initializeData();
+
+    }
+
+    private void initializeData() {
+        BandInteractor.initializeBands();
+
+    }
+
+    private void configureRealm() {
+
+        Realm.init(this);
+
+        RealmConfiguration.Builder configBuilder = new RealmConfiguration.Builder()
+//                .name("myrealm.realm")
+//                .encryptionKey(getKey())
+                .schemaVersion(MyRealmMigration.VERSION)
+//                .modules(new MySchemaModule())
+                .migration(new MyRealmMigration());
+
+        if (BuildConfig.DEBUG) {
+            configBuilder.deleteRealmIfMigrationNeeded();
+        }
+
+        RealmConfiguration config = configBuilder.build();
+
+        Realm.setDefaultConfiguration(config);
     }
 
 

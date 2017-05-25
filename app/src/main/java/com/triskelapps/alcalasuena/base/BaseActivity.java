@@ -29,7 +29,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     private String[] dataEntitiesSubscribed;
     private ProgressBar progressBar;
     private TextView tvTitleToolbar;
-    private Toolbar toolbar;
+    public Toolbar toolbar;
 
     // I need another result code custom
     public static final int REQ_CODE_EDIT = 1;
@@ -166,7 +166,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
 
         progressBar = (ProgressBar) findViewById(R.id.progressbar);
         tvTitleToolbar = (TextView) findViewById(R.id.tv_title_toolbar);
-        tvTitleToolbar.setVisibility(View.GONE);
+//        tvTitleToolbar.setVisibility(View.GONE);
 
         tvTitleToolbar.setText(getSupportActionBar().getTitle());
 

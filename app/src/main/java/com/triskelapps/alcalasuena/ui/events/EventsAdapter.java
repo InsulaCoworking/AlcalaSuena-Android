@@ -1,7 +1,6 @@
-package com.triskelapps.alcalasuena;
+package com.triskelapps.alcalasuena.ui.events;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,26 +9,28 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.model.Band;
+import com.triskelapps.alcalasuena.model.Event;
 
 import java.util.List;
 
 /**
  * Created by julio on 7/07/16.
  */
-public class BandsAdapter extends RecyclerView.Adapter<BandsAdapter.ViewHolder> {
+public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder> {
 
 
-    private List<Band> bands;
+    private List<Event> events;
     private Context context;
     private OnItemClickListener itemClickListener;
 
     private Integer selectedNumber = -1;
 
 
-    public BandsAdapter(Context context, List<Band> bands) {
+    public EventsAdapter(Context context, List<Event> events) {
         this.context = context;
-        this.bands = bands;
+        this.events = events;
     }
 
     public void setSelectedNumber(Integer number) {
@@ -44,7 +45,7 @@ public class BandsAdapter extends RecyclerView.Adapter<BandsAdapter.ViewHolder> 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View contactView = LayoutInflater.from(context).inflate(R.layout.row_band, parent, false);
+        View contactView = LayoutInflater.from(context).inflate(R.layout.row_event, parent, false);
 
         // Return a new holder instance
         ViewHolder viewHolder = new ViewHolder(contactView);
@@ -54,7 +55,9 @@ public class BandsAdapter extends RecyclerView.Adapter<BandsAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
 
-        Band band = getItemAtPosition(position);
+        Event event = getItemAtPosition(position);
+
+        Band band = event.getBand();
 
         holder.tvBandName.setText(band.getName());
         holder.tvBandGenre.setText(band.getGenre());
@@ -62,9 +65,9 @@ public class BandsAdapter extends RecyclerView.Adapter<BandsAdapter.ViewHolder> 
                 .load(band.getImageUrlFull())
                 .into(holder.imgBand);
 
-        int color = ContextCompat.getColor(context, band.getImageUrlFull() != null ? android.R.color.white : android.R.color.black);
-        holder.tvBandName.setTextColor(color);
-        holder.tvBandGenre.setTextColor(color);
+//        int color = ContextCompat.getColor(context, event.getImageUrlFull() != null ? android.R.color.white : android.R.color.black);
+//        holder.tvEventName.setTextColor(color);
+//        holder.tvEventGenre.setTextColor(color);
 
 //        addClickListener(holder.rootView, position);
     }
@@ -90,11 +93,11 @@ public class BandsAdapter extends RecyclerView.Adapter<BandsAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return bands.size();
+        return events.size();
     }
 
-    public Band getItemAtPosition(int position) {
-        return bands.get(position);
+    public Event getItemAtPosition(int position) {
+        return events.get(position);
     }
 
 

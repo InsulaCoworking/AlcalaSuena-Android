@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:clickable="true">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/img_background_menu_original"
+        android:alpha="1"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000"
+        android:alpha="0.0" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_menu_bands"
+            style="@style/BtnMenu"
+            android:text="@string/bands"/>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_menu_map"
+            style="@style/BtnMenu"
+            android:text="@string/map"/>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_menu_share"
+            style="@style/BtnMenu"
+            android:text="@string/compartir"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

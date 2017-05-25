@@ -1,0 +1,201 @@
+package com.triskelapps.alcalasuena.ui;
+
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
+import com.triskelapps.alcalasuena.R;
+import com.triskelapps.alcalasuena.base.BaseActivity;
+import com.triskelapps.alcalasuena.base.BasePresenter;
+import com.triskelapps.alcalasuena.model.Event;
+import com.triskelapps.alcalasuena.ui.events.EventsAdapter;
+
+import java.util.List;
+
+public class MainActivity extends BaseActivity implements MainView {
+
+    private RecyclerView recyclerBands;
+    private EventsAdapter adapter;
+    private TabLayout tabsDays;
+    private MainPresenter presenter;
+    private DrawerLayout drawerLayout;
+
+    private void findViews() {
+        tabsDays = (TabLayout) findViewById(R.id.tabs_days);
+        recyclerBands = (RecyclerView) findViewById(R.id.recycler_bands);
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+
+        presenter = MainPresenter.newInstance(this, this);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        findViews();
+
+//        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+//        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerBands.setLayoutManager(layoutManager);
+
+//        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,
+//                layoutManager.getOrientation());
+//        recyclerBands.addItemDecoration(dividerItemDecoration);
+
+//        SpaceItemDecoration spaceItemDecoration = new SpaceItemDecoration(20);
+//        recyclerBands.addItemDecoration(spaceItemDecoration);
+
+        configureToolbar();
+        configureDrawerLayout();
+        configureToolbarBackArrowBehaviour();
+
+        tabsDays.addTab(tabsDays.newTab().setCustomView(getTabView(1)));
+        tabsDays.addTab(tabsDays.newTab().setCustomView(getTabView(2)));
+        tabsDays.addTab(tabsDays.newTab().setCustomView(getTabView(3)));
+
+        presenter.onCreate();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.onResume();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        drawerLayout.closeDrawer(Gravity.LEFT);
+    }
+
+    private void configureToolbarBackArrowBehaviour() {
+
+        ((Toolbar) findViewById(R.id.toolbar)).setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
+                    drawerLayout.closeDrawer(Gravity.LEFT);
+                } else {
+
+                    if (drawerLayout.isDrawerOpen(Gravity.RIGHT)) {
+                        drawerLayout.closeDrawer(Gravity.RIGHT);
+                    } else {
+                        drawerLayout.openDrawer(Gravity.LEFT);
+                    }
+
+                }
+            }
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_filter, menu);
+        Drawable iconFilter = getResources().getDrawable(R.mipmap.ic_filter);
+        iconFilter.setColorFilter(ContextCompat.getColor(this, R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
+        menu.findItem(R.id.menuItem_filter).setIcon(iconFilter);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.menuItem_filter:
+
+                if (drawerLayout.isDrawerOpen(Gravity.RIGHT)) {
+                    drawerLayout.closeDrawer(Gravity.RIGHT);
+                } else {
+
+                    if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
+                        drawerLayout.closeDrawer(Gravity.LEFT);
+                    }
+
+                    drawerLayout.openDrawer(Gravity.RIGHT);
+                }
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void configureDrawerLayout() {
+
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+    }
+
+    private View getTabView(int day) {
+        View tabView = View.inflate(this, R.layout.view_tab, null);
+        TextView tvDayWeek = (TextView) tabView.findViewById(R.id.tv_tab_day_week);
+        TextView tvDayMonth = (TextView) tabView.findViewById(R.id.tv_tab_day_month);
+
+        switch (day) {
+            case 1:
+                tvDayWeek.setText(R.string.friday_abrev);
+                tvDayMonth.setText("2 " + getString(R.string.june));
+                break;
+
+            case 2:
+                tvDayWeek.setText(R.string.saturday_abrev);
+                tvDayMonth.setText("3 " + getString(R.string.june));
+                break;
+
+            case 3:
+                tvDayWeek.setText(R.string.sunday_abrev);
+                tvDayMonth.setText("4 " + getString(R.string.june));
+                break;
+
+        }
+        return tabView;
+    }
+
+    @Override
+    public void showEvents(List<Event> events) {
+
+        adapter = new EventsAdapter(this, events);
+        recyclerBands.setAdapter(adapter);
+
+    }
+
+    @Override
+    public BasePresenter getPresenter() {
+        return presenter;
+    }
+
+
+//    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+//            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+//
+//        @Override
+//        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//            switch (item.getItemId()) {
+//                case R.id.navigation_home:
+//                    return true;
+//                case R.id.navigation_dashboard:
+//                    return true;
+//                case R.id.navigation_notifications:
+//                    return true;
+//            }
+//            return false;
+//        }
+//
+//    };
+}
