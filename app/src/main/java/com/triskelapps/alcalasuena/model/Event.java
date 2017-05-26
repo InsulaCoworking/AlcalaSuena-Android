@@ -1,7 +1,5 @@
 package com.triskelapps.alcalasuena.model;
 
-import java.util.Date;
-
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -12,14 +10,21 @@ import io.realm.annotations.PrimaryKey;
 public class Event extends RealmObject {
 
 
+    public static final String TIME = "time";
+    public static final String DAY = "day";
+    public static final String FAVOURITE = "favourite";
+    public static final String ID = "id";
+    public static final String STARRED = "starred";
+
+
     @PrimaryKey private int id;
-    private Date date;
+    private String day;
     private String time;
-    private Band band;
+    private int band;
+    private int duration;
+    private boolean starred;
+    private Band bandEntity;
     private Venue venue;
-    private transient Favourite starred;
-
-
 
     public int getId() {
         return id;
@@ -27,14 +32,6 @@ public class Event extends RealmObject {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public String getTime() {
@@ -45,12 +42,41 @@ public class Event extends RealmObject {
         this.time = time;
     }
 
-    public Band getBand() {
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
+    }
+
+    public int getBand() {
         return band;
     }
 
-    public void setBand(Band band) {
+    public void setBand(int band) {
         this.band = band;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public Band getBandEntity() {
+        return bandEntity;
+    }
+
+    public void setBandEntity(Band bandEntity) {
+        this.bandEntity = bandEntity;
+    }
+
+    public String getTimeFormatted() {
+        String time = getTime();
+        return time.substring(0, 5);
     }
 
     public Venue getVenue() {
@@ -61,11 +87,11 @@ public class Event extends RealmObject {
         this.venue = venue;
     }
 
-    public Favourite isStarred() {
+    public boolean isStarred() {
         return starred;
     }
 
-    public void setStarred(Favourite starred) {
+    public void setStarred(boolean starred) {
         this.starred = starred;
     }
 }

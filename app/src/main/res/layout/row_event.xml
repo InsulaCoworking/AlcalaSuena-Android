@@ -11,7 +11,7 @@
         android:id="@+id/card_event"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="#BFFF"
+        app:cardBackgroundColor="@color/cardBackground"
         app:contentPadding="5dp">
 
         <RelativeLayout
@@ -22,10 +22,11 @@
                 android:id="@+id/img_band"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
+                android:scaleType="centerCrop"
                 android:layout_marginRight="10dp"
-                android:src="@mipmap/ic_launcher_round"
-                android:scaleType="centerCrop" />
-
+                android:adjustViewBounds="true"
+                android:src="@mipmap/img_default_grid"
+                android:alpha="1"/>
 
             <TextView
                 android:id="@+id/tv_band_name"
@@ -49,7 +50,7 @@
                 android:src="@drawable/img_star_selectable"
                 android:layout_alignParentRight="true"
                 android:padding="5dp"
-                android:tint="@color/colorAccentDark"/>
+                android:tint="@color/red_general"/>
 
             <TextView
                 android:id="@+id/tv_event_venue"

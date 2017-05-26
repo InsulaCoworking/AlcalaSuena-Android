@@ -73,8 +73,8 @@ public class BandInfoActivity extends BaseActivity implements BandInfoView, View
 
         Picasso.with(this)
                 .load(band.getImageUrlFull())
-                .placeholder(R.mipmap.img_default_band_image)
-                .error(R.mipmap.img_default_band_image)
+                .placeholder(R.mipmap.img_default_grid)
+                .error(R.mipmap.img_default_grid)
                 .into(imgBand);
 
         imgFacebook.setVisibility(band.getFacebook_link() != null ? View.VISIBLE : View.GONE);

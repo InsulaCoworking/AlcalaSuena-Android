@@ -73,15 +73,15 @@ public class BandInteractor extends BaseInteractor {
     }
 
 
-    public List<Band> getBandsDB() {
+    public static List<Band> getBandsDB() {
         return Realm.getDefaultInstance().where(Band.class).findAll();
     }
 
-    public List<Band> getBandsDB(String nameFilter) {
+    public static List<Band> getBandsDB(String nameFilter) {
         return Realm.getDefaultInstance().where(Band.class).contains(Band.NAME, nameFilter, Case.INSENSITIVE).findAll();
     }
 
-    public Band getBandDB(int idBand) {
+    public static Band getBandDB(int idBand) {
         return Realm.getDefaultInstance().where(Band.class).equalTo(Band.ID, idBand).findFirst();
     }
 

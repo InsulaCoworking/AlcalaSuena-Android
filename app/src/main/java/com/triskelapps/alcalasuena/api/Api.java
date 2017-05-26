@@ -3,6 +3,7 @@ package com.triskelapps.alcalasuena.api;
 
 import com.triskelapps.alcalasuena.model.Band;
 import com.triskelapps.alcalasuena.model.Event;
+import com.triskelapps.alcalasuena.model.Venue;
 
 import java.util.List;
 
@@ -16,5 +17,8 @@ public interface Api {
 
     @GET("event")
     Observable<List<Event>> getEvents();
+
+    @GET("venues")
+    Observable<List<Venue>> getVenues();
 
 }

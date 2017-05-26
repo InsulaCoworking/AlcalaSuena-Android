@@ -11,6 +11,7 @@ import com.triskelapps.alcalasuena.interactor.BandInteractor;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
  * Created by julio on 17/06/16.
@@ -38,6 +39,10 @@ public class App extends Application {
         built.setLoggingEnabled(true);
         Picasso.setSingletonInstance(built);
 
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/Aller.ttf")
+                .setFontAttrId(R.attr.fontPath)
+                .build());
 
 //        initializeData();
 

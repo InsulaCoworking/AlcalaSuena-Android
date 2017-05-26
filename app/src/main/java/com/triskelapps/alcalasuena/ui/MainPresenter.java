@@ -5,8 +5,10 @@ import android.content.Intent;
 
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.interactor.BandInteractor;
-import com.triskelapps.alcalasuena.model.Band;
+import com.triskelapps.alcalasuena.interactor.EventInteractor;
 import com.triskelapps.alcalasuena.model.Event;
+import com.triskelapps.alcalasuena.model.Filter;
+import com.triskelapps.alcalasuena.ui.band_info.BandInfoPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +22,16 @@ import java.util.List;
 
      private final MainView view;
     private final BandInteractor bandInteractor;
+    private final EventInteractor eventInteractor;
+
+    private static List<String> tabsDays = new ArrayList<>();
+    static {
+        tabsDays.add("2017-06-02");
+        tabsDays.add("2017-06-03");
+        tabsDays.add("2017-06-04");
+    }
+
+    private Filter filter;
 
     public static Intent newMainActivity(Context context) {
 
@@ -39,53 +51,56 @@ import java.util.List;
 
          this.view = view;
          bandInteractor = new BandInteractor(context, view);
+         eventInteractor = new EventInteractor(context, view);
 
      }
 
      public void onCreate() {
 
-         if (mustUpdateData()) {
-             updateDataFromApi();
-         }
+         filter = new Filter();
+         filter.setDay(tabsDays.get(0));
+         refreshData();
      }
-
-    private boolean mustUpdateData() {
-        // TODO check last update date with server
-        return true;
-    }
-
-    private void updateDataFromApi() {
-        bandInteractor.getBands(new BandInteractor.BandsCallback() {
-            @Override
-            public void onResponse(List<Band> bands) {
-                refreshData();
-            }
-
-            @Override
-            public void onError(String error) {
-                view.toast(error);
-            }
-        });
-    }
 
     public void onResume() {
 
-         refreshData();
      }
 
      public void refreshData() {
 
-         List<Band> bands = bandInteractor.getBandsDB();
-         List<Event> events = new ArrayList<>();
-
-         for (Band band : bands) {
-             Event event = new Event();
-             event.setBand(band);
-             events.add(event);
-         }
+         List<Event> events = eventInteractor.getEventsDB(filter);
          view.showEvents(events);
 
      }
 
+    public void onTabSelected(int position) {
+        filter.setDay(tabsDays.get(position));
+        refreshData();
+        view.goToTop();
+    }
 
+
+    public void onFilterFavouritesClicked(boolean favourites) {
+        filter.setStarred(favourites);
+        refreshData();
+    }
+
+    public void onEventFavouriteClicked(int idEvent) {
+        eventInteractor.toggleFavState(idEvent);
+        refreshData();
+    }
+
+    public void onBandClicked(int idBand) {
+        context.startActivity(BandInfoPresenter.newBandInfoActivity(context, idBand));
+    }
+
+    public void onShareFavsButtonClicked() {
+        // todo share list favs
+        String text = "Aquí compartiríamos la lista de conciertos favoritos";
+
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_TEXT, text);
+        intent.setType("text/plain");
+        context.startActivity(intent);
+    }
 }

@@ -20,6 +20,8 @@ import android.widget.Toast;
 import com.triskelapps.alcalasuena.App;
 import com.triskelapps.alcalasuena.R;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 
 public abstract class BaseActivity extends AppCompatActivity implements BaseView {
 
@@ -61,8 +63,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(newBase);
-//        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+//        super.attachBaseContext(newBase);
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
     public abstract BasePresenter getPresenter();

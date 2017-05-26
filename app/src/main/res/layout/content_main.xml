@@ -17,10 +17,34 @@
         app:tabTextColor="@android:color/white" />
 
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_bands"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_events"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/btn_share_favs"/>
+
+        <TextView
+            android:id="@+id/tv_no_favs"
+            style="@style/TextBase.White"
+            android:text="@string/no_favourites"
+            android:visibility="gone"
+            android:layout_centerInParent="true"
+            android:textSize="20sp"
+            android:gravity="center_horizontal"/>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_share_favs"
+            style="@style/TextBase"
+            android:layout_alignParentBottom="true"
+            android:text="@string/share_favs_with_friends"
+            android:visibility="gone"
+            android:layout_centerHorizontal="true"/>
+
+    </RelativeLayout>
 
 
 </LinearLayout>

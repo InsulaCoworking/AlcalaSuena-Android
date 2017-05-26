@@ -5,20 +5,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.triskelapps.alcalasuena.ui.MainActivity">
+    tools:context="com.triskelapps.alcalasuena.ui.MainActivity"
+    android:background="@color/red_general">
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@mipmap/img_chica_gris_bg_transp" />
+        android:src="@mipmap/img_chica_gris_bg_transp"
+        android:alpha="0.7"
+        android:layout_centerInParent="true"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/red_general"
-        android:alpha="0.5"/>
+        android:alpha="0.0"/>
 
     <LinearLayout
         android:id="@+id/container"
@@ -42,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
-                tools:layout="@layout/fragment_menu" />
+                tools:layout="@layout/fragment_menu"/>
 
             <fragment
                 android:id="@+id/filter_bands_fragment"

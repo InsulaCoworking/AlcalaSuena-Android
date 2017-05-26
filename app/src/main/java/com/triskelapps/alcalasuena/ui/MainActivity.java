@@ -26,17 +26,24 @@ import com.triskelapps.alcalasuena.ui.events.EventsAdapter;
 
 import java.util.List;
 
-public class MainActivity extends BaseActivity implements MainView {
+public class MainActivity extends BaseActivity implements MainView, TabLayout.OnTabSelectedListener, EventsAdapter.OnItemClickListener, View.OnClickListener {
 
-    private RecyclerView recyclerBands;
+    private RecyclerView recyclerEvents;
     private EventsAdapter adapter;
     private TabLayout tabsDays;
     private MainPresenter presenter;
     private DrawerLayout drawerLayout;
+    private MenuItem itemFav;
+    private TextView tvNoFavs;
+    private TextView btnShareFavs;
 
     private void findViews() {
         tabsDays = (TabLayout) findViewById(R.id.tabs_days);
-        recyclerBands = (RecyclerView) findViewById(R.id.recycler_bands);
+        recyclerEvents = (RecyclerView) findViewById(R.id.recycler_events);
+        tvNoFavs = (TextView) findViewById(R.id.tv_no_favs);
+        btnShareFavs = (TextView) findViewById(R.id.btn_share_favs);
+
+        btnShareFavs.setOnClickListener(this);
     }
 
     @Override
@@ -56,7 +63,7 @@ public class MainActivity extends BaseActivity implements MainView {
 //        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerBands.setLayoutManager(layoutManager);
+        recyclerEvents.setLayoutManager(layoutManager);
 
 //        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,
 //                layoutManager.getOrientation());
@@ -72,6 +79,8 @@ public class MainActivity extends BaseActivity implements MainView {
         tabsDays.addTab(tabsDays.newTab().setCustomView(getTabView(1)));
         tabsDays.addTab(tabsDays.newTab().setCustomView(getTabView(2)));
         tabsDays.addTab(tabsDays.newTab().setCustomView(getTabView(3)));
+
+        tabsDays.addOnTabSelectedListener(this);
 
         presenter.onCreate();
     }
@@ -111,10 +120,12 @@ public class MainActivity extends BaseActivity implements MainView {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_filter, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         Drawable iconFilter = getResources().getDrawable(R.mipmap.ic_filter);
         iconFilter.setColorFilter(ContextCompat.getColor(this, R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
         menu.findItem(R.id.menuItem_filter).setIcon(iconFilter);
+
+        itemFav = menu.findItem(R.id.menuItem_fav);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -135,6 +146,15 @@ public class MainActivity extends BaseActivity implements MainView {
                     drawerLayout.openDrawer(Gravity.RIGHT);
                 }
                 return true;
+
+
+            case R.id.menuItem_fav:
+                itemFav.setChecked(!itemFav.isChecked());
+                itemFav.setIcon(itemFav.isChecked() ? R.mipmap.ic_star_selected : R.mipmap.ic_star_unselected);
+                presenter.onFilterFavouritesClicked(itemFav.isChecked());
+
+                btnShareFavs.setVisibility(itemFav.isChecked() && adapter.getItemCount() > 0 ? View.VISIBLE : View.GONE);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -173,12 +193,42 @@ public class MainActivity extends BaseActivity implements MainView {
         return tabView;
     }
 
+    // INTERACTIONS
+    @Override
+    public void onBandClicked(int idBand) {
+        presenter.onBandClicked(idBand);
+    }
+
+    @Override
+    public void onEventFavouriteClicked(int idEvent) {
+        presenter.onEventFavouriteClicked(idEvent);
+    }
+
+
+
+    // PRESENTER CALLBACKS
     @Override
     public void showEvents(List<Event> events) {
 
-        adapter = new EventsAdapter(this, events);
-        recyclerBands.setAdapter(adapter);
+        if (adapter == null) {
 
+            adapter = new EventsAdapter(this, events);
+            recyclerEvents.setAdapter(adapter);
+
+            adapter.setOnItemClickListener(this);
+        } else {
+            adapter.updateData(events);
+        }
+
+        tvNoFavs.setVisibility(events.isEmpty() ? View.VISIBLE : View.GONE);
+
+    }
+
+    @Override
+    public void goToTop() {
+        if (adapter.getItemCount() > 0) {
+            recyclerEvents.scrollToPosition(0);
+        }
     }
 
     @Override
@@ -186,6 +236,25 @@ public class MainActivity extends BaseActivity implements MainView {
         return presenter;
     }
 
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+        presenter.onTabSelected(tab.getPosition());
+    }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        presenter.onShareFavsButtonClicked();
+    }
 
 //    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
 //            = new BottomNavigationView.OnNavigationItemSelectedListener() {

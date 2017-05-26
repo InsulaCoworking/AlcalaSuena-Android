@@ -1,6 +1,7 @@
 package com.triskelapps.alcalasuena.ui.events;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,21 +56,40 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
 
-        Event event = getItemAtPosition(position);
+        final Event event = getItemAtPosition(position);
 
-        Band band = event.getBand();
+        final Band band = event.getBandEntity();
 
         holder.tvBandName.setText(band.getName());
         holder.tvBandGenre.setText(band.getGenre());
         Picasso.with(context)
                 .load(band.getImageUrlFull())
+                .placeholder(R.mipmap.img_default_grid)
+                .error(R.mipmap.img_default_grid)
                 .into(holder.imgBand);
+
+        holder.tvEventTime.setText(event.getTimeFormatted());
+        holder.tvEventVenue.setText(event.getVenue().getName());
+
+        holder.imgStarred.setSelected(event.isStarred());
 
 //        int color = ContextCompat.getColor(context, event.getImageUrlFull() != null ? android.R.color.white : android.R.color.black);
 //        holder.tvEventName.setTextColor(color);
 //        holder.tvEventGenre.setTextColor(color);
 
-//        addClickListener(holder.rootView, position);
+        holder.rootView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                itemClickListener.onBandClicked(band.getId());
+            }
+        });
+
+        holder.imgStarred.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                itemClickListener.onEventFavouriteClicked(event.getId());
+            }
+        });
     }
 
     private void addClickListener(View view, final int position) {
@@ -78,15 +98,9 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
             @Override
             public void onClick(View v) {
 
-                if (v instanceof TextView) {
-                    String textNumber = ((TextView) v).getText().toString();
-                    Integer number = Integer.parseInt(textNumber);
-                    setSelectedNumber(number);
-                }
-
-                if (itemClickListener != null) {
-                    itemClickListener.onItemClick(v, position);
-                }
+//                if (itemClickListener != null) {
+//                    itemClickListener.onItemClick(v, position);
+//                }
             }
         });
     }
@@ -100,21 +114,33 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
         return events.get(position);
     }
 
+    public void updateData(List<Event> events) {
+        this.events = events;
+        notifyDataSetChanged();
+    }
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-
-        public TextView tvBandName;
-        public TextView tvBandGenre;
-        public ImageView imgBand;
+        private CardView cardEvent;
+        private ImageView imgBand;
+        private TextView tvBandName;
+        private TextView tvBandGenre;
+        private ImageView imgStarred;
+        private TextView tvEventVenue;
+        private TextView tvEventTime;
         public View rootView;
 
         public ViewHolder(View itemView) {
 
             super(itemView);
 
-            tvBandName = (TextView) itemView.findViewById(R.id.tv_band_name);
-            tvBandGenre = (TextView) itemView.findViewById(R.id.tv_band_genre);
-            imgBand = (ImageView) itemView.findViewById(R.id.img_band);
+            cardEvent = (CardView)itemView.findViewById( R.id.card_event );
+            imgBand = (ImageView)itemView.findViewById( R.id.img_band );
+            tvBandName = (TextView)itemView.findViewById( R.id.tv_band_name );
+            tvBandGenre = (TextView)itemView.findViewById( R.id.tv_band_genre );
+            imgStarred = (ImageView)itemView.findViewById( R.id.img_starred );
+            tvEventVenue = (TextView)itemView.findViewById( R.id.tv_event_venue );
+            tvEventTime = (TextView)itemView.findViewById( R.id.tv_event_time );
 
             rootView = itemView;
         }
@@ -126,6 +152,9 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
     }
 
     public interface OnItemClickListener {
-        void onItemClick(View view, int position);
+        void onBandClicked(int idBand);
+
+        void onEventFavouriteClicked(int idEvent);
+
     }
 }

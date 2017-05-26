@@ -2,42 +2,125 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:clickable="true">
+    android:clickable="true"
+    android:orientation="vertical">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/img_background_menu_original"
-        android:alpha="1"/>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="1"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/img_bg_menu" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#000"
-        android:alpha="0.0" />
+        android:alpha="0.0"
+        android:background="#000" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:fillViewport="true">
 
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_menu_bands"
-            style="@style/BtnMenu"
-            android:text="@string/bands"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_menu_map"
-            style="@style/BtnMenu"
-            android:text="@string/map"/>
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_menu_bands"
+                style="@style/BtnMenu"
+                android:text="@string/bands" />
 
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_menu_share"
-            style="@style/BtnMenu"
-            android:text="@string/compartir"/>
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_menu_venues"
+                style="@style/BtnMenu"
+                android:text="@string/venues" />
 
-    </LinearLayout>
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_menu_map"
+                style="@style/BtnMenu"
+                android:text="@string/map" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_menu_about"
+                style="@style/BtnMenu"
+                android:text="@string/about_alcalasuena"
+                android:textAllCaps="false"/>
+
+            <View style="@style/XpansorVert" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/grey_dark_general"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <ImageView
+                    style="@style/ImageLogo"
+                    android:src="@mipmap/logo_mahou"
+                    android:tag="" />
+
+                <ImageView
+                    style="@style/ImageLogo"
+                    android:padding="8dp"
+                    android:src="@mipmap/img_logo_alcalasuena"
+                    android:tag="" />
+
+                <ImageView
+                    style="@style/ImageLogo"
+                    android:padding="13dp"
+                    android:src="@mipmap/img_logo_alcalaesmusica"
+                    android:tag="" />
+
+                <ImageView
+                    style="@style/ImageLogo"
+                    android:padding="7dp"
+                    android:src="@mipmap/img_logo_ayto_alcala"
+                    android:tag="" />
+
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/grey_dark_general">
+
+                <ImageView
+                    android:id="@+id/img_logo_insula"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@mipmap/img_logo_insula" />
+
+                <TextView
+                    android:id="@+id/tv_developed"
+                    style="@style/TextBase.White"
+                    android:text="@string/developed_by_insula"
+                    android:layout_below="@+id/img_logo_insula"
+                    android:layout_marginTop="10dp"
+                    android:textSize="14sp"
+                    android:padding="5dp"/>
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btn_see_on_github"
+                    style="@style/TextBase"
+                    android:layout_toRightOf="@+id/img_logo_insula"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="12sp"
+                    android:text="@string/see_on_github"
+                    android:drawableLeft="@mipmap/ic_social_github"
+                    android:drawablePadding="3dp"/>
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

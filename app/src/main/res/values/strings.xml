@@ -19,5 +19,15 @@
     <string name="filter">Filtrar</string>
     <string name="search_band">Buscar banda</string>
     <string name="no_results_found">No se han encontrado resultados para esa búsqueda</string>
+    <string name="program">Programación</string>
+    <string name="venues">Escenarios</string>
+    <string name="about_alcalasuena">#AlcalaSuena</string>
+    <string name="developed_by_insula">Desarrollado por coworkers de la Ínsula Coworking\nCódigo liberado bajo licencia GPL</string>
+    <string name="see_on_github">Ver repositorios en GitHub</string>
+    <string name="text_about">Más de 140 conciertos gratuitos en 11 escenarios repartidos por un casco histórico patrimonio de la Humanidad. Alcala de Henares se llena de música en un proyecto creado por los artistas de la ciudad en el que se mezclan todo tipo de estilos, grupos profesionales y amateurs, noveles y cabezas de cartel en una producción con más de 800 músicos, técnicos, profesionales y voluntarios implicados en la producción.</string>
+    <string name="see_dossier">Ver dossier</string>
+    <string name="favourites">Favoritos</string>
+    <string name="no_favourites">No has marcado de momento ningún evento como favorito.\n¡A qué esperas! Pulsa la estrella y hazte tu lista ;)</string>
+    <string name="share_favs_with_friends">¡Comparte con tus amigos tu lista!</string>
 
 </resources>

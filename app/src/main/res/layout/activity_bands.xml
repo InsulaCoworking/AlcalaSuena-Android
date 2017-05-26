@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/red_general">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@mipmap/img_background_main" />
+        android:src="@mipmap/img_chico_saxo_bg_transp"
+        android:alpha="0.5"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/transp_black" />
+        android:background="@color/transp_black"
+        android:visibility="gone"/>
 
     <LinearLayout
         android:layout_width="match_parent"
