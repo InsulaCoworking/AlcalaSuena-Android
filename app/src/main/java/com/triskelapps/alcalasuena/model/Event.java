@@ -1,9 +1,12 @@
 package com.triskelapps.alcalasuena.model;
 
 
+import android.support.annotation.NonNull;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import io.realm.RealmObject;
@@ -13,8 +16,9 @@ import io.realm.annotations.PrimaryKey;
  * Created by julio on 23/05/17.
  */
 
-public class Event extends RealmObject {
+public class Event extends RealmObject implements Comparable {
 
+    public static final int TIME_HOUR_MIDNIGHT_SAFE = 5; // After 5:00 is "next day"
 
     public static final String TIME = "time";
     public static final String DAY = "day";
@@ -37,6 +41,8 @@ public class Event extends RealmObject {
     private boolean starred;
     private Band bandEntity;
     private Venue venue;
+
+    private transient int timeHourMidnightSafe;
 
     public String getDayShareFormat() {
         try {
@@ -62,6 +68,39 @@ public class Event extends RealmObject {
         }
     }
 
+
+    public boolean isAfterTimeEventsEnd() {
+
+        try {
+            Date timeDate = timeFormatApi.parse(time);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(timeDate.getTime());
+            return calendar.get(Calendar.HOUR_OF_DAY) > 5;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return true;
+        }
+    }
+
+
+    public void configureTimeMidnightSafe() {
+
+        try {
+            Date timeDate = timeFormatApi.parse(time);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(timeDate.getTime());
+            int timeHour = calendar.get(Calendar.HOUR_OF_DAY);
+            setTimeHourMidnightSafe(timeHour < TIME_HOUR_MIDNIGHT_SAFE ? timeHour+24 : timeHour);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Override
+    public int compareTo(@NonNull Object o) {
+        return getTimeHourMidnightSafe() - ((Event) o).getTimeHourMidnightSafe();
+    }
 
     public int getId() {
         return id;
@@ -126,6 +165,14 @@ public class Event extends RealmObject {
 
     public void setStarred(boolean starred) {
         this.starred = starred;
+    }
+
+    public int getTimeHourMidnightSafe() {
+        return timeHourMidnightSafe;
+    }
+
+    public void setTimeHourMidnightSafe(int timeHourMidnightSafe) {
+        this.timeHourMidnightSafe = timeHourMidnightSafe;
     }
 
 }

@@ -71,13 +71,13 @@ public class BandInfoActivity extends BaseActivity implements BandInfoView, View
     public void showBand(Band band) {
 
         tvBandName.setText(band.getName());
-        tvBandGenre.setText(band.getGenre());
+        tvBandGenre.setText(band.getGenreOrTag());
         tvBandDescription.setText(band.getDescription());
 
         if (band.hasValidImage()) {
             imgBand.setVisibility(View.VISIBLE);
             Picasso.with(this)
-                    .load(band.getImageUrlFull())
+                    .load(band.getImageCoverUrlFull())
                     .placeholder(R.mipmap.img_default_grid)
                     .error(R.mipmap.img_default_grid)
                     .into(imgBand);

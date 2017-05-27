@@ -63,9 +63,9 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
         final Band band = event.getBandEntity();
 
         holder.tvBandName.setText(band.getName());
-        holder.tvBandGenre.setText(band.getGenre());
+        holder.tvBandGenre.setText(band.getGenreOrTag());
         Picasso.with(context)
-                .load(band.getImageUrlFull())
+                .load(band.getImageLogoUrlFull())
                 .placeholder(R.mipmap.img_default_grid)
                 .error(R.mipmap.img_default_grid)
                 .into(holder.imgBand);
@@ -77,11 +77,11 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
 
         if (band.getTag() != null) {
             int color = Color.parseColor(band.getTag().getColor());
-            int colorAlpha = ColorUtils.setAlphaComponent(color, 150);
+            int colorAlpha = ColorUtils.setAlphaComponent(color, 200);
             holder.cardEvent.setCardBackgroundColor(colorAlpha);
         }
 
-//        int color = ContextCompat.getColor(context, event.getImageUrlFull() != null ? android.R.color.white : android.R.color.black);
+//        int color = ContextCompat.getColor(context, event.getImageLogoUrlFull() != null ? android.R.color.white : android.R.color.black);
 //        holder.tvEventName.setTextColor(color);
 //        holder.tvEventGenre.setTextColor(color);
 

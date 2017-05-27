@@ -70,7 +70,17 @@ import java.util.List;
      public void refreshData() {
 
          List<Event> events = eventInteractor.getEventsDB(filter);
-         view.showEvents(events);
+
+         String emptyMessage = null;
+         if (events.isEmpty()) {
+             if (filter.isStarred()) {
+                 emptyMessage = context.getString(R.string.no_favourites);
+             } else {
+                 emptyMessage = context.getString(R.string.no_results_for_tags);
+             }
+         }
+
+         view.showEvents(events, emptyMessage);
 
      }
 

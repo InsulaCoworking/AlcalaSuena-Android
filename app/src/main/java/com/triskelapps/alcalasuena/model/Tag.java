@@ -12,16 +12,17 @@ public class Tag extends RealmObject {
 
 
     public static final String ID = "id";
+    public static final String ACTIVE = "active";
 
     @PrimaryKey
-    private int id;
+    private String id;
     private String name;
     private String description;
     private String color;
     private boolean active = true;
 
 
-    public Tag(int id, String name, String color) {
+    public Tag(String id, String name, String color) {
         this.id = id;
         this.name = name;
         this.color = color;
@@ -29,14 +30,6 @@ public class Tag extends RealmObject {
 
     public Tag() {
 
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -69,5 +62,13 @@ public class Tag extends RealmObject {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

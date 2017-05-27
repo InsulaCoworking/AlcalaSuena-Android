@@ -6,6 +6,8 @@ import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.interactor.BandInteractor;
 import com.triskelapps.alcalasuena.model.Filter;
 import com.triskelapps.alcalasuena.model.Tag;
+import com.triskelapps.alcalasuena.ui.MainActivity;
+import com.triskelapps.alcalasuena.ui.MainPresenter;
 
 import java.util.List;
 
@@ -37,9 +39,9 @@ public class FilterBandsPresenter extends BasePresenter {
     public void onCreate() {
 
         // todo get from db
-        if (bandInteractor.getTags().isEmpty()) {
-            bandInteractor.initializeMockTags();
-        }
+//        if (bandInteractor.getTags().isEmpty()) {
+//            bandInteractor.initializeMockTags();
+//        }
 
         refreshData();
 
@@ -56,15 +58,23 @@ public class FilterBandsPresenter extends BasePresenter {
 
     }
 
-    public void onTagClick(int idTag) {
+    public void onTagClick(String idTag) {
 
-        bandInteractor.toggleTagState(idTag);
+        if (bandInteractor.areAllTagsActive()) {
+            bandInteractor.setAllTagsInactiveUnlessThisOne(idTag);
+        } else {
+            bandInteractor.toggleTagState(idTag);
+        }
         refreshData();
+
+        ((MainPresenter)((MainActivity)context).getPresenter()).refreshData();
 
     }
 
     public void onAllTagsButtonClick() {
         bandInteractor.setAllTagsActive();
         refreshData();
+
+        ((MainPresenter)((MainActivity)context).getPresenter()).refreshData();
     }
 }

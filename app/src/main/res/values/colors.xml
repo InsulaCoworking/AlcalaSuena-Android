@@ -16,4 +16,5 @@
     <color name="colorAccentDark">#0ab7af</color>
     <color name="cardBackground">#BFFF</color>
     <color name="grey_dark_general">#40474A</color>
+    <color name="cardBackgroundEvent">#3FFF</color>
 </resources>

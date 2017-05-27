@@ -72,7 +72,7 @@ public class FilterBandsFragment extends BaseFragment implements View.OnClickLis
     }
 
     @Override
-    public void onItemClick(View view, int position, int id) {
+    public void onItemClick(View view, int position, String id) {
         presenter.onTagClick(id);
     }
 

@@ -9,6 +9,8 @@ import com.triskelapps.alcalasuena.model.Event;
 import com.triskelapps.alcalasuena.model.Favourite;
 import com.triskelapps.alcalasuena.model.Filter;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import io.realm.Realm;
@@ -45,11 +47,22 @@ public class EventInteractor extends BaseInteractor {
 
         if (filter.isStarred()) {
             query.equalTo(Event.STARRED, true);
+        } else {
+            query.equalTo("bandEntity.tag.active", true);
         }
+
 
         List<Event> events = query.findAllSorted(Event.TIME);
 
-        return events;
+        // workaround to place events after 00:00 at the end
+        List<Event> eventsProperlySorted = new ArrayList<>();
+        for (Event event : events) {
+            event.configureTimeMidnightSafe();
+            eventsProperlySorted.add(event);
+        }
+
+        Collections.sort(eventsProperlySorted);
+        return eventsProperlySorted;
     }
 
     public static void resetStarredState() {

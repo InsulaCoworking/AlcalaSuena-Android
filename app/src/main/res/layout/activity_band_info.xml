@@ -3,6 +3,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/red_general">
 
     <ImageView
@@ -36,7 +37,13 @@
                 <TextView
                     android:id="@+id/tv_band_name"
                     style="@style/TextBase.Accent"
-                    android:textSize="32sp" />
+                    android:textSize="50sp"
+                    android:gravity="center"
+                    app:fontPath="fonts/Old_Press_Italic.ttf"
+                    android:includeFontPadding="true"
+                    android:padding="5dp"/>
+
+                <!--<item name="fontPath">fonts/Vaud.otf</item>  NOT NECESSARY-->
 
 
                 <ImageView

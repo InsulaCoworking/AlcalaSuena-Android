@@ -28,13 +28,14 @@
             android:layout_above="@+id/btn_share_favs"/>
 
         <TextView
-            android:id="@+id/tv_no_favs"
+            android:id="@+id/tv_empty_message"
             style="@style/TextBase.White"
             android:text="@string/no_favourites"
             android:visibility="gone"
             android:layout_centerInParent="true"
             android:textSize="20sp"
-            android:gravity="center_horizontal"/>
+            android:gravity="center_horizontal"
+            android:padding="5dp"/>
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_share_favs"

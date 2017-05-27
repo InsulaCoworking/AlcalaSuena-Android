@@ -31,5 +31,6 @@
     <string name="share_favs_with_friends">¡Comparte con tus amigos tu lista!</string>
     <string name="all_tags">Todos los estilos</string>
     <string name="share_favs_text_intro">¡Esta es mi lista de conciertos para el #AlcalaSuena!</string>
+    <string name="no_results_for_tags">En este día no hay conciertos para los estilos de música elegidos :(</string>
 
 </resources>

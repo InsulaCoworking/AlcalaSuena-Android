@@ -36,14 +36,14 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
     private MainPresenter presenter;
     private DrawerLayout drawerLayout;
     private MenuItem itemFav;
-    private TextView tvNoFavs;
+    private TextView tvEmptyMessage;
     private TextView btnShareFavs;
     private AlphaInAnimationAdapter animationAdapter;
 
     private void findViews() {
         tabsDays = (TabLayout) findViewById(R.id.tabs_days);
         recyclerEvents = (RecyclerView) findViewById(R.id.recycler_events);
-        tvNoFavs = (TextView) findViewById(R.id.tv_no_favs);
+        tvEmptyMessage = (TextView) findViewById(R.id.tv_empty_message);
         btnShareFavs = (TextView) findViewById(R.id.btn_share_favs);
 
         btnShareFavs.setOnClickListener(this);
@@ -217,7 +217,7 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
 
     // PRESENTER CALLBACKS
     @Override
-    public void showEvents(List<Event> events) {
+    public void showEvents(List<Event> events, String emptyMessage) {
 
         if (adapter == null) {
 
@@ -240,7 +240,9 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
             });
         }
 
-        tvNoFavs.setVisibility(events.isEmpty() ? View.VISIBLE : View.GONE);
+        tvEmptyMessage.setVisibility(emptyMessage != null ? View.VISIBLE : View.GONE);
+        tvEmptyMessage.setText(emptyMessage);
+
         refreshShareFavsVisibility();
 
     }

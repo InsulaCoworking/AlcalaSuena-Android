@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 tools:layout="@layout/fragment_filter_bands"
-                android:layout_marginLeft="50dp"/>
+                android:layout_marginLeft="20dp"/>
 
         </android.support.v4.widget.DrawerLayout>
 

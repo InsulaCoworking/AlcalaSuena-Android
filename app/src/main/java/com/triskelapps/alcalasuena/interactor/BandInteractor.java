@@ -10,7 +10,6 @@ import com.triskelapps.alcalasuena.model.Band;
 import com.triskelapps.alcalasuena.model.Tag;
 import com.triskelapps.alcalasuena.util.Util;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.Case;
@@ -127,7 +126,7 @@ public class BandInteractor extends BaseInteractor {
     private void storeBands(List<Band> bands) {
         Realm realm = Realm.getDefaultInstance();
         realm.beginTransaction();
-        realm.insert(bands);
+        realm.insertOrUpdate(bands);
         realm.commitTransaction();
     }
 
@@ -137,20 +136,20 @@ public class BandInteractor extends BaseInteractor {
         return Realm.getDefaultInstance().where(Tag.class).findAll();
     }
 
-    public void initializeMockTags() {
-        Realm realm = Realm.getDefaultInstance();
-        List<Tag> tags = new ArrayList<>();
-        tags.add(new Tag(1, "Jazz", "#f67800"));
-        tags.add(new Tag(2, "Blues", "#f678bb"));
-        tags.add(new Tag(3, "Rock/Pop/Indie", "#007800"));
-        tags.add(new Tag(4, "Clasica", "#f66341"));
+//    public void initializeMockTags() {
+//        Realm realm = Realm.getDefaultInstance();
+//        List<Tag> tags = new ArrayList<>();
+//        tags.add(new Tag(1, "Jazz", "#f67800"));
+//        tags.add(new Tag(2, "Blues", "#f678bb"));
+//        tags.add(new Tag(3, "Rock/Pop/Indie", "#007800"));
+//        tags.add(new Tag(4, "Clasica", "#f66341"));
+//
+//        realm.beginTransaction();
+//        realm.insertOrUpdate(tags);
+//        realm.commitTransaction();
+//    }
 
-        realm.beginTransaction();
-        realm.insertOrUpdate(tags);
-        realm.commitTransaction();
-    }
-
-    public void toggleTagState(int idTag) {
+    public void toggleTagState(String idTag) {
 
         Realm realm = Realm.getDefaultInstance();
         Tag tag = realm.where(Tag.class).equalTo(Tag.ID, idTag).findFirst();
@@ -168,6 +167,22 @@ public class BandInteractor extends BaseInteractor {
         realm.beginTransaction();
         for (Tag tag : tags) {
             tag.setActive(true);
+        }
+        realm.commitTransaction();
+    }
+
+    public boolean areAllTagsActive() {
+        return Realm.getDefaultInstance().where(Tag.class).equalTo(Tag.ACTIVE, false).findAll().isEmpty();
+    }
+
+    public void setAllTagsInactiveUnlessThisOne(String idTag) {
+
+        List<Tag> tags = getTags();
+
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        for (Tag tag : tags) {
+            tag.setActive(tag.getId().equals(idTag));
         }
         realm.commitTransaction();
     }

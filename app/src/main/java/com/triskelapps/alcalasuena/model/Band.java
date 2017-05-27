@@ -33,7 +33,7 @@ public class Band extends RealmObject {
     private String facebook_link, twitter_link, youtube_link, bandcamp_link, presskit_link;
     private RealmList<Event> events;
 
-    public Uri getImageUrlFull() {
+    public Uri getImageLogoUrlFull() {
         if (getProfile_image() == null) {
             return null;
         }
@@ -42,10 +42,32 @@ public class Band extends RealmObject {
         return Uri.parse(urlFull);
     }
 
+
+    public Uri getImageCoverUrlFull() {
+
+        if (getBand_image() == null) {
+            return getImageLogoUrlFull();
+        }
+
+        String urlFull = ApiClient.BASE_URL + getBand_image();
+        return Uri.parse(urlFull);
+    }
+
+
     public boolean hasValidImage() {
         return getProfile_image() != null && URLUtil.isValidUrl(ApiClient.BASE_URL + getProfile_image());
     }
 
+    public String getGenreOrTag() {
+        if (getGenre() != null && !getGenre().isEmpty()) {
+            return getGenre();
+        } else if (getTag() != null) {
+            return getTag().getName();
+        }
+        return null;
+    }
+
+    // ---
 
     public int getId() {
         return id;
