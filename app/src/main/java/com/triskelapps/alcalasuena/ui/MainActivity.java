@@ -23,6 +23,8 @@ import com.triskelapps.alcalasuena.base.BaseActivity;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.model.Event;
 import com.triskelapps.alcalasuena.ui.events.EventsAdapter;
+import com.triskelapps.alcalasuena.views.animation_adapter.AlphaInAnimationAdapter;
+import com.triskelapps.alcalasuena.views.animation_adapter.AnimationAdapter;
 
 import java.util.List;
 
@@ -36,6 +38,7 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
     private MenuItem itemFav;
     private TextView tvNoFavs;
     private TextView btnShareFavs;
+    private AlphaInAnimationAdapter animationAdapter;
 
     private void findViews() {
         tabsDays = (TabLayout) findViewById(R.id.tabs_days);
@@ -153,10 +156,16 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
                 itemFav.setIcon(itemFav.isChecked() ? R.mipmap.ic_star_selected : R.mipmap.ic_star_unselected);
                 presenter.onFilterFavouritesClicked(itemFav.isChecked());
 
-                btnShareFavs.setVisibility(itemFav.isChecked() && adapter.getItemCount() > 0 ? View.VISIBLE : View.GONE);
+                refreshShareFavsVisibility();
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void refreshShareFavsVisibility() {
+        if (itemFav != null) {
+            btnShareFavs.setVisibility(itemFav.isChecked() && adapter.getItemCount() > 0 ? View.VISIBLE : View.GONE);
+        }
     }
 
     private void configureDrawerLayout() {
@@ -213,14 +222,26 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
         if (adapter == null) {
 
             adapter = new EventsAdapter(this, events);
-            recyclerEvents.setAdapter(adapter);
-
             adapter.setOnItemClickListener(this);
+
+            animationAdapter = new AlphaInAnimationAdapter(adapter);
+            animationAdapter.setFirstOnly(false);
+            recyclerEvents.setAdapter(animationAdapter);
+
         } else {
+            // Little trick to avoid animation when searching
+            animationAdapter.setDuration(0);
             adapter.updateData(events);
+            recyclerEvents.post(new Runnable() {
+                @Override
+                public void run() {
+                    animationAdapter.setDuration(AnimationAdapter.DEFAULT_DURATION);
+                }
+            });
         }
 
         tvNoFavs.setVisibility(events.isEmpty() ? View.VISIBLE : View.GONE);
+        refreshShareFavsVisibility();
 
     }
 

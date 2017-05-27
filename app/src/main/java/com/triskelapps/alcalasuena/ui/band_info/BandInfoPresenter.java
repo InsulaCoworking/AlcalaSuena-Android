@@ -81,6 +81,9 @@ public class BandInfoPresenter extends BasePresenter {
             case R.id.img_bandcamp:
                 url = band.getBandcamp_link();
                 break;
+            case R.id.img_presskit:
+                url = band.getPresskit_link();
+                break;
         }
 
         if (url != null && Patterns.WEB_URL.matcher(url).matches()) {

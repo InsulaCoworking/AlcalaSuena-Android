@@ -10,6 +10,7 @@ import com.triskelapps.alcalasuena.model.Band;
 import com.triskelapps.alcalasuena.model.Tag;
 import com.triskelapps.alcalasuena.util.Util;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.Case;
@@ -130,6 +131,46 @@ public class BandInteractor extends BaseInteractor {
         realm.commitTransaction();
     }
 
+
+    // TAGS of bands
+    public List<Tag> getTags() {
+        return Realm.getDefaultInstance().where(Tag.class).findAll();
+    }
+
+    public void initializeMockTags() {
+        Realm realm = Realm.getDefaultInstance();
+        List<Tag> tags = new ArrayList<>();
+        tags.add(new Tag(1, "Jazz", "#f67800"));
+        tags.add(new Tag(2, "Blues", "#f678bb"));
+        tags.add(new Tag(3, "Rock/Pop/Indie", "#007800"));
+        tags.add(new Tag(4, "Clasica", "#f66341"));
+
+        realm.beginTransaction();
+        realm.insertOrUpdate(tags);
+        realm.commitTransaction();
+    }
+
+    public void toggleTagState(int idTag) {
+
+        Realm realm = Realm.getDefaultInstance();
+        Tag tag = realm.where(Tag.class).equalTo(Tag.ID, idTag).findFirst();
+
+        realm.beginTransaction();
+        tag.setActive(!tag.isActive());
+        realm.commitTransaction();
+    }
+
+    public void setAllTagsActive() {
+
+        Realm realm = Realm.getDefaultInstance();
+        List<Tag> tags = realm.where(Tag.class).findAll();
+
+        realm.beginTransaction();
+        for (Tag tag : tags) {
+            tag.setActive(true);
+        }
+        realm.commitTransaction();
+    }
 
     private Api getApi() {
         return getApi(Api.class);

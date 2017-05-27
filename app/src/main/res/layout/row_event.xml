@@ -34,7 +34,9 @@
                 android:layout_toRightOf="@+id/img_band"
                 android:layout_toLeftOf="@+id/img_starred"
                 android:textSize="22sp"
-                android:lines="1"/>
+                android:maxLines="1"
+                android:ellipsize="middle"
+                android:layout_marginRight="5dp"/>
 
             <TextView
                 android:id="@+id/tv_band_genre"

@@ -2,9 +2,12 @@
 
 
     <style name="ImgSocialIcon">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_margin">10dp</item>
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:background">@drawable/bg_social_icons</item>
+        <item name="android:scaleType">centerInside</item>
     </style>
 
     <style name="ImageLogo">

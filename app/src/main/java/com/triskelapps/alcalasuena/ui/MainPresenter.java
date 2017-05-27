@@ -3,6 +3,7 @@ package com.triskelapps.alcalasuena.ui;
 import android.content.Context;
 import android.content.Intent;
 
+import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.interactor.BandInteractor;
 import com.triskelapps.alcalasuena.interactor.EventInteractor;
@@ -95,12 +96,28 @@ import java.util.List;
     }
 
     public void onShareFavsButtonClicked() {
-        // todo share list favs
-        String text = "Aquí compartiríamos la lista de conciertos favoritos";
+
+        String text = getMyListTextToShare();
 
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.putExtra(Intent.EXTRA_TEXT, text);
         intent.setType("text/plain");
         context.startActivity(intent);
+    }
+
+    private String getMyListTextToShare() {
+
+        Filter filter = new Filter();
+        filter.setStarred(true);
+        List<Event> eventsFav = eventInteractor.getEventsDB(filter);
+        String text = context.getString(R.string.share_favs_text_intro);
+
+        for (Event eventFav : eventsFav) {
+            text += "\n\n";
+            text += eventFav.getBandEntity().getName() + "\n";
+            text += eventFav.getDayShareFormat() + " - " + eventFav.getTimeFormatted() + "\n";
+            text += eventFav.getVenue().getName();
+        }
+        return text;
     }
 }

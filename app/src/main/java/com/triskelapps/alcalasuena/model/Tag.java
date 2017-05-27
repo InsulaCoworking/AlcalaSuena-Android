@@ -11,13 +11,25 @@ import io.realm.annotations.PrimaryKey;
 public class Tag extends RealmObject {
 
 
+    public static final String ID = "id";
+
     @PrimaryKey
     private int id;
     private String name;
     private String description;
     private String color;
+    private boolean active = true;
 
 
+    public Tag(int id, String name, String color) {
+        this.id = id;
+        this.name = name;
+        this.color = color;
+    }
+
+    public Tag() {
+
+    }
 
     public int getId() {
         return id;
@@ -49,5 +61,13 @@ public class Tag extends RealmObject {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

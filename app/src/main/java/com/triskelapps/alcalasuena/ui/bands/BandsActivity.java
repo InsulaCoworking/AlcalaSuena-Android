@@ -1,8 +1,8 @@
 package com.triskelapps.alcalasuena.ui.bands;
 
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -13,6 +13,8 @@ import com.triskelapps.alcalasuena.base.BaseActivity;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.model.Band;
 import com.triskelapps.alcalasuena.views.SpaceItemDecoration;
+import com.triskelapps.alcalasuena.views.animation_adapter.AnimationAdapter;
+import com.triskelapps.alcalasuena.views.animation_adapter.ScaleInAnimationAdapter;
 
 import java.util.List;
 
@@ -23,6 +25,7 @@ public class BandsActivity extends BaseActivity implements BandsView, TextWatche
     private BandsPresenter presenter;
     private EditText editSearch;
     private View viewNoResults;
+    private ScaleInAnimationAdapter animationAdapter;
 
     @Override
     public BasePresenter getPresenter() {
@@ -50,7 +53,8 @@ public class BandsActivity extends BaseActivity implements BandsView, TextWatche
         configureSecondLevelActivity();
 
 //        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        RecyclerView.LayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
+//        RecyclerView.LayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         recyclerBands.setLayoutManager(layoutManager);
 
 
@@ -89,11 +93,22 @@ public class BandsActivity extends BaseActivity implements BandsView, TextWatche
         if (adapter == null) {
 
             adapter = new BandsAdapter(this, bands);
-            recyclerBands.setAdapter(adapter);
-
             adapter.setOnItemClickListener(this);
+
+            animationAdapter = new ScaleInAnimationAdapter(adapter);
+            animationAdapter.setFirstOnly(false);
+            recyclerBands.setAdapter(animationAdapter);
+
         } else {
+            // Little trick to avoid animation when searching
+            animationAdapter.setDuration(0);
             adapter.updateData(bands);
+            recyclerBands.post(new Runnable() {
+                @Override
+                public void run() {
+                    animationAdapter.setDuration(AnimationAdapter.DEFAULT_DURATION);
+                }
+            });
         }
 
         viewNoResults.setVisibility(bands != null && !bands.isEmpty() ? View.GONE : View.VISIBLE);

@@ -1,6 +1,7 @@
 package com.triskelapps.alcalasuena.model;
 
 import android.net.Uri;
+import android.webkit.URLUtil;
 
 import com.triskelapps.alcalasuena.api.common.ApiClient;
 
@@ -29,7 +30,7 @@ public class Band extends RealmObject {
     private String band_image;
     private int num_members;
     private String city;
-    private String facebook_link, twitter_link, youtube_link, bandcamp_link;
+    private String facebook_link, twitter_link, youtube_link, bandcamp_link, presskit_link;
     private RealmList<Event> events;
 
     public Uri getImageUrlFull() {
@@ -39,6 +40,10 @@ public class Band extends RealmObject {
 
         String urlFull = ApiClient.BASE_URL + getProfile_image();
         return Uri.parse(urlFull);
+    }
+
+    public boolean hasValidImage() {
+        return getProfile_image() != null && URLUtil.isValidUrl(ApiClient.BASE_URL + getProfile_image());
     }
 
 
@@ -183,4 +188,16 @@ public class Band extends RealmObject {
     public void setEvents(RealmList<Event> events) {
         this.events = events;
     }
+
+    public String getPresskit_link() {
+        if (isValidUrl(presskit_link)) {
+            return presskit_link;
+        }
+        return null;
+    }
+
+    public void setPresskit_link(String presskit_link) {
+        this.presskit_link = presskit_link;
+    }
+
 }

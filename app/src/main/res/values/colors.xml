@@ -12,7 +12,7 @@
     <color name="red_general">#BD080F</color>
 
     <color name="btn_menu">@color/red_general</color>
-    <color name="colorAccentTransp">#864beae2</color>
+    <color name="colorAccentTransp">#99ffffff</color>
     <color name="colorAccentDark">#0ab7af</color>
     <color name="cardBackground">#BFFF</color>
     <color name="grey_dark_general">#40474A</color>

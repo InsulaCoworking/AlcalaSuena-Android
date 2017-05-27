@@ -62,6 +62,8 @@ import io.realm.Realm;
             realm.where(Tag.class).findAll().deleteAllFromRealm();
             realm.commitTransaction();
             updateBandsFromApi();
+        } else {
+            lauchMainActivity();
         }
     }
 

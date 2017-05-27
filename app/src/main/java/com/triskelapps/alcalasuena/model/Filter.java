@@ -11,7 +11,7 @@ public class Filter {
 
     private String day;
     private boolean starred;
-    private List<Tag> tags = new ArrayList<>();
+    private List<Integer> tagsIds = new ArrayList<>();
 
     public String getDay() {
         return day;
@@ -29,11 +29,11 @@ public class Filter {
         this.starred = starred;
     }
 
-    public List<Tag> getTags() {
-        return tags;
+    public List<Integer> getTagsIds() {
+        return tagsIds;
     }
 
-    public void setTags(List<Tag> tags) {
-        this.tags = tags;
+    public void setTagsIds(List<Integer> tagsIds) {
+        this.tagsIds = tagsIds;
     }
 }

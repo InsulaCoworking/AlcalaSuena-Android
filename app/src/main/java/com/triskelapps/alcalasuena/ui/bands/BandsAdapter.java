@@ -1,6 +1,9 @@
 package com.triskelapps.alcalasuena.ui.bands;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.support.v4.graphics.ColorUtils;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -65,9 +68,11 @@ public class BandsAdapter extends RecyclerView.Adapter<BandsAdapter.ViewHolder> 
                 .error(R.mipmap.img_default_grid)
                 .into(holder.imgBand);
 
-//        int color = ContextCompat.getColor(context, band.getImageUrlFull() != null ? android.R.color.white : android.R.color.black);
-//        holder.tvBandName.setTextColor(color);
-//        holder.tvBandGenre.setTextColor(color);
+        if (band.getTag() != null) {
+            int color = Color.parseColor(band.getTag().getColor());
+            int colorAlpha = ColorUtils.setAlphaComponent(color, 150);
+            holder.cardBand.setCardBackgroundColor(colorAlpha);
+        }
 
         addClickListener(holder.rootView, position, band.getId());
     }
@@ -106,6 +111,7 @@ public class BandsAdapter extends RecyclerView.Adapter<BandsAdapter.ViewHolder> 
         public TextView tvBandGenre;
         public TextView tvBandDescription;
         public ImageView imgBand;
+        public CardView cardBand;
         public View rootView;
 
         public ViewHolder(View itemView) {
@@ -115,6 +121,7 @@ public class BandsAdapter extends RecyclerView.Adapter<BandsAdapter.ViewHolder> 
             tvBandName = (TextView) itemView.findViewById(R.id.tv_band_name);
             tvBandGenre = (TextView) itemView.findViewById(R.id.tv_band_genre);
             tvBandDescription = (TextView) itemView.findViewById(R.id.tv_band_description);
+            cardBand = (CardView) itemView.findViewById(R.id.card_band);
             imgBand = (ImageView) itemView.findViewById(R.id.img_band);
 
             rootView = itemView;

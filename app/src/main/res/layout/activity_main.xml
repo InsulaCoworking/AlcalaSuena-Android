@@ -51,7 +51,7 @@
                 android:id="@+id/filter_bands_fragment"
                 android:name="com.triskelapps.alcalasuena.ui.filter.FilterBandsFragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 tools:layout="@layout/fragment_filter_bands"
                 android:layout_marginLeft="50dp"/>

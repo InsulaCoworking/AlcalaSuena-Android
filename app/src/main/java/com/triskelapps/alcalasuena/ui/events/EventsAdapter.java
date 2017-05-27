@@ -1,6 +1,8 @@
 package com.triskelapps.alcalasuena.ui.events;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.support.v4.graphics.ColorUtils;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -72,6 +74,12 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
         holder.tvEventVenue.setText(event.getVenue().getName());
 
         holder.imgStarred.setSelected(event.isStarred());
+
+        if (band.getTag() != null) {
+            int color = Color.parseColor(band.getTag().getColor());
+            int colorAlpha = ColorUtils.setAlphaComponent(color, 150);
+            holder.cardEvent.setCardBackgroundColor(colorAlpha);
+        }
 
 //        int color = ContextCompat.getColor(context, event.getImageUrlFull() != null ? android.R.color.white : android.R.color.black);
 //        holder.tvEventName.setTextColor(color);

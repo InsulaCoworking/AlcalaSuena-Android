@@ -1,5 +1,11 @@
 package com.triskelapps.alcalasuena.model;
 
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -16,6 +22,12 @@ public class Event extends RealmObject {
     public static final String ID = "id";
     public static final String STARRED = "starred";
 
+    public static DateFormat dateFormatApi = new SimpleDateFormat("yyyy-MM-dd");
+    public static DateFormat dateFormatShareText = new SimpleDateFormat("dd MMMM");
+
+    public static DateFormat timeFormatApi = new SimpleDateFormat("HH:mm:ss");
+    public static DateFormat timeFormatUser = new SimpleDateFormat("HH:mm");
+
 
     @PrimaryKey private int id;
     private String day;
@@ -25,6 +37,31 @@ public class Event extends RealmObject {
     private boolean starred;
     private Band bandEntity;
     private Venue venue;
+
+    public String getDayShareFormat() {
+        try {
+            Date dateDay = dateFormatApi.parse(day);
+            return dateFormatShareText.format(dateDay);
+        } catch (ParseException e) {
+            e.printStackTrace();
+
+            // Better than nothing :S
+            return day.substring(8);
+        }
+    }
+
+    public String getTimeFormatted() {
+        try {
+            Date timeDate = timeFormatApi.parse(time);
+            return timeFormatUser.format(timeDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+
+            // Better than nothing :S
+            return time.substring(0, 5);
+        }
+    }
+
 
     public int getId() {
         return id;
@@ -74,10 +111,6 @@ public class Event extends RealmObject {
         this.bandEntity = bandEntity;
     }
 
-    public String getTimeFormatted() {
-        String time = getTime();
-        return time.substring(0, 5);
-    }
 
     public Venue getVenue() {
         return venue;
@@ -94,4 +127,5 @@ public class Event extends RealmObject {
     public void setStarred(boolean starred) {
         this.starred = starred;
     }
+
 }

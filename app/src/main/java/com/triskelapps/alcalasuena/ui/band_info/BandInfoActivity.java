@@ -27,6 +27,7 @@ public class BandInfoActivity extends BaseActivity implements BandInfoView, View
     private ImageView imgTwitter;
     private ImageView imgYoutube;
     private ImageView imgBandcamp;
+    private ImageView imgPresskit;
 
 
     private void findViews() {
@@ -38,11 +39,13 @@ public class BandInfoActivity extends BaseActivity implements BandInfoView, View
         imgTwitter = (ImageView) findViewById(R.id.img_twitter);
         imgYoutube = (ImageView) findViewById(R.id.img_youtube);
         imgBandcamp = (ImageView) findViewById(R.id.img_bandcamp);
+        imgPresskit= (ImageView) findViewById(R.id.img_presskit);
 
         imgFacebook.setOnClickListener(this);
         imgTwitter.setOnClickListener(this);
         imgYoutube.setOnClickListener(this);
         imgBandcamp.setOnClickListener(this);
+        imgPresskit.setOnClickListener(this);
     }
 
 
@@ -71,16 +74,22 @@ public class BandInfoActivity extends BaseActivity implements BandInfoView, View
         tvBandGenre.setText(band.getGenre());
         tvBandDescription.setText(band.getDescription());
 
-        Picasso.with(this)
-                .load(band.getImageUrlFull())
-                .placeholder(R.mipmap.img_default_grid)
-                .error(R.mipmap.img_default_grid)
-                .into(imgBand);
+        if (band.hasValidImage()) {
+            imgBand.setVisibility(View.VISIBLE);
+            Picasso.with(this)
+                    .load(band.getImageUrlFull())
+                    .placeholder(R.mipmap.img_default_grid)
+                    .error(R.mipmap.img_default_grid)
+                    .into(imgBand);
+        } else {
+            imgBand.setVisibility(View.GONE);
+        }
 
         imgFacebook.setVisibility(band.getFacebook_link() != null ? View.VISIBLE : View.GONE);
         imgTwitter.setVisibility(band.getTwitter_link() != null ? View.VISIBLE : View.GONE);
         imgYoutube.setVisibility(band.getYoutube_link() != null ? View.VISIBLE : View.GONE);
         imgBandcamp.setVisibility(band.getBandcamp_link() != null ? View.VISIBLE : View.GONE);
+        imgPresskit.setVisibility(band.getPresskit_link() != null ? View.VISIBLE : View.GONE);
 
     }
 

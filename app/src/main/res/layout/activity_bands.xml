@@ -50,12 +50,13 @@
 
             <TextView
                 android:id="@+id/view_no_results"
-                style="@style/TextBase.Accent"
+                style="@style/TextBase.White"
                 android:visibility="gone"
                 android:layout_centerInParent="true"
                 android:gravity="center_horizontal"
                 android:text="@string/no_results_found"
-                android:layout_margin="15dp"/>
+                android:layout_margin="15dp"
+                android:textSize="20sp"/>
 
         </RelativeLayout>
     </LinearLayout>
