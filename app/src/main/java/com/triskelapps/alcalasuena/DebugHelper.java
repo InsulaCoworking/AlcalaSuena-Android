@@ -1,8 +1,10 @@
 package com.triskelapps.alcalasuena;
 
+import com.triskelapps.alcalasuena.ui.venues.VenuesActivity;
+
 public class DebugHelper {
 
-    public static Class SHORTCUT_ACTIVITY = null;
+    public static Class SHORTCUT_ACTIVITY = VenuesActivity.class;
 
     // === SWITCHES DEBUG ===
 

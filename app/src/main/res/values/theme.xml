@@ -8,9 +8,13 @@
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="android:windowActionBarOverlay">true</item>
-        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:alertDialogStyle">@style/CustomDialogTheme</item>
     </style>
 
+    <style name="CustomDialogTheme" parent="@android:style/Theme.Dialog">
+        <item name="android:background">@color/red_general</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
 
 
     <style name="AppTheme.ActionBar.Transparent" parent="AppTheme">

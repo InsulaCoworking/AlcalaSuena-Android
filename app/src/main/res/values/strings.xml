@@ -32,5 +32,14 @@
     <string name="all_tags">Todos los estilos</string>
     <string name="share_favs_text_intro">¡Esta es mi lista de conciertos para el #AlcalaSuena!</string>
     <string name="no_results_for_tags">En este día no hay conciertos para los estilos de música elegidos :(</string>
+    <string name="explanation_permission_location">Para utilizar el mapa necesitamos accceso al GPS. Gracias ;)</string>
+    <string name="explanation_permission_storage">Para utilizar el mapa necesitamos accceso al almacenamiento. Gracias ;)</string>
+    <string name="my_position">Mi posición</string>
+    <string name="location_not_found">No se encuentra tu posición</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="more_info">Mas información</string>
+    <string name="indications">Indicaciones</string>
+    <string name="no_googlemaps_available">No se ha podido lanzar la app de Google Maps :(</string>
+    <string name="venues_intro">Los espacios más emblemáticos de esta ciudad patrimonio se visten de fiesta en un festival particular en el que además de buena música, poder disfrutar de un entorno inigualable</string>
 
 </resources>

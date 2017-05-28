@@ -36,15 +36,7 @@
 
                 <TextView
                     android:id="@+id/tv_band_name"
-                    style="@style/TextBase.Accent"
-                    android:textSize="50sp"
-                    android:gravity="center"
-                    app:fontPath="fonts/Old_Press_Italic.ttf"
-                    android:includeFontPadding="true"
-                    android:padding="5dp"/>
-
-                <!--<item name="fontPath">fonts/Vaud.otf</item>  NOT NECESSARY-->
-
+                    style="@style/TextTitle"/>
 
                 <ImageView
                     android:id="@+id/img_band"

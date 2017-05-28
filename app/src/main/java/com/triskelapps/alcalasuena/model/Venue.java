@@ -1,5 +1,9 @@
 package com.triskelapps.alcalasuena.model;
 
+import android.net.Uri;
+
+import com.triskelapps.alcalasuena.api.common.ApiClient;
+
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -18,6 +22,20 @@ public class Venue extends RealmObject {
     private double latitude;
     private double longitude;
     private RealmList<Event> events;
+
+
+    public Uri getImageUrlFull() {
+        if (getImage() == null) {
+            return null;
+        }
+
+        String image = getImage();
+        if (image.startsWith("/")) {
+            image = image.substring(1);
+        }
+        String urlFull = ApiClient.BASE_URL + image;
+        return Uri.parse(urlFull);
+    }
 
 
     public int getId() {

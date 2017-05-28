@@ -14,6 +14,8 @@ import com.triskelapps.alcalasuena.base.BaseFragment;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.ui.about.AboutActivity;
 import com.triskelapps.alcalasuena.ui.bands.BandsPresenter;
+import com.triskelapps.alcalasuena.ui.map.MapActivity;
+import com.triskelapps.alcalasuena.ui.venues.VenuesActivity;
 
 /**
  * Created by julio on 23/05/17.
@@ -68,8 +70,11 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener {
                 break;
 
             case R.id.btn_menu_map:
+                startActivity(new Intent(getActivity(), MapActivity.class));
+                break;
+
             case R.id.btn_menu_venues:
-                toast("Disponible en breve!");
+                startActivity(new Intent(getActivity(), VenuesActivity.class));
                 break;
 
             case R.id.btn_see_on_github:

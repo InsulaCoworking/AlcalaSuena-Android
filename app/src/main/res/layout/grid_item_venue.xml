@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="170dp"
+    android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_venue"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                android:src="@mipmap/img_default_grid" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/img_band"
+                android:layout_alignTop="@+id/img_band"
+                android:background="@color/grey_dark_general"
+                android:alpha="0.5"/>
+
+            <TextView
+                android:id="@+id/tv_venue_name"
+                style="@style/TextBase.Accent"
+                android:layout_centerInParent="true"
+                android:textSize="40sp"
+                android:gravity="center"
+                app:fontPath="fonts/Old_Press_Italic.ttf"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"/>
+
+
+        </RelativeLayout>
+</RelativeLayout>

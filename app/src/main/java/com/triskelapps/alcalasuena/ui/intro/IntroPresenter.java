@@ -69,7 +69,8 @@ import io.realm.Realm;
 
     private boolean mustUpdateData() {
         // TODO check last update date with server
-        return true;
+        return false;
+//        return Util.isConnected(context);
     }
 
     private void updateBandsFromApi() {
