@@ -32,6 +32,7 @@
         <activity android:name=".ui.about.AboutActivity" />
         <activity android:name=".ui.map.MapActivity" />
         <activity android:name=".ui.venues.VenuesActivity" />
+        <activity android:name=".ui.venue_info.VenueInfoActivity" />
     </application>
 
 </manifest>

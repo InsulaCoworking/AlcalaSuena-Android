@@ -23,7 +23,6 @@ import rx.schedulers.Schedulers;
 public class VenueInteractor extends BaseInteractor {
 
 
-
     public interface VenuesCallback {
 
         void onResponse(List<Venue> venues);
@@ -93,6 +92,10 @@ public class VenueInteractor extends BaseInteractor {
         realm.beginTransaction();
         realm.insert(venues);
         realm.commitTransaction();
+    }
+
+    public Venue getVenue(int idVenue) {
+        return Realm.getDefaultInstance().where(Venue.class).equalTo(Venue.ID, idVenue).findFirst();
     }
 
 

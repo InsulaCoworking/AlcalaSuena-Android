@@ -12,11 +12,10 @@ import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.interactor.VenueInteractor;
 import com.triskelapps.alcalasuena.model.Venue;
+import com.triskelapps.alcalasuena.ui.venue_info.VenueInfoPresenter;
 import com.triskelapps.alcalasuena.util.PermissionHelper;
 
 import java.util.List;
-
-import static android.R.attr.mode;
 
 
 /**
@@ -131,7 +130,8 @@ import static android.R.attr.mode;
     }
 
     public void onVenueMoreInfoClick() {
-        view.toast("more info: " + lastVenueSelected.getName());
+
+        context.startActivity(VenueInfoPresenter.newVenueInfoActivity(context, lastVenueSelected.getId()));
     }
 
     public void onVenueIndicationsClick(Location location) {
@@ -141,8 +141,9 @@ import static android.R.attr.mode;
         String uri = null;
         if (location != null) {
 
+            String modeWalk = "!4m2!4m1!3e2";
             String originCoords = location.getLatitude() + "," + location.getLongitude();
-            uri = "https://www.google.com/maps/dir/" + originCoords + "/" + destinationCoords + "/data=" + mode;
+            uri = "https://www.google.com/maps/dir/" + originCoords + "/" + destinationCoords + "/data=" + modeWalk;
         } else {
             uri = "geo:0,0?q=" + destinationCoords + " (" + lastVenueSelected.getName() + ")";
 

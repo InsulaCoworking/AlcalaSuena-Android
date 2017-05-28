@@ -52,6 +52,8 @@ public class BandsActivity extends BaseActivity implements BandsView, TextWatche
 
         configureSecondLevelActivity();
 
+        setToolbarTitle(R.string.bands);
+
 //        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
 //        RecyclerView.LayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);

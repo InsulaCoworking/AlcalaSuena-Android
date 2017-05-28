@@ -14,6 +14,9 @@ import io.realm.annotations.PrimaryKey;
 
 public class Venue extends RealmObject {
 
+    public static final String ID = "id";
+
+
     @PrimaryKey private int id;
     private String name;
     private String description;

@@ -175,6 +175,10 @@ public class BandInteractor extends BaseInteractor {
         return Realm.getDefaultInstance().where(Tag.class).equalTo(Tag.ACTIVE, false).findAll().isEmpty();
     }
 
+    public boolean areAllTagsInactive() {
+        return Realm.getDefaultInstance().where(Tag.class).equalTo(Tag.ACTIVE, true).findAll().isEmpty();
+    }
+
     public void setAllTagsInactiveUnlessThisOne(String idTag) {
 
         List<Tag> tags = getTags();

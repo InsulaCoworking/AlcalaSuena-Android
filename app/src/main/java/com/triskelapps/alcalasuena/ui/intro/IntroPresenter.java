@@ -13,6 +13,7 @@ import com.triskelapps.alcalasuena.model.Event;
 import com.triskelapps.alcalasuena.model.Tag;
 import com.triskelapps.alcalasuena.model.Venue;
 import com.triskelapps.alcalasuena.ui.MainPresenter;
+import com.triskelapps.alcalasuena.util.Util;
 
 import java.util.List;
 
@@ -69,8 +70,8 @@ import io.realm.Realm;
 
     private boolean mustUpdateData() {
         // TODO check last update date with server
-        return false;
-//        return Util.isConnected(context);
+//        return false;
+        return Util.isConnected(context);
     }
 
     private void updateBandsFromApi() {

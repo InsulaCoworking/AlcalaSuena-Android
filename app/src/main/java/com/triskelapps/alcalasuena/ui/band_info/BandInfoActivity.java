@@ -58,8 +58,10 @@ public class BandInfoActivity extends BaseActivity implements BandInfoView, View
         findViews();
 
         configureSecondLevelActivity();
+
         presenter.onCreate(getIntent());
     }
+
 
 
     @Override

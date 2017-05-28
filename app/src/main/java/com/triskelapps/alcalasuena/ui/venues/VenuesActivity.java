@@ -10,6 +10,7 @@ import com.triskelapps.alcalasuena.base.BaseActivity;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.model.Venue;
 import com.triskelapps.alcalasuena.views.SpaceItemDecoration;
+import com.triskelapps.alcalasuena.views.TypeWriterTextView;
 import com.triskelapps.alcalasuena.views.animation_adapter.AnimationAdapter;
 import com.triskelapps.alcalasuena.views.animation_adapter.ScaleInAnimationAdapter;
 
@@ -21,6 +22,7 @@ public class VenuesActivity extends BaseActivity implements VenuesView, VenuesAd
     private VenuesAdapter adapter;
     private VenuesPresenter presenter;
     private ScaleInAnimationAdapter animationAdapter;
+    private TypeWriterTextView typeWriterIntro;
 
     @Override
     public BasePresenter getPresenter() {
@@ -29,6 +31,7 @@ public class VenuesActivity extends BaseActivity implements VenuesView, VenuesAd
 
 
     private void findViews() {
+        typeWriterIntro = (TypeWriterTextView) findViewById(R.id.typewriter_venues_intro);
         recyclerVenues = (RecyclerView) findViewById(R.id.recycler_venues);
     }
 
@@ -42,6 +45,7 @@ public class VenuesActivity extends BaseActivity implements VenuesView, VenuesAd
         findViews();
 
         configureSecondLevelActivity();
+        setToolbarTitle(R.string.venues);
 
 //        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
@@ -56,6 +60,7 @@ public class VenuesActivity extends BaseActivity implements VenuesView, VenuesAd
         SpaceItemDecoration spaceItemDecoration = new SpaceItemDecoration(getResources().getDimensionPixelSize(R.dimen.separation_card_grid));
         recyclerVenues.addItemDecoration(spaceItemDecoration);
 
+        typeWriterIntro.animateText(getString(R.string.venues_intro));
 
         presenter.onCreate();
     }

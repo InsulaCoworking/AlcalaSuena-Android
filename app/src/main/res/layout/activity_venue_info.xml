@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/red_general">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:alpha="0.5"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/img_chica_gris_bg_transp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <include layout="@layout/toolbar" />
+
+        <TextView
+            android:id="@+id/tv_venue_name"
+            style="@style/TextTitle" />
+
+    </LinearLayout>
+</RelativeLayout>

@@ -41,5 +41,7 @@
     <string name="indications">Indicaciones</string>
     <string name="no_googlemaps_available">No se ha podido lanzar la app de Google Maps :(</string>
     <string name="venues_intro">Los espacios más emblemáticos de esta ciudad patrimonio se visten de fiesta en un festival particular en el que además de buena música, poder disfrutar de un entorno inigualable</string>
+    <string name="bands_intro">Un festival participativo con más de 140 grupos actuando en calles y plazas del Casco Histórico de Alcalá, Patromonio de la Humanidad</string>
+    <string name="hashtag_alcalasuena">#AlcalaSuena</string>
 
 </resources>

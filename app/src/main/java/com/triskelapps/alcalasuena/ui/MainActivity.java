@@ -79,6 +79,8 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
         configureDrawerLayout();
         configureToolbarBackArrowBehaviour();
 
+        setImageTitle(R.mipmap.img_title_alcalasuena);
+
         tabsDays.addTab(tabsDays.newTab().setCustomView(getTabView(1)));
         tabsDays.addTab(tabsDays.newTab().setCustomView(getTabView(2)));
         tabsDays.addTab(tabsDays.newTab().setCustomView(getTabView(3)));
@@ -98,6 +100,17 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
     protected void onStop() {
         super.onStop();
         drawerLayout.closeDrawer(Gravity.LEFT);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
+            drawerLayout.closeDrawer(Gravity.LEFT);
+        } else if (drawerLayout.isDrawerOpen(Gravity.RIGHT)) {
+            drawerLayout.closeDrawer(Gravity.RIGHT);
+        }  else {
+            super.onBackPressed();
+        }
     }
 
     private void configureToolbarBackArrowBehaviour() {

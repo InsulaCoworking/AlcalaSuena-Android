@@ -65,6 +65,11 @@ public class FilterBandsPresenter extends BasePresenter {
         } else {
             bandInteractor.toggleTagState(idTag);
         }
+
+        if (bandInteractor.areAllTagsInactive()) {
+            bandInteractor.setAllTagsActive();
+        }
+
         refreshData();
 
         ((MainPresenter)((MainActivity)context).getPresenter()).refreshData();

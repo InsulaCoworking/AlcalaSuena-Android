@@ -6,6 +6,7 @@ import android.content.Intent;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.interactor.VenueInteractor;
 import com.triskelapps.alcalasuena.model.Venue;
+import com.triskelapps.alcalasuena.ui.venue_info.VenueInfoPresenter;
 
 import java.util.List;
 
@@ -59,7 +60,6 @@ public class VenuesPresenter extends BasePresenter {
 
 
     public void onVenueClicked(int idVenue) {
-//        context.startActivity(VenueInfoPresenter.newVenueInfoActivity(context, idVenue));
-        view.toast("venue clicked: " + idVenue);
+        context.startActivity(VenueInfoPresenter.newVenueInfoActivity(context, idVenue));
     }
 }

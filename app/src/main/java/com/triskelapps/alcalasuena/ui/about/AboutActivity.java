@@ -29,6 +29,7 @@ public class AboutActivity extends BaseActivity {
         setContentView(R.layout.activity_about);
 
         configureSecondLevelActivity();
+        setToolbarTitle(R.string.hashtag_alcalasuena);
         
         findViewById(R.id.btn_see_dossier).setOnClickListener(new View.OnClickListener() {
             @Override

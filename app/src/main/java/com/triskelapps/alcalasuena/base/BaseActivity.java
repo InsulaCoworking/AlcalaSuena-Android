@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +38,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     public static final int REQ_CODE_EDIT = 1;
     public static final int RESULT_DELETED = 1234;
     private AppBarLayout appBarLayout;
+    private ImageView imgTitleToolbar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -167,6 +169,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         setSupportActionBar(toolbar);
 
         progressBar = (ProgressBar) findViewById(R.id.progressbar);
+        imgTitleToolbar = (ImageView) findViewById(R.id.img_title_toolbar);
         tvTitleToolbar = (TextView) findViewById(R.id.tv_title_toolbar);
 //        tvTitleToolbar.setVisibility(View.GONE);
 
@@ -196,11 +199,17 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
 //        getSupportActionBar().setHomeAsUpIndicator(upArrow);
     }
 
+    public void setImageTitle(int imageId) {
+        imgTitleToolbar.setImageResource(imageId);
+    }
+
     public void setToolbarTitle(String title) {
         tvTitleToolbar.setText(title);
     }
 
     public void setToolbarTitle(int stringId) {
+        imgTitleToolbar.setVisibility(View.GONE);
+        tvTitleToolbar.setVisibility(View.VISIBLE);
         tvTitleToolbar.setText(stringId);
     }
 

@@ -35,18 +35,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:descendantFocusability="blocksDescendants">
 
                 <TextView
                     style="@style/TextTitle"
                     android:text="@string/venues"
-                    android:textSize="50sp"/>
+                    android:textSize="50sp"
+                    android:visibility="gone"/>
 
-                <TextView
+                <com.triskelapps.alcalasuena.views.TypeWriterTextView
+                    android:id="@+id/typewriter_venues_intro"
                     style="@style/TextBase.Accent"
                     android:gravity="center_horizontal"
                     android:text="@string/venues_intro"
-                    android:padding="10dp"/>
+                    android:padding="10dp"
+                    android:minLines="4"/>
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recycler_venues"

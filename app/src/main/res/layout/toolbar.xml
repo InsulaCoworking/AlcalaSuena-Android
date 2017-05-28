@@ -27,16 +27,17 @@
 
                 <TextView
                     android:id="@+id/tv_title_toolbar"
-                    style="@style/TextBase.White"
-                    android:textSize="18sp"
+                    style="@style/TextTitle"
                     android:text="@string/app_name"
-                    android:visibility="gone"/>
+                    android:visibility="gone"
+                    android:gravity="left"/>
 
                 <ImageView
+                        android:id="@+id/img_title_toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
-                    android:src="@mipmap/img_title_alcalasuena"/>
+                    android:src="@mipmap/img_title_alcalasuena_padding"/>
 
             </android.support.v7.widget.Toolbar>
 
