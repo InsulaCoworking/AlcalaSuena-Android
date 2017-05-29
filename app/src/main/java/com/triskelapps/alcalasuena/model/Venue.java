@@ -4,6 +4,8 @@ import android.net.Uri;
 
 import com.triskelapps.alcalasuena.api.common.ApiClient;
 
+import java.io.Serializable;
+
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -12,7 +14,7 @@ import io.realm.annotations.PrimaryKey;
  * Created by julio on 23/05/17.
  */
 
-public class Venue extends RealmObject {
+public class Venue extends RealmObject implements Serializable {
 
     public static final String ID = "id";
 

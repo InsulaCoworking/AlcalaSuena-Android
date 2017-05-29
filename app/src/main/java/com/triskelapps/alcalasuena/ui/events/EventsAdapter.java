@@ -36,15 +36,6 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
         this.events = events;
     }
 
-    public void setSelectedNumber(Integer number) {
-        this.selectedNumber = number;
-        notifyDataSetChanged();
-    }
-
-    public Integer getSelectedNumber() {
-        return selectedNumber;
-    }
-
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 

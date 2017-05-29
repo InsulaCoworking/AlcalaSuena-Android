@@ -47,6 +47,7 @@
                 android:id="@+id/tv_band_genre"
                 style="@style/TextBase"
                 android:layout_alignLeft="@+id/tv_band_name"
+                android:layout_alignRight="@+id/tv_band_name"
                 android:layout_below="@+id/tv_band_name"
                 android:text="Jazz"/>
 
@@ -56,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/img_star_selectable"
                 android:layout_alignParentRight="true"
-                android:padding="5dp"
+                android:padding="10dp"
                 android:tint="@color/red_general"/>
 
             <TextView

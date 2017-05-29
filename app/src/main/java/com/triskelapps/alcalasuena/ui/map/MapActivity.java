@@ -144,6 +144,7 @@ public class MapActivity extends BaseActivity implements com.triskelapps.alcalas
 
         switch (item.getItemId()) {
             case R.id.menuItem_myLocation:
+                viewVenueInfo.setVisibility(View.GONE);
                 presenter.onMyLocationButtonClick();
                 break;
         }

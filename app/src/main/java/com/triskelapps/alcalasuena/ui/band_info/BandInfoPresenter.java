@@ -8,7 +8,11 @@ import android.util.Patterns;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.interactor.BandInteractor;
+import com.triskelapps.alcalasuena.interactor.EventInteractor;
 import com.triskelapps.alcalasuena.model.Band;
+import com.triskelapps.alcalasuena.model.Event;
+
+import java.util.List;
 
 /**
  * Created by julio on 25/05/17.
@@ -21,6 +25,7 @@ public class BandInfoPresenter extends BasePresenter {
 
     private final BandInfoView view;
     private final BandInteractor bandInteractor;
+    private final EventInteractor eventInteractor;
     private int idBand;
 
     public static Intent newBandInfoActivity(Context context, int idBand) {
@@ -41,6 +46,7 @@ public class BandInfoPresenter extends BasePresenter {
 
         this.view = view;
         bandInteractor = new BandInteractor(context, view);
+        eventInteractor = new EventInteractor(context, view);
     }
 
     public void onCreate(Intent intent) {
@@ -60,7 +66,8 @@ public class BandInfoPresenter extends BasePresenter {
     public void refreshData() {
 
         Band band = bandInteractor.getBandDB(idBand);
-        view.showBand(band);
+        List<Event> eventsBand = eventInteractor.getEventsForBand(idBand);
+        view.showBand(band, eventsBand);
     }
 
     public void onSocialNetworkClicked(int id) {
@@ -89,5 +96,10 @@ public class BandInfoPresenter extends BasePresenter {
         if (url != null && Patterns.WEB_URL.matcher(url).matches()) {
             context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
         }
+    }
+
+    public void onEventFavouriteClicked(int idEvent) {
+        eventInteractor.toggleFavState(idEvent);
+        refreshData();
     }
 }

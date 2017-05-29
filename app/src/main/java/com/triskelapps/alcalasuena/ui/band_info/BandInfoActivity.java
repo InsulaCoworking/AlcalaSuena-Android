@@ -1,6 +1,8 @@
 package com.triskelapps.alcalasuena.ui.band_info;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,12 +12,15 @@ import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BaseActivity;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.model.Band;
+import com.triskelapps.alcalasuena.model.Event;
+
+import java.util.List;
 
 /**
  * Created by julio on 25/05/17.
  */
 
-public class BandInfoActivity extends BaseActivity implements BandInfoView, View.OnClickListener {
+public class BandInfoActivity extends BaseActivity implements BandInfoView, View.OnClickListener, EventsBandAdapter.OnItemClickListener {
 
 
     private BandInfoPresenter presenter;
@@ -28,6 +33,8 @@ public class BandInfoActivity extends BaseActivity implements BandInfoView, View
     private ImageView imgYoutube;
     private ImageView imgBandcamp;
     private ImageView imgPresskit;
+    private RecyclerView recyclerEventsBand;
+    private EventsBandAdapter adapter;
 
 
     private void findViews() {
@@ -40,6 +47,7 @@ public class BandInfoActivity extends BaseActivity implements BandInfoView, View
         imgYoutube = (ImageView) findViewById(R.id.img_youtube);
         imgBandcamp = (ImageView) findViewById(R.id.img_bandcamp);
         imgPresskit= (ImageView) findViewById(R.id.img_presskit);
+        recyclerEventsBand = (RecyclerView) findViewById(R.id.recycler_events_band);
 
         imgFacebook.setOnClickListener(this);
         imgTwitter.setOnClickListener(this);
@@ -59,6 +67,9 @@ public class BandInfoActivity extends BaseActivity implements BandInfoView, View
 
         configureSecondLevelActivity();
 
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        recyclerEventsBand.setLayoutManager(layoutManager);
+
         presenter.onCreate(getIntent());
     }
 
@@ -70,7 +81,7 @@ public class BandInfoActivity extends BaseActivity implements BandInfoView, View
     }
 
     @Override
-    public void showBand(Band band) {
+    public void showBand(Band band, List<Event> eventsBand) {
 
         tvBandName.setText(band.getName());
         tvBandGenre.setText(band.getGenreOrTag());
@@ -93,10 +104,24 @@ public class BandInfoActivity extends BaseActivity implements BandInfoView, View
         imgBandcamp.setVisibility(band.getBandcamp_link() != null ? View.VISIBLE : View.GONE);
         imgPresskit.setVisibility(band.getPresskit_link() != null ? View.VISIBLE : View.GONE);
 
+        if (adapter == null) {
+
+            adapter = new EventsBandAdapter(this, eventsBand);
+            adapter.setOnItemClickListener(this);
+            recyclerEventsBand.setAdapter(adapter);
+        } else {
+            adapter.updateData(eventsBand);
+        }
+
     }
 
     @Override
     public void onClick(View v) {
         presenter.onSocialNetworkClicked(v.getId());
+    }
+
+    @Override
+    public void onEventFavouriteClicked(int idEvent) {
+        presenter.onEventFavouriteClicked(idEvent);
     }
 }

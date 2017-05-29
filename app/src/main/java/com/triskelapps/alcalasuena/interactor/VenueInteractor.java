@@ -85,6 +85,7 @@ public class VenueInteractor extends BaseInteractor {
         for (Venue venue : venues) {
             for (Event event : venue.getEvents()) {
                 event.setBandEntity(BandInteractor.getBandDB(event.getBand()));
+                event.configureTimeMidnightSafe();
                 event.setVenue(venue);
             }
         }

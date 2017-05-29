@@ -4,8 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.triskelapps.alcalasuena.base.BasePresenter;
+import com.triskelapps.alcalasuena.interactor.EventInteractor;
 import com.triskelapps.alcalasuena.interactor.VenueInteractor;
+import com.triskelapps.alcalasuena.model.Event;
 import com.triskelapps.alcalasuena.model.Venue;
+import com.triskelapps.alcalasuena.ui.band_info.BandInfoPresenter;
+
+import java.util.List;
 
 /**
  * Created by julio on 28/05/17.
@@ -18,6 +23,7 @@ import com.triskelapps.alcalasuena.model.Venue;
 
     private final VenueInfoView view;
     private final VenueInteractor venueInteractor;
+    private final EventInteractor eventInteractor;
     private int idVenue;
 
     public static Intent newVenueInfoActivity(Context context, int idVenue) {
@@ -39,6 +45,7 @@ import com.triskelapps.alcalasuena.model.Venue;
          this.view = view;
 
          venueInteractor = new VenueInteractor(context, view);
+         eventInteractor = new EventInteractor(context, view);
 
      }
 
@@ -60,8 +67,17 @@ import com.triskelapps.alcalasuena.model.Venue;
      public void refreshData() {
 
          Venue venue = venueInteractor.getVenue(idVenue);
-         view.showVenueInfo(venue);
+         List<Event> eventsVenue = eventInteractor.getEventsForVenue(idVenue);
+         view.showVenueInfo(venue, eventsVenue);
 
      }
 
- }
+    public void onEventFavouriteClicked(int idEvent) {
+        eventInteractor.toggleFavState(idEvent);
+        refreshData();
+    }
+
+    public void onBandClick(int idBand) {
+        context.startActivity(BandInfoPresenter.newBandInfoActivity(context, idBand));
+    }
+}

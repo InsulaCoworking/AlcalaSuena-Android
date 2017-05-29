@@ -41,13 +41,12 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:hint="@string/search_band"
-            android:imeOptions="actionDone"
             android:padding="10dp"
-            android:lines="1"
             android:inputType="textFilter"
             android:gravity="center_horizontal"
             android:textColor="@color/colorAccent"
-            android:textColorHint="@color/colorAccentTransp" />
+            android:textColorHint="@color/colorAccentTransp"
+            android:textSize="20sp"/>
 
 
         <RelativeLayout

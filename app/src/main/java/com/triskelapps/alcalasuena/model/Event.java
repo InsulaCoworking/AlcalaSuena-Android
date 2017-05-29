@@ -1,7 +1,10 @@
 package com.triskelapps.alcalasuena.model;
 
 
+import android.content.Context;
 import android.support.annotation.NonNull;
+
+import com.triskelapps.alcalasuena.R;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -18,22 +21,25 @@ import io.realm.annotations.PrimaryKey;
 
 public class Event extends RealmObject implements Comparable {
 
-    public static final int TIME_HOUR_MIDNIGHT_SAFE = 5; // After 5:00 is "next day"
+    public static final int TIME_HOUR_MIDNIGHT_SAFE_THRESHOLD = 5; // After 5:00 is "next day"
 
     public static final String TIME = "time";
     public static final String DAY = "day";
     public static final String FAVOURITE = "favourite";
     public static final String ID = "id";
     public static final String STARRED = "starred";
+    public static final String BAND_ID = "band";
+    public static final String TIME_HOUR_MIDNIGHT_SAFE = "timeHourMidnightSafe";
 
     public static DateFormat dateFormatApi = new SimpleDateFormat("yyyy-MM-dd");
-    public static DateFormat dateFormatShareText = new SimpleDateFormat("dd MMMM");
+    public static DateFormat dateFormatShareText = new SimpleDateFormat("d MMMM");
 
     public static DateFormat timeFormatApi = new SimpleDateFormat("HH:mm:ss");
     public static DateFormat timeFormatUser = new SimpleDateFormat("HH:mm");
 
 
-    @PrimaryKey private int id;
+    @PrimaryKey
+    private int id;
     private String day;
     private String time;
     private int band;
@@ -42,7 +48,7 @@ public class Event extends RealmObject implements Comparable {
     private Band bandEntity;
     private Venue venue;
 
-    private transient int timeHourMidnightSafe;
+    private int timeHourMidnightSafe;
 
     public String getDayShareFormat() {
         try {
@@ -68,18 +74,8 @@ public class Event extends RealmObject implements Comparable {
         }
     }
 
-
-    public boolean isAfterTimeEventsEnd() {
-
-        try {
-            Date timeDate = timeFormatApi.parse(time);
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(timeDate.getTime());
-            return calendar.get(Calendar.HOUR_OF_DAY) > 5;
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return true;
-        }
+    public String getDurationFormatted(Context context) {
+        return getDuration() + " " + context.getString(R.string.minutes);
     }
 
 
@@ -90,12 +86,25 @@ public class Event extends RealmObject implements Comparable {
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(timeDate.getTime());
             int timeHour = calendar.get(Calendar.HOUR_OF_DAY);
-            setTimeHourMidnightSafe(timeHour < TIME_HOUR_MIDNIGHT_SAFE ? timeHour+24 : timeHour);
+            setTimeHourMidnightSafe(timeHour < TIME_HOUR_MIDNIGHT_SAFE_THRESHOLD ? timeHour + 24 : timeHour);
         } catch (ParseException e) {
             e.printStackTrace();
         }
     }
 
+    public long getDayId() {
+
+        try {
+            Date date = dateFormatApi.parse(day);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(date.getTime());
+            int dayInt = calendar.get(Calendar.DAY_OF_MONTH);
+            return (long) dayInt;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            throw new IllegalStateException("wrong date");
+        }
+    }
 
     @Override
     public int compareTo(@NonNull Object o) {

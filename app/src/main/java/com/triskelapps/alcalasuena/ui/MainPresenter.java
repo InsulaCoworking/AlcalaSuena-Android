@@ -60,11 +60,12 @@ import java.util.List;
 
          filter = new Filter();
          filter.setDay(tabsDays.get(0));
-         refreshData();
+
      }
 
     public void onResume() {
 
+        refreshData();
      }
 
      public void refreshData() {

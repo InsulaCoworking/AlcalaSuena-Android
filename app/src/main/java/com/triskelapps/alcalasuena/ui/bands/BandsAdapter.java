@@ -3,7 +3,6 @@ package com.triskelapps.alcalasuena.ui.bands;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v4.graphics.ColorUtils;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,18 +59,17 @@ public class BandsAdapter extends RecyclerView.Adapter<BandsAdapter.ViewHolder> 
         Band band = getItemAtPosition(position);
 
         holder.tvBandName.setText(band.getName());
-        holder.tvBandGenre.setText(band.getGenre());
-        holder.tvBandDescription.setText(band.getDescription());
+        holder.tvBandGenre.setText(band.getGenreOrTag());
         Picasso.with(context)
                 .load(band.getImageLogoUrlFull())
-                .placeholder(R.mipmap.img_default_grid)
-                .error(R.mipmap.img_default_grid)
+//                .placeholder(R.mipmap.img_default_grid)
+//                .error(R.mipmap.img_default_grid)
                 .into(holder.imgBand);
 
         if (band.getTag() != null) {
             int color = Color.parseColor(band.getTag().getColor());
-            int colorAlpha = ColorUtils.setAlphaComponent(color, 150);
-            holder.cardBand.setCardBackgroundColor(colorAlpha);
+            int colorAlpha = ColorUtils.setAlphaComponent(color, 200);
+            holder.viewColorTag.setBackgroundColor(colorAlpha);
         }
 
         addClickListener(holder.rootView, position, band.getId());
@@ -107,11 +105,10 @@ public class BandsAdapter extends RecyclerView.Adapter<BandsAdapter.ViewHolder> 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
+        private final View viewColorTag;
         public TextView tvBandName;
         public TextView tvBandGenre;
-        public TextView tvBandDescription;
         public ImageView imgBand;
-        public CardView cardBand;
         public View rootView;
 
         public ViewHolder(View itemView) {
@@ -120,9 +117,8 @@ public class BandsAdapter extends RecyclerView.Adapter<BandsAdapter.ViewHolder> 
 
             tvBandName = (TextView) itemView.findViewById(R.id.tv_band_name);
             tvBandGenre = (TextView) itemView.findViewById(R.id.tv_band_genre);
-            tvBandDescription = (TextView) itemView.findViewById(R.id.tv_band_description);
-            cardBand = (CardView) itemView.findViewById(R.id.card_band);
             imgBand = (ImageView) itemView.findViewById(R.id.img_band);
+            viewColorTag = itemView.findViewById(R.id.view_color_tag);
 
             rootView = itemView;
         }

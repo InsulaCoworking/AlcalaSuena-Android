@@ -9,25 +9,17 @@ import com.triskelapps.alcalasuena.model.Event;
 import com.triskelapps.alcalasuena.model.Favourite;
 import com.triskelapps.alcalasuena.model.Filter;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmQuery;
+import io.realm.Sort;
 
 /**
  * Created by julio on 14/02/16.
  */
 public class EventInteractor extends BaseInteractor {
 
-
-    public interface EventsCallback {
-
-        void onResponse(List<Event> events);
-
-        void onError(String error);
-    }
 
     public EventInteractor(Context context, BaseView baseView) {
         this.baseView = baseView;
@@ -52,18 +44,28 @@ public class EventInteractor extends BaseInteractor {
         }
 
 
-        List<Event> events = query.findAllSorted(Event.TIME);
+        List<Event> events = query.findAllSorted(Event.TIME_HOUR_MIDNIGHT_SAFE);
 
-        // workaround to place events after 00:00 at the end
-        List<Event> eventsProperlySorted = new ArrayList<>();
-        for (Event event : events) {
-            event.configureTimeMidnightSafe();
-            eventsProperlySorted.add(event);
-        }
-
-        Collections.sort(eventsProperlySorted);
-        return eventsProperlySorted;
+        return events;
     }
+
+
+    public List<Event> getEventsForBand(int idBand) {
+
+        resetStarredState();
+        return Realm.getDefaultInstance().where(Event.class)
+                .equalTo(Event.BAND_ID, idBand)
+                .findAllSorted(Event.DAY, Sort.ASCENDING, Event.TIME_HOUR_MIDNIGHT_SAFE, Sort.ASCENDING);
+    }
+
+
+    public List<Event> getEventsForVenue(int idVenue) {
+        resetStarredState();
+        return Realm.getDefaultInstance().where(Event.class)
+                .equalTo("venue.id", idVenue)
+                .findAllSorted(Event.DAY, Sort.ASCENDING, Event.TIME_HOUR_MIDNIGHT_SAFE, Sort.ASCENDING);
+    }
+
 
     public static void resetStarredState() {
 
