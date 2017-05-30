@@ -84,23 +84,17 @@
 
                     <TextView
                         android:id="@+id/tv_venue_more_info"
-                        style="@style/TextBase.Accent"
+                        style="@style/TextButton"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:padding="5dp"
                         android:text="@string/more_info"
-                        android:background="@drawable/bg_frame_accent"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"/>
 
                     <TextView
                         android:id="@+id/tv_venue_indications"
-                        style="@style/TextBase.Accent"
+                        style="@style/TextButton"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:padding="5dp"
                         android:text="@string/indications"
-                        android:background="@drawable/bg_frame_accent"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"/>
                 </LinearLayout>

@@ -64,6 +64,7 @@ public class BandsAdapter extends RecyclerView.Adapter<BandsAdapter.ViewHolder> 
                 .load(band.getImageLogoUrlFull())
 //                .placeholder(R.mipmap.img_default_grid)
 //                .error(R.mipmap.img_default_grid)
+                .resizeDimen(R.dimen.width_image_small, R.dimen.height_image_small)
                 .into(holder.imgBand);
 
         if (band.getTag() != null) {

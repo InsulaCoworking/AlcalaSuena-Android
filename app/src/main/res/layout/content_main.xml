@@ -13,8 +13,10 @@
         android:background="@android:color/transparent"
         app:tabGravity="fill"
         app:tabMode="fixed"
-        app:tabSelectedTextColor="@color/colorAccent"
-        app:tabTextColor="@android:color/white" />
+        app:tabSelectedTextColor="@color/tab_selected"
+        app:tabTextColor="@android:color/white"
+        app:tabIndicatorColor="@color/tab_selected"
+        android:layout_marginBottom="5dp"/>
 
 
     <RelativeLayout
@@ -39,11 +41,12 @@
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_share_favs"
-            style="@style/TextBase"
+            style="@style/TextButton"
             android:layout_alignParentBottom="true"
             android:text="@string/share_favs_with_friends"
             android:visibility="gone"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:layout_margin="5dp"/>
 
     </RelativeLayout>
 

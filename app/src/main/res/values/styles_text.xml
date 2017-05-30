@@ -5,7 +5,7 @@
     <style name="TextBase">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textColor">@color/grey_dark_general</item>
         <item name="android:textSize">16sp</item>
         <item name="android:lineSpacingExtra">2dp</item>
         <!--<item name="fontPath">fonts/Vaud.otf</item>  NOT NECESSARY-->
@@ -25,25 +25,43 @@
 
     <style name="TextBase.Bold">
         <item name="android:textStyle">bold</item>
+        <item name="fontPath">fonts/Aller.ttf</item>
+
     </style>
 
     <style name="TextBase.Accent">
         <item name="android:textColor">@color/colorAccent</item>
     </style>
 
-    <style name="TextTab" parent="TextBase">
-        <item name="android:textColor">@color/colorAccent</item>
+    <style name="TextButton" parent="TextBase.White">
+        <item name="android:background">@drawable/bg_frame_accent</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:gravity">center</item>
     </style>
 
-    <style name="BtnMenu" parent="TextBase.White">
-        <item name="android:layout_width">200dp</item>
-        <item name="android:textSize">22sp</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:layout_marginTop">5dp</item>
-        <item name="android:layout_marginBottom">5dp</item>
-        <item name="android:padding">10dp</item>
+    <style name="TextTab" parent="TextBase">
+        <item name="android:textColor">@color/text_tab</item>
+    </style>
+
+    <style name="BtnMenu" parent="TextBase.Bold">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/grey_dark_general</item>
+        <item name="android:layout_marginLeft">30dp</item>
+    </style>
+
+    <style name="TextIntro" parent="TextBase.White">
         <item name="android:gravity">center</item>
-        <item name="backgroundTint">@color/btn_menu</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="TextButton.Dark">
+        <item name="android:background">@drawable/bg_frame_dark</item>
+        <item name="android:textColor">@color/grey_dark_general</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
 </resources>

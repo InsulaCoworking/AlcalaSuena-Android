@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.triskelapps.alcalasuena.ui.intro.IntroActivity"
-    android:background="@color/red_general">
+    android:background="@color/red_general"
+    tools:context="com.triskelapps.alcalasuena.ui.intro.IntroActivity">
 
 
     <ImageView
@@ -16,11 +16,55 @@
         android:scaleType="centerCrop"
         android:src="@mipmap/img_bg_menu_inverted" />
 
-    <ImageView
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager_intro"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/view_bottom"
+        android:fitsSystemWindows="true"
+        android:layout_marginTop="5dp"/>
+
+
+    <RelativeLayout
+        android:id="@+id/view_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:src="@mipmap/img_presentacion_alcalasuena"
-        android:layout_centerInParent="true"/>
+        android:layout_alignParentBottom="true"
+        android:padding="5dp">
+
+
+        <ImageView
+            android:id="@+id/img_arrow_left"
+            style="@style/ImageArrow"
+            android:layout_toLeftOf="@+id/pageIndicatorView"
+            android:src="@mipmap/ic_arrow_left_intro"
+            android:visibility="invisible"
+            android:layout_marginRight="30dp"/>
+
+        <com.rd.PageIndicatorView
+            android:id="@+id/pageIndicatorView"
+            app:piv_animationType="thinWorm"
+            app:piv_interactiveAnimation="true"
+            app:piv_selectedColor="@color/colorAccent"
+            app:piv_unselectedColor="@color/colorAccentTransp"
+            app:piv_viewPager="@+id/viewpager_intro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+
+        <ImageView
+            android:id="@+id/img_arrow_right"
+            style="@style/ImageArrow"
+            android:layout_toRightOf="@+id/pageIndicatorView"
+            android:src="@mipmap/ic_arrow_right_intro"
+            android:visibility="visible"
+            android:layout_marginLeft="30dp"/>
+
+
+
+
+    </RelativeLayout>
+
 
 </RelativeLayout>

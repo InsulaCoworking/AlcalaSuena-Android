@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.triskelapps.alcalasuena.ui.MainActivity"
-    android:background="@color/red_general">
+    android:background="@color/red_general"
+    tools:context="com.triskelapps.alcalasuena.ui.MainActivity">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/img_chica_gris_bg_transp"
         android:alpha="0.7"
-        android:layout_centerInParent="true"/>
+        android:scaleType="centerCrop"
+        android:src="@mipmap/img_chica_gris_bg_transp" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/red_general"
-        android:alpha="0.0"/>
+        android:alpha="0.0"
+        android:background="@color/red_general" />
 
     <LinearLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
 
         <include layout="@layout/toolbar" />
 
@@ -45,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
-                tools:layout="@layout/fragment_menu"/>
+                tools:layout="@layout/fragment_menu" />
 
             <fragment
                 android:id="@+id/filter_bands_fragment"
@@ -53,8 +53,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                tools:layout="@layout/fragment_filter_bands"
-                android:layout_marginLeft="20dp"/>
+                android:layout_marginLeft="20dp"
+                tools:layout="@layout/fragment_filter_bands" />
 
         </android.support.v4.widget.DrawerLayout>
 
@@ -67,6 +67,42 @@
         <!--android:background="?android:attr/windowBackground"-->
         <!--app:menu="@menu/navigation"-->
         <!--android:visibility="gone"/>-->
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/view_new_version"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/grey_dark_general"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            style="@style/TextBase.White"
+            android:layout_weight="1"
+            android:text="@string/new_version" />
+
+        <TextView
+            android:id="@+id/btn_update_new_version"
+            style="@style/TextBase.White"
+            android:background="@drawable/background_pressed_custom"
+            android:padding="5dp"
+            android:text="@string/update"
+            android:textAllCaps="true"
+            android:textColor="@color/tab_selected"/>
+
+        <TextView
+            android:id="@+id/btn_hide_new_version"
+            style="@style/TextBase.White"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/background_pressed_custom"
+            android:padding="5dp"
+            android:text="@string/later"
+            android:textAllCaps="true" />
+
 
     </LinearLayout>
 </RelativeLayout>

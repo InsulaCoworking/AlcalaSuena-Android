@@ -1,8 +1,11 @@
 package com.triskelapps.alcalasuena.interactor;
 
 import android.content.Context;
+import android.util.Log;
 
-import com.triskelapps.alcalasuena.R;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import com.triskelapps.alcalasuena.api.Api;
 import com.triskelapps.alcalasuena.base.BaseInteractor;
 import com.triskelapps.alcalasuena.base.BaseView;
@@ -10,11 +13,12 @@ import com.triskelapps.alcalasuena.model.Band;
 import com.triskelapps.alcalasuena.model.Tag;
 import com.triskelapps.alcalasuena.util.Util;
 
+import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.List;
 
 import io.realm.Case;
 import io.realm.Realm;
-import io.realm.exceptions.RealmPrimaryKeyConstraintException;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -23,7 +27,6 @@ import rx.schedulers.Schedulers;
  * Created by julio on 14/02/16.
  */
 public class BandInteractor extends BaseInteractor {
-
 
 
     public interface BandsCallback {
@@ -39,36 +42,27 @@ public class BandInteractor extends BaseInteractor {
 
     }
 
-    public static void initializeBands() {
-        Realm realm = Realm.getDefaultInstance();
+    public void initializeBandsFirstTime() {
+        Log.i(TAG, "initializeBandsFirstTime: start");
+        String filePathBands = "bands.json";
+        try {
 
-        realm.executeTransaction(new Realm.Transaction() {
-            @Override
-            public void execute(Realm realm) {
+            final String jsonTotal = Util.getStringFromAssets(context, filePathBands);
 
-                try {
-                    Tag tag1 = realm.createObject(Tag.class, 1);
-                    tag1.setName("Jazz");
+            final Gson gson = new GsonBuilder().create();
 
-                    Tag tag2 = realm.createObject(Tag.class, 2);
-                    tag2.setName("Blues");
+            Type listType = new TypeToken<List<Band>>() {
+            }.getType();
+            final List<Band> bands = gson.fromJson(jsonTotal, listType);
 
+            storeBands(bands);
 
-                    Band band1 = realm.createObject(Band.class, 1);
-                    band1.setName("Los Pepes");
-                    band1.setTag(tag1);
+            Log.i(TAG, "initializeBandsFirstTime: end");
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-                    Band band2 = realm.createObject(Band.class, 2);
-                    band2.setName("Las Juanas");
-                    band2.setTag(tag2);
-
-                } catch (RealmPrimaryKeyConstraintException e) {
-
-                }
-
-            }
-        });
 
     }
 
@@ -88,11 +82,9 @@ public class BandInteractor extends BaseInteractor {
     public void getBands(final BandsCallback callback) {
 
         if (!Util.isConnected(context)) {
-            baseView.toast(R.string.no_connection);
+//            baseView.toast(R.string.no_connection);
             return;
         }
-
-        baseView.setRefresing(true);
 
         getApi().getBands()
                 .subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread()).doOnTerminate(actionTerminate)
@@ -110,8 +102,6 @@ public class BandInteractor extends BaseInteractor {
                     @Override
                     public void onNext(List<Band> bands) {
 
-                        baseView.setRefresing(false);
-
                         storeBands(bands);
 
                         callback.onResponse(bands);
@@ -125,6 +115,12 @@ public class BandInteractor extends BaseInteractor {
 
     private void storeBands(List<Band> bands) {
         Realm realm = Realm.getDefaultInstance();
+
+        realm.beginTransaction();
+        realm.where(Band.class).findAll().deleteAllFromRealm();
+        realm.where(Tag.class).findAll().deleteAllFromRealm();
+        realm.commitTransaction();
+
         realm.beginTransaction();
         realm.insertOrUpdate(bands);
         realm.commitTransaction();

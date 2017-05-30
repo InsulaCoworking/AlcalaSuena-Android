@@ -111,26 +111,21 @@ public final class Util {
 
     }
 
-    public static String getStringFromAssets(Context context, String fileName) {
+    public static String getStringFromAssets(Context context, String fileName) throws IOException {
         AssetManager assetManager = context.getAssets();
         InputStream input;
         String text = null;
 
-        try {
-            input = assetManager.open(fileName);
+        input = assetManager.open(fileName);
 
-            int size = input.available();
-            byte[] buffer = new byte[size];
-            input.read(buffer);
-            input.close();
+        int size = input.available();
+        byte[] buffer = new byte[size];
+        input.read(buffer);
+        input.close();
 
-            // byte buffer into a string
-            text = new String(buffer);
+        // byte buffer into a string
+        text = new String(buffer);
 
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
 
         return text;
     }

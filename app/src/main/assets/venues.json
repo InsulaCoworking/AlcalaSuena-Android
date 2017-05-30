@@ -1,0 +1,1268 @@
+[
+  {
+    "address": "",
+    "description": "Una de las arterias principales de la ciudad se convierte en un escenario donde poder disfrutar del rock a pie de calle. Propuestas muy frescas en un emplazamiento más que original",
+    "events": [
+      {
+        "band": 61,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 34,
+        "time": "19:40:00"
+      },
+      {
+        "band": 135,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 35,
+        "time": "20:40:00"
+      },
+      {
+        "band": 118,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 154,
+        "time": "21:40:00"
+      },
+      {
+        "band": 128,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 36,
+        "time": "22:40:00"
+      },
+      {
+        "band": 29,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 37,
+        "time": "23:40:00"
+      },
+      {
+        "band": 60,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 151,
+        "time": "13:00:00"
+      },
+      {
+        "band": 121,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 152,
+        "time": "14:00:00"
+      },
+      {
+        "band": 46,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 153,
+        "time": "15:00:00"
+      },
+      {
+        "band": 158,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 112,
+        "time": "19:00:00"
+      },
+      {
+        "band": 95,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 113,
+        "time": "20:00:00"
+      },
+      {
+        "band": 123,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 115,
+        "time": "21:00:00"
+      },
+      {
+        "band": 37,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 116,
+        "time": "22:00:00"
+      },
+      {
+        "band": 48,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 117,
+        "time": "23:00:00"
+      },
+      {
+        "band": 18,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 57,
+        "time": "12:30:00"
+      },
+      {
+        "band": 98,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 58,
+        "time": "13:40:00"
+      },
+      {
+        "band": 154,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 61,
+        "time": "15:00:00"
+      },
+      {
+        "band": 92,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 155,
+        "time": "19:00:00"
+      },
+      {
+        "band": 119,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 62,
+        "time": "20:00:00"
+      },
+      {
+        "band": 64,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 63,
+        "time": "21:00:00"
+      }
+    ],
+    "id": 10,
+    "image": "/media/venue/502fa783-c735-4c59-9ac9-e4a94394e9c3.png",
+    "latitude": 40.484104,
+    "longitude": -3.363182,
+    "name": "Calle Libreros"
+  },
+  {
+    "address": "",
+    "description": "Alcala Suena tambien cuenta con animación en calle, y conjuntos itinerantes, batucadas, grupos de folclore... espectáculo en movimiento para hacer mágicos espacios tan sensacionales como la Calle Mayor",
+    "events": [
+      {
+        "band": 51,
+        "day": "2017-06-02",
+        "duration": 20,
+        "id": 38,
+        "time": "20:00:00"
+      },
+      {
+        "band": 51,
+        "day": "2017-06-02",
+        "duration": 20,
+        "id": 39,
+        "time": "22:00:00"
+      },
+      {
+        "band": 151,
+        "day": "2017-06-03",
+        "duration": 20,
+        "id": 40,
+        "time": "00:00:00"
+      },
+      {
+        "band": 31,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 125,
+        "time": "14:00:00"
+      },
+      {
+        "band": 182,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 162,
+        "time": "19:00:00"
+      },
+      {
+        "band": 31,
+        "day": "2017-06-03",
+        "duration": 20,
+        "id": 128,
+        "time": "23:40:00"
+      }
+    ],
+    "id": 12,
+    "image": "/media/venue/733d1572-df93-45cf-9d47-48bee9bf72a5.jpg",
+    "latitude": 40.482188,
+    "longitude": -3.366786,
+    "name": "Pasacalles"
+  },
+  {
+    "address": "",
+    "description": "El enclave céntrico por excelencia de la ciudad, la plaza Cervantes, será el escenario principal del festival, y espacio de cierre de cada una de las sesiones que no conviene perderse por nada del mundo",
+    "events": [
+      {
+        "band": 113,
+        "day": "2017-06-02",
+        "duration": 60,
+        "id": 21,
+        "time": "19:00:00"
+      },
+      {
+        "band": 38,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 22,
+        "time": "20:20:00"
+      },
+      {
+        "band": 66,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 23,
+        "time": "21:20:00"
+      },
+      {
+        "band": 81,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 24,
+        "time": "22:20:00"
+      },
+      {
+        "band": 122,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 25,
+        "time": "23:20:00"
+      },
+      {
+        "band": 151,
+        "day": "2017-06-03",
+        "duration": 60,
+        "id": 26,
+        "time": "00:20:00"
+      },
+      {
+        "band": 150,
+        "day": "2017-06-03",
+        "duration": 60,
+        "id": 99,
+        "time": "01:20:00"
+      },
+      {
+        "band": 149,
+        "day": "2017-06-03",
+        "duration": 60,
+        "id": 27,
+        "time": "01:20:00"
+      },
+      {
+        "band": 143,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 91,
+        "time": "19:40:00"
+      },
+      {
+        "band": 84,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 92,
+        "time": "20:40:00"
+      },
+      {
+        "band": 125,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 94,
+        "time": "21:40:00"
+      },
+      {
+        "band": 142,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 95,
+        "time": "22:40:00"
+      },
+      {
+        "band": 111,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 97,
+        "time": "23:40:00"
+      },
+      {
+        "band": 146,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 98,
+        "time": "00:30:00"
+      },
+      {
+        "band": 33,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 51,
+        "time": "19:00:00"
+      },
+      {
+        "band": 87,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 53,
+        "time": "20:00:00"
+      },
+      {
+        "band": 59,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 54,
+        "time": "20:40:00"
+      },
+      {
+        "band": 103,
+        "day": "2017-06-04",
+        "duration": 100,
+        "id": 56,
+        "time": "21:30:00"
+      }
+    ],
+    "id": 8,
+    "image": "/media/venue/c200630c-74a1-4040-bc8d-f818acd0a306.jpg",
+    "latitude": 40.482483,
+    "longitude": -3.364186,
+    "name": "Plaza de Cervantes"
+  },
+  {
+    "address": "",
+    "description": "Esta resguardada plaza, nos ofrecerá estilos que van del flamenco al rock, con alguna propuestas que no conviene perderse.",
+    "events": [
+      {
+        "band": 55,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 101,
+        "time": "13:00:00"
+      },
+      {
+        "band": 34,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 102,
+        "time": "14:00:00"
+      },
+      {
+        "band": 17,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 103,
+        "time": "15:00:00"
+      },
+      {
+        "band": 36,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 104,
+        "time": "19:00:00"
+      },
+      {
+        "band": 91,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 105,
+        "time": "20:00:00"
+      },
+      {
+        "band": 127,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 107,
+        "time": "21:00:00"
+      },
+      {
+        "band": 114,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 108,
+        "time": "22:00:00"
+      },
+      {
+        "band": 88,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 110,
+        "time": "23:00:00"
+      },
+      {
+        "band": 133,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 68,
+        "time": "12:30:00"
+      },
+      {
+        "band": 24,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 156,
+        "time": "13:40:00"
+      },
+      {
+        "band": 20,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 72,
+        "time": "15:00:00"
+      },
+      {
+        "band": 26,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 73,
+        "time": "19:00:00"
+      },
+      {
+        "band": 67,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 163,
+        "time": "20:00:00"
+      },
+      {
+        "band": 63,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 75,
+        "time": "21:00:00"
+      }
+    ],
+    "id": 9,
+    "image": "/media/venue/8009defe-35ca-489b-80dd-5016386d6428.jpg",
+    "latitude": 40.479802,
+    "longitude": -3.370523,
+    "name": "Plaza de la Victoria"
+  },
+  {
+    "address": "",
+    "description": "Escondida en la calle Cisneros esta plaza será un escenario ecléptico con multitud de estilos que van de la música clásica al hard-rock",
+    "events": [
+      {
+        "band": 58,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 6,
+        "time": "19:40:00"
+      },
+      {
+        "band": 110,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 7,
+        "time": "20:20:00"
+      },
+      {
+        "band": 86,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 8,
+        "time": "21:20:00"
+      },
+      {
+        "band": 65,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 9,
+        "time": "22:20:00"
+      },
+      {
+        "band": 73,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 10,
+        "time": "23:20:00"
+      },
+      {
+        "band": 54,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 119,
+        "time": "12:30:00"
+      },
+      {
+        "band": 56,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 120,
+        "time": "13:40:00"
+      },
+      {
+        "band": 117,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 122,
+        "time": "14:40:00"
+      },
+      {
+        "band": 90,
+        "day": "2017-06-03",
+        "duration": 20,
+        "id": 123,
+        "time": "20:00:00"
+      },
+      {
+        "band": 145,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 124,
+        "time": "21:00:00"
+      },
+      {
+        "band": 68,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 126,
+        "time": "22:00:00"
+      },
+      {
+        "band": 144,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 127,
+        "time": "23:00:00"
+      },
+      {
+        "band": 80,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 64,
+        "time": "12:30:00"
+      },
+      {
+        "band": 130,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 157,
+        "time": "13:40:00"
+      },
+      {
+        "band": 155,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 67,
+        "time": "15:00:00"
+      },
+      {
+        "band": 137,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 69,
+        "time": "19:00:00"
+      },
+      {
+        "band": 69,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 70,
+        "time": "20:00:00"
+      },
+      {
+        "band": 136,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 71,
+        "time": "21:00:00"
+      }
+    ],
+    "id": 4,
+    "image": "/media/venue/462a854e-8c51-4ec4-947b-1d7936317554.png",
+    "latitude": 40.480443,
+    "longitude": -3.37044,
+    "name": "Plaza de los Carros"
+  },
+  {
+    "address": "",
+    "description": "El Jazz, la Bossa y acústicos deliciosos serán los responsables de llenar de música este auditorio improvisado. Uno de los escenarios con más calidad musical del festival",
+    "events": [
+      {
+        "band": 42,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 16,
+        "time": "19:40:00"
+      },
+      {
+        "band": 39,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 17,
+        "time": "20:40:00"
+      },
+      {
+        "band": 101,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 18,
+        "time": "21:40:00"
+      },
+      {
+        "band": 47,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 19,
+        "time": "22:40:00"
+      },
+      {
+        "band": 19,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 20,
+        "time": "23:40:00"
+      },
+      {
+        "band": 108,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 87,
+        "time": "19:00:00"
+      },
+      {
+        "band": 16,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 89,
+        "time": "20:00:00"
+      },
+      {
+        "band": 157,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 93,
+        "time": "21:00:00"
+      },
+      {
+        "band": 25,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 96,
+        "time": "22:00:00"
+      },
+      {
+        "band": 102,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 100,
+        "time": "23:00:00"
+      }
+    ],
+    "id": 7,
+    "image": "/media/venue/653bfd2b-ce3f-4715-a7b7-9360901a4b29.jpg",
+    "latitude": 40.481424,
+    "longitude": -3.366668,
+    "name": "Plaza de los Irlandeses"
+  },
+  {
+    "address": "",
+    "description": "Este escenario dará cabida a todas propuestas de folclore y a la II edición del festival de folclore cervantino organizado por el grupo la nacencia. Un autentico maratón de bailes y música tradicional de nuestro país",
+    "events": [
+      {
+        "band": 159,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 129,
+        "time": "19:00:00"
+      },
+      {
+        "band": 160,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 130,
+        "time": "19:50:00"
+      },
+      {
+        "band": 161,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 131,
+        "time": "20:45:00"
+      },
+      {
+        "band": 172,
+        "day": "2017-06-02",
+        "duration": 60,
+        "id": 132,
+        "time": "21:40:00"
+      },
+      {
+        "band": 162,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 133,
+        "time": "22:40:00"
+      },
+      {
+        "band": 107,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 164,
+        "time": "23:00:00"
+      },
+      {
+        "band": 163,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 134,
+        "time": "19:00:00"
+      },
+      {
+        "band": 164,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 135,
+        "time": "20:00:00"
+      },
+      {
+        "band": 165,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 136,
+        "time": "20:50:00"
+      },
+      {
+        "band": 166,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 137,
+        "time": "21:30:00"
+      },
+      {
+        "band": 167,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 138,
+        "time": "22:20:00"
+      },
+      {
+        "band": 139,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 165,
+        "time": "23:00:00"
+      },
+      {
+        "band": 168,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 139,
+        "time": "19:00:00"
+      },
+      {
+        "band": 169,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 140,
+        "time": "19:40:00"
+      },
+      {
+        "band": 170,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 141,
+        "time": "20:15:00"
+      },
+      {
+        "band": 171,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 142,
+        "time": "21:00:00"
+      }
+    ],
+    "id": 5,
+    "image": "/media/venue/911f6503-eb09-4ba5-8eab-8c1a34aa73ad.jpg",
+    "latitude": 40.480875,
+    "longitude": -3.368974,
+    "name": "Plaza de los Santos Niños"
+  },
+  {
+    "address": "",
+    "description": "Uno de los enclaves más fascinantes de nuestra ciudad, será tambien uno de sus escenarios principales, acogiendo un pedazo del Sonorama durante el Viernes, albergando en el dia un lugar donde poder resguardarse a la sombra, bailar y escuchar música, y un maratón de fusión y World Music durante el Sábado por la tarde",
+    "events": [
+      {
+        "band": 99,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 11,
+        "time": "19:40:00"
+      },
+      {
+        "band": 132,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 12,
+        "time": "20:40:00"
+      },
+      {
+        "band": 62,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 13,
+        "time": "21:40:00"
+      },
+      {
+        "band": 76,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 14,
+        "time": "22:40:00"
+      },
+      {
+        "band": 152,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 15,
+        "time": "23:40:00"
+      },
+      {
+        "band": 50,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 76,
+        "time": "12:30:00"
+      },
+      {
+        "band": 183,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 166,
+        "time": "13:30:00"
+      },
+      {
+        "band": 129,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 82,
+        "time": "14:30:00"
+      },
+      {
+        "band": 89,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 84,
+        "time": "19:20:00"
+      },
+      {
+        "band": 52,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 85,
+        "time": "20:20:00"
+      },
+      {
+        "band": 23,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 86,
+        "time": "21:20:00"
+      },
+      {
+        "band": 41,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 88,
+        "time": "22:20:00"
+      },
+      {
+        "band": 79,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 90,
+        "time": "23:20:00"
+      },
+      {
+        "band": 100,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 44,
+        "time": "12:30:00"
+      },
+      {
+        "band": 147,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 45,
+        "time": "13:40:00"
+      },
+      {
+        "band": 96,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 46,
+        "time": "15:00:00"
+      },
+      {
+        "band": 53,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 47,
+        "time": "19:00:00"
+      },
+      {
+        "band": 141,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 49,
+        "time": "20:00:00"
+      },
+      {
+        "band": 77,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 50,
+        "time": "21:00:00"
+      }
+    ],
+    "id": 6,
+    "image": "/media/venue/9c0875db-a28c-457c-8d0f-53665c33be58.jpg",
+    "latitude": 40.48215,
+    "longitude": -3.369463,
+    "name": "Plaza de Palacio"
+  },
+  {
+    "address": "",
+    "description": "La Plaza de San Diego de Alcalá de Henares nace en el siglo XVI con motivo de la construcción de la fachada del Colegio Mayor de San Ildefonso. El lado oriental de la plaza lo ocupa el gigantesco volumen del conocido como Cuartel de San Diego, edificado en el siglo XIX sobre el solar del monasterio franciscano de Santa María de Jesús (siglo XV).",
+    "events": [
+      {
+        "band": 115,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 29,
+        "time": "19:20:00"
+      },
+      {
+        "band": 85,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 30,
+        "time": "20:20:00"
+      },
+      {
+        "band": 131,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 31,
+        "time": "21:20:00"
+      },
+      {
+        "band": 124,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 32,
+        "time": "22:20:00"
+      },
+      {
+        "band": 126,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 33,
+        "time": "23:20:00"
+      },
+      {
+        "band": 104,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 158,
+        "time": "12:30:00"
+      },
+      {
+        "band": 44,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 159,
+        "time": "13:40:00"
+      },
+      {
+        "band": 27,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 106,
+        "time": "14:40:00"
+      },
+      {
+        "band": 120,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 109,
+        "time": "19:20:00"
+      },
+      {
+        "band": 134,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 111,
+        "time": "20:20:00"
+      },
+      {
+        "band": 148,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 114,
+        "time": "21:20:00"
+      },
+      {
+        "band": 30,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 118,
+        "time": "22:20:00"
+      },
+      {
+        "band": 22,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 121,
+        "time": "23:20:00"
+      },
+      {
+        "band": 72,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 52,
+        "time": "13:00:00"
+      },
+      {
+        "band": 71,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 55,
+        "time": "14:00:00"
+      },
+      {
+        "band": 153,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 59,
+        "time": "15:20:00"
+      },
+      {
+        "band": 74,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 160,
+        "time": "19:00:00"
+      },
+      {
+        "band": 93,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 60,
+        "time": "20:00:00"
+      },
+      {
+        "band": 82,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 66,
+        "time": "21:00:00"
+      }
+    ],
+    "id": 1,
+    "image": "/media/venue/b16c3180-44ed-4236-90ae-54022b5971cd.jpg",
+    "latitude": 40.483255,
+    "longitude": -3.363393,
+    "name": "Plaza de San Diego"
+  },
+  {
+    "address": "",
+    "description": "La electrónica y el Hip-hop darán vida a esta reciente plaza, una novedad de esta tercera edición y que seguro que nos dará grandes alegrias.",
+    "events": [
+      {
+        "band": 32,
+        "day": "2017-06-02",
+        "duration": 140,
+        "id": 28,
+        "time": "20:00:00"
+      },
+      {
+        "band": 173,
+        "day": "2017-06-03",
+        "duration": 30,
+        "id": 143,
+        "time": "20:00:00"
+      },
+      {
+        "band": 174,
+        "day": "2017-06-03",
+        "duration": 30,
+        "id": 144,
+        "time": "20:30:00"
+      },
+      {
+        "band": 175,
+        "day": "2017-06-03",
+        "duration": 30,
+        "id": 145,
+        "time": "21:00:00"
+      },
+      {
+        "band": 176,
+        "day": "2017-06-03",
+        "duration": 30,
+        "id": 146,
+        "time": "21:30:00"
+      },
+      {
+        "band": 177,
+        "day": "2017-06-03",
+        "duration": 30,
+        "id": 147,
+        "time": "22:00:00"
+      },
+      {
+        "band": 178,
+        "day": "2017-06-03",
+        "duration": 30,
+        "id": 148,
+        "time": "22:30:00"
+      },
+      {
+        "band": 179,
+        "day": "2017-06-03",
+        "duration": 30,
+        "id": 149,
+        "time": "22:45:00"
+      },
+      {
+        "band": 180,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 150,
+        "time": "23:15:00"
+      }
+    ],
+    "id": 2,
+    "image": "/media/venue/8caa8c3a-0b53-4271-8b52-f6fadabf4ed2.jpg",
+    "latitude": 40.485012,
+    "longitude": -3.363495,
+    "name": "Plaza de San Lucas"
+  },
+  {
+    "address": "",
+    "description": "El Viernes noche, la electrónica, percusión orgánica y el ritmo de la mano de Natxofler crearán un ambiente especial en este enclave céntrico a la espalda del Ayuntamiento",
+    "events": [
+      {
+        "band": 181,
+        "day": "2017-06-02",
+        "duration": 240,
+        "id": 161,
+        "time": "20:00:00"
+      }
+    ],
+    "id": 11,
+    "image": "/media/venue/04762322-b8b0-4106-97fd-b05d329a8178.png",
+    "latitude": 40.481767,
+    "longitude": -3.365118,
+    "name": "Plaza del Mercado"
+  },
+  {
+    "address": "",
+    "description": "La homologa a la puerta de Alcalá será el escenario en el que poder escuchar todas las variantes del rock y el Indie de nuestra ciudad. Una agenda para no perderse.",
+    "events": [
+      {
+        "band": 28,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 1,
+        "time": "19:40:00"
+      },
+      {
+        "band": 109,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 2,
+        "time": "20:40:00"
+      },
+      {
+        "band": 140,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 3,
+        "time": "21:40:00"
+      },
+      {
+        "band": 75,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 4,
+        "time": "22:40:00"
+      },
+      {
+        "band": 43,
+        "day": "2017-06-02",
+        "duration": 40,
+        "id": 5,
+        "time": "23:40:00"
+      },
+      {
+        "band": 83,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 77,
+        "time": "19:00:00"
+      },
+      {
+        "band": 105,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 78,
+        "time": "20:00:00"
+      },
+      {
+        "band": 45,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 79,
+        "time": "21:00:00"
+      },
+      {
+        "band": 116,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 81,
+        "time": "22:00:00"
+      },
+      {
+        "band": 78,
+        "day": "2017-06-03",
+        "duration": 40,
+        "id": 83,
+        "time": "23:00:00"
+      },
+      {
+        "band": 57,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 41,
+        "time": "19:00:00"
+      },
+      {
+        "band": 21,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 42,
+        "time": "20:00:00"
+      },
+      {
+        "band": 70,
+        "day": "2017-06-04",
+        "duration": 40,
+        "id": 43,
+        "time": "21:00:00"
+      }
+    ],
+    "id": 3,
+    "image": "/media/venue/479bf1fd-7bfb-40de-b847-929ef0261c3a.JPG",
+    "latitude": 40.480709,
+    "longitude": -3.37238,
+    "name": "Puerta de Madrid"
+  }
+]

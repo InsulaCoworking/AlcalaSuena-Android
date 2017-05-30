@@ -17,4 +17,39 @@
         <item name="android:adjustViewBounds">true</item>
     </style>
 
+    <style name="ImageArrow">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">80dp</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:background">@drawable/background_pressed_common</item>
+        <item name="android:tint">@color/colorAccent</item>
+    </style>
+
+    <style name="ImageMenuIcon">
+        <item name="android:layout_width">23dp</item>
+        <item name="android:layout_height">23dp</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:tint">@color/grey_dark_general</item>
+        <item name="android:layout_marginLeft">5dp</item>
+    </style>
+
+    <style name="LinearMenu">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">15dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@drawable/background_pressed_custom</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="LinearCoworker">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:background">@color/cardBackground</item>
+    </style>
+
 </resources>

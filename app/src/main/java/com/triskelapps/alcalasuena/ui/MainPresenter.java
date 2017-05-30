@@ -1,89 +1,207 @@
 package com.triskelapps.alcalasuena.ui;
 
+import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.Uri;
 
+import com.triskelapps.alcalasuena.App;
+import com.triskelapps.alcalasuena.BuildConfig;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.interactor.BandInteractor;
 import com.triskelapps.alcalasuena.interactor.EventInteractor;
+import com.triskelapps.alcalasuena.interactor.SettingsInteractor;
 import com.triskelapps.alcalasuena.model.Event;
 import com.triskelapps.alcalasuena.model.Filter;
 import com.triskelapps.alcalasuena.ui.band_info.BandInfoPresenter;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import static com.triskelapps.alcalasuena.App.EXTRA_FIRST_TIME_APP_LAUNCHING;
 
 /**
  * Created by julio on 23/05/17.
  */
 
 
- public class MainPresenter extends BasePresenter {
+public class MainPresenter extends BasePresenter {
 
-     private final MainView view;
+    private static final String URL_QUERY_MY_EVENTS = "share";
+    public static final String URL_GOOGLE_PLAY_APP = "https://play.google.com/store/apps/details?id=com.triskelapps.alcalasuena";
+    public static final String URL_DIRECT_GOOGLE_PLAY_APP = "market://details?id=com.example.android";
+
+
+    private final MainView view;
     private final BandInteractor bandInteractor;
     private final EventInteractor eventInteractor;
 
     private static List<String> tabsDays = new ArrayList<>();
+
     static {
         tabsDays.add("2017-06-02");
         tabsDays.add("2017-06-03");
         tabsDays.add("2017-06-04");
     }
 
+    private final SettingsInteractor settingsInteractor;
+
     private Filter filter;
+
+    private BroadcastReceiver receiverRefreshData = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(App.ACTION_REFRESH_DATA)) {
+                refreshData();
+//                view.toast("action refresh");
+            }
+        }
+    };
 
     public static Intent newMainActivity(Context context) {
 
-         Intent intent = new Intent(context, MainActivity.class);
+        Intent intent = new Intent(context, MainActivity.class);
 
-         return intent;
-     }
+        return intent;
+    }
 
-     public static MainPresenter newInstance(MainView view, Context context) {
+    public static MainPresenter newInstance(MainView view, Context context) {
 
-         return new MainPresenter(view, context);
+        return new MainPresenter(view, context);
 
-     }
+    }
 
-     private MainPresenter(MainView view, Context context) {
-         super(context, view);
+    private MainPresenter(MainView view, Context context) {
+        super(context, view);
 
-         this.view = view;
-         bandInteractor = new BandInteractor(context, view);
-         eventInteractor = new EventInteractor(context, view);
+        this.view = view;
+        bandInteractor = new BandInteractor(context, view);
+        eventInteractor = new EventInteractor(context, view);
+        settingsInteractor = new SettingsInteractor(context, view);
 
-     }
+        getPrefs().edit().putBoolean(EXTRA_FIRST_TIME_APP_LAUNCHING, false).commit();
 
-     public void onCreate() {
+    }
 
-         filter = new Filter();
-         filter.setDay(tabsDays.get(0));
+    public void onCreate(Intent intent) {
 
-     }
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(App.ACTION_REFRESH_DATA);
+        context.registerReceiver(receiverRefreshData, intentFilter);
+
+        filter = new Filter();
+
+        // During the festival go directly to current day
+        String currentDay = Event.dateFormatApi.format(new Date());
+        int tabPosition = 0;
+        if (tabsDays.contains(currentDay)) {
+            tabPosition = tabsDays.indexOf(currentDay);
+            view.setTabPosition(tabPosition);
+        }
+
+        filter.setDay(tabsDays.get(tabPosition));
+
+        String appLinkAction = intent.getAction();
+        Uri appLinkData = intent.getData();
+        if (Intent.ACTION_VIEW.equals(appLinkAction) && appLinkData != null) {
+            try {
+                String query = appLinkData.getEncodedQuery();
+                if (query.split("=")[0].equals(URL_QUERY_MY_EVENTS)) {
+                    String idsFavEvents = query.split("=")[1];
+                    String[] idsFavs = idsFavEvents.split(",");
+                    showImportEventsDialog(idsFavs);
+                }
+
+            } catch (Exception e) {
+                // Not a alcalasuena.es url for us
+                e.printStackTrace();
+            }
+
+        }
+
+        checkNewVersionInMarket();
+
+    }
+
+    private void checkNewVersionInMarket() {
+        settingsInteractor.getAppVersionInMarket(new SettingsInteractor.SettingsAppVersionCallback() {
+            @Override
+            public void onResponse(Integer newVersion) {
+                int currentVersion = BuildConfig.VERSION_CODE;
+                if (newVersion > currentVersion) {
+                    view.showNewVersionAvailable();
+                }
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
+    }
+
+    private void showImportEventsDialog(final String[] idsFavsStr) {
+
+        final Integer[] idsFavsEvents = new Integer[idsFavsStr.length];
+        for (int i = 0; i < idsFavsStr.length; i++) {
+            String idStr = idsFavsStr[i];
+            idsFavsEvents[i] = Integer.parseInt(idStr);
+        }
+
+        List<Event> eventsFav = eventInteractor.getEventsFavsDB(idsFavsEvents);
+        String text = "";
+
+        for (Event eventFav : eventsFav) {
+            text += "\n\n";
+            text += eventFav.getBandEntity().getName() + "\n";
+            text += eventFav.getDayShareFormat() + " - " + eventFav.getTimeFormatted() + "\n";
+            text += eventFav.getVenue().getName();
+        }
+
+        AlertDialog.Builder ab = new AlertDialog.Builder(context);
+        ab.setTitle(R.string.add_favs_events);
+        ab.setMessage(text);
+        ab.setPositiveButton(R.string.add, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                eventInteractor.setFavEvents(idsFavsEvents);
+                refreshData();
+            }
+        });
+        ab.setNegativeButton(R.string.no_thanks, null);
+        ab.show();
+    }
 
     public void onResume() {
 
         refreshData();
-     }
+    }
 
-     public void refreshData() {
+    public void onDestroy() {
+        context.unregisterReceiver(receiverRefreshData);
+    }
 
-         List<Event> events = eventInteractor.getEventsDB(filter);
+    public void refreshData() {
 
-         String emptyMessage = null;
-         if (events.isEmpty()) {
-             if (filter.isStarred()) {
-                 emptyMessage = context.getString(R.string.no_favourites);
-             } else {
-                 emptyMessage = context.getString(R.string.no_results_for_tags);
-             }
-         }
+        List<Event> events = eventInteractor.getEventsDB(filter);
 
-         view.showEvents(events, emptyMessage);
+        String emptyMessage = null;
+        if (events.isEmpty()) {
+            if (filter.isStarred()) {
+                emptyMessage = context.getString(R.string.no_favourites);
+            } else {
+                emptyMessage = context.getString(R.string.no_results_for_tags);
+            }
+        }
 
-     }
+        view.showEvents(events, emptyMessage);
+
+    }
 
     public void onTabSelected(int position) {
         filter.setDay(tabsDays.get(position));
@@ -98,7 +216,7 @@ import java.util.List;
     }
 
     public void onEventFavouriteClicked(int idEvent) {
-        eventInteractor.toggleFavState(idEvent);
+        eventInteractor.toggleFavState(idEvent, false);
         refreshData();
     }
 
@@ -123,12 +241,31 @@ import java.util.List;
         List<Event> eventsFav = eventInteractor.getEventsDB(filter);
         String text = context.getString(R.string.share_favs_text_intro);
 
+        String importLink = "http://www.alcalasuena.es/?" + URL_QUERY_MY_EVENTS + "=";
+
         for (Event eventFav : eventsFav) {
             text += "\n\n";
             text += eventFav.getBandEntity().getName() + "\n";
             text += eventFav.getDayShareFormat() + " - " + eventFav.getTimeFormatted() + "\n";
             text += eventFav.getVenue().getName();
+
+            importLink += eventFav.getId() + ",";
         }
+
+        importLink = importLink.substring(0, importLink.length() - 1);
+        text += "\n\n" + String.format(context.getString(R.string.import_link_text), importLink);
+        text += "\n\n" + String.format(context.getString(R.string.download_app_text), URL_GOOGLE_PLAY_APP);
+
         return text;
+    }
+
+    public void onUpdateVersionClick() {
+
+        Intent directPlayIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL_DIRECT_GOOGLE_PLAY_APP));
+        if (directPlayIntent.resolveActivity(context.getPackageManager()) != null) {
+            context.startActivity(directPlayIntent);
+        } else {
+            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(URL_GOOGLE_PLAY_APP)));
+        }
     }
 }

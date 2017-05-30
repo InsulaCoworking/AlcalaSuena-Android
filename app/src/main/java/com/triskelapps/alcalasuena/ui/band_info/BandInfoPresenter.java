@@ -3,8 +3,10 @@ package com.triskelapps.alcalasuena.ui.band_info;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.util.Patterns;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.interactor.BandInteractor;
@@ -56,6 +58,14 @@ public class BandInfoPresenter extends BasePresenter {
             throw new IllegalArgumentException("Band info must pass a idBand argument");
         }
 
+        Band band = bandInteractor.getBandDB(idBand);
+
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, band.getId()+"");
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, band.getName());
+        FirebaseAnalytics.getInstance(context).logEvent(FirebaseAnalytics.Event.VIEW_ITEM, bundle);
+
+
         refreshData();
     }
 
@@ -99,7 +109,7 @@ public class BandInfoPresenter extends BasePresenter {
     }
 
     public void onEventFavouriteClicked(int idEvent) {
-        eventInteractor.toggleFavState(idEvent);
+        eventInteractor.toggleFavState(idEvent, false);
         refreshData();
     }
 }

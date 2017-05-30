@@ -61,6 +61,7 @@ public class VenuesAdapter extends RecyclerView.Adapter<VenuesAdapter.ViewHolder
                 .load(venue.getImageUrlFull())
 //                .placeholder(R.mipmap.img_default_grid)
 //                .error(R.mipmap.img_default_grid)
+                .resizeDimen(R.dimen.width_image_small, R.dimen.height_image_small)
                 .into(holder.imgVenue);
 
 

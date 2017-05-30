@@ -39,6 +39,9 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
     private TextView tvEmptyMessage;
     private TextView btnShareFavs;
     private AlphaInAnimationAdapter animationAdapter;
+    private View viewNewVersion;
+    private View btnHideNewVersionView;
+    private View btnUpdateNewVersion;
 
     private void findViews() {
         tabsDays = (TabLayout) findViewById(R.id.tabs_days);
@@ -46,7 +49,13 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
         tvEmptyMessage = (TextView) findViewById(R.id.tv_empty_message);
         btnShareFavs = (TextView) findViewById(R.id.btn_share_favs);
 
+        viewNewVersion = findViewById(R.id.view_new_version);
+        btnHideNewVersionView = findViewById(R.id.btn_hide_new_version);
+        btnUpdateNewVersion = findViewById(R.id.btn_update_new_version);
+
         btnShareFavs.setOnClickListener(this);
+        btnHideNewVersionView.setOnClickListener(this);
+        btnUpdateNewVersion.setOnClickListener(this);
     }
 
     @Override
@@ -87,7 +96,7 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
 
         tabsDays.addOnTabSelectedListener(this);
 
-        presenter.onCreate();
+        presenter.onCreate(getIntent());
     }
 
     @Override
@@ -103,15 +112,11 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
     }
 
     @Override
-    public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
-            drawerLayout.closeDrawer(Gravity.LEFT);
-        } else if (drawerLayout.isDrawerOpen(Gravity.RIGHT)) {
-            drawerLayout.closeDrawer(Gravity.RIGHT);
-        }  else {
-            super.onBackPressed();
-        }
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.onDestroy();
     }
+
 
     private void configureToolbarBackArrowBehaviour() {
 
@@ -143,36 +148,6 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
 
         itemFav = menu.findItem(R.id.menuItem_fav);
         return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            case R.id.menuItem_filter:
-
-                if (drawerLayout.isDrawerOpen(Gravity.RIGHT)) {
-                    drawerLayout.closeDrawer(Gravity.RIGHT);
-                } else {
-
-                    if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
-                        drawerLayout.closeDrawer(Gravity.LEFT);
-                    }
-
-                    drawerLayout.openDrawer(Gravity.RIGHT);
-                }
-                return true;
-
-
-            case R.id.menuItem_fav:
-                itemFav.setChecked(!itemFav.isChecked());
-                itemFav.setIcon(itemFav.isChecked() ? R.mipmap.ic_star_selected : R.mipmap.ic_star_unselected);
-                presenter.onFilterFavouritesClicked(itemFav.isChecked());
-
-                refreshShareFavsVisibility();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     private void refreshShareFavsVisibility() {
@@ -226,6 +201,78 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
         presenter.onEventFavouriteClicked(idEvent);
     }
 
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+            case R.id.btn_share_favs:
+                presenter.onShareFavsButtonClicked();
+                break;
+
+            case R.id.btn_update_new_version:
+                presenter.onUpdateVersionClick();
+                break;
+
+            case R.id.btn_hide_new_version:
+                viewNewVersion.setVisibility(View.GONE);
+                break;
+        }
+    }
+
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+        presenter.onTabSelected(tab.getPosition());
+    }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
+            drawerLayout.closeDrawer(Gravity.LEFT);
+        } else if (drawerLayout.isDrawerOpen(Gravity.RIGHT)) {
+            drawerLayout.closeDrawer(Gravity.RIGHT);
+        }  else {
+            super.onBackPressed();
+        }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.menuItem_filter:
+
+                if (drawerLayout.isDrawerOpen(Gravity.RIGHT)) {
+                    drawerLayout.closeDrawer(Gravity.RIGHT);
+                } else {
+
+                    if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
+                        drawerLayout.closeDrawer(Gravity.LEFT);
+                    }
+
+                    drawerLayout.openDrawer(Gravity.RIGHT);
+                }
+                return true;
+
+
+            case R.id.menuItem_fav:
+                itemFav.setChecked(!itemFav.isChecked());
+                itemFav.setIcon(itemFav.isChecked() ? R.mipmap.ic_star_selected : R.mipmap.ic_star_unselected);
+                presenter.onFilterFavouritesClicked(itemFav.isChecked());
+
+                refreshShareFavsVisibility();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 
     // PRESENTER CALLBACKS
@@ -268,45 +315,19 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
     }
 
     @Override
+    public void setTabPosition(int position) {
+        tabsDays.getTabAt(position).select();
+    }
+
+    @Override
+    public void showNewVersionAvailable() {
+
+        viewNewVersion.setVisibility(View.VISIBLE);
+    }
+
+    @Override
     public BasePresenter getPresenter() {
         return presenter;
     }
 
-    @Override
-    public void onTabSelected(TabLayout.Tab tab) {
-        presenter.onTabSelected(tab.getPosition());
-    }
-
-    @Override
-    public void onTabUnselected(TabLayout.Tab tab) {
-
-    }
-
-    @Override
-    public void onTabReselected(TabLayout.Tab tab) {
-
-    }
-
-    @Override
-    public void onClick(View v) {
-        presenter.onShareFavsButtonClicked();
-    }
-
-//    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-//            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-//
-//        @Override
-//        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//            switch (item.getItemId()) {
-//                case R.id.navigation_home:
-//                    return true;
-//                case R.id.navigation_dashboard:
-//                    return true;
-//                case R.id.navigation_notifications:
-//                    return true;
-//            }
-//            return false;
-//        }
-//
-//    };
 }

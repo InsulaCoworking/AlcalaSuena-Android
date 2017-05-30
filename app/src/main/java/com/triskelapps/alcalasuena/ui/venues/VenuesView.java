@@ -13,4 +13,6 @@ public interface VenuesView extends BaseView {
 
 
     void showVenues(List<Venue> venues);
+
+    void animateIntro();
 }

@@ -103,17 +103,6 @@ public class MapActivity extends BaseActivity implements com.triskelapps.alcalas
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        gpsPlayLocationProvider.onStart();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        gpsPlayLocationProvider.onStop();
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -161,8 +150,18 @@ public class MapActivity extends BaseActivity implements com.triskelapps.alcalas
                 break;
 
             case R.id.tv_venue_indications:
-                presenter.onVenueIndicationsClick(gpsPlayLocationProvider.getLastKnownLocation());
+                presenter.onVenueIndicationsClick(gpsPlayLocationProvider != null ?
+                        gpsPlayLocationProvider.getLastKnownLocation() : null);
                 break;
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (viewVenueInfo.getVisibility() == View.VISIBLE) {
+            viewVenueInfo.setVisibility(View.GONE);
+        } else {
+            super.onBackPressed();
         }
     }
 
@@ -217,6 +216,7 @@ public class MapActivity extends BaseActivity implements com.triskelapps.alcalas
 
         Picasso.with(this)
                 .load(venue.getImageUrlFull())
+                .resizeDimen(R.dimen.width_image_big, R.dimen.height_image_big)
                 .into(imgVenue);
     }
 

@@ -60,8 +60,6 @@ public class VenuesActivity extends BaseActivity implements VenuesView, VenuesAd
         SpaceItemDecoration spaceItemDecoration = new SpaceItemDecoration(getResources().getDimensionPixelSize(R.dimen.separation_card_grid));
         recyclerVenues.addItemDecoration(spaceItemDecoration);
 
-        typeWriterIntro.animateText(getString(R.string.venues_intro));
-
         presenter.onCreate();
     }
 
@@ -109,6 +107,11 @@ public class VenuesActivity extends BaseActivity implements VenuesView, VenuesAd
 
     }
 
+    @Override
+    public void animateIntro() {
+        typeWriterIntro.animateText(getString(R.string.venues_intro));
+
+    }
 
 
 }

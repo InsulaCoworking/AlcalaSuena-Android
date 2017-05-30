@@ -21,4 +21,7 @@ public interface Api {
     @GET("venues")
     Observable<List<Venue>> getVenues();
 
+    @GET("settings/app_version_market")
+    Observable<String> getAppVersionInMarket();
+
 }

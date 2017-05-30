@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -18,6 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.triskelapps.alcalasuena.App;
 import com.triskelapps.alcalasuena.R;
 
@@ -39,6 +39,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     public static final int RESULT_DELETED = 1234;
     private AppBarLayout appBarLayout;
     private ImageView imgTitleToolbar;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         if (getPresenter() != null) {
             getPresenter().setBaseView(this);
         }
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
     }
 
@@ -224,17 +227,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        if (requestCode == REQ_CODE_EDIT) {
-            if (resultCode == RESULT_DELETED) {
-                finish();
-                return;
-
-            }
-        }
-
-        super.onActivityResult(requestCode, resultCode, data);
+    public FirebaseAnalytics getAnalytics() {
+        return mFirebaseAnalytics;
     }
 }

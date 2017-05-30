@@ -32,14 +32,14 @@ public class Event extends RealmObject implements Comparable {
     public static final String TIME_HOUR_MIDNIGHT_SAFE = "timeHourMidnightSafe";
 
     public static DateFormat dateFormatApi = new SimpleDateFormat("yyyy-MM-dd");
-    public static DateFormat dateFormatShareText = new SimpleDateFormat("d MMMM");
+    public static DateFormat dateFormatShareText = new SimpleDateFormat("EEE d MMMM");
 
     public static DateFormat timeFormatApi = new SimpleDateFormat("HH:mm:ss");
     public static DateFormat timeFormatUser = new SimpleDateFormat("HH:mm");
 
 
     @PrimaryKey
-    private int id;
+    private Integer id;
     private String day;
     private String time;
     private int band;
@@ -86,7 +86,11 @@ public class Event extends RealmObject implements Comparable {
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(timeDate.getTime());
             int timeHour = calendar.get(Calendar.HOUR_OF_DAY);
-            setTimeHourMidnightSafe(timeHour < TIME_HOUR_MIDNIGHT_SAFE_THRESHOLD ? timeHour + 24 : timeHour);
+            if (timeHour < TIME_HOUR_MIDNIGHT_SAFE_THRESHOLD) {
+                calendar.add(Calendar.HOUR_OF_DAY, 24);
+            }
+            setTimeHourMidnightSafe((int) calendar.getTimeInMillis());
+
         } catch (ParseException e) {
             e.printStackTrace();
         }

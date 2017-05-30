@@ -22,7 +22,7 @@
     <string name="program">Programación</string>
     <string name="venues">Escenarios</string>
     <string name="about_alcalasuena">#AlcalaSuena</string>
-    <string name="developed_by_insula">Desarrollado por coworkers de la Ínsula Coworking\nCódigo liberado bajo licencia GPL</string>
+    <string name="developed_by_insula">App y web desarrolladas como software libre por coworkers de la Ínsula Coworking</string>
     <string name="see_on_github">Ver repositorios en GitHub</string>
     <string name="text_about">Más de 140 conciertos gratuitos en 11 escenarios repartidos por un casco histórico patrimonio de la Humanidad. Alcala de Henares se llena de música en un proyecto creado por los artistas de la ciudad en el que se mezclan todo tipo de estilos, grupos profesionales y amateurs, noveles y cabezas de cartel en una producción con más de 800 músicos, técnicos, profesionales y voluntarios implicados en la producción.</string>
     <string name="see_dossier">Ver dossier</string>
@@ -52,4 +52,33 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="intro0">¡A punto de empezar el festival más importante de Alcalá! ¿Preparad@?\n\nSi quieres potenciar todavía mas tu experiencia, sigue esta breve introducción para conocer lo que puedes hacer con esta APP...</string>
+    <string name="intro1">Conoce toda la programación actualizada de conciertos en cada día y despliega el panel lateral para filtrar por los estilos de música que mas te gustan...</string>
+    <string name="intro2">¡Haz tu propia programación de conciertos!\nPulsa en la estrella roja de cada uno para guardarlos como favoritos y cuando quieras ver sólo los tuyos, pulsa en la estrella blanca de la barra superior.\nPodrás además mandarlos a tus amig@s por la app que elijas ;) ...</string>
+    <string name="intro3">En la sección de Mapa podrás ver geolocalizado cada escenario del festival y pulsando el marcador verás su descripción básica y en enlace para indicarte el camino...\nNo te vayas a perder :P</string>
+    <string name="intro4">Navega por el resto de secciones para tener toda la información de Bandas y Escenarios...\nQue la disfrutes ;)\n\n¡Nos vemos en el #AlcalaSuena!</string>
+    <string name="how_to_arrive">Cómo llegar</string>
+    <string name="about_app">Sobre la app</string>
+    <string name="insula_coworking">Ínsula Coworking</string>
+
+    <string name="text_about_insula">Esta aplicación de Android y la web interactiva www.alcalasuena.es ha sido desarrollada gracias a la iniciativa y colaboración de un grupo de personas de la Ínsula Coworking, un espacio compartido de trabajo y emprendimiento en la Calle Mayor de Alcalá
+        \n\nAdemás de informáticos y diseñadores, somos unos apasionados de la buena música y la cultura de nuestra ciudad, así que sin más compartimos con vosotr@s este proyecto y ¡a disfrutar del festival!.
+
+    </string>
+    <string name="joseba_info">Joseba Saenz de Navarrete\nDesarrollador backend\nChaotic Kingdoms</string>
+    <string name="jaime_info">Jaime Pérez Dans\nDiseñador web\nIntroarte S.L.</string>
+    <string name="vicente_info">Vicente Molina Martínez\nDiseñador gráfico\nMr. MadBar</string>
+    <string name="julio_info">Julio Berzal Carrascosa\nDesarrollador Android\nTriskel Apps</string>
+    <string name="meet_us">Conócenos</string>
+    <string name="telegram_channel">Canal de Telegram</string>
+    <string name="news_channel">Canal de noticias</string>
+    <string name="import_link_text">Manda este enlace a tus amigos para que marquen automáticamente tus favoritos y podáis ir juntos a los conciertos ;)\n\n%s</string>
+    <string name="download_app_text">( Si todavía no tienen la app diles que la descarguen pasándoles este link: %s )</string>
+    <string name="add_favs_events">Añadir conciertos favoritos</string>
+    <string name="add">¡Añadir!</string>
+    <string name="no_thanks">No, gracias</string>
+    <string name="new_version">¡Nueva versión!</string>
+    <string name="later">Mas tarde</string>
+    <string name="update">Actualizar</string>
+
 </resources>

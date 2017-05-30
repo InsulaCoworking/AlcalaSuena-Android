@@ -73,7 +73,7 @@ import java.util.List;
      }
 
     public void onEventFavouriteClicked(int idEvent) {
-        eventInteractor.toggleFavState(idEvent);
+        eventInteractor.toggleFavState(idEvent, false);
         refreshData();
     }
 

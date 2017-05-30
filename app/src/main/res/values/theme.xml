@@ -8,12 +8,21 @@
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="android:windowActionBarOverlay">true</item>
-        <item name="android:alertDialogStyle">@style/CustomDialogTheme</item>
+        <item name="android:alertDialogTheme">@style/CustomDialogTheme</item>
     </style>
 
-    <style name="CustomDialogTheme" parent="@android:style/Theme.Dialog">
-        <item name="android:background">@color/red_general</item>
-        <item name="android:textColor">@color/colorAccent</item>
+    <style name="CustomDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!--<item name="android:background">@color/red_general</item>-->
+        <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+    </style>
+
+    <style name="NegativeButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/grey_dark_general</item>
+    </style>
+
+    <style name="PositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/red_general</item>
     </style>
 
 

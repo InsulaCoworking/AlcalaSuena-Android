@@ -17,6 +17,7 @@ import java.util.List;
 
 public class VenuesPresenter extends BasePresenter {
 
+    private static final String PREF_INTRO_VENUES_FIRST_TIME = "pref_intro_venues_first_time";
     private final VenuesView view;
     private final VenueInteractor venueInteractor;
 
@@ -43,6 +44,10 @@ public class VenuesPresenter extends BasePresenter {
 
     public void onCreate() {
 
+        if (getPrefs().getBoolean(PREF_INTRO_VENUES_FIRST_TIME, true)) {
+            view.animateIntro();
+            getPrefs().edit().putBoolean(PREF_INTRO_VENUES_FIRST_TIME, false).commit();
+        }
     }
 
 

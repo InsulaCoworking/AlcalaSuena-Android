@@ -1,10 +1,13 @@
 package com.triskelapps.alcalasuena.interactor;
 
 import android.content.Context;
+import android.os.Bundle;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.triskelapps.alcalasuena.api.Api;
 import com.triskelapps.alcalasuena.base.BaseInteractor;
 import com.triskelapps.alcalasuena.base.BaseView;
+import com.triskelapps.alcalasuena.model.Band;
 import com.triskelapps.alcalasuena.model.Event;
 import com.triskelapps.alcalasuena.model.Favourite;
 import com.triskelapps.alcalasuena.model.Filter;
@@ -79,19 +82,27 @@ public class EventInteractor extends BaseInteractor {
         realm.commitTransaction();
     }
 
-    public void toggleFavState(final int idEvent) {
+    public void toggleFavState(final int idEvent, final boolean forzeStar) {
 
         Realm realm = Realm.getDefaultInstance();
         final Favourite favourite = realm.where(Favourite.class)
                 .equalTo(Favourite.ID_EVENT, idEvent)
                 .findFirst();
 
+        Band band = getEventById(idEvent).getBandEntity();
+
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, band.getId()+"");
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, band.getName());
+        bundle.putString(FirebaseAnalytics.Param.SCORE, favourite == null || !favourite.isStarred() ? "1" : "-1"); // is toggling
+        FirebaseAnalytics.getInstance(context).logEvent(FirebaseAnalytics.Event.ADD_TO_WISHLIST, bundle);
+
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
 
                 if (favourite != null) {
-                    favourite.setStarred(!favourite.isStarred());
+                    favourite.setStarred(forzeStar || !favourite.isStarred());
                 } else {
                     Favourite favouriteNew = realm.createObject(Favourite.class);
                     favouriteNew.setStarred(true);
@@ -126,50 +137,21 @@ public class EventInteractor extends BaseInteractor {
         return favourite != null && favourite.isStarred();
     }
 
+    public void setFavEvents(Integer[] idsFavs) {
+        for (int idFavEvent : idsFavs) {
+            toggleFavState(idFavEvent, true);
+        }
+    }
 
     private static Event getEventById(int idEvent) {
         return Realm.getDefaultInstance().where(Event.class).equalTo(Event.ID, idEvent).findFirst();
     }
 
-    // Not used
-//    public void getEvents(final EventsCallback callback) {
-//
-//        if (!Util.isConnected(context)) {
-//            baseView.toast(R.string.no_connection);
-//            return;
-//        }
-//
-//        baseView.setRefresing(true);
-//
-//        getApi().getEvents()
-//                .subscribeOn(Schedulers.newThread())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .doOnTerminate(actionTerminate)
-//                .subscribe(new Observer<List<Event>>() {
-//                    @Override
-//                    public void onCompleted() {
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//
-//                        callback.onError(e.getMessage());
-//                    }
-//
-//                    @Override
-//                    public void onNext(List<Event> events) {
-//
-//                        baseView.setRefresing(false);
-//
-//                        callback.onResponse(events);
-//
-//
-//                    }
-//                });
 
-
-//    }
-
+    public List<Event> getEventsFavsDB(Integer[] idsFavsEvents) {
+        return Realm.getDefaultInstance().where(Event.class).in(Event.ID, idsFavsEvents).
+                findAllSorted(Event.TIME_HOUR_MIDNIGHT_SAFE);
+    }
 
     private Api getApi() {
         return getApi(Api.class);

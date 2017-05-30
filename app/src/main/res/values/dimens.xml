@@ -3,4 +3,8 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="separation_card_grid">5dp</dimen>
+    <dimen name="width_image_big">800dp</dimen>
+    <dimen name="height_image_big">0dp</dimen>
+    <dimen name="width_image_small">200dp</dimen>
+    <dimen name="height_image_small">0dp</dimen>
 </resources>

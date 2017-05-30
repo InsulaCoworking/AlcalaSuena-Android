@@ -15,4 +15,8 @@ public interface MainView extends BaseView {
     void showEvents(List<Event> events, String emptyMessage);
 
     void goToTop();
+
+    void setTabPosition(int position);
+
+    void showNewVersionAvailable();
 }
