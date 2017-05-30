@@ -78,7 +78,8 @@
         android:background="@color/grey_dark_general"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="7dp"
+        android:visibility="gone">
 
         <TextView
             style="@style/TextBase.White"

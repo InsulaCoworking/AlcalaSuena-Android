@@ -34,7 +34,7 @@ public class MainPresenter extends BasePresenter {
 
     private static final String URL_QUERY_MY_EVENTS = "share";
     public static final String URL_GOOGLE_PLAY_APP = "https://play.google.com/store/apps/details?id=com.triskelapps.alcalasuena";
-    public static final String URL_DIRECT_GOOGLE_PLAY_APP = "market://details?id=com.example.android";
+    public static final String URL_DIRECT_GOOGLE_PLAY_APP = "market://details?id=com.triskelapps.alcalasuena";
 
 
     private final MainView view;
