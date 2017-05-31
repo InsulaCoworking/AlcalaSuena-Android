@@ -36,7 +36,7 @@ public class IntroActivity extends BaseActivity implements IntroView, View.OnCli
         setContentView(R.layout.activity_intro);
         findViews();
 
-        adapter = new IntroViewPagerAdapter(getSupportFragmentManager());
+        adapter = new IntroViewPagerAdapter(this, getSupportFragmentManager());
         viewpagerIntro.setAdapter(adapter);
 
         viewpagerIntro.setPageTransformer(false, new TabletTransformer());

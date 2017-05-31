@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="intro_tutorial_screens">
+        <item>@layout/fragment_intro_0</item>
+        <item>@layout/fragment_intro_1</item>
+        <item>@layout/fragment_intro_2</item>
+        <item>@layout/fragment_intro_3</item>
+        <item>@layout/fragment_intro_4</item>
+    </array>
+</resources>

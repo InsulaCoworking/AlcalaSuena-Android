@@ -54,6 +54,7 @@ public class BandInfoActivity extends BaseActivity implements BandInfoView, View
         imgYoutube.setOnClickListener(this);
         imgBandcamp.setOnClickListener(this);
         imgPresskit.setOnClickListener(this);
+        imgBand.setOnClickListener(this);
     }
 
 
@@ -118,7 +119,14 @@ public class BandInfoActivity extends BaseActivity implements BandInfoView, View
 
     @Override
     public void onClick(View v) {
-        presenter.onSocialNetworkClicked(v.getId());
+        switch (v.getId()) {
+            case R.id.img_band:
+                presenter.onImageBandClick();
+                break;
+
+            default:
+                presenter.onSocialNetworkClicked(v.getId());
+        }
     }
 
     @Override

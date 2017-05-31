@@ -13,6 +13,7 @@ import com.triskelapps.alcalasuena.interactor.BandInteractor;
 import com.triskelapps.alcalasuena.interactor.EventInteractor;
 import com.triskelapps.alcalasuena.model.Band;
 import com.triskelapps.alcalasuena.model.Event;
+import com.triskelapps.alcalasuena.ui.image_full.ImageFullActivity;
 
 import java.util.List;
 
@@ -111,5 +112,11 @@ public class BandInfoPresenter extends BasePresenter {
     public void onEventFavouriteClicked(int idEvent) {
         eventInteractor.toggleFavState(idEvent, false);
         refreshData();
+    }
+
+    public void onImageBandClick() {
+
+        Band band = bandInteractor.getBandDB(idBand);
+        context.startActivity(ImageFullActivity.newImageFullActivity(context, band.getImageCoverUrlFull().toString()));
     }
 }

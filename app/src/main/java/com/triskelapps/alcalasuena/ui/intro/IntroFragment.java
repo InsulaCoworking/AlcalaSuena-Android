@@ -8,25 +8,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.triskelapps.alcalasuena.R;
-
 /**
  * A simple {@link Fragment} subclass.
  */
 public class IntroFragment extends Fragment {
 
 
-    private static final String EXTRA_POSITION = "extra_position";
+    private static final String EXTRA_LAYOUT_RESOURCE = "extra_layout_resource";
 
 
     public IntroFragment() {
         // Required empty public constructor
     }
 
-    public static final IntroFragment newIntroFragment(int position) {
+    public static final IntroFragment newIntroFragment(int layoutRes) {
         IntroFragment introFragment = new IntroFragment();
         Bundle args = new Bundle();
-        args.putInt(EXTRA_POSITION, position);
+        args.putInt(EXTRA_LAYOUT_RESOURCE, layoutRes);
         introFragment.setArguments(args);
         return introFragment;
     }
@@ -40,35 +38,8 @@ public class IntroFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        int position = getArguments().getInt(EXTRA_POSITION, -1);
-        int layout = 0;
-        switch (position) {
-            case 0:
-                layout = R.layout.fragment_intro_0;
-                break;
-
-            case 1:
-                layout = R.layout.fragment_intro_1;
-                break;
-
-            case 2:
-                layout = R.layout.fragment_intro_2;
-                break;
-
-            case 3:
-                layout = R.layout.fragment_intro_3;
-                break;
-
-            case 4:
-                layout = R.layout.fragment_intro_4;
-                break;
-
-
-            default:
-                throw new IllegalArgumentException("No view for intro fragment position: " + position);
-        }
-
-        return inflater.inflate(layout, container, false);
+        int layoutRes = getArguments().getInt(EXTRA_LAYOUT_RESOURCE, -1);
+        return inflater.inflate(layoutRes, container, false);
     }
 
 }

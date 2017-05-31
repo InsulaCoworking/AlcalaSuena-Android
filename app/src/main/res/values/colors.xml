@@ -20,4 +20,6 @@
     <color name="grey_dark_general">#40474A</color>
     <color name="cardBackgroundEvent">#4FFF</color>
     <color name="tagWhiteFilter">#4FFF</color>
+
+    <color name="black_overlay">#66000000</color>
 </resources>

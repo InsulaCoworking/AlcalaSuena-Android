@@ -32,7 +32,7 @@ import static com.triskelapps.alcalasuena.App.EXTRA_FIRST_TIME_APP_LAUNCHING;
 
 public class MainPresenter extends BasePresenter {
 
-    private static final String URL_QUERY_MY_EVENTS = "share";
+    private static final String URL_QUERY_SHARE = "share";
     public static final String URL_GOOGLE_PLAY_APP = "https://play.google.com/store/apps/details?id=com.triskelapps.alcalasuena";
     public static final String URL_DIRECT_GOOGLE_PLAY_APP = "market://details?id=com.triskelapps.alcalasuena";
 
@@ -106,27 +106,31 @@ public class MainPresenter extends BasePresenter {
 
         filter.setDay(tabsDays.get(tabPosition));
 
-        String appLinkAction = intent.getAction();
-        Uri appLinkData = intent.getData();
-        if (Intent.ACTION_VIEW.equals(appLinkAction) && appLinkData != null) {
-            try {
-                String query = appLinkData.getEncodedQuery();
-                if (query.split("=")[0].equals(URL_QUERY_MY_EVENTS)) {
-                    String idsFavEvents = query.split("=")[1];
-                    String[] idsFavs = idsFavEvents.split(",");
-                    showImportEventsDialog(idsFavs);
-                }
-
-            } catch (Exception e) {
-                // Not a alcalasuena.es url for us
-                e.printStackTrace();
-            }
-
-        }
+        checkIntentUriReceived(intent);
 
         checkNewVersionInMarket();
 
     }
+
+    private void checkIntentUriReceived(Intent intent) {
+
+        String appLinkAction = intent.getAction();
+        Uri appLinkData = intent.getData();
+        if (Intent.ACTION_VIEW.equals(appLinkAction) && appLinkData != null) {
+
+            String idsFavEvents = appLinkData.getQueryParameter(URL_QUERY_SHARE);
+            if (idsFavEvents != null) {
+                String[] idsFavs = idsFavEvents.split(",");
+                showImportEventsDialog(idsFavs);
+            } else {
+                // This link is not for this app
+                showFunnyDialogForThisUserFail(appLinkData);
+            }
+
+
+        }
+    }
+
 
     private void checkNewVersionInMarket() {
         settingsInteractor.getAppVersionInMarket(new SettingsInteractor.SettingsAppVersionCallback() {
@@ -134,7 +138,9 @@ public class MainPresenter extends BasePresenter {
             public void onResponse(Integer newVersion) {
                 int currentVersion = BuildConfig.VERSION_CODE;
                 if (newVersion > currentVersion) {
-                    view.showNewVersionAvailable();
+                    if (!BuildConfig.DEBUG) {
+                        view.showNewVersionAvailable();
+                    }
                 }
             }
 
@@ -174,6 +180,22 @@ public class MainPresenter extends BasePresenter {
             }
         });
         ab.setNegativeButton(R.string.no_thanks, null);
+        ab.show();
+    }
+
+
+    private void showFunnyDialogForThisUserFail(final Uri appLinkData) {
+
+        AlertDialog.Builder ab = new AlertDialog.Builder(context);
+        ab.setTitle(R.string.hello_excl);
+        ab.setMessage(R.string.funny_text_user_enter_with_wrong_link);
+        ab.setPositiveButton(R.string.follow_link, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                context.startActivity(new Intent(Intent.ACTION_VIEW, appLinkData));
+            }
+        });
+        ab.setNeutralButton(R.string.stay_in_app, null);
         ab.show();
     }
 
@@ -241,7 +263,7 @@ public class MainPresenter extends BasePresenter {
         List<Event> eventsFav = eventInteractor.getEventsDB(filter);
         String text = context.getString(R.string.share_favs_text_intro);
 
-        String importLink = "http://www.alcalasuena.es/?" + URL_QUERY_MY_EVENTS + "=";
+        String importLink = "http://www.alcalasuena.es/?" + URL_QUERY_SHARE + "=";
 
         for (Event eventFav : eventsFav) {
             text += "\n\n";

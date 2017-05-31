@@ -10,8 +10,8 @@ android {
         applicationId "com.triskelapps.alcalasuena"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 5
-        versionName "1.1.1"
+        versionCode 6
+        versionName "1.1.6"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
@@ -56,9 +56,9 @@ dependencies {
     compile 'com.android.support:support-v4:25.3.1'
     compile 'com.google.firebase:firebase-crash:10.2.6'
     compile 'com.google.firebase:firebase-core:10.2.6'
-    testCompile 'junit:junit:4.12'
     compile 'com.romandanylyk:pageindicatorview:0.0.8'
     compile 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32'
+    testCompile 'junit:junit:4.12'
 }
 
 if (buildType == "release") {

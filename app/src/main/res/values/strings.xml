@@ -80,5 +80,14 @@
     <string name="new_version">¡Nueva versión!</string>
     <string name="later">Mas tarde</string>
     <string name="update">Actualizar</string>
+    <string name="see_github_repositories">Ver repositorios en GitHub</string>
+    <string name="hello_excl">¡Hola!</string>
+    <string name="stay_in_app">Ya que estoy, me quedo</string>
+    <string name="follow_link">Seguir enlace</string>
+    <string name="funny_text_user_enter_with_wrong_link">El enlace que quieres ver tienes que abrirlo desde un navegador. Esta app solo recibe enlaces para añadir favoritos.\n\nEn cualquier caso, ¡un gusto tenerte por aquí! ;)\n\nElige qué quieres hacer</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 
 </resources>

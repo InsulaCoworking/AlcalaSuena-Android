@@ -6,11 +6,11 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="${applicationId}.permission.C2D_MESSAGE" />
 
-    <uses-permission android:name="${applicationId}.permission.C2D_MESSAGE"/>
     <permission
         android:name="${applicationId}.permission.C2D_MESSAGE"
-        android:protectionLevel="signature"/>
+        android:protectionLevel="signature" />
 
     <application
         android:name=".App"
@@ -29,16 +29,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.MainActivity" >
+        <activity android:name=".ui.MainActivity">
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="http" />
                 <data android:scheme="https" />
                 <data android:host="www.alcalasuena.es" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".ui.bands.BandsActivity"
@@ -50,6 +51,8 @@
         <activity android:name=".ui.venues.VenuesActivity" />
         <activity android:name=".ui.venue_info.VenueInfoActivity" />
         <activity android:name=".ui.about.AboutInsulaActivity" />
+        <activity android:name=".ui.image_full.ImageFullActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
     </application>
 
 </manifest>

@@ -47,8 +47,7 @@
                     android:layout_marginTop="10dp"
                     android:adjustViewBounds="true"
                     android:maxHeight="200dp"
-                    android:scaleType="centerInside"
-                    android:src="@mipmap/img_bloco_virado_grupo" />
+                    android:scaleType="centerInside" />
 
                 <TextView
                     android:id="@+id/tv_band_genre"
