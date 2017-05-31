@@ -32,15 +32,6 @@ public class VenuesAdapter extends RecyclerView.Adapter<VenuesAdapter.ViewHolder
         this.venues = venues;
     }
 
-    public void setSelectedNumber(Integer number) {
-        this.selectedNumber = number;
-        notifyDataSetChanged();
-    }
-
-    public Integer getSelectedNumber() {
-        return selectedNumber;
-    }
-
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -52,9 +43,11 @@ public class VenuesAdapter extends RecyclerView.Adapter<VenuesAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(ViewHolder holder, int position2) {
 
-        Venue venue = getItemAtPosition(position);
+        final int safePosition = holder.getAdapterPosition();
+
+        Venue venue = getItemAtPosition(safePosition);
 
         holder.tvVenueName.setText(venue.getName());
         Picasso.with(context)
@@ -65,7 +58,7 @@ public class VenuesAdapter extends RecyclerView.Adapter<VenuesAdapter.ViewHolder
                 .into(holder.imgVenue);
 
 
-        addClickListener(holder.rootView, position, venue.getId());
+        addClickListener(holder.rootView, safePosition, venue.getId());
     }
 
     private void addClickListener(View view, final int position, final int id) {

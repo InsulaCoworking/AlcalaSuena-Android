@@ -54,9 +54,11 @@ public class BandsAdapter extends RecyclerView.Adapter<BandsAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
 
-        Band band = getItemAtPosition(position);
+        final int safePosition = holder.getAdapterPosition();
+
+        Band band = getItemAtPosition(safePosition);
 
         holder.tvBandName.setText(band.getName());
         holder.tvBandGenre.setText(band.getGenreOrTag());
@@ -73,7 +75,7 @@ public class BandsAdapter extends RecyclerView.Adapter<BandsAdapter.ViewHolder> 
             holder.viewColorTag.setBackgroundColor(colorAlpha);
         }
 
-        addClickListener(holder.rootView, position, band.getId());
+        addClickListener(holder.rootView, safePosition, band.getId());
     }
 
     private void addClickListener(View view, final int position, final int id) {

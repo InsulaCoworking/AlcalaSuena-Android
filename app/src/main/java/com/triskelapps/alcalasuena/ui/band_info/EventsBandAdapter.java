@@ -42,9 +42,11 @@ public class EventsBandAdapter extends RecyclerView.Adapter<EventsBandAdapter.Vi
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position2) {
 
-        final Event event = getItemAtPosition(position);
+        final int safePosition = holder.getAdapterPosition();
+
+        final Event event = getItemAtPosition(safePosition);
 
 
         holder.tvEventBandDay.setText(event.getDayShareFormat());

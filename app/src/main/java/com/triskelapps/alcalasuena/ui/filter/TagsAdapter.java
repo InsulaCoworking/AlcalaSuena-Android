@@ -41,9 +41,10 @@ public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position2) {
 
-        Tag tag = getItemAtPosition(position);
+        final int safePosition = holder.getAdapterPosition();
+        Tag tag = getItemAtPosition(safePosition);
 
         holder.tvTagName.setText(tag.getName());
 //        holder.tvTagDescription.setText(tag.getDescription());
@@ -54,7 +55,7 @@ public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.ViewHolder> {
 
         holder.rootView.setAlpha(tag.isActive() ? 1 : 0.3f);
 
-        addClickListener(holder.rootView, position, tag.getId());
+        addClickListener(holder.rootView, safePosition, tag.getId());
     }
 
     private void addClickListener(View view, final int position, final String id) {

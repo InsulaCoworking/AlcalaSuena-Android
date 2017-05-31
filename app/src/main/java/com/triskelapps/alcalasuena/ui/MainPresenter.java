@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 
+import com.google.firebase.crash.FirebaseCrash;
 import com.triskelapps.alcalasuena.App;
 import com.triskelapps.alcalasuena.BuildConfig;
 import com.triskelapps.alcalasuena.R;
@@ -19,6 +20,7 @@ import com.triskelapps.alcalasuena.model.Event;
 import com.triskelapps.alcalasuena.model.Filter;
 import com.triskelapps.alcalasuena.ui.band_info.BandInfoPresenter;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -112,6 +114,127 @@ public class MainPresenter extends BasePresenter {
 
     }
 
+    public void onResume() {
+
+        refreshData();
+    }
+
+    public void onDestroy() {
+        context.unregisterReceiver(receiverRefreshData);
+    }
+
+    public void refreshData() {
+
+        List<Event> events = eventInteractor.getEventsDB(filter);
+
+        String emptyMessage = null;
+        if (events.isEmpty()) {
+            if (filter.isStarred()) {
+                emptyMessage = context.getString(R.string.no_favourites);
+            } else {
+                emptyMessage = context.getString(R.string.no_results_for_tags);
+            }
+        }
+
+        view.showEvents(events, emptyMessage);
+
+        // Little extra: scroll to events happening now
+        try {
+            if (isCurrentTabDay()) {
+                String hourNow = new SimpleDateFormat("HH").format(new Date());
+                for (int i = 0; i < events.size(); i++) {
+                    Event event = events.get(i);
+                    if (event.getTime().startsWith(hourNow)) {
+                        view.goToEventsTakingPlaceNow(i);
+                        break;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            // Bad idea if this little extra make an app crash :S
+            FirebaseCrash.report(e);
+        }
+
+    }
+
+
+    private boolean isCurrentTabDay() {
+        return filter.getDay().equals(Event.dateFormatApi.format(new Date()));
+    }
+
+
+    // --- INTERACTIONS
+    public void onTabSelected(int position) {
+        filter.setDay(tabsDays.get(position));
+        refreshData();
+        view.goToTop();
+    }
+
+
+    public void onFilterFavouritesClicked(boolean favourites) {
+        filter.setStarred(favourites);
+        refreshData();
+    }
+
+    public void onEventFavouriteClicked(int idEvent) {
+        eventInteractor.toggleFavState(idEvent, false);
+        refreshData();
+    }
+
+    public void onBandClicked(int idBand) {
+        context.startActivity(BandInfoPresenter.newBandInfoActivity(context, idBand));
+    }
+
+    public void onShareFavsButtonClicked() {
+
+        String text = getMyListTextToShare();
+
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_TEXT, text);
+        intent.setType("text/plain");
+        context.startActivity(intent);
+    }
+
+
+    public void onUpdateVersionClick() {
+
+        Intent directPlayIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL_DIRECT_GOOGLE_PLAY_APP));
+        if (directPlayIntent.resolveActivity(context.getPackageManager()) != null) {
+            context.startActivity(directPlayIntent);
+        } else {
+            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(URL_GOOGLE_PLAY_APP)));
+        }
+    }
+
+
+    //------------
+
+    private String getMyListTextToShare() {
+
+        Filter filter = new Filter();
+        filter.setStarred(true);
+        List<Event> eventsFav = eventInteractor.getEventsDB(filter);
+        String text = context.getString(R.string.share_favs_text_intro);
+
+        String importLink = "http://www.alcalasuena.es/?" + URL_QUERY_SHARE + "=";
+
+        for (Event eventFav : eventsFav) {
+            text += "\n\n";
+            text += eventFav.getBandEntity().getName() + "\n";
+            text += eventFav.getDayShareFormat() + " - " + eventFav.getTimeFormatted() + "\n";
+            text += eventFav.getVenue().getName();
+
+            importLink += eventFav.getId() + ",";
+        }
+
+        importLink = importLink.substring(0, importLink.length() - 1);
+        text += "\n\n" + String.format(context.getString(R.string.import_link_text), importLink);
+        text += "\n\n" + String.format(context.getString(R.string.download_app_text), URL_GOOGLE_PLAY_APP);
+
+        return text;
+    }
+
+
     private void checkIntentUriReceived(Intent intent) {
 
         String appLinkAction = intent.getAction();
@@ -199,95 +322,5 @@ public class MainPresenter extends BasePresenter {
         ab.show();
     }
 
-    public void onResume() {
 
-        refreshData();
-    }
-
-    public void onDestroy() {
-        context.unregisterReceiver(receiverRefreshData);
-    }
-
-    public void refreshData() {
-
-        List<Event> events = eventInteractor.getEventsDB(filter);
-
-        String emptyMessage = null;
-        if (events.isEmpty()) {
-            if (filter.isStarred()) {
-                emptyMessage = context.getString(R.string.no_favourites);
-            } else {
-                emptyMessage = context.getString(R.string.no_results_for_tags);
-            }
-        }
-
-        view.showEvents(events, emptyMessage);
-
-    }
-
-    public void onTabSelected(int position) {
-        filter.setDay(tabsDays.get(position));
-        refreshData();
-        view.goToTop();
-    }
-
-
-    public void onFilterFavouritesClicked(boolean favourites) {
-        filter.setStarred(favourites);
-        refreshData();
-    }
-
-    public void onEventFavouriteClicked(int idEvent) {
-        eventInteractor.toggleFavState(idEvent, false);
-        refreshData();
-    }
-
-    public void onBandClicked(int idBand) {
-        context.startActivity(BandInfoPresenter.newBandInfoActivity(context, idBand));
-    }
-
-    public void onShareFavsButtonClicked() {
-
-        String text = getMyListTextToShare();
-
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.putExtra(Intent.EXTRA_TEXT, text);
-        intent.setType("text/plain");
-        context.startActivity(intent);
-    }
-
-    private String getMyListTextToShare() {
-
-        Filter filter = new Filter();
-        filter.setStarred(true);
-        List<Event> eventsFav = eventInteractor.getEventsDB(filter);
-        String text = context.getString(R.string.share_favs_text_intro);
-
-        String importLink = "http://www.alcalasuena.es/?" + URL_QUERY_SHARE + "=";
-
-        for (Event eventFav : eventsFav) {
-            text += "\n\n";
-            text += eventFav.getBandEntity().getName() + "\n";
-            text += eventFav.getDayShareFormat() + " - " + eventFav.getTimeFormatted() + "\n";
-            text += eventFav.getVenue().getName();
-
-            importLink += eventFav.getId() + ",";
-        }
-
-        importLink = importLink.substring(0, importLink.length() - 1);
-        text += "\n\n" + String.format(context.getString(R.string.import_link_text), importLink);
-        text += "\n\n" + String.format(context.getString(R.string.download_app_text), URL_GOOGLE_PLAY_APP);
-
-        return text;
-    }
-
-    public void onUpdateVersionClick() {
-
-        Intent directPlayIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL_DIRECT_GOOGLE_PLAY_APP));
-        if (directPlayIntent.resolveActivity(context.getPackageManager()) != null) {
-            context.startActivity(directPlayIntent);
-        } else {
-            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(URL_GOOGLE_PLAY_APP)));
-        }
-    }
 }

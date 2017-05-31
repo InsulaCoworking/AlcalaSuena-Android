@@ -47,9 +47,11 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position2) {
 
-        final Event event = getItemAtPosition(position);
+        final int safePosition = holder.getAdapterPosition();
+
+        final Event event = getItemAtPosition(safePosition);
 
         final Band band = event.getBandEntity();
 

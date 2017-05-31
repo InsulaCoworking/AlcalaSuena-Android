@@ -326,6 +326,11 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
     }
 
     @Override
+    public void goToEventsTakingPlaceNow(int positionFirstEvent) {
+        recyclerEvents.scrollToPosition(positionFirstEvent);
+    }
+
+    @Override
     public BasePresenter getPresenter() {
         return presenter;
     }

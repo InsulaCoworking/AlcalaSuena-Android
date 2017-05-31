@@ -41,7 +41,7 @@
 
             <fragment
                 android:id="@+id/menu_fragment"
-                android:name="com.triskelapps.alcalasuena.ui.menu.MenuFragment"
+                class="com.triskelapps.alcalasuena.ui.menu.MenuFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
@@ -49,7 +49,7 @@
 
             <fragment
                 android:id="@+id/filter_bands_fragment"
-                android:name="com.triskelapps.alcalasuena.ui.filter.FilterBandsFragment"
+                class="com.triskelapps.alcalasuena.ui.filter.FilterBandsFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
