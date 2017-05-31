@@ -43,12 +43,12 @@ import java.util.List;
 
      public void onCreate() {
 
+         refreshData();
      }
 
 
     public void onResume() {
 
-         refreshData();
      }
 
      public void refreshData() {

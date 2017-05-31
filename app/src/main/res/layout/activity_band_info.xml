@@ -32,12 +32,12 @@
                 android:layout_height="match_parent"
                 android:descendantFocusability="blocksDescendants"
                 android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:padding="10dp">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/tv_band_name"
-                    style="@style/TextTitle" />
+                    style="@style/TextTitle"
+                    android:padding="10dp" />
 
                 <ImageView
                     android:id="@+id/img_band"
@@ -46,7 +46,6 @@
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
                     android:adjustViewBounds="true"
-                    android:maxHeight="200dp"
                     android:scaleType="centerInside" />
 
                 <TextView
@@ -60,7 +59,8 @@
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recycler_events_band"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:padding="5dp" />
 
                 <View style="@style/SeparatorHorizontal.Grey" />
 
@@ -69,6 +69,8 @@
                     style="@style/TextBase.White"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="15dp"
+                    android:autoLink="all"
+                    android:padding="15dp"
                     android:text="asdlfkjasldf asñdkfjñalsf jñlaskfj ñlaskfjñalskfjñ asfjñ asklf lñaskjlkasjdf ñlasf ñlaskf lña" />
 
 

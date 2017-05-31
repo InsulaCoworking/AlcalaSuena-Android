@@ -25,7 +25,7 @@ public class SplashActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        presenter.onCreate();
+        presenter.onCreate(getIntent());
     }
 
     @Override

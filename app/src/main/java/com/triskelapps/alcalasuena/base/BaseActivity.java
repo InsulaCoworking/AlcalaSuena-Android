@@ -3,7 +3,9 @@ package com.triskelapps.alcalasuena.base;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -20,8 +22,14 @@ import android.widget.Toast;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.triskelapps.alcalasuena.App;
 import com.triskelapps.alcalasuena.R;
+import com.triskelapps.alcalasuena.views.DialogShowNotification;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
+import static com.triskelapps.alcalasuena.ui.splash.SplashPresenter.EXTRA_NOTIFICATION_CUSTOM_BUTTON_LINK;
+import static com.triskelapps.alcalasuena.ui.splash.SplashPresenter.EXTRA_NOTIFICATION_CUSTOM_BUTTON_TEXT;
+import static com.triskelapps.alcalasuena.ui.splash.SplashPresenter.EXTRA_NOTIFICATION_MESSAGE;
+import static com.triskelapps.alcalasuena.ui.splash.SplashPresenter.EXTRA_NOTIFICATION_TITLE;
 
 
 public abstract class BaseActivity extends AppCompatActivity implements BaseView {
@@ -41,6 +49,28 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     private ImageView imgTitleToolbar;
     private FirebaseAnalytics mFirebaseAnalytics;
 
+    private BroadcastReceiver receiverShowNotification = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(App.ACTION_SHOW_NOTIFICATION)) {
+                showNotification(intent.getExtras());
+//                view.toast("action refresh");
+            }
+        }
+    };
+
+    private void showNotification(Bundle extras) {
+
+        String title = extras.getString(EXTRA_NOTIFICATION_TITLE);
+        String message = extras.getString(EXTRA_NOTIFICATION_MESSAGE);
+        String btnText = extras.getString(EXTRA_NOTIFICATION_CUSTOM_BUTTON_TEXT);
+        String btnLink = extras.getString(EXTRA_NOTIFICATION_CUSTOM_BUTTON_LINK);
+
+        DialogShowNotification.newInstace(this).show(title, message, btnText, btnLink);
+    }
+
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +84,19 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+//        IntentFilter intentFilter = new IntentFilter();
+//        intentFilter.addAction(App.ACTION_SHOW_NOTIFICATION);
+//        registerReceiver(receiverShowNotification, intentFilter);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+//        unregisterReceiver(receiverShowNotification);
+    }
 
     @Override
     protected void onStop() {

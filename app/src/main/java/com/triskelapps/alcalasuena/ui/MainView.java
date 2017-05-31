@@ -19,4 +19,6 @@ public interface MainView extends BaseView {
     void setTabPosition(int position);
 
     void showNewVersionAvailable();
+
+//    void goToEventsTakingPlaceNow(int positionFirstEvent);
 }

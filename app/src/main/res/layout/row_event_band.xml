@@ -34,7 +34,7 @@
         style="@style/TextBase.Accent"
         android:layout_width="0dp"
         android:layout_weight="1"
-        android:textSize="22sp"
+        android:textSize="20sp"
         android:gravity="center"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"/>

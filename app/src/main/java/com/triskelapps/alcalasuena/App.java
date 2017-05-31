@@ -36,6 +36,7 @@ public class App extends Application {
     public static final String SHARED_FIRST_TIME = PREFIX + "first_time_7";
     public static final String EXTRA_FIRST_TIME_APP_LAUNCHING = PREFIX + "extra_first_time_app_lauching";
     public static final String ACTION_REFRESH_DATA = PREFIX + "action_refresh_data";
+    public static final String ACTION_SHOW_NOTIFICATION = PREFIX + "action_show_notification";
     private VenueInteractor venueInteractor;
     private BandInteractor bandInteractor;
 
@@ -63,6 +64,9 @@ public class App extends Application {
 
         initializeDataFirstTime();
         updateDataFromApi();
+
+//        String token = FirebaseInstanceId.getInstance().getToken();
+//        Log.d(TAG, "Refreshed token: " + token);
 
 
     }
