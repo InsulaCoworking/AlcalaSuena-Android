@@ -143,7 +143,7 @@ public class App extends Application {
 //                .encryptionKey(getKey())
                 .schemaVersion(MyRealmMigration.VERSION)
 //                .modules(new MySchemaModule())
-//                .migration(new MyRealmMigration())
+                .migration(new MyRealmMigration())
                 ;
 
         if (BuildConfig.DEBUG) {

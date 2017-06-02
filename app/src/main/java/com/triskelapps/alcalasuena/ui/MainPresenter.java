@@ -15,10 +15,13 @@ import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.interactor.BandInteractor;
 import com.triskelapps.alcalasuena.interactor.EventInteractor;
+import com.triskelapps.alcalasuena.interactor.NewsInteractor;
 import com.triskelapps.alcalasuena.interactor.SettingsInteractor;
 import com.triskelapps.alcalasuena.model.Event;
 import com.triskelapps.alcalasuena.model.Filter;
+import com.triskelapps.alcalasuena.model.News;
 import com.triskelapps.alcalasuena.ui.band_info.BandInfoPresenter;
+import com.triskelapps.alcalasuena.views.DialogShowNews;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -52,6 +55,7 @@ public class MainPresenter extends BasePresenter {
     }
 
     private final SettingsInteractor settingsInteractor;
+    private final NewsInteractor newsInteractor;
 
     private Filter filter;
 
@@ -85,6 +89,7 @@ public class MainPresenter extends BasePresenter {
         bandInteractor = new BandInteractor(context, view);
         eventInteractor = new EventInteractor(context, view);
         settingsInteractor = new SettingsInteractor(context, view);
+        newsInteractor = new NewsInteractor(context, view);
 
         getPrefs().edit().putBoolean(EXTRA_FIRST_TIME_APP_LAUNCHING, false).commit();
 
@@ -111,8 +116,10 @@ public class MainPresenter extends BasePresenter {
         checkIntentUriReceived(intent);
 
         checkNewVersionInMarket();
+        checkNews();
 
     }
+
 
     public void onResume() {
 
@@ -264,6 +271,26 @@ public class MainPresenter extends BasePresenter {
                     if (!BuildConfig.DEBUG) {
                         view.showNewVersionAvailable();
                     }
+                }
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
+    }
+
+
+    private void checkNews() {
+
+        newsInteractor.getNewsFromApi(new NewsInteractor.NewsCallback() {
+            @Override
+            public void onResponse(List<News> newsList) {
+                News news = newsInteractor.getLastUnseenNews();
+                if (news != null) {
+                    DialogShowNews.newInstace(context).show(news);
+                    newsInteractor.setNewsSeen(news.getId());
                 }
             }
 

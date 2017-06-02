@@ -15,6 +15,7 @@ import com.triskelapps.alcalasuena.ui.about.AboutAlcalaSuenaActivity;
 import com.triskelapps.alcalasuena.ui.about.AboutInsulaActivity;
 import com.triskelapps.alcalasuena.ui.bands.BandsPresenter;
 import com.triskelapps.alcalasuena.ui.map.MapActivity;
+import com.triskelapps.alcalasuena.ui.news.NewsActivity;
 import com.triskelapps.alcalasuena.ui.venues.VenuesActivity;
 
 /**
@@ -31,12 +32,14 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener {
     private View btnLogoAlcalaEsMusica;
     private View btnLogoMahou;
     private View btnMenuAboutInsula;
+    private View btnMenuNews;
 
     private void findViews(View layout) {
         btnMenuBands = layout.findViewById( R.id.btn_menu_bands );
         btnMenuMap = layout.findViewById( R.id.btn_menu_map );
         btnMenuVenues = layout.findViewById( R.id.btn_menu_venues );
         btnMenuAbout = layout.findViewById( R.id.btn_menu_about );
+        btnMenuNews = layout.findViewById( R.id.btn_menu_news);
         btnMenuAboutInsula = layout.findViewById( R.id.btn_about_insula );
 
         btnLogoMahou = layout.findViewById(R.id.btn_logo_mahou);
@@ -48,6 +51,7 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener {
         btnMenuMap.setOnClickListener(this);
         btnMenuVenues.setOnClickListener(this);
         btnMenuAbout.setOnClickListener(this);
+        btnMenuNews.setOnClickListener(this);
         btnMenuAboutInsula.setOnClickListener(this);
 
         btnLogoMahou.setOnClickListener(this);
@@ -89,6 +93,10 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener {
 
             case R.id.btn_menu_venues:
                 startActivity(new Intent(getActivity(), VenuesActivity.class));
+                break;
+
+            case R.id.btn_menu_news:
+                startActivity(new Intent(getActivity(), NewsActivity.class));
                 break;
 
             case R.id.btn_about_insula:

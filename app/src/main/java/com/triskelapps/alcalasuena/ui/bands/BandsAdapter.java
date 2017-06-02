@@ -102,7 +102,7 @@ public class BandsAdapter extends RecyclerView.Adapter<BandsAdapter.ViewHolder> 
 
     public void updateData(List<Band> bands) {
         this.bands = bands;
-        notifyDataSetChanged();
+//        notifyDataSetChanged();
     }
 
 

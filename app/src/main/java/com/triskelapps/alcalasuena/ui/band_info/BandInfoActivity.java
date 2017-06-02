@@ -70,6 +70,7 @@ public class BandInfoActivity extends BaseActivity implements BandInfoView, View
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerEventsBand.setLayoutManager(layoutManager);
+        recyclerEventsBand.setNestedScrollingEnabled(false);
 
         presenter.onCreate(getIntent());
     }
@@ -113,6 +114,8 @@ public class BandInfoActivity extends BaseActivity implements BandInfoView, View
             recyclerEventsBand.setAdapter(adapter);
         } else {
             adapter.updateData(eventsBand);
+            recyclerEventsBand.getRecycledViewPool().clear();
+            adapter.notifyDataSetChanged();
         }
 
     }

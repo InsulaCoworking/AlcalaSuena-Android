@@ -11,7 +11,7 @@
 
     <permission
         android:name="${applicationId}.permission.C2D_MESSAGE"
-        android:protectionLevel="signature"/>
+        android:protectionLevel="signature" />
 
     <application
         android:name=".App"
@@ -21,7 +21,6 @@
         android:roundIcon="@mipmap/img_logo_alcalasuena_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@mipmap/img_logo_alcalasuena_notif" />
@@ -57,22 +56,23 @@
         <activity android:name=".ui.venues.VenuesActivity" />
         <activity android:name=".ui.venue_info.VenueInfoActivity" />
         <activity android:name=".ui.about.AboutInsulaActivity" />
-        <activity android:name=".ui.image_full.ImageFullActivity"
+        <activity
+            android:name=".ui.image_full.ImageFullActivity"
             android:configChanges="orientation|keyboardHidden|screenSize" />
+        <activity android:name=".ui.news.NewsActivity" />
+        <activity android:name=".ui.news_info.NewsInfoActivity" />
 
         <!-- [START firebase_service] -->
-        <service
-            android:name=".messaging.MyFirebaseMessagingService">
+        <service android:name=".messaging.MyFirebaseMessagingService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
         <!-- [END firebase_service] -->
         <!-- [START firebase_iid_service] -->
-        <service
-            android:name=".messaging.MyFirebaseInstanceIDService">
+        <service android:name=".messaging.MyFirebaseInstanceIDService">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
         <!-- [END firebase_iid_service] -->

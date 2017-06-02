@@ -35,10 +35,12 @@ public class Venue extends RealmObject implements Serializable {
         }
 
         String image = getImage();
-        if (image.startsWith("/")) {
-            image = image.substring(1);
-        }
+//        if (image.startsWith("/")) {
+//            image = image.substring(1);
+//        }
+
         String urlFull = ApiClient.BASE_URL + image;
+        urlFull.replace("//", "/");
         return Uri.parse(urlFull);
     }
 

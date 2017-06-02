@@ -89,5 +89,7 @@
     <string name="title_activity_fullscreen">FullscreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="download_app_text_2">¡Bájate gratis la app para Android del Festival #AlcalaSuena!\n\n%s</string>
+    <string name="news">Noticias</string>
 
 </resources>

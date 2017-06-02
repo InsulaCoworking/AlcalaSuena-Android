@@ -51,6 +51,7 @@ public class VenuesActivity extends BaseActivity implements VenuesView, VenuesAd
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
 //        RecyclerView.LayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         recyclerVenues.setLayoutManager(layoutManager);
+        recyclerVenues.setNestedScrollingEnabled(false);
 
 
 //        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,
@@ -97,6 +98,8 @@ public class VenuesActivity extends BaseActivity implements VenuesView, VenuesAd
             // Little trick to avoid animation when searching
             animationAdapter.setDuration(0);
             adapter.updateData(venues);
+            recyclerVenues.getRecycledViewPool().clear();
+            adapter.notifyDataSetChanged();
             recyclerVenues.post(new Runnable() {
                 @Override
                 public void run() {

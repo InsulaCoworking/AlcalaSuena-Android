@@ -118,7 +118,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
 
     public void updateData(List<Event> events) {
         this.events = events;
-        notifyDataSetChanged();
+//        notifyDataSetChanged();
     }
 
 

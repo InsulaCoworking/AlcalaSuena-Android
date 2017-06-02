@@ -9,6 +9,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.triskelapps.alcalasuena.DebugHelper;
+import com.triskelapps.alcalasuena.model.News;
 import com.triskelapps.alcalasuena.util.DateUtils;
 
 import java.lang.reflect.Modifier;
@@ -44,7 +45,7 @@ public class ApiClient {
         public Date deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
 
             try {
-                return DateUtils.formatDateApi.parse(((JsonObject) json).get("initDate").getAsString());
+                return News.datetimeNewsFormatApi.parse(((JsonObject) json).get("initDate").getAsString());
             } catch (ParseException e) {
                 throw new JsonParseException(e);
             }

@@ -70,6 +70,19 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/btn_menu_news"
+                style="@style/LinearMenu">
+
+                <ImageView
+                    style="@style/ImageMenuIcon"
+                    android:src="@mipmap/ic_news"/>
+                <TextView
+                    style="@style/BtnMenu"
+                    android:text="@string/news" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/btn_menu_about"
                 style="@style/LinearMenu">
 

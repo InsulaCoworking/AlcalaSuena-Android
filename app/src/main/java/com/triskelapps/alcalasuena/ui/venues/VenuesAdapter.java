@@ -85,7 +85,7 @@ public class VenuesAdapter extends RecyclerView.Adapter<VenuesAdapter.ViewHolder
 
     public void updateData(List<Venue> venues) {
         this.venues = venues;
-        notifyDataSetChanged();
+//        notifyDataSetChanged();
     }
 
 

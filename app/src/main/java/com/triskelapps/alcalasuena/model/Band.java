@@ -39,6 +39,7 @@ public class Band extends RealmObject {
         }
 
         String urlFull = ApiClient.BASE_URL + getProfile_image();
+        urlFull.replace("//", "/");
         return Uri.parse(urlFull);
     }
 

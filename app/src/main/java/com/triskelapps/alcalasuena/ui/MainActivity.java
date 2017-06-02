@@ -1,6 +1,5 @@
 package com.triskelapps.alcalasuena.ui;
 
-import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -17,7 +16,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.triskelapps.alcalasuena.DebugHelper;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BaseActivity;
 import com.triskelapps.alcalasuena.base.BasePresenter;
@@ -66,10 +64,6 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
         setContentView(R.layout.activity_main);
 
         findViews();
-
-        if (DebugHelper.SHORTCUT_ACTIVITY != null) {
-            startActivity(new Intent(this, DebugHelper.SHORTCUT_ACTIVITY));
-        }
 
 //        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
 //        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -292,6 +286,8 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
             // Little trick to avoid animation when searching
             animationAdapter.setDuration(0);
             adapter.updateData(events);
+            recyclerEvents.getRecycledViewPool().clear();
+            adapter.notifyDataSetChanged();
             recyclerEvents.post(new Runnable() {
                 @Override
                 public void run() {

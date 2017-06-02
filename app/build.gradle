@@ -10,8 +10,8 @@ android {
         applicationId "com.triskelapps.alcalasuena"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 12
-        versionName "1.2"
+        versionCode 14
+        versionName "1.4"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
@@ -59,9 +59,10 @@ dependencies {
     compile 'com.google.firebase:firebase-messaging:10.2.6'
     compile 'com.romandanylyk:pageindicatorview:0.0.8'
     compile 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
 }
 
 //if (buildType == "release") {
-    apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.gms.google-services'
 //}
