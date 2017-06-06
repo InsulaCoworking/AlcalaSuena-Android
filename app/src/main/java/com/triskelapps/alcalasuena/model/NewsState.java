@@ -8,36 +8,35 @@ import io.realm.RealmObject;
 
 public class NewsState extends RealmObject {
 
-    public static final String ID_NEW = "idNews";
+    public static final String ID_NEWS = "idNews";
     public static final String READ = "read";
     public static final String SEEN = "seen";
 
     private int idNews;
-    private boolean read;
-    private boolean seen;
+    private Boolean read;
+    private Boolean seen;
 
-    public int getIdNews() {
+    public Integer getIdNews() {
         return idNews;
     }
 
-    public void setIdNews(int idNews) {
+    public void setIdNews(Integer idNews) {
         this.idNews = idNews;
     }
 
-    public boolean isRead() {
+    public Boolean isRead() {
         return read;
     }
 
-    public void setRead(boolean read) {
+    public void setRead(Boolean read) {
         this.read = read;
     }
 
-    public boolean isSeen() {
+    public Boolean isSeen() {
         return seen;
     }
 
-    public NewsState setSeen(boolean seen) {
+    public void setSeen(Boolean seen) {
         this.seen = seen;
-        return this;
     }
 }

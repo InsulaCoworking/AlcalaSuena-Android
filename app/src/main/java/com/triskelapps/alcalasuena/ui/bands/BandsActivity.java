@@ -105,6 +105,8 @@ public class BandsActivity extends BaseActivity implements BandsView, TextWatche
             // Little trick to avoid animation when searching
             animationAdapter.setDuration(0);
             adapter.updateData(bands);
+            recyclerBands.getRecycledViewPool().clear();
+            adapter.notifyDataSetChanged();
             recyclerBands.post(new Runnable() {
                 @Override
                 public void run() {

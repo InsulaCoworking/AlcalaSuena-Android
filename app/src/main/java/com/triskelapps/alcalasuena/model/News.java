@@ -38,14 +38,14 @@ public class News extends RealmObject {
     private String image;
     private String btn_text;
     private String btn_link;
-    private int native_code;
+    private Integer native_code;
     private String start_date;
     private String end_date;
     private String caducity;
 
-    private long startDatePopupTime;
-    private long endDatePopupTime;
-    private long caducityDateTime;
+    private Long startDatePopupTime;
+    private Long endDatePopupTime;
+    private Long caducityDateTime;
 
 
     public static DateFormat datetimeNewsFormatApi = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
@@ -137,11 +137,11 @@ public class News extends RealmObject {
         this.btn_link = btn_link;
     }
 
-    public int getNative_code() {
+    public Integer getNative_code() {
         return native_code;
     }
 
-    public void setNative_code(int native_code) {
+    public void setNative_code(Integer native_code) {
         this.native_code = native_code;
     }
 
@@ -169,27 +169,27 @@ public class News extends RealmObject {
         this.caducity = caducity;
     }
 
-    public long getStartDatePopupTime() {
+    public Long getStartDatePopupTime() {
         return startDatePopupTime;
     }
 
-    public void setStartDatePopupTime(long startDatePopupTime) {
+    public void setStartDatePopupTime(Long startDatePopupTime) {
         this.startDatePopupTime = startDatePopupTime;
     }
 
-    public long getEndDatePopupTime() {
+    public Long getEndDatePopupTime() {
         return endDatePopupTime;
     }
 
-    public void setEndDatePopupTime(long endDatePopupTime) {
+    public void setEndDatePopupTime(Long endDatePopupTime) {
         this.endDatePopupTime = endDatePopupTime;
     }
 
-    public long getCaducityDateTime() {
+    public Long getCaducityDateTime() {
         return caducityDateTime;
     }
 
-    public void setCaducityDateTime(long caducityDateTime) {
+    public void setCaducityDateTime(Long caducityDateTime) {
         this.caducityDateTime = caducityDateTime;
     }
 

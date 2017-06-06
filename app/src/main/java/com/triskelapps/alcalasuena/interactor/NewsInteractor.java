@@ -116,7 +116,7 @@ public class NewsInteractor extends BaseInteractor {
     }
 
     private boolean isNewsSeen(int idNews) {
-        return Realm.getDefaultInstance().where(NewsState.class).equalTo(NewsState.ID_NEW, idNews).findFirst() != null;
+        return Realm.getDefaultInstance().where(NewsState.class).equalTo(NewsState.ID_NEWS, idNews).findFirst() != null;
     }
 
 

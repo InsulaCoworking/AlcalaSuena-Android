@@ -47,7 +47,7 @@ public class EventInteractor extends BaseInteractor {
         }
 
 
-        List<Event> events = query.findAllSorted(Event.TIME_HOUR_MIDNIGHT_SAFE);
+        List<Event> events = query.findAllSorted(Event.DAY, Sort.ASCENDING, Event.TIME_HOUR_MIDNIGHT_SAFE, Sort.ASCENDING);
 
         return events;
     }

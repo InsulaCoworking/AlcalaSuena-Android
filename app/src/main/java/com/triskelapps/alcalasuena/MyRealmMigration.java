@@ -29,7 +29,7 @@ public class MyRealmMigration implements RealmMigration {
 
             schema.create(News.class.getSimpleName())
                     .addField(News.ID, int.class, FieldAttribute.PRIMARY_KEY)
-                    .addField(News.NATIVE_SCREEN_CODE, int.class)
+                    .addField(News.NATIVE_SCREEN_CODE, Integer.class)
                     .addField(News.TITLE, String.class)
                     .addField(News.TEXT, String.class)
                     .addField(News.IMAGE, String.class)
@@ -43,7 +43,7 @@ public class MyRealmMigration implements RealmMigration {
                     .addField(News.CADUCITY_DATE_TIME, Long.class);
 
             schema.create(NewsState.class.getSimpleName())
-                    .addField(NewsState.ID_NEW, int.class)
+                    .addField(NewsState.ID_NEWS, int.class)
                     .addField(NewsState.SEEN, Boolean.class)
                     .addField(NewsState.READ, Boolean.class) ;
 

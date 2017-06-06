@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.crash.FirebaseCrash;
 import com.squareup.picasso.Picasso;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.model.Band;
@@ -55,6 +56,10 @@ public class EventsVenueAdapter extends RecyclerView.Adapter<EventsVenueAdapter.
         final Event event = getItemAtPosition(position);
 
         final Band band = event.getBandEntity();
+        if (band == null) {
+            FirebaseCrash.report(new Error("band is null in this event! (eventsVenueAdapter): " + event.toString()));
+            return;
+        }
 
         holder.tvBandName.setText(band.getName());
         holder.tvBandGenre.setText(band.getGenreOrTag());
