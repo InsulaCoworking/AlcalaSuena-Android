@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.model.News;
@@ -36,12 +37,7 @@ public class DialogShowNews {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
 
-                    Intent intent = new Intent(Intent.ACTION_SEND);
-                    String text = String.format(context.getString(R.string.download_app_text_2), news.getBtn_link());
-                    intent.putExtra(Intent.EXTRA_TEXT, text);
-                    intent.setType("text/plain");
-                    context.startActivity(intent);
-
+                    context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(news.getBtn_link())));
                 }
             });
         }

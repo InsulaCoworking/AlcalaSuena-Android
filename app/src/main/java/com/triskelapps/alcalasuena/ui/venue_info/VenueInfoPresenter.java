@@ -56,12 +56,12 @@ import java.util.List;
              throw new IllegalArgumentException("No idVenue passed");
          }
 
+         refreshData();
 
      }
 
      public void onResume() {
 
-         refreshData();
      }
 
      public void refreshData() {
