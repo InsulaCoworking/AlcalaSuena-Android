@@ -3,6 +3,8 @@ package com.triskelapps.alcalasuena.ui.band_info;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -57,6 +59,10 @@ public class BandInfoActivity extends BaseActivity implements BandInfoView, View
         imgBand.setOnClickListener(this);
     }
 
+    @Override
+    public BasePresenter getPresenter() {
+        return presenter;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -76,11 +82,29 @@ public class BandInfoActivity extends BaseActivity implements BandInfoView, View
     }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_band, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+    // INTERACTIONS
 
     @Override
-    public BasePresenter getPresenter() {
-        return presenter;
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.menuItem_share_band:
+                presenter.onShareBandClick();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
+
+
+    //PRESENTER CALLBACKS
 
     @Override
     public void showBand(Band band, List<Event> eventsBand) {

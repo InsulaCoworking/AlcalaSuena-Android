@@ -25,6 +25,7 @@ import com.triskelapps.alcalasuena.views.DialogShowNews;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -104,7 +105,10 @@ public class MainPresenter extends BasePresenter {
         filter = new Filter();
 
         // During the festival go directly to current day
-        String currentDay = Event.dateFormatApi.format(new Date());
+        Calendar midnightSafeCalendar = Calendar.getInstance();
+        midnightSafeCalendar.add(Calendar.HOUR_OF_DAY, -5); // This way we considere "next day" after 5:00am
+
+        String currentDay = Event.dateFormatApi.format(new Date(midnightSafeCalendar.getTimeInMillis()));
         int tabPosition = 0;
         if (tabsDays.contains(currentDay)) {
             tabPosition = tabsDays.indexOf(currentDay);

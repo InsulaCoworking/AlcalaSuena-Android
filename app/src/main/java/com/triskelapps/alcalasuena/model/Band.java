@@ -17,6 +17,8 @@ import static android.webkit.URLUtil.isValidUrl;
 
 public class Band extends RealmObject {
 
+    public static final String URL_BAND_WEB = "http://www.alcalasuena.es/bands/";
+
     public static final String NAME = "name";
     public static final String ID = "id";
 
@@ -66,6 +68,10 @@ public class Band extends RealmObject {
             return getTag().getName();
         }
         return null;
+    }
+
+    public String getUrlBandWeb() {
+        return URL_BAND_WEB + id;
     }
 
     // ---

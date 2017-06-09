@@ -119,4 +119,15 @@ public class BandInfoPresenter extends BasePresenter {
         Band band = bandInteractor.getBandDB(idBand);
         context.startActivity(ImageFullActivity.newImageFullActivity(context, band.getImageCoverUrlFull().toString()));
     }
+
+    public void onShareBandClick() {
+        Band band = bandInteractor.getBandDB(idBand);
+        String urlBandWeb = band.getUrlBandWeb();
+        String text = String.format(context.getString(R.string.send_band_text), urlBandWeb);
+
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_TEXT, text);
+        intent.setType("text/plain");
+        context.startActivity(intent);
+    }
 }

@@ -91,5 +91,7 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="download_app_text_2">¡Bájate gratis la app para Android del Festival #AlcalaSuena!\n\n%s</string>
     <string name="news">Noticias</string>
+    <string name="share_band">Compartir banda</string>
+    <string name="send_band_text">¡Echa un ojo a esta banda!\n\n%s</string>
 
 </resources>
