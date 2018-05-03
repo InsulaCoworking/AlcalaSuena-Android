@@ -30,8 +30,8 @@ public class ApiClient {
     // Tutorial Retrofit 2.0
     // http://inthecheesefactory.com/blog/retrofit-2.0/en
 
-    public static final String BASE_URL_PRODUCTION = "http://ec2-52-211-39-126.eu-west-1.compute.amazonaws.com";
-    public static final String BASE_URL_DEBUG = "http://ec2-52-211-39-126.eu-west-1.compute.amazonaws.com";
+    public static final String BASE_URL_PRODUCTION = "https://alcalasuena.es";
+    public static final String BASE_URL_DEBUG = "https://alcalasuena.es";
 
     public static final String BASE_URL =
             (DebugHelper.SWITCH_PROD_ENVIRONMENT ? BASE_URL_PRODUCTION : BASE_URL_DEBUG);

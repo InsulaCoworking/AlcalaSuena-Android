@@ -99,6 +99,16 @@ public class App extends Application {
             public void onResponse(List<Band> bands) {
 
                 updateVenuesFromApi();
+
+
+//                int maxId = 0;
+//                for (Band band : bands) {
+//                    if (band.getId() > maxId) {
+//                        maxId = band.getId();
+//                    }
+//                }
+//
+//                Log.i(TAG, "onResponse: Max id: " + maxId);
 //                sendUpdateDataBroadcast();
 
             }

@@ -47,7 +47,7 @@ public class EventInteractor extends BaseInteractor {
         }
 
 
-        List<Event> events = query.findAllSorted(Event.DAY, Sort.ASCENDING, Event.TIME_HOUR_MIDNIGHT_SAFE, Sort.ASCENDING);
+        List<Event> events = query.findAll().sort(Event.DAY, Sort.ASCENDING, Event.TIME_HOUR_MIDNIGHT_SAFE, Sort.ASCENDING);
 
         return events;
     }
@@ -58,7 +58,7 @@ public class EventInteractor extends BaseInteractor {
         resetStarredState();
         return Realm.getDefaultInstance().where(Event.class)
                 .equalTo(Event.BAND_ID, idBand)
-                .findAllSorted(Event.DAY, Sort.ASCENDING, Event.TIME_HOUR_MIDNIGHT_SAFE, Sort.ASCENDING);
+                .findAll().sort(Event.DAY, Sort.ASCENDING, Event.TIME_HOUR_MIDNIGHT_SAFE, Sort.ASCENDING);
     }
 
 
@@ -66,7 +66,7 @@ public class EventInteractor extends BaseInteractor {
         resetStarredState();
         return Realm.getDefaultInstance().where(Event.class)
                 .equalTo("venue.id", idVenue)
-                .findAllSorted(Event.DAY, Sort.ASCENDING, Event.TIME_HOUR_MIDNIGHT_SAFE, Sort.ASCENDING);
+                .findAll().sort(Event.DAY, Sort.ASCENDING, Event.TIME_HOUR_MIDNIGHT_SAFE, Sort.ASCENDING);
     }
 
 
@@ -150,7 +150,7 @@ public class EventInteractor extends BaseInteractor {
 
     public List<Event> getEventsFavsDB(Integer[] idsFavsEvents) {
         return Realm.getDefaultInstance().where(Event.class).in(Event.ID, idsFavsEvents).
-                findAllSorted(Event.TIME_HOUR_MIDNIGHT_SAFE);
+                findAll().sort(Event.TIME_HOUR_MIDNIGHT_SAFE);
     }
 
     private Api getApi() {

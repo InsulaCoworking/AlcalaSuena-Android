@@ -89,7 +89,7 @@ public class NewsInteractor extends BaseInteractor {
 
 
     public List<News> getNewsFromDB() {
-        return Realm.getDefaultInstance().where(News.class).findAllSorted(News.START_DATE_POPUP_TIME, Sort.DESCENDING);
+        return Realm.getDefaultInstance().where(News.class).findAll().sort(News.START_DATE_POPUP_TIME, Sort.DESCENDING);
     }
 
     public News getNewsById(int idNews) {
@@ -104,7 +104,7 @@ public class NewsInteractor extends BaseInteractor {
         News news =  Realm.getDefaultInstance().where(News.class)
                 .greaterThanOrEqualTo(News.END_DATE_POPUP_TIME, currentTime)
                 .lessThanOrEqualTo(News.START_DATE_POPUP_TIME, currentTime)
-                .findAllSorted(News.START_DATE_POPUP_TIME, Sort.DESCENDING).first();
+                .findAll().sort(News.START_DATE_POPUP_TIME, Sort.DESCENDING).first();
 
         if (isNewsSeen(news.getId())) {
             return null;
