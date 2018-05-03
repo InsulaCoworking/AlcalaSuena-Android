@@ -12,6 +12,7 @@
         android:id="@+id/card_news"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/transp_white"
         app:contentPadding="5dp">
 
         <RelativeLayout
@@ -50,14 +51,16 @@
                 android:text="asdlfkjasldf asñdkfjñalsf jñlaskfj ñlaskfjñalskfjñ asfjñ asklf lñaskjlkasjdf ñlasf ñlaskf lña"/>
 
 
-            <ImageView
+            <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/img_arrow"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
+                android:adjustViewBounds="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
                 android:src="@mipmap/ic_arrow_right_intro"
-                android:tint="@color/colorAccent"/>
+                app:tint="@color/red_general"/>
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 

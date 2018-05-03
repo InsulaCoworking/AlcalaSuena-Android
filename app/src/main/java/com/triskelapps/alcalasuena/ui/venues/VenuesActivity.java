@@ -9,7 +9,6 @@ import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BaseActivity;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.model.Venue;
-import com.triskelapps.alcalasuena.views.SpaceItemDecoration;
 import com.triskelapps.alcalasuena.views.TypeWriterTextView;
 import com.triskelapps.alcalasuena.views.animation_adapter.AnimationAdapter;
 import com.triskelapps.alcalasuena.views.animation_adapter.ScaleInAnimationAdapter;
@@ -58,8 +57,8 @@ public class VenuesActivity extends BaseActivity implements VenuesView, VenuesAd
 //                layoutManager.getOrientation());
 //        recyclerVenues.addItemDecoration(dividerItemDecoration);
 
-        SpaceItemDecoration spaceItemDecoration = new SpaceItemDecoration(getResources().getDimensionPixelSize(R.dimen.separation_card_grid));
-        recyclerVenues.addItemDecoration(spaceItemDecoration);
+//        SpaceItemDecoration spaceItemDecoration = new SpaceItemDecoration(getResources().getDimensionPixelSize(R.dimen.separation_card_grid));
+//        recyclerVenues.addItemDecoration(spaceItemDecoration);
 
         presenter.onCreate();
     }

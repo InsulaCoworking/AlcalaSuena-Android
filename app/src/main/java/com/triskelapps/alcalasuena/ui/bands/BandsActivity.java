@@ -12,7 +12,6 @@ import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BaseActivity;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.model.Band;
-import com.triskelapps.alcalasuena.views.SpaceItemDecoration;
 import com.triskelapps.alcalasuena.views.animation_adapter.AnimationAdapter;
 import com.triskelapps.alcalasuena.views.animation_adapter.ScaleInAnimationAdapter;
 
@@ -64,8 +63,8 @@ public class BandsActivity extends BaseActivity implements BandsView, TextWatche
 //                layoutManager.getOrientation());
 //        recyclerBands.addItemDecoration(dividerItemDecoration);
 
-        SpaceItemDecoration spaceItemDecoration = new SpaceItemDecoration(getResources().getDimensionPixelSize(R.dimen.separation_card_grid));
-        recyclerBands.addItemDecoration(spaceItemDecoration);
+//        SpaceItemDecoration spaceItemDecoration = new SpaceItemDecoration(getResources().getDimensionPixelSize(R.dimen.separation_card_grid));
+//        recyclerBands.addItemDecoration(spaceItemDecoration);
 
 
         presenter.onCreate();

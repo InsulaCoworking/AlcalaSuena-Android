@@ -43,6 +43,14 @@ public class VenueInfoEventsFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerEventsVenue.setLayoutManager(layoutManager);
 
+
+        return layout;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
         List<Event> events = ((VenueInfoActivity) getActivity()).getEventsVenue();
 
         if (adapter == null) {
@@ -59,8 +67,5 @@ public class VenueInfoEventsFragment extends Fragment {
         } else {
             adapter.updateData(events);
         }
-
-        return layout;
     }
-
 }

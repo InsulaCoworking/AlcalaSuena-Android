@@ -13,7 +13,7 @@ public class DebugHelper {
 
 
     // Falses
-    private static final boolean SKIP_SPLASH = false;
+    private static final boolean SKIP_SPLASH = true;
     private static final boolean COMPLETE_EDIT_TEXTS = true;
     public static final boolean DEBUG_MESSAGES = false;
     private static final boolean DEBUG_TOKEN = false;

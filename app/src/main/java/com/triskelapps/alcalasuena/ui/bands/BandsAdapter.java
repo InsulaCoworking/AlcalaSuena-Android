@@ -63,7 +63,7 @@ public class BandsAdapter extends RecyclerView.Adapter<BandsAdapter.ViewHolder> 
         holder.tvBandName.setText(band.getName());
         holder.tvBandGenre.setText(band.getGenreOrTag());
         Picasso.with(context)
-                .load(band.getImageLogoUrlFull())
+                .load(band.getImageCoverUrlFull())
 //                .placeholder(R.mipmap.img_default_grid)
 //                .error(R.mipmap.img_default_grid)
                 .resizeDimen(R.dimen.width_image_small, R.dimen.height_image_small)

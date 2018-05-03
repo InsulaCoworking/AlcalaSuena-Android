@@ -50,9 +50,9 @@ public class MainPresenter extends BasePresenter {
     private static List<String> tabsDays = new ArrayList<>();
 
     static {
-        tabsDays.add("2017-06-02");
-        tabsDays.add("2017-06-03");
-        tabsDays.add("2017-06-04");
+        tabsDays.add("2018-06-01");
+        tabsDays.add("2018-06-02");
+        tabsDays.add("2018-06-03");
     }
 
     private final SettingsInteractor settingsInteractor;

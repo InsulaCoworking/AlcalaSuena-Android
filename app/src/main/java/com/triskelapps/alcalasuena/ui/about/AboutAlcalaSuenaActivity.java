@@ -5,10 +5,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BaseActivity;
 import com.triskelapps.alcalasuena.base.BasePresenter;
+import com.triskelapps.alcalasuena.util.Util;
 
 /**
  * Created by julio on 26/05/17.
@@ -29,6 +31,9 @@ public class AboutAlcalaSuenaActivity extends BaseActivity {
 
         configureSecondLevelActivity();
         setToolbarTitle(R.string.hashtag_alcalasuena);
+
+        TextView tvAbout = findViewById(R.id.tv_about);
+        Util.setHtmlLinkableText(tvAbout, getString(R.string.text_about));
 
 
         iterateLinkableViews((ViewGroup) getWindow().getDecorView().getRootView());

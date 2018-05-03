@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/red_general">
+    android:background="@color/blue_general">
 
     <ImageView
         android:layout_width="match_parent"
@@ -46,17 +46,19 @@
 
                 <com.triskelapps.alcalasuena.views.TypeWriterTextView
                     android:id="@+id/typewriter_venues_intro"
+                    android:layout_width="match_parent"
                     style="@style/TextBase.Accent"
                     android:gravity="center_horizontal"
                     android:text="@string/venues_intro"
-                    android:padding="10dp"
-                    android:minLines="4"/>
+                    android:padding="15dp"
+                    android:minLines="4"
+                    android:background="@color/red_general"/>
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recycler_venues"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:nestedScrollingEnabled="true" />
+                    android:nestedScrollingEnabled="true"/>
 
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>

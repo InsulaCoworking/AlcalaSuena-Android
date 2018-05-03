@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/red_general">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/blue_general">
 
     <ImageView
         android:layout_width="match_parent"
@@ -36,6 +37,13 @@
 
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="@color/red_general">
+
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/edit_search"
             android:layout_width="200dp"
@@ -46,8 +54,10 @@
             android:gravity="center_horizontal"
             android:textColor="@color/colorAccent"
             android:textColorHint="@color/colorAccentTransp"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            app:backgroundTint="@android:color/white"/>
 
+        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"

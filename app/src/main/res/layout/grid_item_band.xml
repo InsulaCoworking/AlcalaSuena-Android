@@ -2,8 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="170dp"
-    android:orientation="vertical">
+    android:layout_height="190dp"
+    android:orientation="vertical"
+    android:layout_margin="2dp">
 
     <RelativeLayout
         android:id="@+id/view_color_tag"
@@ -15,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
-            android:alpha="0.3"
+            android:alpha="1"
             android:scaleType="centerCrop"
             android:src="@mipmap/img_default_grid" />
 
@@ -25,24 +26,34 @@
             android:layout_alignBottom="@+id/img_band"
             android:layout_alignTop="@+id/img_band"
             android:alpha="0.0"
-            android:background="@color/grey_dark_general" />
+            android:background="@color/grey_dark_general"
+            android:visibility="gone"/>
 
-        <TextView
-            android:id="@+id/tv_band_name"
-            style="@style/TextTitle"
-            android:layout_marginTop="10dp"
-            android:lines="2"
-            android:ellipsize="middle"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/transp_black"
             android:padding="5dp"
-            android:textSize="40sp" />
+            android:layout_alignParentBottom="true"
+            android:gravity="center_horizontal">
 
-        <TextView
-            android:id="@+id/tv_band_genre"
-            style="@style/TextBase.White"
-            android:layout_below="@+id/tv_band_name"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:gravity="center_horizontal" />
+            <TextView
+                android:id="@+id/tv_band_name"
+                style="@style/TextTitle"
+                android:maxLines="2"
+                android:ellipsize="middle"
+                android:textSize="30sp"
+                android:text="asdasfd"/>
+
+            <TextView
+                android:id="@+id/tv_band_genre"
+                style="@style/TextBase.White"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="7dp"
+                android:gravity="center_horizontal"
+                android:text="asdfasdf"/>
+        </LinearLayout>
 
     </RelativeLayout>
 </RelativeLayout>

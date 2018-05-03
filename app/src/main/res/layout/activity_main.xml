@@ -5,23 +5,24 @@
     android:id="@+id/root_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/red_general"
+    android:background="@color/blue_general"
     tools:context="com.triskelapps.alcalasuena.ui.MainActivity">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:adjustViewBounds="true"
         android:alpha="0.7"
         android:scaleType="centerCrop"
-        android:src="@mipmap/img_chica_gris_bg_transp" />
+        android:src="@mipmap/img_bg_menu_inverted" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:alpha="0.0"
-        android:background="@color/red_general" />
+        android:background="@color/blue_general"
+        android:visibility="gone"/>
 
     <LinearLayout
         android:id="@+id/container"

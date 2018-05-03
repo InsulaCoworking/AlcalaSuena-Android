@@ -50,7 +50,7 @@ public class FilterBandsFragment extends BaseFragment implements View.OnClickLis
         presenter = FilterBandsPresenter.newInstance(this, getActivity());
 
 //        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
-        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         recyclerTags.setLayoutManager(layoutManager);
 
         SpaceItemDecoration spaceItemDecoration = new SpaceItemDecoration(getResources().getDimensionPixelSize(R.dimen.separation_card_grid));

@@ -12,13 +12,11 @@ import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BaseFragment;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.ui.about.AboutAlcalaSuenaActivity;
+import com.triskelapps.alcalasuena.ui.about.AboutInsulaActivity;
 import com.triskelapps.alcalasuena.ui.bands.BandsPresenter;
 import com.triskelapps.alcalasuena.ui.map.MapActivity;
 import com.triskelapps.alcalasuena.ui.news.NewsActivity;
 import com.triskelapps.alcalasuena.ui.venues.VenuesActivity;
-
-import de.jonasrottmann.realmbrowser.RealmBrowser;
-import io.realm.Realm;
 
 /**
  * Created by julio on 23/05/17.
@@ -102,8 +100,8 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener {
                 break;
 
             case R.id.btn_about_insula:
-//                startActivity(new Intent(getActivity(), AboutInsulaActivity.class));
-                RealmBrowser.startRealmModelsActivity(getActivity(), Realm.getDefaultConfiguration());
+                startActivity(new Intent(getActivity(), AboutInsulaActivity.class));
+//                RealmBrowser.startRealmModelsActivity(getActivity(), Realm.getDefaultConfiguration());
                 break;
 
 

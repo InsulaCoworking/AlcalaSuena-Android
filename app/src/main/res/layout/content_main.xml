@@ -10,12 +10,13 @@
         android:id="@+id/tabs_days"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="@android:color/transparent"
+        android:background="@color/red_general"
         app:tabGravity="fill"
         app:tabMode="fixed"
         app:tabSelectedTextColor="@color/tab_selected"
         app:tabTextColor="@android:color/white"
-        app:tabIndicatorColor="@color/tab_selected"
+        app:tabIndicatorColor="@color/blue_general_light"
+        app:tabIndicatorHeight="5dp"
         android:layout_marginBottom="5dp"/>
 
 
@@ -27,7 +28,7 @@
             android:id="@+id/recycler_events"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/btn_share_favs"/>
+            android:layout_above="@+id/view_btn_share_favs"/>
 
         <TextView
             android:id="@+id/tv_empty_message"
@@ -39,14 +40,22 @@
             android:gravity="center_horizontal"
             android:padding="5dp"/>
 
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_share_favs"
-            style="@style/TextButton"
+        <LinearLayout
+            android:id="@+id/view_btn_share_favs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/red_general"
             android:layout_alignParentBottom="true"
-            android:text="@string/share_favs_with_friends"
-            android:visibility="gone"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="5dp"/>
+            android:visibility="gone">
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_share_favs"
+                style="@style/TextButton"
+                android:text="@string/share_favs_with_friends"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="5dp"/>
+        </LinearLayout>
 
     </RelativeLayout>
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3f51b5</color>
-    <color name="colorPrimaryDark">#303f9f</color>
+    <color name="colorPrimary">@color/red_general</color>
+    <color name="colorPrimaryDark">@color/red_general_dark</color>
     <!--<color name="colorAccent">#4beae2</color>-->
     <color name="colorAccent">#fff</color><!--ffff71-->
     <color name="grey">#AAA</color>
@@ -9,11 +9,17 @@
     <color name="tab_selectedld_o">#ffff71</color>
     <color name="tab_unselected">#fff</color>
     <color name="transp_black">#B000</color>
+    <color name="transp_white">#b8ffffff</color>
+
+    <color name="blue_general">#008FE1</color>
+    <color name="blue_general_light">#49abe2</color>
+    <color name="blue_general_transp">#73008FE1</color>
 
     <color name="red_general">#BD080F</color>
     <color name="red_general_transp">#73bd080f</color>
+    <color name="red_general_dark">#891519</color>
 
-    <color name="btn_menu">@color/red_general</color>
+    <color name="btn_menu">@color/blue_general</color>
     <color name="colorAccentTransp">#99ffffff</color>
     <color name="colorAccentDark">#0ab7af</color>
     <color name="cardBackground">#BFFF</color>

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/red_general">
+    android:background="@color/blue_general">
 
 
     <ImageView
@@ -39,9 +39,9 @@
                     android:src="@mipmap/img_fiesta_musica" />
 
                 <TextView
+                    android:id="@+id/tv_about"
                     style="@style/TextBase.White"
-                    android:layout_marginTop="15dp"
-                    android:text="@string/text_about" />
+                    android:layout_marginTop="15dp" />
 
                 <android.support.v7.widget.AppCompatButton
                     android:id="@+id/btn_see_dossier"

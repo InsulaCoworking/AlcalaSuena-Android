@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/red_general">
+    android:background="@color/blue_general">
 
     <ImageView
         android:layout_width="match_parent"
@@ -12,7 +12,7 @@
         android:adjustViewBounds="true"
         android:alpha="0.5"
         android:scaleType="centerCrop"
-        android:src="@mipmap/img_chica_gris_bg_transp" />
+        android:src="@mipmap/img_bg_menu_inverted" />
 
 
     <LinearLayout
@@ -37,13 +37,13 @@
 
                 <TextView
                     android:id="@+id/tv_news_title"
-                    style="@style/TextTitle"
+                    style="@style/TextTitle.Header"
                     android:padding="10dp" />
 
                 <ImageView
                     android:id="@+id/img_news"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="150dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
                     android:adjustViewBounds="true"
@@ -57,7 +57,6 @@
                     android:layout_marginTop="15dp"
                     android:padding="15dp"
                     android:text="asdlfkjasldf asñdkfjñalsf jñlaskfj ñlaskfjñalskfjñ asfjñ asklf lñaskjlkasjdf ñlasf ñlaskf lña" />
-
 
                 <Button
                     android:id="@+id/btn_news_link"

@@ -131,7 +131,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="80dp"
                 android:background="@color/grey_dark_general"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
@@ -141,7 +141,8 @@
                     android:id="@+id/btn_logo_mahou"
                     style="@style/ImageLogo"
                     android:src="@mipmap/logo_mahou"
-                    android:tag="http://www.mahou.es/" />
+                    android:tag="http://www.mahou.es/"
+                    android:visibility="gone"/>
 
                 <ImageView
                     android:id="@+id/btn_logo_alcalasuena"

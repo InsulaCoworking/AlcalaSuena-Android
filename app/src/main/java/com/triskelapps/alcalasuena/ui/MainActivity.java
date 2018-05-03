@@ -40,12 +40,14 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
     private View viewNewVersion;
     private View btnHideNewVersionView;
     private View btnUpdateNewVersion;
+    private View viewBtnShareFavs;
 
     private void findViews() {
         tabsDays = (TabLayout) findViewById(R.id.tabs_days);
         recyclerEvents = (RecyclerView) findViewById(R.id.recycler_events);
         tvEmptyMessage = (TextView) findViewById(R.id.tv_empty_message);
         btnShareFavs = (TextView) findViewById(R.id.btn_share_favs);
+        viewBtnShareFavs = findViewById(R.id.view_btn_share_favs);
 
         viewNewVersion = findViewById(R.id.view_new_version);
         btnHideNewVersionView = findViewById(R.id.btn_hide_new_version);
@@ -146,7 +148,7 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
 
     private void refreshShareFavsVisibility() {
         if (itemFav != null) {
-            btnShareFavs.setVisibility(itemFav.isChecked() && adapter.getItemCount() > 0 ? View.VISIBLE : View.GONE);
+            viewBtnShareFavs.setVisibility(itemFav.isChecked() && adapter.getItemCount() > 0 ? View.VISIBLE : View.GONE);
         }
     }
 
@@ -167,17 +169,17 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
         switch (day) {
             case 1:
                 tvDayWeek.setText(R.string.friday_abrev);
-                tvDayMonth.setText("2 " + getString(R.string.june));
+                tvDayMonth.setText("1 " + getString(R.string.june));
                 break;
 
             case 2:
                 tvDayWeek.setText(R.string.saturday_abrev);
-                tvDayMonth.setText("3 " + getString(R.string.june));
+                tvDayMonth.setText("2 " + getString(R.string.june));
                 break;
 
             case 3:
                 tvDayWeek.setText(R.string.sunday_abrev);
-                tvDayMonth.setText("4 " + getString(R.string.june));
+                tvDayMonth.setText("3 " + getString(R.string.june));
                 break;
 
         }

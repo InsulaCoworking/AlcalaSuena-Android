@@ -16,6 +16,7 @@ import com.squareup.picasso.Picasso;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.model.Band;
 import com.triskelapps.alcalasuena.model.Event;
+import com.triskelapps.alcalasuena.views.CircleTransform;
 
 import java.util.List;
 
@@ -66,6 +67,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
                 .load(band.getImageLogoUrlFull())
                 .placeholder(R.mipmap.img_default_grid)
                 .error(R.mipmap.img_default_grid)
+                .transform(new CircleTransform())
                 .resizeDimen(R.dimen.width_image_small, R.dimen.height_image_small)
                 .into(holder.imgBand);
 
@@ -76,7 +78,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
 
         if (band.getTag() != null) {
             int color = Color.parseColor(band.getTag().getColor());
-            int colorAlpha = ColorUtils.setAlphaComponent(color, 200);
+            int colorAlpha = ColorUtils.setAlphaComponent(color, 230);
             holder.cardEvent.setCardBackgroundColor(colorAlpha);
         }
 
@@ -99,18 +101,6 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
         });
     }
 
-    private void addClickListener(View view, final int position) {
-
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-//                if (itemClickListener != null) {
-//                    itemClickListener.onItemClick(v, position);
-//                }
-            }
-        });
-    }
 
     @Override
     public int getItemCount() {

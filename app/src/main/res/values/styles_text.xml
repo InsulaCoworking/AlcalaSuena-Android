@@ -23,6 +23,14 @@
         <item name="fontPath">fonts/Old_Press_Italic.ttf</item>
     </style>
 
+    <style name="TextTitle.Header">
+        <item name="android:background">@color/red_general</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="fontPath">fonts/Exo-Medium.otf</item>
+    </style>
+
     <style name="TextBase.Bold">
         <item name="android:textStyle">bold</item>
         <item name="fontPath">fonts/Aller.ttf</item>
@@ -38,6 +46,7 @@
         <item name="android:textSize">18sp</item>
         <item name="android:padding">8dp</item>
         <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="TextTab" parent="TextBase">

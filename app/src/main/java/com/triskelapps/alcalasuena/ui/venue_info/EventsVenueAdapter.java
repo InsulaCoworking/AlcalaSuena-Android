@@ -16,6 +16,7 @@ import com.squareup.picasso.Picasso;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.model.Band;
 import com.triskelapps.alcalasuena.model.Event;
+import com.triskelapps.alcalasuena.views.CircleTransform;
 
 import java.util.List;
 
@@ -67,19 +68,20 @@ public class EventsVenueAdapter extends RecyclerView.Adapter<EventsVenueAdapter.
                 .load(band.getImageLogoUrlFull())
                 .placeholder(R.mipmap.img_default_grid)
                 .error(R.mipmap.img_default_grid)
+                .transform(new CircleTransform())
                 .resizeDimen(R.dimen.width_image_small, R.dimen.height_image_small)
                 .into(holder.imgBand);
 
         holder.tvEventTime.setText(event.getTimeFormatted());
         holder.tvEventVenue.setText(event.getVenue().getName());
 
-        holder.tvEventVenue.setVisibility(View.GONE);
+        holder.tvEventVenue.setVisibility(View.INVISIBLE);
 
         holder.imgStarred.setSelected(event.isStarred());
 
         if (band.getTag() != null) {
             int color = Color.parseColor(band.getTag().getColor());
-            int colorAlpha = ColorUtils.setAlphaComponent(color, 200);
+            int colorAlpha = ColorUtils.setAlphaComponent(color, 230);
             holder.cardEvent.setCardBackgroundColor(colorAlpha);
         }
 
