@@ -33,23 +33,45 @@
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tv_band_name"
-                    style="@style/TextTitle.Header"
-                    android:padding="10dp" />
-
-                <ImageView
-                    android:id="@+id/img_band"
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:adjustViewBounds="true"
-                    android:scaleType="centerInside" />
+                    android:background="@color/red_general">
+
+                    <TextView
+                        android:id="@+id/tv_band_name"
+                        style="@style/TextTitle.Header"
+                        android:padding="10dp"
+                        android:gravity="left"
+                        android:layout_toRightOf="@+id/img_band_round"
+                        android:layout_marginLeft="10dp"/>
+
+                    <ImageView
+                        android:id="@+id/img_band"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxHeight="250dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"
+                        android:layout_below="@+id/tv_band_name"/>
+
+                    <ImageView
+                        android:id="@+id/img_band_round"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_alignBottom="@+id/tv_band_name"
+                        android:layout_marginBottom="-40dp"
+                        android:src="@mipmap/ic_launcher_round"
+                        android:scaleType="centerCrop"
+                        android:adjustViewBounds="true"/>
+                </RelativeLayout>
 
                 <TextView
                     android:id="@+id/tv_band_genre"
                     style="@style/TextBase.White"
-                    android:text="Jazz" />
+                    android:text="Jazz"
+                    android:layout_marginTop="10dp"/>
 
                 <View style="@style/SeparatorHorizontal.Grey"
                     android:layout_marginTop="10dp"/>
@@ -67,6 +89,7 @@
                     style="@style/TextBase.White"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="15dp"
+                    android:autoLink="all"
                     android:padding="15dp"
                     android:text="asdlfkjasldf asñdkfjñalsf jñlaskfj ñlaskfjñalskfjñ asfjñ asklf lñaskjlkasjdf ñlasf ñlaskf lña" />
 

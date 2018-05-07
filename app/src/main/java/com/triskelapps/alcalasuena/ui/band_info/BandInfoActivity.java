@@ -15,6 +15,7 @@ import com.triskelapps.alcalasuena.base.BaseActivity;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.model.Band;
 import com.triskelapps.alcalasuena.model.Event;
+import com.triskelapps.alcalasuena.views.CircleTransform;
 
 import java.util.List;
 
@@ -37,11 +38,13 @@ public class BandInfoActivity extends BaseActivity implements BandInfoView, View
     private ImageView imgPresskit;
     private RecyclerView recyclerEventsBand;
     private EventsBandAdapter adapter;
+    private ImageView imgBandRound;
 
 
     private void findViews() {
         tvBandName = (TextView) findViewById(R.id.tv_band_name);
         imgBand = (ImageView) findViewById(R.id.img_band);
+        imgBandRound = (ImageView) findViewById(R.id.img_band_round);
         tvBandGenre = (TextView) findViewById(R.id.tv_band_genre);
         tvBandDescription = (TextView) findViewById(R.id.tv_band_description);
         imgFacebook = (ImageView) findViewById(R.id.img_facebook);
@@ -111,18 +114,29 @@ public class BandInfoActivity extends BaseActivity implements BandInfoView, View
 
         tvBandName.setText(band.getName());
         tvBandGenre.setText(band.getGenreOrTag());
+//        Util.setHtmlLinkableText(tvBandDescription, band.getDescription());
         tvBandDescription.setText(band.getDescription());
 
         if (band.hasValidImage()) {
             imgBand.setVisibility(View.VISIBLE);
+            imgBandRound.setVisibility(View.VISIBLE);
             Picasso.with(this)
                     .load(band.getImageCoverUrlFull())
                     .placeholder(R.mipmap.img_default_grid)
                     .error(R.mipmap.img_default_grid)
                     .resizeDimen(R.dimen.width_image_big, R.dimen.height_image_big)
                     .into(imgBand);
+
+            Picasso.with(this)
+                    .load(band.getImageLogoUrlFull())
+                    .placeholder(R.mipmap.img_default_grid)
+                    .error(R.mipmap.img_default_grid)
+                    .transform(new CircleTransform())
+                    .resizeDimen(R.dimen.width_image_small, R.dimen.height_image_small)
+                    .into(imgBandRound);
         } else {
             imgBand.setVisibility(View.GONE);
+            imgBandRound.setVisibility(View.GONE);
         }
 
         imgFacebook.setVisibility(band.getFacebook_link() != null ? View.VISIBLE : View.GONE);

@@ -2,22 +2,15 @@ package com.triskelapps.alcalasuena;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.widget.Toast;
 
-import com.google.firebase.crash.FirebaseCrash;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 import com.triskelapps.alcalasuena.interactor.BandInteractor;
-import com.triskelapps.alcalasuena.interactor.EventInteractor;
 import com.triskelapps.alcalasuena.interactor.VenueInteractor;
-import com.triskelapps.alcalasuena.model.Band;
-import com.triskelapps.alcalasuena.model.Venue;
-import com.triskelapps.alcalasuena.util.Util;
-
-import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -31,14 +24,18 @@ public class App extends Application {
 
     private static final String TAG = "App";
 
+    public static final int CACHED_DATA_VERSION = 1;
+
     public static final String PREFIX = "com.triskelapps.alcalasuena.";
 
-    public static final String SHARED_FIRST_TIME = PREFIX + "first_time_7";
-    public static final String EXTRA_FIRST_TIME_APP_LAUNCHING = PREFIX + "extra_first_time_app_lauching";
+//    public static final String SHARED_FIRST_TIME = PREFIX + "first_time_7";
+    public static final String SHARED_CURRENT_DATA_VERSION = PREFIX + "shared_current_data_version_2018";
+    public static final String SHARED_FIRST_TIME_APP_LAUNCHING = PREFIX + "extra_first_time_app_lauching_2018";
+    private static final String SHARED_CACHED_DATA_STORED = PREFIX + "shared_cached_data_stored_2018";
+    public static final String SHARED_SUBSCRIBED_NEWS_NOTIFS = PREFIX + "shared_subscribed_news_notifs";
+
     public static final String ACTION_REFRESH_DATA = PREFIX + "action_refresh_data";
     public static final String ACTION_SHOW_NOTIFICATION = PREFIX + "action_show_notification";
-    private VenueInteractor venueInteractor;
-    private BandInteractor bandInteractor;
 
 
     @Override
@@ -59,89 +56,28 @@ public class App extends Application {
                 .setFontAttrId(R.attr.fontPath)
                 .build());
 
-        bandInteractor = new BandInteractor(this, null);
-        venueInteractor = new VenueInteractor(this, null);
-
         initializeDataFirstTime();
-        updateDataFromApi();
+//        updateDataFromApi();
 
 //        String token = FirebaseInstanceId.getInstance().getToken();
 //        Log.d(TAG, "Refreshed token: " + token);
 
+        if (FirebaseInstanceId.getInstance().getToken() != null
+                && !getPrefs(this).getBoolean(SHARED_SUBSCRIBED_NEWS_NOTIFS, false)) {
+            FirebaseMessaging.getInstance().subscribeToTopic("news");
+            getPrefs(this).edit().putBoolean(SHARED_SUBSCRIBED_NEWS_NOTIFS, true).commit();
+        }
 
     }
 
     private void initializeDataFirstTime() {
 
-        if (getPrefs(this).getBoolean(EXTRA_FIRST_TIME_APP_LAUNCHING, true)) {
-            bandInteractor.initializeBandsFirstTime();
-            venueInteractor.initializeVenuesFirstTime();
-            // Set to false in MainActivity to reuse it for initial tutorial
+        if (!getPrefs(this).getBoolean(SHARED_CACHED_DATA_STORED, false)) {
+            new BandInteractor(this, null).initializeBandsFirstTime();
+            new VenueInteractor(this,null).initializeVenuesFirstTime();
+            getPrefs(this).edit().putBoolean(SHARED_CACHED_DATA_STORED, true).commit();
         }
-    }
 
-    private void updateDataFromApi() {
-
-        if (mustUpdateData()) {
-            updateBandsFromApi();
-        }
-    }
-
-    private boolean mustUpdateData() {
-        // TODO check last update date with server
-//        return false;
-        return Util.isConnected(this);
-    }
-
-    private void updateBandsFromApi() {
-        bandInteractor.getBands(new BandInteractor.BandsCallback() {
-            @Override
-            public void onResponse(List<Band> bands) {
-
-                updateVenuesFromApi();
-
-
-//                int maxId = 0;
-//                for (Band band : bands) {
-//                    if (band.getId() > maxId) {
-//                        maxId = band.getId();
-//                    }
-//                }
-//
-//                Log.i(TAG, "onResponse: Max id: " + maxId);
-//                sendUpdateDataBroadcast();
-
-            }
-
-            @Override
-            public void onError(String error) {
-                FirebaseCrash.report(new Error("Error updating bands from API: " + error));
-                Toast.makeText(App.this, error, Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-
-    private void updateVenuesFromApi() {
-        venueInteractor.getVenuesApi(new VenueInteractor.VenuesCallback() {
-            @Override
-            public void onResponse(List<Venue> venues) {
-
-                EventInteractor.resetStarredState();
-                sendUpdateDataBroadcast();
-            }
-
-            @Override
-            public void onError(String error) {
-                FirebaseCrash.report(new Error("Error updating venues from API: " + error));
-                Toast.makeText(App.this, error, Toast.LENGTH_SHORT).show();
-
-            }
-        });
-    }
-
-    private void sendUpdateDataBroadcast() {
-        sendBroadcast(new Intent(ACTION_REFRESH_DATA));
     }
 
     private void configureRealm() {

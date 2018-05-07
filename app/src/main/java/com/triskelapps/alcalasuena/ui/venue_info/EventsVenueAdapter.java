@@ -52,7 +52,7 @@ public class EventsVenueAdapter extends RecyclerView.Adapter<EventsVenueAdapter.
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
 
         final Event event = getItemAtPosition(position);
 
@@ -99,6 +99,7 @@ public class EventsVenueAdapter extends RecyclerView.Adapter<EventsVenueAdapter.
         holder.imgStarred.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                holder.imgStarred.setSelected(!holder.imgStarred.isSelected());
                 itemClickListener.onEventFavouriteClicked(event.getId());
             }
         });

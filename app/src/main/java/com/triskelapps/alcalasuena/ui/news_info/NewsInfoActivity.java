@@ -13,6 +13,7 @@ import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BaseActivity;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.model.News;
+import com.triskelapps.alcalasuena.ui.MainPresenter;
 import com.triskelapps.alcalasuena.ui.image_full.ImageFullActivity;
 
 public class NewsInfoActivity extends BaseActivity implements NewsInfoView {
@@ -78,6 +79,29 @@ public class NewsInfoActivity extends BaseActivity implements NewsInfoView {
             });
         } else {
             btnNewsLink.setVisibility(View.GONE);
+        }
+
+        if (news.getNative_code() != null) {
+            switch (news.getNative_code()) {
+                case 1:
+
+                    btnNewsLink.setVisibility(View.VISIBLE);
+                    btnNewsLink.setText(R.string.share_app);
+                    btnNewsLink.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            String text = String.format(getString(R.string.share_app_text), MainPresenter.URL_GOOGLE_PLAY_APP);
+
+                            Intent intent = new Intent(Intent.ACTION_SEND);
+                            intent.putExtra(Intent.EXTRA_TEXT, text);
+                            intent.setType("text/plain");
+                            startActivity(intent);
+                        }
+                    });
+
+                    break;
+            }
         }
     }
 

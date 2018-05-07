@@ -74,7 +74,7 @@ import java.util.List;
 
     public void onEventFavouriteClicked(int idEvent) {
         eventInteractor.toggleFavState(idEvent, false);
-        refreshData();
+//        refreshData();
     }
 
     public void onBandClick(int idBand) {

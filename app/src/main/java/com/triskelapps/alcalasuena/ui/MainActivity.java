@@ -1,5 +1,6 @@
 package com.triskelapps.alcalasuena.ui;
 
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.triskelapps.alcalasuena.DebugHelper;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BaseActivity;
 import com.triskelapps.alcalasuena.base.BasePresenter;
@@ -93,6 +95,10 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
         tabsDays.addOnTabSelectedListener(this);
 
         presenter.onCreate(getIntent());
+
+        if (DebugHelper.SHORTCUT_ACTIVITY != null) {
+            startActivity(new Intent(this, DebugHelper.SHORTCUT_ACTIVITY));
+        }
     }
 
     @Override

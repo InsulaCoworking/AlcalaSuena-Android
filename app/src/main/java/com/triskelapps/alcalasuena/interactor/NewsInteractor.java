@@ -106,7 +106,11 @@ public class NewsInteractor extends BaseInteractor {
                 .lessThanOrEqualTo(News.START_DATE_POPUP_TIME, currentTime)
                 .findAll().sort(News.START_DATE_POPUP_TIME, Sort.DESCENDING).first();
 
-        if (isNewsSeen(news.getId())) {
+        if (news == null) {
+            return null;
+        } else if (isNewsSeen(news.getId())) {
+            return null;
+        } else if (news.getId() == 1) {
             return null;
         }
 

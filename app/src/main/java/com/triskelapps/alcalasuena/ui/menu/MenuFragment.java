@@ -11,11 +11,11 @@ import android.view.ViewGroup;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BaseFragment;
 import com.triskelapps.alcalasuena.base.BasePresenter;
-import com.triskelapps.alcalasuena.ui.about.AboutAlcalaSuenaActivity;
 import com.triskelapps.alcalasuena.ui.about.AboutInsulaActivity;
 import com.triskelapps.alcalasuena.ui.bands.BandsPresenter;
 import com.triskelapps.alcalasuena.ui.map.MapActivity;
 import com.triskelapps.alcalasuena.ui.news.NewsActivity;
+import com.triskelapps.alcalasuena.ui.splash.SplashPresenter;
 import com.triskelapps.alcalasuena.ui.venues.VenuesActivity;
 
 /**
@@ -84,7 +84,8 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener {
                 break;
 
             case R.id.btn_menu_about:
-                startActivity(new Intent(getActivity(), AboutAlcalaSuenaActivity.class));
+                SplashPresenter.launchSplashActivity(getActivity(), SplashPresenter.NEXT_SCREEN_ABOUT);
+//                startActivity(new Intent(getActivity(), AboutAlcalaSuenaActivity.class));
                 break;
 
             case R.id.btn_menu_map:

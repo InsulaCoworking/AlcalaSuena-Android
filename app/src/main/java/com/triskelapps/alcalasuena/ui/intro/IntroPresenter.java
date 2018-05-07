@@ -7,9 +7,8 @@ import android.content.Intent;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.interactor.BandInteractor;
 import com.triskelapps.alcalasuena.interactor.VenueInteractor;
-import com.triskelapps.alcalasuena.ui.MainPresenter;
 
-import static com.triskelapps.alcalasuena.App.EXTRA_FIRST_TIME_APP_LAUNCHING;
+import static com.triskelapps.alcalasuena.App.SHARED_FIRST_TIME_APP_LAUNCHING;
 
 /**
  * Created by julio on 26/05/17.
@@ -46,13 +45,10 @@ import static com.triskelapps.alcalasuena.App.EXTRA_FIRST_TIME_APP_LAUNCHING;
 
     public void onCreate() {
 
-        if (!getPrefs().getBoolean(EXTRA_FIRST_TIME_APP_LAUNCHING, true)) {
-            lauchMainActivity();
-        }
     }
 
     private void lauchMainActivity() {
-        context.startActivity(MainPresenter.newMainActivity(context));
+//        context.startActivity(MainPresenter.newMainActivity(context));
         ((Activity)context).finish();
         ((Activity)context).overridePendingTransition(0,0);
     }

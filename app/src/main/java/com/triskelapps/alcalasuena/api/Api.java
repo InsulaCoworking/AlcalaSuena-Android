@@ -25,6 +25,10 @@ public interface Api {
     @GET("settings/app_version_market")
     Observable<String> getAppVersionInMarket();
 
+    @GET("settings/last_data_version")
+    Observable<String> getLastDataVersion();
+
+
     @GET("news")
     Observable<List<News>> getNews();
 

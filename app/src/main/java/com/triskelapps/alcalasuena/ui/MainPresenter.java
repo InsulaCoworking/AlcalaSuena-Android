@@ -17,10 +17,15 @@ import com.triskelapps.alcalasuena.interactor.BandInteractor;
 import com.triskelapps.alcalasuena.interactor.EventInteractor;
 import com.triskelapps.alcalasuena.interactor.NewsInteractor;
 import com.triskelapps.alcalasuena.interactor.SettingsInteractor;
+import com.triskelapps.alcalasuena.interactor.VenueInteractor;
+import com.triskelapps.alcalasuena.model.Band;
 import com.triskelapps.alcalasuena.model.Event;
 import com.triskelapps.alcalasuena.model.Filter;
 import com.triskelapps.alcalasuena.model.News;
+import com.triskelapps.alcalasuena.model.Venue;
 import com.triskelapps.alcalasuena.ui.band_info.BandInfoPresenter;
+import com.triskelapps.alcalasuena.ui.splash.SplashPresenter;
+import com.triskelapps.alcalasuena.util.Util;
 import com.triskelapps.alcalasuena.views.DialogShowNews;
 
 import java.text.SimpleDateFormat;
@@ -29,7 +34,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import static com.triskelapps.alcalasuena.App.EXTRA_FIRST_TIME_APP_LAUNCHING;
+import static com.triskelapps.alcalasuena.App.SHARED_FIRST_TIME_APP_LAUNCHING;
 
 /**
  * Created by julio on 23/05/17.
@@ -57,6 +62,7 @@ public class MainPresenter extends BasePresenter {
 
     private final SettingsInteractor settingsInteractor;
     private final NewsInteractor newsInteractor;
+    private final VenueInteractor venueInteractor;
 
     private Filter filter;
 
@@ -69,6 +75,7 @@ public class MainPresenter extends BasePresenter {
             }
         }
     };
+    private Integer newDataVersion;
 
     public static Intent newMainActivity(Context context) {
 
@@ -88,11 +95,13 @@ public class MainPresenter extends BasePresenter {
 
         this.view = view;
         bandInteractor = new BandInteractor(context, view);
+        venueInteractor = new VenueInteractor(context, null);
         eventInteractor = new EventInteractor(context, view);
         settingsInteractor = new SettingsInteractor(context, view);
         newsInteractor = new NewsInteractor(context, view);
 
-        getPrefs().edit().putBoolean(EXTRA_FIRST_TIME_APP_LAUNCHING, false).commit();
+
+
 
     }
 
@@ -119,8 +128,17 @@ public class MainPresenter extends BasePresenter {
 
         checkIntentUriReceived(intent);
 
-        checkNewVersionInMarket();
-        checkNews();
+        if (Util.isConnected(context)) {
+            checkDataVersionAndUpdate();
+            checkNewVersionInMarket();
+            checkNews();
+        }
+
+        if (getPrefs().getBoolean(SHARED_FIRST_TIME_APP_LAUNCHING, true)) {
+            SplashPresenter.launchSplashActivity(context, SplashPresenter.NEXT_SCREEN_INTRO);
+            getPrefs().edit().putBoolean(SHARED_FIRST_TIME_APP_LAUNCHING, false).commit();
+        }
+
 
     }
 
@@ -133,6 +151,70 @@ public class MainPresenter extends BasePresenter {
     public void onDestroy() {
         context.unregisterReceiver(receiverRefreshData);
     }
+
+
+    private void checkDataVersionAndUpdate() {
+
+        settingsInteractor.getLastDataVersion(new SettingsInteractor.SettingsIntValueCallback() {
+            @Override
+            public void onResponse(Integer version) {
+                int currentDataVersion = getPrefs().getInt(App.SHARED_CURRENT_DATA_VERSION, App.CACHED_DATA_VERSION);
+                if (version > currentDataVersion) {
+                    newDataVersion = version;
+                    updateBandsFromApi();
+                }
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
+    }
+
+
+    private void updateBandsFromApi() {
+        bandInteractor.getBands(new BandInteractor.BandsCallback() {
+            @Override
+            public void onResponse(List<Band> bands) {
+
+                updateVenuesFromApi();
+
+            }
+
+            @Override
+            public void onError(String error) {
+                FirebaseCrash.report(new Error("Error updating bands from API: " + error));
+//                Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+    private void updateVenuesFromApi() {
+        venueInteractor.getVenuesApi(new VenueInteractor.VenuesCallback() {
+            @Override
+            public void onResponse(List<Venue> venues) {
+
+                EventInteractor.resetStarredState();
+                sendUpdateDataBroadcast();
+
+                getPrefs().edit().putInt(App.SHARED_CURRENT_DATA_VERSION, newDataVersion).commit();
+            }
+
+            @Override
+            public void onError(String error) {
+                FirebaseCrash.report(new Error("Error updating venues from API: " + error));
+//                Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+
+    private void sendUpdateDataBroadcast() {
+        context.sendBroadcast(new Intent(App.ACTION_REFRESH_DATA));
+    }
+
 
     public void refreshData() {
 
@@ -267,14 +349,14 @@ public class MainPresenter extends BasePresenter {
 
 
     private void checkNewVersionInMarket() {
-        settingsInteractor.getAppVersionInMarket(new SettingsInteractor.SettingsAppVersionCallback() {
+        settingsInteractor.getAppVersionInMarket(new SettingsInteractor.SettingsIntValueCallback() {
             @Override
             public void onResponse(Integer newVersion) {
                 int currentVersion = BuildConfig.VERSION_CODE;
                 if (newVersion > currentVersion) {
-                    if (!BuildConfig.DEBUG) {
+//                    if (!BuildConfig.DEBUG) {
                         view.showNewVersionAvailable();
-                    }
+//                    }
                 }
             }
 
