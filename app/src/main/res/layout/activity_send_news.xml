@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_general"
+    tools:context="com.triskelapps.alcalasuena.ui.news.send.SendNewsActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:alpha="0.5"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/img_bg_menu_inverted" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
+
+        <include layout="@layout/toolbar" />
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/edit_send_news_title"
+                    style="@style/TextBase.Bold"
+                    android:textColor="@color/white"
+                    android:layout_width="match_parent"
+                    android:gravity="center_horizontal"
+                    android:hint="@string/title"
+                    android:inputType="textCapSentences"
+                    android:padding="10dp"
+                    android:textColorHint="@color/transp_white"
+                    android:textSize="18sp"
+                    app:backgroundTint="@color/white"/>
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/edit_send_news_text"
+                    style="@style/TextBase.White"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:textColorHint="@color/transp_white"
+                    android:background="@drawable/bg_frame_light"
+                    android:gravity="top|left"
+                    android:hint="@string/text"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:lines="5"
+                    android:padding="10dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="15dp">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/edit_link"
+                        style="@style/TextBase.White"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:hint="@string/link"
+                        android:inputType="textWebEditText"
+                        android:padding="10dp"
+                        android:textColorHint="@color/transp_white"
+                        app:backgroundTint="@color/white"/>
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/edit_link_button_text"
+                        style="@style/TextBase.White"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:hint="@string/link_button_text"
+                        android:inputType="textCapSentences"
+                        android:padding="10dp"
+                        android:textColorHint="@color/transp_white"
+                        app:backgroundTint="@color/white"
+                        android:layout_marginLeft="10dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/btn_camera"
+                        style="@style/TextBase.White"
+                        android:backgroundTint="@color/red_general"
+                        android:text="@string/camera" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/btn_gallery"
+                        style="@style/TextBase.White"
+                        android:layout_marginLeft="40dp"
+                        android:backgroundTint="@color/red_general"
+                        android:text="@string/gallery" />
+                </LinearLayout>
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/img_send_news"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:maxHeight="200dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="15dp"/>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</RelativeLayout>

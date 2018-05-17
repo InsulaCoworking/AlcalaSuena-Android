@@ -27,7 +27,7 @@
     <string name="see_dossier">Ver dossier</string>
     <string name="favourites">Favoritos</string>
     <string name="no_favourites">No has marcado de momento ningún evento como favorito para este día.\n¡A qué esperas! Pulsa la estrella y hazte tu lista ;)</string>
-    <string name="share_favs_with_friends">¡Comparte con tus amigos tu lista!</string>
+    <string name="share_favs_with_friends">¡Comparte tu lista con tus amig@s!</string>
     <string name="all_tags">Todos los estilos</string>
     <string name="share_favs_text_intro">¡Esta es mi lista de conciertos para el #AlcalaSuena!</string>
     <string name="no_results_for_tags">En este día no hay conciertos para los estilos de música elegidos :(</string>
@@ -94,5 +94,21 @@
     <string name="send_band_text">¡Echa un ojo a esta banda!\n\n%s</string>
     <string name="share_app">¡Comparte la app de #AlcalaSuena!</string>
     <string name="share_app_text">¡Ya está disponible la app gratuita del festival #AlcalaSuena!\n\nToda la información de bandas, horarios, mapa de escenarios y noticias directas en tu teléfono.\n\nDescárgala gratis en: %s</string>
+    <string name="secret_key">Clave secreta</string>
+    <string name="title">Título</string>
+    <string name="text">Texto</string>
+    <string name="camera">Cámara</string>
+    <string name="gallery">Galería</string>
+    <string name="need_write_permission">Para adjuntar imágenes se necesita aceptar este permiso</string>
+    <string name="ok">OK</string>
+    <string name="permission_denied">Permiso denegado</string>
+    <string name="send_news">Enviar noticia</string>
+    <string name="link_button_text">Texto botón de enlace</string>
+    <string name="link">Enlace</string>
+    <string name="news_sent">Noticia enviada</string>
+    <string name="sending_news">Enviando noticia...</string>
+    <string name="write_news">Escribe titulo y texto de la noticia</string>
+    <string name="sending_notification">Enviando notificación...</string>
+    <string name="notification_sent">Notificación enviada</string>
 
 </resources>

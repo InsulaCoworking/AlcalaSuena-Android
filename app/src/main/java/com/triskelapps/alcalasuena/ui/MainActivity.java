@@ -17,12 +17,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.firebase.crash.FirebaseCrash;
 import com.triskelapps.alcalasuena.DebugHelper;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BaseActivity;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.model.Event;
 import com.triskelapps.alcalasuena.ui.events.EventsAdapter;
+import com.triskelapps.alcalasuena.ui.news.send.SendNewsActivity;
 import com.triskelapps.alcalasuena.views.animation_adapter.AlphaInAnimationAdapter;
 import com.triskelapps.alcalasuena.views.animation_adapter.AnimationAdapter;
 
@@ -43,6 +45,7 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
     private View btnHideNewVersionView;
     private View btnUpdateNewVersion;
     private View viewBtnShareFavs;
+    private View btnSendNews;
 
     private void findViews() {
         tabsDays = (TabLayout) findViewById(R.id.tabs_days);
@@ -55,9 +58,13 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
         btnHideNewVersionView = findViewById(R.id.btn_hide_new_version);
         btnUpdateNewVersion = findViewById(R.id.btn_update_new_version);
 
+        btnSendNews = findViewById(R.id.btn_send_news);
+
         btnShareFavs.setOnClickListener(this);
         btnHideNewVersionView.setOnClickListener(this);
         btnUpdateNewVersion.setOnClickListener(this);
+
+        btnSendNews.setOnClickListener(this);
     }
 
     @Override
@@ -218,6 +225,10 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
             case R.id.btn_hide_new_version:
                 viewNewVersion.setVisibility(View.GONE);
                 break;
+
+            case R.id.btn_send_news:
+                startActivity(new Intent(this, SendNewsActivity.class));
+                break;
         }
     }
 
@@ -291,17 +302,23 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
             recyclerEvents.setAdapter(animationAdapter);
 
         } else {
-            // Little trick to avoid animation when searching
-            animationAdapter.setDuration(0);
-            adapter.updateData(events);
-            recyclerEvents.getRecycledViewPool().clear();
-            adapter.notifyDataSetChanged();
-            recyclerEvents.post(new Runnable() {
-                @Override
-                public void run() {
-                    animationAdapter.setDuration(AnimationAdapter.DEFAULT_DURATION);
-                }
-            });
+
+            try {
+                // Little trick to avoid animation when searching
+                animationAdapter.setDuration(0);
+//                adapter.updateData(events);
+                recyclerEvents.getRecycledViewPool().clear();
+                adapter.notifyDataSetChanged();
+                recyclerEvents.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        animationAdapter.setDuration(AnimationAdapter.DEFAULT_DURATION);
+                    }
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+                FirebaseCrash.report(e);
+            }
         }
 
         tvEmptyMessage.setVisibility(emptyMessage != null ? View.VISIBLE : View.GONE);
@@ -339,4 +356,8 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
         return presenter;
     }
 
+    @Override
+    public void showSendNewsButton() {
+        btnSendNews.setVisibility(View.VISIBLE);
+    }
 }

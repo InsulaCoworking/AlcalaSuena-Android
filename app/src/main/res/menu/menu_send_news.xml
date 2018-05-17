@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/menuItem_send_news"
+        android:icon="@mipmap/ic_send"
+        app:showAsAction="always"
+        android:title="@string/send_news"
+        android:orderInCategory="100"
+        android:visible="true" />
+
+</menu>

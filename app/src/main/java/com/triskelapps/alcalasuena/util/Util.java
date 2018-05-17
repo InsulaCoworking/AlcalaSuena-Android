@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -18,8 +20,12 @@ import android.util.TypedValue;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.Normalizer;
@@ -49,7 +55,29 @@ public final class Util {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return format.format(new Date());
     }
+    // http://p-xr.com/android-snippet-making-a-md5-hash-from-a-string-in-java/
+    public static String getMD5Hash(String input) {
 
+        MessageDigest digest;
+        try {
+            digest = MessageDigest.getInstance("MD5");
+            digest.reset();
+            digest.update(input.getBytes());
+            byte[] a = digest.digest();
+            int len = a.length;
+            StringBuilder sb = new StringBuilder(len << 1);
+            for (int i = 0; i < len; i++) {
+                sb.append(Character.forDigit((a[i] & 0xf0) >> 4, 16));
+                sb.append(Character.forDigit(a[i] & 0x0f, 16));
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+
+    }
 
     public static String getCurrentDate() {
 
@@ -158,5 +186,35 @@ public final class Util {
         }
         textView.setText(result);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
+    }
+
+
+    public static String resizeImage(String originalPath, int maxSize) {
+        File dir = new File(originalPath);
+        Bitmap b = BitmapFactory.decodeFile(originalPath);
+
+        int maxWith = maxSize;
+        int maxHeight = maxSize;
+        if (b.getWidth() > b.getHeight()) {
+            maxHeight = (int) ((float) maxWith / (float) b.getWidth() * (float) b.getHeight());
+        } else {
+            maxWith = (int) ((float) maxHeight / (float) b.getHeight() * (float) b.getWidth());
+        }
+
+        Bitmap out = Bitmap.createScaledBitmap(b, maxWith, maxHeight, false);
+
+        File file = new File(dir.getParent(), "resize.jpg");
+        FileOutputStream fOut;
+        try {
+            fOut = new FileOutputStream(file);
+            out.compress(Bitmap.CompressFormat.JPEG, 100, fOut);
+            fOut.flush();
+            fOut.close();
+            b.recycle();
+            out.recycle();
+        } catch (Exception e) {
+        }
+
+        return file.getPath();
     }
 }

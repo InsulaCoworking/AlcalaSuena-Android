@@ -2,17 +2,28 @@ package com.triskelapps.alcalasuena.interactor;
 
 import android.content.Context;
 
+import com.triskelapps.alcalasuena.BuildConfig;
+import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.api.Api;
 import com.triskelapps.alcalasuena.base.BaseInteractor;
 import com.triskelapps.alcalasuena.base.BaseView;
+import com.triskelapps.alcalasuena.model.FirebasePush;
 import com.triskelapps.alcalasuena.model.News;
 import com.triskelapps.alcalasuena.model.NewsState;
 import com.triskelapps.alcalasuena.util.Util;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import io.realm.Realm;
 import io.realm.Sort;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Response;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -21,7 +32,6 @@ import rx.schedulers.Schedulers;
  * Created by julio on 14/02/16.
  */
 public class NewsInteractor extends BaseInteractor {
-
 
 
     public interface NewsCallback {
@@ -101,7 +111,7 @@ public class NewsInteractor extends BaseInteractor {
 
         long currentTime = System.currentTimeMillis();
 
-        News news =  Realm.getDefaultInstance().where(News.class)
+        News news = Realm.getDefaultInstance().where(News.class)
                 .greaterThanOrEqualTo(News.END_DATE_POPUP_TIME, currentTime)
                 .lessThanOrEqualTo(News.START_DATE_POPUP_TIME, currentTime)
                 .findAll().sort(News.START_DATE_POPUP_TIME, Sort.DESCENDING).first();
@@ -132,6 +142,115 @@ public class NewsInteractor extends BaseInteractor {
         newsState.setIdNews(idNews);
         newsState.setSeen(true);
         realm.commitTransaction();
+    }
+
+
+    public void sendNews(String title, String text, String link, String linkButtonText, String imagePath, final BasePOSTCallback callback) {
+
+        if (!Util.isConnected(context)) {
+            return;
+        }
+
+        Map<String, RequestBody> params = new HashMap<>();
+        MultipartBody.Part filePart = null;
+        if (imagePath != null) {
+            filePart = MultipartBody.Part.createFormData("image",
+                    title.replace(" ", "-") + ".jpg",
+                    RequestBody.create(MediaType.parse("image/*"), new File(imagePath)));
+        }
+        params.put("title", RequestBody.create(MediaType.parse("text/plain"), title));
+        params.put("text", RequestBody.create(MediaType.parse("text/plain"), text));
+        params.put("btn_text", RequestBody.create(MediaType.parse("text/plain"), linkButtonText));
+        params.put("btn_link", RequestBody.create(MediaType.parse("text/plain"), link));
+        params.put("native_code", RequestBody.create(MediaType.parse("text/plain"), "-1"));
+
+//        Calendar calendar = Calendar.getInstance();
+//        String startDate = News.datetimeNewsFormatApi.format(new Date(calendar.getTimeInMillis()));
+//
+//        calendar.add(Calendar.MONTH, 6);
+//        String endDate = News.datetimeNewsFormatApi.format(new Date(calendar.getTimeInMillis()));
+//
+//        params.put("start_date", RequestBody.create(MediaType.parse("text/plain"), startDate));
+//        params.put("end_date", RequestBody.create(MediaType.parse("text/plain"), endDate));
+//        params.put("caducity", RequestBody.create(MediaType.parse("text/plain"), endDate));
+
+
+
+        getApi().sendNews(filePart, params)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnTerminate(actionTerminate)
+                .subscribe(new Observer<Response<Void>>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                        callback.onError(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(Response<Void> response) {
+
+                        if (response.isSuccessful()) {
+                            callback.onSuccess(null);
+                        } else {
+                            try {
+                                callback.onError(response.errorBody().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+
+                    }
+                });
+    }
+
+
+    public void sendNewsNotification(String title, String text, final BasePOSTCallback callback) {
+
+        FirebasePush firebasePush = new FirebasePush();
+        firebasePush.setTo(BuildConfig.DEBUG ? "/topics/test_news" : "/topics/news");
+        firebasePush.setNotification(new FirebasePush.FirebaseNotification(title,  text));
+
+        firebasePush.setIdNewsData("123");
+
+        String serverKey = "key=" + context.getString(R.string.firebase_server_key);
+
+        getApi().sendPush(serverKey, firebasePush)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnTerminate(actionTerminate)
+                .subscribe(new Observer<Response<Void>>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                        callback.onError(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(Response<Void> response) {
+
+                        if (response.isSuccessful()) {
+                            callback.onSuccess(null);
+                        } else {
+                            try {
+                                callback.onError(response.errorBody().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+
+                    }
+                });
     }
 
     private Api getApi() {

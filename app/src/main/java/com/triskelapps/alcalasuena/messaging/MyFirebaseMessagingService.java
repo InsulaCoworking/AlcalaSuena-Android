@@ -94,15 +94,19 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         extras.putString(SplashPresenter.EXTRA_NOTIFICATION_MESSAGE, message);
 
         Map<String, String> mapData = remoteMessage.getData();
-        if (mapData.size() > 0) {
+//        if (mapData.size() > 0) {
+//
+//            if (mapData.containsKey(KEY_CUSTOM_BUTTON_TEXT) && mapData.containsKey(KEY_CUSTOM_BUTTON_LINK)) {
+//                String customButtonText = remoteMessage.getData().get(KEY_CUSTOM_BUTTON_TEXT);
+//                String customButtonLink = remoteMessage.getData().get(KEY_CUSTOM_BUTTON_LINK);
+//
+//                extras.putString(SplashPresenter.EXTRA_NOTIFICATION_CUSTOM_BUTTON_TEXT, customButtonText);
+//                extras.putString(SplashPresenter.EXTRA_NOTIFICATION_CUSTOM_BUTTON_LINK, customButtonLink);
+//            }
+//        }
 
-            if (mapData.containsKey(KEY_CUSTOM_BUTTON_TEXT) && mapData.containsKey(KEY_CUSTOM_BUTTON_LINK)) {
-                String customButtonText = remoteMessage.getData().get(KEY_CUSTOM_BUTTON_TEXT);
-                String customButtonLink = remoteMessage.getData().get(KEY_CUSTOM_BUTTON_LINK);
-
-                extras.putString(SplashPresenter.EXTRA_NOTIFICATION_CUSTOM_BUTTON_TEXT, customButtonText);
-                extras.putString(SplashPresenter.EXTRA_NOTIFICATION_CUSTOM_BUTTON_LINK, customButtonLink);
-            }
+        for (Map.Entry<String, String> entry : mapData.entrySet()) {
+            extras.putString(entry.getKey(), entry.getValue());
         }
 
         Intent intent = new Intent(App.ACTION_SHOW_NOTIFICATION);

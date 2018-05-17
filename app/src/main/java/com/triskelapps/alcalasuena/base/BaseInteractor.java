@@ -6,6 +6,8 @@ import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.api.common.ApiClient;
 import com.triskelapps.alcalasuena.util.Util;
 
+import java.util.List;
+
 import rx.functions.Action0;
 
 /**
@@ -22,6 +24,36 @@ public class BaseInteractor {
         return ApiClient.getInstance().create(service);
     }
 
+    public interface BaseCallback {
+        void onSuccess();
+
+        void onError(String message);
+    }
+
+    public interface BaseElementCallback<T> {
+        void onSuccess(T element);
+
+        void onError(String message);
+    }
+
+    public interface BaseListCallback<T> {
+        void onSuccess(List<T> list);
+
+        void onError(String message);
+    }
+
+
+    public interface BasePOSTFullEntityCallback<T> {
+        void onSuccess(T entity);
+
+        void onError(String message);
+    }
+
+    public interface BasePOSTCallback {
+        void onSuccess(Integer id);
+
+        void onError(String message);
+    }
 
     public Action0 actionTerminate = new Action0() {
         @Override

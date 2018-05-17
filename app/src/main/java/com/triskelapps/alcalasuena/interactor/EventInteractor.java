@@ -49,7 +49,7 @@ public class EventInteractor extends BaseInteractor {
 
         List<Event> events = query.findAll().sort(Event.DAY, Sort.ASCENDING, Event.TIME_HOUR_MIDNIGHT_SAFE, Sort.ASCENDING);
 
-        return events;
+        return Realm.getDefaultInstance().copyFromRealm(events);
     }
 
 

@@ -22,7 +22,7 @@
         android:layout_height="match_parent"
         android:alpha="0.0"
         android:background="@color/blue_general"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/container"
@@ -33,41 +33,49 @@
 
         <include layout="@layout/toolbar" />
 
-        <android.support.v4.widget.DrawerLayout
-            android:id="@+id/drawer_layout"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <include layout="@layout/content_main" />
-
-            <fragment
-                android:id="@+id/menu_fragment"
-                class="com.triskelapps.alcalasuena.ui.menu.MenuFragment"
+            <android.support.v4.widget.DrawerLayout
+                android:id="@+id/drawer_layout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
-                tools:layout="@layout/fragment_menu" />
+                android:layout_height="match_parent">
 
-            <fragment
-                android:id="@+id/filter_bands_fragment"
-                class="com.triskelapps.alcalasuena.ui.filter.FilterBandsFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginLeft="20dp"
-                tools:layout="@layout/fragment_filter_bands" />
+                <include layout="@layout/content_main" />
 
-        </android.support.v4.widget.DrawerLayout>
+                <fragment
+                    android:id="@+id/menu_fragment"
+                    class="com.triskelapps.alcalasuena.ui.menu.MenuFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start"
+                    tools:layout="@layout/fragment_menu" />
 
+                <fragment
+                    android:id="@+id/filter_bands_fragment"
+                    class="com.triskelapps.alcalasuena.ui.filter.FilterBandsFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginLeft="20dp"
+                    tools:layout="@layout/fragment_filter_bands" />
 
-        <!--<android.support.design.widget.BottomNavigationView-->
-        <!--android:id="@+id/navigation"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="bottom"-->
-        <!--android:background="?android:attr/windowBackground"-->
-        <!--app:menu="@menu/navigation"-->
-        <!--android:visibility="gone"/>-->
+            </android.support.v4.widget.DrawerLayout>
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/btn_send_news"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_margin="15dp"
+                android:background="@drawable/bg_btn_send_news"
+                android:scaleType="centerInside"
+                android:src="@mipmap/ic_news"
+                android:visibility="gone"
+                app:tint="@color/white" />
+        </RelativeLayout>
 
     </LinearLayout>
 
@@ -94,8 +102,8 @@
             android:padding="5dp"
             android:text="@string/update"
             android:textAllCaps="true"
-            app:fontPath="fonts/Exo-Medium.otf"
-            android:textColor="@color/blue_general"/>
+            android:textColor="@color/blue_general"
+            app:fontPath="fonts/Exo-Medium.otf" />
 
         <TextView
             android:id="@+id/btn_hide_new_version"

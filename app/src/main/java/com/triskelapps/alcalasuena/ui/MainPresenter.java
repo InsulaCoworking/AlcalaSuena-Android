@@ -7,10 +7,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
+import android.util.Log;
 
 import com.google.firebase.crash.FirebaseCrash;
 import com.triskelapps.alcalasuena.App;
 import com.triskelapps.alcalasuena.BuildConfig;
+import com.triskelapps.alcalasuena.DebugHelper;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.interactor.BandInteractor;
@@ -21,12 +23,16 @@ import com.triskelapps.alcalasuena.interactor.VenueInteractor;
 import com.triskelapps.alcalasuena.model.Band;
 import com.triskelapps.alcalasuena.model.Event;
 import com.triskelapps.alcalasuena.model.Filter;
+import com.triskelapps.alcalasuena.model.FirebasePush;
 import com.triskelapps.alcalasuena.model.News;
 import com.triskelapps.alcalasuena.model.Venue;
 import com.triskelapps.alcalasuena.ui.band_info.BandInfoPresenter;
+import com.triskelapps.alcalasuena.ui.news.NewsPresenter;
 import com.triskelapps.alcalasuena.ui.splash.SplashPresenter;
 import com.triskelapps.alcalasuena.util.Util;
 import com.triskelapps.alcalasuena.views.DialogShowNews;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -76,6 +82,7 @@ public class MainPresenter extends BasePresenter {
         }
     };
     private Integer newDataVersion;
+    private List<Event> events = new ArrayList<>();
 
     public static Intent newMainActivity(Context context) {
 
@@ -139,7 +146,19 @@ public class MainPresenter extends BasePresenter {
             getPrefs().edit().putBoolean(SHARED_FIRST_TIME_APP_LAUNCHING, false).commit();
         }
 
+        checkSendNewsPermission();
 
+    }
+
+    private void checkSendNewsPermission() {
+
+        String pin = context.getString(R.string.pin_send_news);
+        String deviceId = Util.getDeviceId(context);
+        String hash = Util.getMD5Hash(pin + deviceId);
+        String hashStored = getPrefs().getString(App.SHARED_PIN_SEND_NEWS_ENCRIPT, null);
+        if (StringUtils.equals(hash, hashStored)) {
+            view.showSendNewsButton();
+        }
     }
 
 
@@ -159,7 +178,7 @@ public class MainPresenter extends BasePresenter {
             @Override
             public void onResponse(Integer version) {
                 int currentDataVersion = getPrefs().getInt(App.SHARED_CURRENT_DATA_VERSION, App.CACHED_DATA_VERSION);
-                if (version > currentDataVersion) {
+                if (version > currentDataVersion || DebugHelper.SWITCH_FORZE_DATA_SYNC) {
                     newDataVersion = version;
                     updateBandsFromApi();
                 }
@@ -174,6 +193,8 @@ public class MainPresenter extends BasePresenter {
 
 
     private void updateBandsFromApi() {
+
+        Log.i(TAG, "---> update start");
         bandInteractor.getBands(new BandInteractor.BandsCallback() {
             @Override
             public void onResponse(List<Band> bands) {
@@ -186,6 +207,7 @@ public class MainPresenter extends BasePresenter {
             public void onError(String error) {
                 FirebaseCrash.report(new Error("Error updating bands from API: " + error));
 //                Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
+        Log.i(TAG, "---> update bands error");
             }
         });
     }
@@ -199,6 +221,8 @@ public class MainPresenter extends BasePresenter {
                 EventInteractor.resetStarredState();
                 sendUpdateDataBroadcast();
 
+                Log.i(TAG, "---> update end");
+
                 getPrefs().edit().putInt(App.SHARED_CURRENT_DATA_VERSION, newDataVersion).commit();
             }
 
@@ -207,6 +231,7 @@ public class MainPresenter extends BasePresenter {
                 FirebaseCrash.report(new Error("Error updating venues from API: " + error));
 //                Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
 
+                Log.i(TAG, "---> update venues error");
             }
         });
     }
@@ -218,7 +243,10 @@ public class MainPresenter extends BasePresenter {
 
     public void refreshData() {
 
-        List<Event> events = eventInteractor.getEventsDB(filter);
+        events.clear();
+        events.addAll(eventInteractor.getEventsDB(filter));
+
+//        List<Event> events = eventInteractor.getEventsDB(filter);
 
         String emptyMessage = null;
         if (events.isEmpty()) {
@@ -342,8 +370,11 @@ public class MainPresenter extends BasePresenter {
                 // This link is not for this app
                 showFunnyDialogForThisUserFail(appLinkData);
             }
-
-
+        } else if (intent.hasExtra(FirebasePush.KEY_NEWS_ID)) {
+            String newsId = intent.getStringExtra(FirebasePush.KEY_NEWS_ID);
+            if (newsId != null) {
+                context.startActivity(NewsPresenter.newNewsActivity(context));
+            }
         }
     }
 

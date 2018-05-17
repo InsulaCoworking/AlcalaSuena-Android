@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="10dp">
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/edit_pin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="6"
+        android:textCursorDrawable="@drawable/cursor_edit_red"
+        android:backgroundTint="@color/red_general"
+        android:textColor="@color/red_general"
+        android:inputType="numberPassword"
+        android:gravity="center_horizontal"/>
+
+</android.support.v7.widget.LinearLayoutCompat>

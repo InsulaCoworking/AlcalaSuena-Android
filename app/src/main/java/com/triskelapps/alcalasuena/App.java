@@ -33,6 +33,7 @@ public class App extends Application {
     public static final String SHARED_FIRST_TIME_APP_LAUNCHING = PREFIX + "extra_first_time_app_lauching_2018";
     private static final String SHARED_CACHED_DATA_STORED = PREFIX + "shared_cached_data_stored_2018";
     public static final String SHARED_SUBSCRIBED_NEWS_NOTIFS = PREFIX + "shared_subscribed_news_notifs";
+    public static final String SHARED_PIN_SEND_NEWS_ENCRIPT = PREFIX + "shared_pin_send_news_encript";
 
     public static final String ACTION_REFRESH_DATA = PREFIX + "action_refresh_data";
     public static final String ACTION_SHOW_NOTIFICATION = PREFIX + "action_show_notification";
@@ -66,6 +67,10 @@ public class App extends Application {
                 && !getPrefs(this).getBoolean(SHARED_SUBSCRIBED_NEWS_NOTIFS, false)) {
             FirebaseMessaging.getInstance().subscribeToTopic("news");
             getPrefs(this).edit().putBoolean(SHARED_SUBSCRIBED_NEWS_NOTIFS, true).commit();
+        }
+
+        if (BuildConfig.DEBUG) {
+            FirebaseMessaging.getInstance().subscribeToTopic("test_news");
         }
 
     }

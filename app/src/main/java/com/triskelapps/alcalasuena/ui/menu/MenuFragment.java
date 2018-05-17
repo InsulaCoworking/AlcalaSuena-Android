@@ -1,5 +1,7 @@
 package com.triskelapps.alcalasuena.ui.menu;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -7,7 +9,9 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
+import com.triskelapps.alcalasuena.App;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BaseFragment;
 import com.triskelapps.alcalasuena.base.BasePresenter;
@@ -15,14 +19,18 @@ import com.triskelapps.alcalasuena.ui.about.AboutInsulaActivity;
 import com.triskelapps.alcalasuena.ui.bands.BandsPresenter;
 import com.triskelapps.alcalasuena.ui.map.MapActivity;
 import com.triskelapps.alcalasuena.ui.news.NewsActivity;
+import com.triskelapps.alcalasuena.ui.news.send.SendNewsActivity;
 import com.triskelapps.alcalasuena.ui.splash.SplashPresenter;
 import com.triskelapps.alcalasuena.ui.venues.VenuesActivity;
+import com.triskelapps.alcalasuena.util.Util;
+
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Created by julio on 23/05/17.
  */
 
-public class MenuFragment extends BaseFragment implements View.OnClickListener {
+public class MenuFragment extends BaseFragment implements View.OnClickListener, View.OnLongClickListener {
     private View btnMenuBands;
     private View btnMenuMap;
     private View btnMenuVenues;
@@ -58,7 +66,10 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener {
         btnLogoAlcalaSuena.setOnClickListener(this);
         btnLogoAlcalaEsMusica.setOnClickListener(this);
         btnLogoAytoAlcala.setOnClickListener(this);
+
+        btnLogoAlcalaEsMusica.setOnLongClickListener(this);
     }
+
 
     @Override
     public BasePresenter getPresenter() {
@@ -115,4 +126,33 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener {
                 break;
         }
     }
+
+    @Override
+    public boolean onLongClick(View v) {
+        showPinSendNewsDialog();
+        return false;
+    }
+
+    private void showPinSendNewsDialog() {
+        View view = View.inflate(getActivity(), R.layout.view_pin_send_news, null);
+        final EditText editText = view.findViewById(R.id.edit_pin);
+        new AlertDialog.Builder(getActivity())
+                .setTitle(R.string.secret_key)
+                .setView(view)
+                .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String pin = getString(R.string.pin_send_news);
+                        String userPin = editText.getText().toString();
+                        if (StringUtils.equals(pin, userPin)) {
+                            String deviceId = Util.getDeviceId(getActivity());
+                            getPrefs().edit().putString(App.SHARED_PIN_SEND_NEWS_ENCRIPT, Util.getMD5Hash(pin + deviceId)).commit();
+                            startActivity(new Intent(getActivity(), SendNewsActivity.class));
+                        }
+                    }
+                })
+                .setNeutralButton(R.string.back, null)
+                .show();
+    }
+
 }

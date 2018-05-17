@@ -13,6 +13,12 @@ public class DebugHelper {
 
 
     // Falses
+    private static final boolean FORZE_DATA_SYNC = false;
+
+
+
+
+
     private static final boolean SKIP_SPLASH = true;
     private static final boolean COMPLETE_EDIT_TEXTS = true;
     public static final boolean DEBUG_MESSAGES = false;
@@ -52,6 +58,9 @@ public class DebugHelper {
 
     public static final boolean SWITCH_FORZE_ALARM = BuildConfig.DEBUG
             || FORZE_BETA_ENV_APK ? FORZE_ALARM : false;
+
+    public static final boolean SWITCH_FORZE_DATA_SYNC = BuildConfig.DEBUG
+            || FORZE_BETA_ENV_APK ? FORZE_DATA_SYNC : false;
 
     public static final boolean SWITCH_DEBUG_TOKEN = BuildConfig.DEBUG
             || FORZE_BETA_ENV_APK ? DEBUG_TOKEN : false;
