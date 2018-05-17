@@ -77,6 +77,8 @@ public class SendNewsActivity extends BaseActivity implements View.OnClickListen
                 String link = editLink.getText().toString();
                 String linkButtonText = editLinkButtonText.getText().toString();
                 presenter.sendNews(title, text, link, linkButtonText);
+
+                WindowUtils.hideSoftKeyboard(this);
                 break;
         }
         return super.onOptionsItemSelected(item);
