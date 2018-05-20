@@ -18,11 +18,6 @@ import com.triskelapps.alcalasuena.util.Util;
 
 public class SplashPresenter extends BasePresenter {
 
-    public static final String EXTRA_NOTIFICATION_TITLE = "extra_notif_title";
-    public static final String EXTRA_NOTIFICATION_MESSAGE = "extra_notif_message";
-    public static final String EXTRA_NOTIFICATION_CUSTOM_BUTTON_TEXT = "extra_notif_custom_button_text";
-    public static final String EXTRA_NOTIFICATION_CUSTOM_BUTTON_LINK = "extra_notif_custom_button_link";
-
     public static final int NEXT_SCREEN_INTRO = 0;
     public static final int NEXT_SCREEN_ABOUT = 1;
 

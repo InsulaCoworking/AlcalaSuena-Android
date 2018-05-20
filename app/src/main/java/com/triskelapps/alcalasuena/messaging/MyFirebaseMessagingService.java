@@ -21,7 +21,6 @@ import com.google.firebase.messaging.RemoteMessage;
 import com.triskelapps.alcalasuena.App;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.ui.MainActivity;
-import com.triskelapps.alcalasuena.ui.splash.SplashPresenter;
 
 import java.util.Map;
 
@@ -86,26 +85,25 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      */
     private void handleNow(RemoteMessage remoteMessage) {
 
-        String title = remoteMessage.getNotification().getTitle();
-        String message = remoteMessage.getNotification().getBody();
+        String title;
+        String message;
+        String idNews;
+
+        Map<String, String> notifData = remoteMessage.getData();
+
+        if (remoteMessage.getNotification() != null) {
+            title = remoteMessage.getNotification().getTitle();
+            message = remoteMessage.getNotification().getBody();
+            idNews = null;
+        } else {
+            title = notifData.get("title");
+            message = notifData.get("message");
+            idNews = notifData.get("id_news");
+        }
 
         Bundle extras = new Bundle();
-        extras.putString(SplashPresenter.EXTRA_NOTIFICATION_TITLE, title);
-        extras.putString(SplashPresenter.EXTRA_NOTIFICATION_MESSAGE, message);
 
-        Map<String, String> mapData = remoteMessage.getData();
-//        if (mapData.size() > 0) {
-//
-//            if (mapData.containsKey(KEY_CUSTOM_BUTTON_TEXT) && mapData.containsKey(KEY_CUSTOM_BUTTON_LINK)) {
-//                String customButtonText = remoteMessage.getData().get(KEY_CUSTOM_BUTTON_TEXT);
-//                String customButtonLink = remoteMessage.getData().get(KEY_CUSTOM_BUTTON_LINK);
-//
-//                extras.putString(SplashPresenter.EXTRA_NOTIFICATION_CUSTOM_BUTTON_TEXT, customButtonText);
-//                extras.putString(SplashPresenter.EXTRA_NOTIFICATION_CUSTOM_BUTTON_LINK, customButtonLink);
-//            }
-//        }
-
-        for (Map.Entry<String, String> entry : mapData.entrySet()) {
+        for (Map.Entry<String, String> entry : notifData.entrySet()) {
             extras.putString(entry.getKey(), entry.getValue());
         }
 
@@ -113,11 +111,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         intent.putExtras(extras);
         getApplicationContext().sendBroadcast(intent);
 
-        sendNotification(title, message, extras);
+        sendNotification(title, message, idNews, extras);
 
     }
 
-    private void sendNotification(String title, String text, Bundle extras) {
+    private void sendNotification(String title, String text, String idNews, Bundle extras) {
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.setAction(App.ACTION_SHOW_NOTIFICATION);
@@ -126,13 +124,16 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 PendingIntent.FLAG_ONE_SHOT);
 
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, "0")
                 .setSmallIcon(R.mipmap.img_logo_alcalasuena_notif)
-                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.img_logo_alcalasuena))
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(),
+                        idNews != null ? R.mipmap.ic_notif_news : R.mipmap.ic_notif_announcement))
                 .setContentTitle(title != null ? title : getString(R.string.app_name))
                 .setContentText(text)
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
+                .setStyle(new NotificationCompat.BigTextStyle()
+                        .bigText(text))
                 .setContentIntent(pendingIntent);
 
         NotificationManager notificationManager =

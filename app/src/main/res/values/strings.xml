@@ -110,5 +110,6 @@
     <string name="write_news">Escribe titulo y texto de la noticia</string>
     <string name="sending_notification">Enviando notificación...</string>
     <string name="notification_sent">Notificación enviada</string>
+    <string name="send_notification">Enviar solo notificación</string>
 
 </resources>

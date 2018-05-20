@@ -3,7 +3,7 @@ package com.triskelapps.alcalasuena.api;
 
 import com.triskelapps.alcalasuena.model.Band;
 import com.triskelapps.alcalasuena.model.Event;
-import com.triskelapps.alcalasuena.model.FirebasePush;
+import com.triskelapps.alcalasuena.model.notification.FirebasePush;
 import com.triskelapps.alcalasuena.model.News;
 import com.triskelapps.alcalasuena.model.Venue;
 

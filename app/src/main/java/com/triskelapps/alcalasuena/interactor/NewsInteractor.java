@@ -7,13 +7,16 @@ import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.api.Api;
 import com.triskelapps.alcalasuena.base.BaseInteractor;
 import com.triskelapps.alcalasuena.base.BaseView;
-import com.triskelapps.alcalasuena.model.FirebasePush;
 import com.triskelapps.alcalasuena.model.News;
 import com.triskelapps.alcalasuena.model.NewsState;
+import com.triskelapps.alcalasuena.model.notification.FirebasePush;
+import com.triskelapps.alcalasuena.model.notification.FirebasePushData;
 import com.triskelapps.alcalasuena.util.Util;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -164,12 +167,13 @@ public class NewsInteractor extends BaseInteractor {
         params.put("btn_link", RequestBody.create(MediaType.parse("text/plain"), link));
         params.put("native_code", RequestBody.create(MediaType.parse("text/plain"), "-1"));
 
-//        Calendar calendar = Calendar.getInstance();
-//        String startDate = News.datetimeNewsFormatApi.format(new Date(calendar.getTimeInMillis()));
-//
-//        calendar.add(Calendar.MONTH, 6);
-//        String endDate = News.datetimeNewsFormatApi.format(new Date(calendar.getTimeInMillis()));
-//
+        // todo IMPORTANT DATES API BUG
+        Calendar calendar = Calendar.getInstance();
+        String startDate = News.datetimeNewsFormatApi.format(new Date(calendar.getTimeInMillis()));
+
+        calendar.add(Calendar.MONTH, 6);
+        String endDate = News.datetimeNewsFormatApi.format(new Date(calendar.getTimeInMillis()));
+
 //        params.put("start_date", RequestBody.create(MediaType.parse("text/plain"), startDate));
 //        params.put("end_date", RequestBody.create(MediaType.parse("text/plain"), endDate));
 //        params.put("caducity", RequestBody.create(MediaType.parse("text/plain"), endDate));
@@ -210,13 +214,17 @@ public class NewsInteractor extends BaseInteractor {
     }
 
 
-    public void sendNewsNotification(String title, String text, final BasePOSTCallback callback) {
+    public void sendNewsNotification(String title, String text, boolean hasNews, final BasePOSTCallback callback) {
 
         FirebasePush firebasePush = new FirebasePush();
         firebasePush.setTo(BuildConfig.DEBUG ? "/topics/test_news" : "/topics/news");
-        firebasePush.setNotification(new FirebasePush.FirebaseNotification(title,  text));
+//        firebasePush.setNotification(new FirebasePush.FirebaseNotification(title,  text));
 
-        firebasePush.setIdNewsData("123");
+        FirebasePushData firebaseData = new FirebasePushData();
+        firebaseData.setTitle(title);
+        firebaseData.setMessage(text);
+        firebaseData.setId_news(hasNews ? "0" : null);
+        firebasePush.setData(firebaseData);
 
         String serverKey = "key=" + context.getString(R.string.firebase_server_key);
 

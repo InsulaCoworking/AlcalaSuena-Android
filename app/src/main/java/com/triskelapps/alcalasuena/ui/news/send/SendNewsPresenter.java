@@ -142,8 +142,7 @@ public class SendNewsPresenter extends BasePresenter {
         });
     }
 
-
-    public void sendNews(final String title, final String text, String link, String linkButtonText) {
+    public void onSendButtonClick(final String title, final String text, final String link, String linkButtonText) {
 
         if (text.isEmpty() || title.isEmpty()) {
             view.toast(R.string.write_news);
@@ -154,12 +153,35 @@ public class SendNewsPresenter extends BasePresenter {
             linkButtonText = context.getString(R.string.more_info);
         }
 
+        final String finalLinkButtonText = linkButtonText;
+
+        new AlertDialog.Builder(context, R.style.CustomDialogTheme)
+                .setTitle(title)
+                .setMessage(text)
+                .setPositiveButton(R.string.send_news, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        sendNews(title, text, link, finalLinkButtonText);
+                    }
+                })
+                .setNegativeButton(R.string.send_notification, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        sendNotificationPush(title, text, false);
+                    }
+                })
+                .setNeutralButton(R.string.back, null)
+                .show();
+    }
+
+    public void sendNews(final String title, final String text, String link, String linkButtonText) {
+
         view.showProgressDialog(context.getString(R.string.sending_news));
         newsInteractor.sendNews(title, text, link, linkButtonText, imagePath, new BaseInteractor.BasePOSTCallback() {
             @Override
             public void onSuccess(Integer id) {
                 view.toast(R.string.news_sent);
-                sendNotificationPush(title, text);
+                sendNotificationPush(title, text, true);
             }
 
             @Override
@@ -169,10 +191,10 @@ public class SendNewsPresenter extends BasePresenter {
         });
     }
 
-    private void sendNotificationPush(String title, String text) {
+    private void sendNotificationPush(String title, String text, boolean hasNews) {
 
         view.showProgressDialog(context.getString(R.string.sending_notification));
-        newsInteractor.sendNewsNotification(title, text, new BaseInteractor.BasePOSTCallback() {
+        newsInteractor.sendNewsNotification(title, text, hasNews, new BaseInteractor.BasePOSTCallback() {
             @Override
             public void onSuccess(Integer id) {
                 view.toast(R.string.notification_sent);
