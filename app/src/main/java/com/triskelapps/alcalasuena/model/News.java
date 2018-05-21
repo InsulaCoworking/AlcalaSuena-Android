@@ -5,6 +5,7 @@ import android.webkit.URLUtil;
 
 import com.triskelapps.alcalasuena.api.common.ApiClient;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -16,7 +17,7 @@ import io.realm.annotations.PrimaryKey;
  * Created by julio on 2/06/17.
  */
 
-public class News extends RealmObject {
+public class News extends RealmObject implements Serializable {
 
     public static final String ID = "id";
     public static final String TITLE = "title";
@@ -48,7 +49,8 @@ public class News extends RealmObject {
     private Long caducityDateTime;
 
 
-    public static DateFormat datetimeNewsFormatApi = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+    public static DateFormat datetimeNewsFormatApiGet = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+    public static DateFormat datetimeNewsFormatApiPost = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     public boolean hasValidLinkButton() {
         return getBtn_text() != null && URLUtil.isValidUrl(getBtn_link());
@@ -58,15 +60,15 @@ public class News extends RealmObject {
 
         try {
             if (getStart_date() != null) {
-                setStartDatePopupTime(datetimeNewsFormatApi.parse(getStart_date()).getTime());
+                setStartDatePopupTime(datetimeNewsFormatApiGet.parse(getStart_date()).getTime());
             }
 
             if (getEnd_date() != null) {
-                setEndDatePopupTime(datetimeNewsFormatApi.parse(getEnd_date()).getTime());
+                setEndDatePopupTime(datetimeNewsFormatApiGet.parse(getEnd_date()).getTime());
             }
 
             if (getCaducity() != null) {
-                setCaducityDateTime(datetimeNewsFormatApi.parse(getCaducity()).getTime());
+                setCaducityDateTime(datetimeNewsFormatApiGet.parse(getCaducity()).getTime());
             }
         } catch (ParseException e) {
             e.printStackTrace();

@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.util.Log;
 
 import com.google.firebase.crash.FirebaseCrash;
+import com.google.gson.Gson;
 import com.triskelapps.alcalasuena.App;
 import com.triskelapps.alcalasuena.BuildConfig;
 import com.triskelapps.alcalasuena.DebugHelper;
@@ -23,14 +24,14 @@ import com.triskelapps.alcalasuena.interactor.VenueInteractor;
 import com.triskelapps.alcalasuena.model.Band;
 import com.triskelapps.alcalasuena.model.Event;
 import com.triskelapps.alcalasuena.model.Filter;
-import com.triskelapps.alcalasuena.model.notification.FirebasePush;
 import com.triskelapps.alcalasuena.model.News;
 import com.triskelapps.alcalasuena.model.Venue;
+import com.triskelapps.alcalasuena.model.notification.FirebasePush;
 import com.triskelapps.alcalasuena.ui.band_info.BandInfoPresenter;
-import com.triskelapps.alcalasuena.ui.news.NewsPresenter;
+import com.triskelapps.alcalasuena.ui.info.WebViewActivity;
+import com.triskelapps.alcalasuena.ui.news_info.NewsInfoPresenter;
 import com.triskelapps.alcalasuena.ui.splash.SplashPresenter;
 import com.triskelapps.alcalasuena.util.Util;
-import com.triskelapps.alcalasuena.views.DialogShowNews;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -108,8 +109,6 @@ public class MainPresenter extends BasePresenter {
         newsInteractor = new NewsInteractor(context, view);
 
 
-
-
     }
 
     public void onCreate(Intent intent) {
@@ -138,7 +137,6 @@ public class MainPresenter extends BasePresenter {
         if (Util.isConnected(context)) {
             checkDataVersionAndUpdate();
             checkNewVersionInMarket();
-            checkNews();
         }
 
         if (getPrefs().getBoolean(SHARED_FIRST_TIME_APP_LAUNCHING, true)) {
@@ -207,7 +205,7 @@ public class MainPresenter extends BasePresenter {
             public void onError(String error) {
                 FirebaseCrash.report(new Error("Error updating bands from API: " + error));
 //                Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
-        Log.i(TAG, "---> update bands error");
+                Log.i(TAG, "---> update bands error");
             }
         });
     }
@@ -370,11 +368,21 @@ public class MainPresenter extends BasePresenter {
                 // This link is not for this app
                 showFunnyDialogForThisUserFail(appLinkData);
             }
-        } else if (intent.hasExtra(FirebasePush.KEY_NEWS_ID)) {
-            String newsId = intent.getStringExtra(FirebasePush.KEY_NEWS_ID);
-            if (newsId != null) {
-                context.startActivity(NewsPresenter.newNewsActivity(context));
+        } else if (intent.hasExtra(FirebasePush.NOTIFICATION_NEWS)) {
+
+            String newsJson = intent.getStringExtra(FirebasePush.NOTIFICATION_NEWS);
+            final News news = new Gson().fromJson(newsJson, News.class);
+            if (news != null) {
+                news.configureDatesTime();
+                int newsId = news.getId();
+                context.startActivity(NewsInfoPresenter.newNewsInfoActivity(context, newsId));
+
             }
+        }
+
+        if (intent.hasExtra(FirebasePush.EXTRA_OPEN_URL_LINK)) {
+            String link = intent.getStringExtra(FirebasePush.NOTIFICATION_CUSTOM_BUTTON_LINK);
+            WebViewActivity.startRemoteUrl(context, null, link);
         }
     }
 
@@ -386,7 +394,7 @@ public class MainPresenter extends BasePresenter {
                 int currentVersion = BuildConfig.VERSION_CODE;
                 if (newVersion > currentVersion) {
 //                    if (!BuildConfig.DEBUG) {
-                        view.showNewVersionAvailable();
+                    view.showNewVersionAvailable();
 //                    }
                 }
             }
@@ -398,25 +406,6 @@ public class MainPresenter extends BasePresenter {
         });
     }
 
-
-    private void checkNews() {
-
-        newsInteractor.getNewsFromApi(new NewsInteractor.NewsCallback() {
-            @Override
-            public void onResponse(List<News> newsList) {
-                News news = newsInteractor.getLastUnseenNews();
-                if (news != null) {
-                    DialogShowNews.newInstace(context).show(news);
-                    newsInteractor.setNewsSeen(news.getId());
-                }
-            }
-
-            @Override
-            public void onError(String error) {
-
-            }
-        });
-    }
 
     private void showImportEventsDialog(final String[] idsFavsStr) {
 

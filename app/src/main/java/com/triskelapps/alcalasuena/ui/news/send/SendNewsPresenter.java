@@ -15,10 +15,12 @@ import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
+import com.triskelapps.alcalasuena.DebugHelper;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BaseInteractor;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.interactor.NewsInteractor;
+import com.triskelapps.alcalasuena.model.News;
 import com.triskelapps.alcalasuena.util.Util;
 
 import java.io.File;
@@ -167,21 +169,21 @@ public class SendNewsPresenter extends BasePresenter {
                 .setNegativeButton(R.string.send_notification, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        sendNotificationPush(title, text, false);
+                        sendNotificationPush(title, text,link, finalLinkButtonText,null);
                     }
                 })
                 .setNeutralButton(R.string.back, null)
                 .show();
     }
 
-    public void sendNews(final String title, final String text, String link, String linkButtonText) {
+    public void sendNews(final String title, final String text, final String link, final String linkButtonText) {
 
         view.showProgressDialog(context.getString(R.string.sending_news));
-        newsInteractor.sendNews(title, text, link, linkButtonText, imagePath, new BaseInteractor.BasePOSTCallback() {
+        newsInteractor.sendNews(title, text, link, linkButtonText, imagePath, new BaseInteractor.BasePOSTFullEntityCallback<News>() {
             @Override
-            public void onSuccess(Integer id) {
+            public void onSuccess(News news) {
                 view.toast(R.string.news_sent);
-                sendNotificationPush(title, text, true);
+                sendNotificationPush(title, text, link, linkButtonText, news);
             }
 
             @Override
@@ -191,10 +193,20 @@ public class SendNewsPresenter extends BasePresenter {
         });
     }
 
-    private void sendNotificationPush(String title, String text, boolean hasNews) {
+    private void sendNotificationPush(String title, String text, String link, String linkButtonText, News news) {
+
+        if (DebugHelper.SWITCH_MOCK_NOTIF_NEWS) {
+            news = new News();
+            news.setTitle(title);
+            news.setText(text);
+            news.setBtn_link(link);
+            news.setBtn_text(linkButtonText);
+            news.setId(0);
+        }
+
 
         view.showProgressDialog(context.getString(R.string.sending_notification));
-        newsInteractor.sendNewsNotification(title, text, hasNews, new BaseInteractor.BasePOSTCallback() {
+        newsInteractor.sendNewsNotification(title, text, link, linkButtonText, news, new BaseInteractor.BasePOSTCallback() {
             @Override
             public void onSuccess(Integer id) {
                 view.toast(R.string.notification_sent);

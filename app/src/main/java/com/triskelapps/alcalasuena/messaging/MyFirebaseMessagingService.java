@@ -15,14 +15,20 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.util.Patterns;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.google.gson.Gson;
 import com.triskelapps.alcalasuena.App;
 import com.triskelapps.alcalasuena.R;
+import com.triskelapps.alcalasuena.model.News;
+import com.triskelapps.alcalasuena.model.notification.FirebasePush;
 import com.triskelapps.alcalasuena.ui.MainActivity;
 
 import java.util.Map;
+
+import io.realm.Realm;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
@@ -96,9 +102,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             message = remoteMessage.getNotification().getBody();
             idNews = null;
         } else {
-            title = notifData.get("title");
-            message = notifData.get("message");
-            idNews = notifData.get("id_news");
+            title = notifData.get(FirebasePush.NOTIFICATION_TITLE);
+            message = notifData.get(FirebasePush.NOTIFICATION_MESSAGE);
+            idNews = notifData.get(FirebasePush.NOTIFICATION_ID_NEWS);
         }
 
         Bundle extras = new Bundle();
@@ -107,12 +113,33 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             extras.putString(entry.getKey(), entry.getValue());
         }
 
-        Intent intent = new Intent(App.ACTION_SHOW_NOTIFICATION);
-        intent.putExtras(extras);
-        getApplicationContext().sendBroadcast(intent);
+//        Intent intent = new Intent(App.ACTION_SHOW_NOTIFICATION);
+//        intent.putExtras(extras);
+//        getApplicationContext().sendBroadcast(intent);
+
+
+        if (extras.containsKey(FirebasePush.NOTIFICATION_NEWS)) {
+            saveNews(extras);
+        }
 
         sendNotification(title, message, idNews, extras);
 
+    }
+
+    private void saveNews(Bundle extras) {
+        if (extras.containsKey(FirebasePush.NOTIFICATION_NEWS)) {
+            String newsJson = extras.getString(FirebasePush.NOTIFICATION_NEWS);
+            final News news = new Gson().fromJson(newsJson, News.class);
+            if (news != null) {
+                news.configureDatesTime();
+                Realm.getDefaultInstance().executeTransaction(new Realm.Transaction() {
+                    @Override
+                    public void execute(Realm realm) {
+                        realm.insertOrUpdate(news);
+                    }
+                });
+            }
+        }
     }
 
     private void sendNotification(String title, String text, String idNews, Bundle extras) {
@@ -136,9 +163,30 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         .bigText(text))
                 .setContentIntent(pendingIntent);
 
+        String btnText = extras.getString(FirebasePush.NOTIFICATION_CUSTOM_BUTTON_TEXT);
+        String btnLink = extras.getString(FirebasePush.NOTIFICATION_CUSTOM_BUTTON_LINK);
+        if (btnLink != null && Patterns.WEB_URL.matcher(btnLink).matches()) {
+            PendingIntent pIntentLink = getLinkPendingIntent(extras);
+            notificationBuilder.addAction(R.mipmap.ic_link_web, btnText, pIntentLink);
+        } else {
+            extras.remove(FirebasePush.NOTIFICATION_CUSTOM_BUTTON_LINK);
+        }
+
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
     }
+
+    private PendingIntent getLinkPendingIntent(Bundle extras) {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtras(extras);
+        intent.putExtra(FirebasePush.EXTRA_OPEN_URL_LINK, true);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 1 /* Request code */, intent,
+                PendingIntent.FLAG_ONE_SHOT);
+
+        return pendingIntent;
+    }
+
 }

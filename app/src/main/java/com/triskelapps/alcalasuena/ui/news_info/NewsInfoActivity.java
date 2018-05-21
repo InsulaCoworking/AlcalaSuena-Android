@@ -15,6 +15,7 @@ import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.model.News;
 import com.triskelapps.alcalasuena.ui.MainPresenter;
 import com.triskelapps.alcalasuena.ui.image_full.ImageFullActivity;
+import com.triskelapps.alcalasuena.ui.info.WebViewActivity;
 
 public class NewsInfoActivity extends BaseActivity implements NewsInfoView {
 
@@ -74,7 +75,7 @@ public class NewsInfoActivity extends BaseActivity implements NewsInfoView {
             btnNewsLink.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(news.getBtn_link())));
+                    WebViewActivity.startRemoteUrl(NewsInfoActivity.this, null, news.getBtn_link());
                 }
             });
         } else {

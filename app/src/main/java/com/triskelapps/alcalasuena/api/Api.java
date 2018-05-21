@@ -46,7 +46,7 @@ public interface Api {
 
     @Multipart
     @POST("https://alcalasuena.es/news/add/")
-    Observable<Response<Void>> sendNews(@Part MultipartBody.Part filePart, @PartMap Map<String, RequestBody> params);
+    Observable<Response<News>> sendNews(@Part MultipartBody.Part filePart, @PartMap Map<String, RequestBody> params);
 
     @POST("https://fcm.googleapis.com/fcm/send")
     Observable<Response<Void>> sendPush(@Header("Authorization") String serverKey, @Body FirebasePush firebasePush);

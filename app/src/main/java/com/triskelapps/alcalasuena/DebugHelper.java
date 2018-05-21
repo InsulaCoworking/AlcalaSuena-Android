@@ -14,6 +14,9 @@ public class DebugHelper {
 
     // Falses
     private static final boolean FORZE_DATA_SYNC = false;
+    private static final boolean MOCK_NOTIF_NEWS = false;
+
+
 
 
 
@@ -64,4 +67,8 @@ public class DebugHelper {
 
     public static final boolean SWITCH_DEBUG_TOKEN = BuildConfig.DEBUG
             || FORZE_BETA_ENV_APK ? DEBUG_TOKEN : false;
+
+    public static final boolean SWITCH_MOCK_NOTIF_NEWS = BuildConfig.DEBUG
+            || FORZE_BETA_ENV_APK ? MOCK_NOTIF_NEWS : false;
+
 }

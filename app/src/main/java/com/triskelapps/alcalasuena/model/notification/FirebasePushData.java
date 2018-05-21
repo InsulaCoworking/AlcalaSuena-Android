@@ -2,11 +2,13 @@ package com.triskelapps.alcalasuena.model.notification;
 
 
 public class FirebasePushData {
+
     private String id_news;
     private String title;
     private String message;
     private String btn_link;
     private String btn_text;
+    private String newsJson;
 
     public String getId_news() {
         return id_news;
@@ -46,5 +48,13 @@ public class FirebasePushData {
 
     public void setBtn_text(String btn_text) {
         this.btn_text = btn_text;
+    }
+
+    public String getNewsJson() {
+        return newsJson;
+    }
+
+    public void setNewsJson(String newsJson) {
+        this.newsJson = newsJson;
     }
 }

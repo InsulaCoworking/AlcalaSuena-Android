@@ -75,7 +75,9 @@
             </intent-filter>
         </service>
         <!-- [END firebase_iid_service] -->
-        <activity android:name=".ui.news.send.SendNewsActivity"></activity>
+        <activity android:name=".ui.news.send.SendNewsActivity" />
+        <activity android:name=".ui.info.WebViewActivity"
+            android:parentActivityName=".ui.MainActivity"/>
     </application>
 
 </manifest>

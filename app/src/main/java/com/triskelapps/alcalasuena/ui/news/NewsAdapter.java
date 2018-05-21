@@ -53,7 +53,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         holder.tvNewsText.setText(news.getText());
         Picasso.with(context)
                 .load(news.getImageUrlFull())
-//                .placeholder(R.mipmap.img_default_grid)
+                .placeholder(R.mipmap.img_default_grid)
 //                .error(R.mipmap.img_default_grid)
                 .resizeDimen(R.dimen.width_image_small, R.dimen.height_image_small)
                 .into(holder.imgNews);

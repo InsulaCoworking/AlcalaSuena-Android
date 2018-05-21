@@ -2,6 +2,7 @@ package com.triskelapps.alcalasuena.interactor;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
 import com.triskelapps.alcalasuena.BuildConfig;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.api.Api;
@@ -96,6 +97,7 @@ public class NewsInteractor extends BaseInteractor {
         }
 
         realm.beginTransaction();
+        realm.delete(News.class);
         realm.insertOrUpdate(newsList);
         realm.commitTransaction();
     }
@@ -148,7 +150,7 @@ public class NewsInteractor extends BaseInteractor {
     }
 
 
-    public void sendNews(String title, String text, String link, String linkButtonText, String imagePath, final BasePOSTCallback callback) {
+    public void sendNews(String title, String text, String link, String linkButtonText, String imagePath, final BasePOSTFullEntityCallback<News> callback) {
 
         if (!Util.isConnected(context)) {
             return;
@@ -161,30 +163,30 @@ public class NewsInteractor extends BaseInteractor {
                     title.replace(" ", "-") + ".jpg",
                     RequestBody.create(MediaType.parse("image/*"), new File(imagePath)));
         }
-        params.put("title", RequestBody.create(MediaType.parse("text/plain"), title));
-        params.put("text", RequestBody.create(MediaType.parse("text/plain"), text));
-        params.put("btn_text", RequestBody.create(MediaType.parse("text/plain"), linkButtonText));
-        params.put("btn_link", RequestBody.create(MediaType.parse("text/plain"), link));
-        params.put("native_code", RequestBody.create(MediaType.parse("text/plain"), "-1"));
+        params.put(News.TITLE, RequestBody.create(MediaType.parse("text/plain"), title));
+        params.put(News.TEXT, RequestBody.create(MediaType.parse("text/plain"), text));
+        params.put(News.BTN_TEXT, RequestBody.create(MediaType.parse("text/plain"), linkButtonText));
+        params.put(News.BTN_LINK, RequestBody.create(MediaType.parse("text/plain"), link));
+        params.put(News.NATIVE_SCREEN_CODE, RequestBody.create(MediaType.parse("text/plain"), "-1"));
 
-        // todo IMPORTANT DATES API BUG
         Calendar calendar = Calendar.getInstance();
-        String startDate = News.datetimeNewsFormatApi.format(new Date(calendar.getTimeInMillis()));
+        String startDate = News.datetimeNewsFormatApiPost.format(new Date(calendar.getTimeInMillis()));
 
         calendar.add(Calendar.MONTH, 6);
-        String endDate = News.datetimeNewsFormatApi.format(new Date(calendar.getTimeInMillis()));
+        String endDate = News.datetimeNewsFormatApiPost.format(new Date(calendar.getTimeInMillis()));
 
-//        params.put("start_date", RequestBody.create(MediaType.parse("text/plain"), startDate));
-//        params.put("end_date", RequestBody.create(MediaType.parse("text/plain"), endDate));
-//        params.put("caducity", RequestBody.create(MediaType.parse("text/plain"), endDate));
+        params.put(News.START_DATE_POPUP, RequestBody.create(MediaType.parse("text/plain"), startDate));
+        params.put(News.END_DATE_POPUP, RequestBody.create(MediaType.parse("text/plain"), endDate));
+        params.put(News.CADUCITY_DATE, RequestBody.create(MediaType.parse("text/plain"), endDate));
 
+        params.put("api_key", RequestBody.create(MediaType.parse("text/plain"), context.getString(R.string.api_key)));
 
 
         getApi().sendNews(filePart, params)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnTerminate(actionTerminate)
-                .subscribe(new Observer<Response<Void>>() {
+                .subscribe(new Observer<Response<News>>() {
                     @Override
                     public void onCompleted() {
                     }
@@ -196,10 +198,10 @@ public class NewsInteractor extends BaseInteractor {
                     }
 
                     @Override
-                    public void onNext(Response<Void> response) {
+                    public void onNext(Response<News> response) {
 
                         if (response.isSuccessful()) {
-                            callback.onSuccess(null);
+                            callback.onSuccess(response.body());
                         } else {
                             try {
                                 callback.onError(response.errorBody().string());
@@ -214,7 +216,7 @@ public class NewsInteractor extends BaseInteractor {
     }
 
 
-    public void sendNewsNotification(String title, String text, boolean hasNews, final BasePOSTCallback callback) {
+    public void sendNewsNotification(String title, String text, String link, String linkButtonText, News news, final BasePOSTCallback callback) {
 
         FirebasePush firebasePush = new FirebasePush();
         firebasePush.setTo(BuildConfig.DEBUG ? "/topics/test_news" : "/topics/news");
@@ -223,7 +225,12 @@ public class NewsInteractor extends BaseInteractor {
         FirebasePushData firebaseData = new FirebasePushData();
         firebaseData.setTitle(title);
         firebaseData.setMessage(text);
-        firebaseData.setId_news(hasNews ? "0" : null);
+        firebaseData.setBtn_link(link);
+        firebaseData.setBtn_text(linkButtonText);
+        firebaseData.setId_news(news != null ? String.valueOf(news.getId()) : null);
+        if (news != null) {
+            firebaseData.setNewsJson(new Gson().toJson(news));
+        }
         firebasePush.setData(firebaseData);
 
         String serverKey = "key=" + context.getString(R.string.firebase_server_key);

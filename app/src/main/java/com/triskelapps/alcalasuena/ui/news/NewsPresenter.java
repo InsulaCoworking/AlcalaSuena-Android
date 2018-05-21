@@ -55,6 +55,20 @@ import java.util.List;
          List<News> newsList = newsInteractor.getNewsFromDB();
          view.showNewsList(newsList);
 
+//         view.showProgressDialog(context.getString(R.string.loading));
+         newsInteractor.getNewsFromApi(new NewsInteractor.NewsCallback() {
+             @Override
+             public void onResponse(List<News> newsListReceived) {
+                 List<News> newsList = newsInteractor.getNewsFromDB();
+                 view.showNewsList(newsList);
+             }
+
+             @Override
+             public void onError(String error) {
+                view.toast(error);
+             }
+         });
+
      }
 
     public void onNewsClicked(int idNews) {
