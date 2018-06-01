@@ -49,11 +49,9 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position2) {
+    public void onBindViewHolder(final ViewHolder holder, final int position2) {
 
-        final int safePosition = holder.getAdapterPosition();
-
-        final Event event = getItemAtPosition(safePosition);
+        final Event event = getItemAtPosition(holder.getAdapterPosition());
 
         final Band band = event.getBandEntity();
         if (band == null) {
@@ -89,14 +87,14 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
         holder.rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                itemClickListener.onBandClicked(band.getId());
+                itemClickListener.onBandClicked(getItemAtPosition(holder.getAdapterPosition()).getBandEntity().getId());
             }
         });
 
         holder.imgStarred.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                itemClickListener.onEventFavouriteClicked(event.getId());
+                itemClickListener.onEventFavouriteClicked(getItemAtPosition(holder.getAdapterPosition()).getId());
             }
         });
     }

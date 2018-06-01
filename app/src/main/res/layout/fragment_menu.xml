@@ -35,7 +35,8 @@
 
                 <ImageView
                     style="@style/ImageMenuIcon"
-                    android:src="@mipmap/ic_menu_bands"/>
+                    android:src="@mipmap/ic_menu_bands" />
+
                 <TextView
                     style="@style/BtnMenu"
                     android:text="@string/bands" />
@@ -48,7 +49,8 @@
 
                 <ImageView
                     style="@style/ImageMenuIcon"
-                    android:src="@mipmap/ic_menu_venues"/>
+                    android:src="@mipmap/ic_menu_venues" />
+
                 <TextView
                     style="@style/BtnMenu"
                     android:text="@string/venues" />
@@ -62,7 +64,8 @@
 
                 <ImageView
                     style="@style/ImageMenuIcon"
-                    android:src="@mipmap/ic_menu_map"/>
+                    android:src="@mipmap/ic_menu_map" />
+
                 <TextView
                     style="@style/BtnMenu"
                     android:text="@string/map" />
@@ -75,7 +78,8 @@
 
                 <ImageView
                     style="@style/ImageMenuIcon"
-                    android:src="@mipmap/ic_news"/>
+                    android:src="@mipmap/ic_news" />
+
                 <TextView
                     style="@style/BtnMenu"
                     android:text="@string/news" />
@@ -88,7 +92,8 @@
 
                 <ImageView
                     style="@style/ImageMenuIcon"
-                    android:src="@mipmap/ic_menu_info2"/>
+                    android:src="@mipmap/ic_menu_info2" />
+
                 <TextView
                     style="@style/BtnMenu"
                     android:text="@string/about_alcalasuena" />
@@ -96,6 +101,7 @@
             </LinearLayout>
 
             <View style="@style/SeparatorHorizontal.Grey" />
+
             <View style="@style/XpansorVert" />
 
             <LinearLayout
@@ -106,12 +112,12 @@
                 <TextView
                     android:id="@+id/tv_developed"
                     style="@style/TextBase.Bold"
-                    android:text="@string/developed_by_insula"
                     android:layout_below="@+id/img_logo_insula"
                     android:layout_marginTop="10dp"
-                    android:textSize="14sp"
+                    android:gravity="center_horizontal"
                     android:padding="5dp"
-                    android:gravity="center_horizontal"/>
+                    android:text="@string/developed_by_insula"
+                    android:textSize="14sp" />
 
                 <LinearLayout
                     android:id="@+id/btn_about_insula"
@@ -119,7 +125,8 @@
 
                     <ImageView
                         style="@style/ImageMenuIcon"
-                        android:src="@mipmap/logo_bullet"/>
+                        android:src="@mipmap/logo_bullet" />
+
                     <TextView
                         style="@style/BtnMenu"
                         android:text="@string/about_app" />
@@ -131,43 +138,63 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="wrap_content"
                 android:background="@color/grey_dark_general"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
+                android:gravity="center"
+                android:orientation="vertical"
                 android:padding="5dp">
+
+                <TextView
+                    style="@style/TextBase.White"
+                    android:text="@string/sponsor"/>
 
                 <ImageView
                     android:id="@+id/btn_logo_mahou"
-                    style="@style/ImageLogo"
-                    android:src="@mipmap/logo_mahou"
-                    android:tag="http://www.mahou.es/"
-                    android:visibility="gone"/>
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@mipmap/ic_logo_radler"
+                    android:tag="https://www.amstel.es/"
+                    android:visibility="visible"/>
 
-                <ImageView
-                    android:id="@+id/btn_logo_alcalasuena"
-                    style="@style/ImageLogo"
-                    android:padding="6dp"
-                    android:src="@mipmap/img_logo_alcalasuena"
-                    android:tag="http://www.alcalasuena.es/" />
+                <TextView
+                    style="@style/TextBase.White"
+                    android:text="@string/amstel_recomends"
+                    android:gravity="center_horizontal"
+                    android:textSize="14sp"/>
 
-                <ImageView
-                    android:id="@+id/btn_logo_alcalaesmusica"
-                    style="@style/ImageLogo"
-                    android:padding="11dp"
-                    android:src="@mipmap/img_logo_alcalaesmusica"
-                    android:tag="http://www.alcalaesmusica.org/" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="15dp">
 
-                <ImageView
-                    android:id="@+id/btn_logo_ayto_alcala"
-                    style="@style/ImageLogo"
-                    android:padding="5dp"
-                    android:src="@mipmap/img_logo_ayto_alcala"
-                    android:tag="http://ayto-alcaladehenares.es/" />
+                    <ImageView
+                        android:id="@+id/btn_logo_alcalasuena"
+                        style="@style/ImageLogo"
+                        android:padding="6dp"
+                        android:src="@mipmap/img_logo_alcalasuena"
+                        android:tag="http://www.alcalasuena.es/" />
 
+                    <View style="@style/XpansorHoriz" />
+
+                    <ImageView
+                        android:id="@+id/btn_logo_alcalaesmusica"
+                        style="@style/ImageLogo"
+                        android:padding="11dp"
+                        android:src="@mipmap/img_logo_alcalaesmusica"
+                        android:tag="http://www.alcalaesmusica.org/" />
+                    <View style="@style/XpansorHoriz" />
+
+                    <ImageView
+                        android:id="@+id/btn_logo_ayto_alcala"
+                        style="@style/ImageLogo"
+                        android:padding="5dp"
+                        android:src="@mipmap/img_logo_ayto_alcala"
+                        android:tag="http://ayto-alcaladehenares.es/" />
+                </LinearLayout>
 
             </LinearLayout>
-
 
 
         </LinearLayout>

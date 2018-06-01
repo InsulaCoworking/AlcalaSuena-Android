@@ -11,9 +11,8 @@
     </style>
 
     <style name="ImageLogo">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">70dp</item>
         <item name="android:adjustViewBounds">true</item>
     </style>
 

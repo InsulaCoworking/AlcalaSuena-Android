@@ -4,7 +4,9 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebChromeClient;
@@ -32,6 +34,7 @@ public class WebViewActivity extends BaseActivity {
 
     private WebView webView;
     private ProgressBar progressWebview;
+    private String url;
 
 
     public static Intent getRemoteUrlIntent(Context context, String title, String url) {
@@ -74,8 +77,8 @@ public class WebViewActivity extends BaseActivity {
         }
 
         if (getIntent().hasExtra(EXTRA_URL)) {
-            String url = getIntent().getStringExtra(EXTRA_URL);
-            webView.loadUrl(url);
+            url = getIntent().getStringExtra(EXTRA_URL);
+//            webView.loadUrl(url);
 
         } else if (getIntent().hasExtra(EXTRA_FILENAME)) {
             String filename = getIntent().getStringExtra(EXTRA_FILENAME);
@@ -94,12 +97,22 @@ public class WebViewActivity extends BaseActivity {
 
         sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
 
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+        finish();
+
     }
 
     @Override
     public BasePresenter getPresenter() {
         return null;
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_webview, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
 
 
     private void loadHtml(String htmlFile) {
@@ -134,10 +147,17 @@ public class WebViewActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-            return true;
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+            case R.id.menuItem_web:
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+                finish();
+                break;
         }
+
         return super.onOptionsItemSelected(item);
     }
 

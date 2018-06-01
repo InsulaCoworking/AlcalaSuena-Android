@@ -43,11 +43,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position2) {
+    public void onBindViewHolder(final ViewHolder holder, int position2) {
 
-        final int safePosition = holder.getAdapterPosition();
-
-        News news = getItemAtPosition(safePosition);
+        final News news = getItemAtPosition(holder.getAdapterPosition());
 
         holder.tvNewsTitle.setText(news.getTitle());
         holder.tvNewsText.setText(news.getText());
@@ -59,21 +57,17 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
                 .into(holder.imgNews);
 
 
-        addClickListener(holder.rootView, safePosition, news.getId());
-    }
-
-    private void addClickListener(View view, final int position, final int id) {
-
-        view.setOnClickListener(new View.OnClickListener() {
+        holder.rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if (itemClickListener != null) {
-                    itemClickListener.onItemClick(v, position, id);
+                    itemClickListener.onItemClick(v, holder.getAdapterPosition(), news.getId());
                 }
             }
         });
     }
+
 
     @Override
     public int getItemCount() {

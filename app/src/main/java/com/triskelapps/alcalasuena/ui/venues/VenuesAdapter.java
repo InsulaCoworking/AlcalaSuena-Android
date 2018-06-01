@@ -43,11 +43,9 @@ public class VenuesAdapter extends RecyclerView.Adapter<VenuesAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position2) {
+    public void onBindViewHolder(final ViewHolder holder, int position2) {
 
-        final int safePosition = holder.getAdapterPosition();
-
-        Venue venue = getItemAtPosition(safePosition);
+        Venue venue = getItemAtPosition(holder.getAdapterPosition());
 
         holder.tvVenueName.setText(venue.getName());
         Picasso.with(context)
@@ -58,21 +56,17 @@ public class VenuesAdapter extends RecyclerView.Adapter<VenuesAdapter.ViewHolder
                 .into(holder.imgVenue);
 
 
-        addClickListener(holder.rootView, safePosition, venue.getId());
-    }
-
-    private void addClickListener(View view, final int position, final int id) {
-
-        view.setOnClickListener(new View.OnClickListener() {
+        holder.rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if (itemClickListener != null) {
-                    itemClickListener.onItemClick(v, position, id);
+                    itemClickListener.onItemClick(v, holder.getAdapterPosition(), getItemAtPosition(holder.getAdapterPosition()).getId());
                 }
             }
         });
     }
+
 
     @Override
     public int getItemCount() {

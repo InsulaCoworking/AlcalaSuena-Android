@@ -90,7 +90,7 @@ public class IntroActivity extends BaseActivity implements IntroView, View.OnCli
 
         imgArrowLeft.setVisibility(position == 0 ? View.INVISIBLE : View.VISIBLE);
         imgArrowRight.setVisibility(View.VISIBLE);
-        imgArrowRight.setImageResource(position == adapter.getCount()-1 ? R.mipmap.ic_cuernos : R.mipmap.ic_arrow_right_intro);
+        imgArrowRight.setImageResource(position == adapter.getCount()-1 ? R.mipmap.ic_logo_alcala_suena : R.mipmap.ic_arrow_right_intro);
     }
 
     @Override

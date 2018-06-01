@@ -42,11 +42,9 @@ public class EventsBandAdapter extends RecyclerView.Adapter<EventsBandAdapter.Vi
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position2) {
+    public void onBindViewHolder(final ViewHolder holder, final int position2) {
 
-        final int safePosition = holder.getAdapterPosition();
-
-        final Event event = getItemAtPosition(safePosition);
+        final Event event = getItemAtPosition(holder.getAdapterPosition());
 
 
         holder.tvEventBandDay.setText(event.getDayShareFormat());
@@ -59,7 +57,7 @@ public class EventsBandAdapter extends RecyclerView.Adapter<EventsBandAdapter.Vi
         holder.imgStarred.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                itemClickListener.onEventFavouriteClicked(event.getId());
+                itemClickListener.onEventFavouriteClicked(getItemAtPosition(holder.getAdapterPosition()).getId());
             }
         });
     }

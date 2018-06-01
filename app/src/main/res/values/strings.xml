@@ -111,5 +111,8 @@
     <string name="sending_notification">Enviando notificación...</string>
     <string name="notification_sent">Notificación enviada</string>
     <string name="send_notification">Enviar solo notificación</string>
+    <string name="web">Abrir navegador</string>
+    <string name="sponsor">Patrocina</string>
+    <string name="amstel_recomends">Amstel recomienda el consumo responsable</string>
 
 </resources>
