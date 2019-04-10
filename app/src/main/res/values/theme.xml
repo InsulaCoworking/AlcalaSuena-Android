@@ -22,7 +22,7 @@
     </style>
 
     <style name="PositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
-        <item name="android:textColor">@color/blue_general</item>
+        <item name="android:textColor">@color/bg_color_main</item>
     </style>
 
 
@@ -40,7 +40,7 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="colorControlNormal">@color/colorAccent</item>
+        <item name="colorControlNormal">@color/items_main</item>
         <item name="android:actionMenuTextAppearance">@style/MyMenuTextAppearance</item>
     </style>
 

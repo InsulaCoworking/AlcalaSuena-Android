@@ -9,6 +9,7 @@
         app:showAsAction="always"
         android:title="@string/share_band"
         android:orderInCategory="100"
-        android:visible="true" />
+        android:visible="true"
+        app:iconTint="@color/items_main"/>
 
 </menu>

@@ -1,29 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/red_general</color>
-    <color name="colorPrimaryDark">@color/red_general_dark</color>
+    <color name="colorPrimary">@color/headers_main</color>
+    <color name="colorPrimaryDark">@color/headers_main_dark</color>
     <!--<color name="colorAccent">#4beae2</color>-->
-    <color name="colorAccent">#fff</color><!--ffff71-->
+    <color name="colorAccent">@color/items_main</color><!--ffff71-->
+
     <color name="grey">#AAA</color>
-    <color name="tab_selected">#18f4ea</color>
+    <color name="tab_selected">#000000</color>
+    <color name="tab_unselected">#777777</color>
     <color name="tab_selectedld_o">#ffff71</color>
-    <color name="tab_unselected">#fff</color>
     <color name="transp_black">#B000</color>
     <color name="transp_white">#b8ffffff</color>
     <color name="white">#ffffff</color>
 
-    <color name="blue_general">#008FE1</color>
-    <color name="blue_general_light">#49abe2</color>
-    <color name="blue_general_transp">#73008FE1</color>
+    <color name="bg_filter">#F5F5F5</color>
 
-    <color name="red_general">#BD080F</color>
-    <color name="red_general_transp">#73bd080f</color>
-    <color name="red_general_dark">#891519</color>
+    <color name="bg_color_main">#99EDBE4A</color>
+    <color name="bg_color_main_light">#52FFDD98</color>
+    <color name="bg_color_main_semitransp">#73edbe4a</color>
 
-    <color name="btn_menu">@color/blue_general</color>
+    <color name="headers_main">#edbe4a</color>
+    <color name="headers_main_semitransp">#63EDBE4A</color>
+    <color name="headers_main_light">#F1DD92</color>
+    <color name="headers_main_dark">#D1A53F</color>
+
+    <color name="text_color_main">#000</color>
+    <color name="text_color_inverted">#FFF</color>
+    <color name="text_color_main_semitransp">#99000000</color>
+
+
+    <color name="items_main">#000</color>
+
+    <color name="btn_menu">@color/bg_color_main</color>
     <color name="colorAccentTransp">#99ffffff</color>
     <color name="colorAccentDark">#0ab7af</color>
-    <color name="cardBackground">#BFFF</color>
+    <color name="cardBackground">@color/headers_main_semitransp</color>
     <color name="grey_dark_general">#40474A</color>
     <color name="cardBackgroundEvent">#4FFF</color>
     <color name="tagWhiteFilter">#4FFF</color>

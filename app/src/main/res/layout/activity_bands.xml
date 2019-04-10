@@ -3,15 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/blue_general">
+    android:background="@color/bg_color_main">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@mipmap/img_chico_saxo_bg_transp"
-        android:alpha="0.5"/>
+        android:src="@mipmap/img_bg_2019"
+        android:alpha="@dimen/alpha_imgs_bg"/>
 
     <View
         android:layout_width="match_parent"
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:background="@color/red_general">
+            android:background="@color/headers_main">
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/edit_search"
@@ -52,10 +52,11 @@
             android:padding="10dp"
             android:inputType="textFilter"
             android:gravity="center_horizontal"
-            android:textColor="@color/colorAccent"
-            android:textColorHint="@color/colorAccentTransp"
+            android:textColor="@color/text_color_main"
+            android:textColorHint="@color/text_color_main_semitransp"
             android:textSize="20sp"
-            app:backgroundTint="@android:color/white"/>
+            android:textCursorDrawable="@null"
+            app:backgroundTint="@color/items_main"/>
 
         </LinearLayout>
 
@@ -70,7 +71,7 @@
 
             <TextView
                 android:id="@+id/view_no_results"
-                style="@style/TextBase.White"
+                style="@style/TextBase.Inverted"
                 android:visibility="gone"
                 android:layout_centerInParent="true"
                 android:gravity="center_horizontal"

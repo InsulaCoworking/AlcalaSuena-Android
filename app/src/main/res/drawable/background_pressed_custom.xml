@@ -3,7 +3,7 @@
 
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
-            <solid android:color="@color/blue_general_transp" />
+            <solid android:color="@color/bg_color_main_semitransp" />
             <!--<solid android:color="@android:color/transparent" />-->
         </shape>
 

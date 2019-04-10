@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue_general"
+    android:background="@color/bg_color_main"
     tools:context="com.triskelapps.alcalasuena.ui.intro.IntroActivity">
 
 
@@ -12,9 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
-        android:alpha="0.3"
+        android:alpha="@dimen/alpha_imgs_bg"
         android:scaleType="centerCrop"
-        android:src="@mipmap/img_bg_menu_inverted" />
+        android:src="@mipmap/img_bg_2019" />
 
     <ImageView
         android:layout_width="match_parent"

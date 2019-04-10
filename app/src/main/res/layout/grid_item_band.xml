@@ -40,7 +40,7 @@
 
             <TextView
                 android:id="@+id/tv_band_name"
-                style="@style/TextTitle"
+                style="@style/TextTitle.Inverted"
                 android:maxLines="2"
                 android:ellipsize="middle"
                 android:textSize="30sp"
@@ -48,7 +48,7 @@
 
             <TextView
                 android:id="@+id/tv_band_genre"
-                style="@style/TextBase.White"
+                style="@style/TextBase.Inverted"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="7dp"
                 android:gravity="center_horizontal"

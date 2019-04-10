@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue_general">
+    android:background="@color/bg_color_main">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
-        android:alpha="0.5"
+        android:alpha="@dimen/alpha_imgs_bg"
         android:scaleType="centerCrop"
-        android:src="@mipmap/img_chico_violin_bg_transp" />
+        android:src="@mipmap/img_bg_2019" />
 
 
     <LinearLayout

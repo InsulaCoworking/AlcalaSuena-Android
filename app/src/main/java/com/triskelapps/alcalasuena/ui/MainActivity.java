@@ -1,11 +1,8 @@
 package com.triskelapps.alcalasuena.ui;
 
 import android.content.Intent;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -151,9 +148,6 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        Drawable iconFilter = getResources().getDrawable(R.mipmap.ic_filter);
-        iconFilter.setColorFilter(ContextCompat.getColor(this, R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
-        menu.findItem(R.id.menuItem_filter).setIcon(iconFilter);
 
         itemFav = menu.findItem(R.id.menuItem_fav);
         return super.onCreateOptionsMenu(menu);
@@ -172,6 +166,8 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
                 this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
+        toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.items_main));
     }
 
     private View getTabView(int day) {

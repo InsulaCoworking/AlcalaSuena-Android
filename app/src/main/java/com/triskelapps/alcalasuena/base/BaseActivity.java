@@ -8,8 +8,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -235,9 +238,9 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        toolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white);
 
-//        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
-//        upArrow.setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
-//        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+        final Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back);
+        upArrow.setColorFilter(getResources().getColor(R.color.items_main), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
     }
 
     public void setImageTitle(int imageId) {

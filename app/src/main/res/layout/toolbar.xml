@@ -22,7 +22,7 @@
                 app:theme="@style/AppTheme.PopupOverlay"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/red_general">
+                android:background="@color/headers_main">
 
                 <TextView
                     android:id="@+id/tv_title_toolbar"

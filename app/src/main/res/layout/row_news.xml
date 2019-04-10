@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingBottom="5dp"
-    android:paddingTop="5dp">
+    android:paddingBottom="2dp"
+    android:paddingTop="2dp">
 
 
     <android.support.v7.widget.CardView
@@ -60,7 +60,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:src="@mipmap/ic_arrow_right_intro"
-                app:tint="@color/red_general"/>
+                app:tint="@color/items_main"/>
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 

@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue_general"
+    android:background="@color/bg_color_main"
     tools:context="com.triskelapps.alcalasuena.ui.news.send.SendNewsActivity">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
-        android:alpha="0.5"
+        android:alpha="@dimen/alpha_imgs_bg"
         android:scaleType="centerCrop"
-        android:src="@mipmap/img_bg_menu_inverted" />
+        android:src="@mipmap/img_bg_2019" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,7 +49,7 @@
 
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/edit_send_news_text"
-                    style="@style/TextBase.White"
+                    style="@style/TextBase.Inverted"
                     android:layout_width="match_parent"
                     android:layout_marginTop="15dp"
                     android:textColorHint="@color/transp_white"
@@ -68,7 +68,7 @@
 
                     <android.support.v7.widget.AppCompatEditText
                         android:id="@+id/edit_link"
-                        style="@style/TextBase.White"
+                        style="@style/TextBase.Inverted"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:hint="@string/link"
@@ -79,7 +79,7 @@
 
                     <android.support.v7.widget.AppCompatEditText
                         android:id="@+id/edit_link_button_text"
-                        style="@style/TextBase.White"
+                        style="@style/TextBase.Inverted"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:hint="@string/link_button_text"
@@ -100,15 +100,15 @@
 
                     <android.support.v7.widget.AppCompatButton
                         android:id="@+id/btn_camera"
-                        style="@style/TextBase.White"
-                        android:backgroundTint="@color/red_general"
+                        style="@style/TextBase.Inverted"
+                        android:backgroundTint="@color/headers_main"
                         android:text="@string/camera" />
 
                     <android.support.v7.widget.AppCompatButton
                         android:id="@+id/btn_gallery"
-                        style="@style/TextBase.White"
+                        style="@style/TextBase.Inverted"
                         android:layout_marginLeft="40dp"
-                        android:backgroundTint="@color/red_general"
+                        android:backgroundTint="@color/headers_main"
                         android:text="@string/gallery" />
                 </LinearLayout>
 

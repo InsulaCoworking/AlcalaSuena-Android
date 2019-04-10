@@ -2,7 +2,6 @@ package com.triskelapps.alcalasuena.ui.filter;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.v4.graphics.ColorUtils;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -49,10 +48,10 @@ public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.ViewHolder> {
 //        holder.tvTagDescription.setText(tag.getDescription());
 
         int color = Color.parseColor(tag.getColor());
-        int colorAlpha = ColorUtils.setAlphaComponent(color, 255);
-        holder.cardTag.setCardBackgroundColor(colorAlpha);
+//        int colorAlpha = ColorUtils.setAlphaComponent(color, 255);
+        holder.cardTag.setCardBackgroundColor(color);
 
-        holder.rootView.setAlpha(tag.isActive() ? 1 : 0.3f);
+        holder.rootView.setAlpha(tag.isActive() ? 1 : 0.4f);
 
         holder.rootView.setOnClickListener(new View.OnClickListener() {
             @Override

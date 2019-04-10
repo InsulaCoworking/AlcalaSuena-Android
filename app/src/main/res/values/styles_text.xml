@@ -5,14 +5,14 @@
     <style name="TextBase">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/grey_dark_general</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">17sp</item>
         <item name="android:lineSpacingExtra">2dp</item>
+        <item name="android:textColor">@color/text_color_main</item>
         <!--<item name="fontPath">fonts/Vaud.otf</item>  NOT NECESSARY-->
     </style>
 
-    <style name="TextBase.White">
-        <item name="android:textColor">@android:color/white</item>
+    <style name="TextBase.Inverted">
+        <item name="android:textColor">@color/text_color_inverted</item>
     </style>
 
 
@@ -23,8 +23,13 @@
         <item name="fontPath">fonts/Old_Press_Italic.ttf</item>
     </style>
 
+    <style name="TextTitle.Inverted">
+        <item name="android:textColor">@color/text_color_inverted</item>
+    </style>
+
+
     <style name="TextTitle.Header">
-        <item name="android:background">@color/red_general</item>
+        <item name="android:background">@color/headers_main</item>
         <item name="android:textSize">30sp</item>
         <item name="android:paddingTop">5dp</item>
         <item name="android:paddingBottom">5dp</item>
@@ -38,10 +43,10 @@
     </style>
 
     <style name="TextBase.Accent">
-        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textColor">@color/text_color_main</item>
     </style>
 
-    <style name="TextButton" parent="TextBase.White">
+    <style name="TextButton" parent="TextBase">
         <item name="android:background">@drawable/bg_frame_accent</item>
         <item name="android:textSize">18sp</item>
         <item name="android:padding">8dp</item>
@@ -61,7 +66,7 @@
         <item name="android:layout_marginLeft">30dp</item>
     </style>
 
-    <style name="TextIntro" parent="TextBase.White">
+    <style name="TextIntro" parent="TextBase">
         <item name="android:gravity">center</item>
         <item name="android:padding">10dp</item>
     </style>

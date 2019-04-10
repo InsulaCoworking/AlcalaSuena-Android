@@ -37,6 +37,7 @@
                 android:layout_toLeftOf="@+id/img_starred"
                 android:ellipsize="end"
                 android:maxLines="1"
+                android:textStyle="bold"
                 android:textColor="#000"
                 android:textSize="22sp" />
 
@@ -49,8 +50,7 @@
                 android:ellipsize="end"
                 android:lines="1"
                 android:singleLine="true"
-                android:text="Jazz"
-                android:textColor="@color/colorPrimaryDark" />
+                android:text="Jazz" />
 
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/img_starred"
@@ -59,7 +59,7 @@
                 android:layout_alignParentRight="true"
                 android:padding="7dp"
                 android:src="@drawable/img_star_selectable"
-                app:tint="@color/red_general_dark" />
+                app:tint="@color/items_main" />
 
             <TextView
                 android:id="@+id/tv_event_venue"

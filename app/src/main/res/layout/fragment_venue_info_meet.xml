@@ -28,7 +28,7 @@
 
             <TextView
                 android:id="@+id/tv_venue_description"
-                style="@style/TextBase.White"
+                style="@style/TextBase"
                 android:text="Jazz" />
 
             <Button

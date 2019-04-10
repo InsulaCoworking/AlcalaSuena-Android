@@ -9,7 +9,8 @@
         app:showAsAction="always"
         android:title="@string/favourites"
         android:orderInCategory="100"
-        android:visible="true" />
+        android:visible="true"
+        app:iconTint="@color/items_main"/>
 
     <item
         android:id="@+id/menuItem_filter"
@@ -17,5 +18,6 @@
         app:showAsAction="always"
         android:title="@string/filter"
         android:orderInCategory="200"
-        android:visible="true"        />
+        android:visible="true"
+        app:iconTint="@color/items_main"       />
 </menu>

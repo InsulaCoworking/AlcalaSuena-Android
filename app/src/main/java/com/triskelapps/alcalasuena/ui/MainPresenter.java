@@ -76,32 +76,6 @@ public class MainPresenter extends BasePresenter {
 
     private Filter filter;
 
-    public String getWeekDayForTabPosition(int position) {
-
-        DateFormat weekDayDF = new SimpleDateFormat("EEE");
-
-        try {
-            Date date = DateUtils.formatDateApi.parse(tabsDays.get(position));
-            return weekDayDF.format(date).toUpperCase().replace(".", "");
-        } catch (ParseException e) {
-            e.printStackTrace();
-            throw new IllegalStateException("Date format invalid");
-        }
-    }
-
-    public String getDayMonthForTabPosition(int position) {
-
-        DateFormat dayMonthDF = new SimpleDateFormat("d MMMM");
-
-        try {
-            Date date = DateUtils.formatDateApi.parse(tabsDays.get(position));
-            return dayMonthDF.format(date).toLowerCase();
-        } catch (ParseException e) {
-            e.printStackTrace();
-            throw new IllegalStateException("Date format invalid");
-        }
-    }
-
     private BroadcastReceiver receiverRefreshData = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -169,6 +143,7 @@ public class MainPresenter extends BasePresenter {
         }
 
         if (getPrefs().getBoolean(SHARED_FIRST_TIME_APP_LAUNCHING, true)) {
+//        if(true) {
             SplashPresenter.launchSplashActivity(context, SplashPresenter.NEXT_SCREEN_INTRO);
             getPrefs().edit().putBoolean(SHARED_FIRST_TIME_APP_LAUNCHING, false).commit();
         }
@@ -484,5 +459,30 @@ public class MainPresenter extends BasePresenter {
         ab.show();
     }
 
+    public String getWeekDayForTabPosition(int position) {
+
+        DateFormat weekDayDF = new SimpleDateFormat("EEE");
+
+        try {
+            Date date = DateUtils.formatDateApi.parse(tabsDays.get(position));
+            return weekDayDF.format(date).toUpperCase().replace(".", "");
+        } catch (ParseException e) {
+            e.printStackTrace();
+            throw new IllegalStateException("Date format invalid");
+        }
+    }
+
+    public String getDayMonthForTabPosition(int position) {
+
+        DateFormat dayMonthDF = new SimpleDateFormat("d MMMM");
+
+        try {
+            Date date = DateUtils.formatDateApi.parse(tabsDays.get(position));
+            return dayMonthDF.format(date).toLowerCase();
+        } catch (ParseException e) {
+            e.printStackTrace();
+            throw new IllegalStateException("Date format invalid");
+        }
+    }
 
 }

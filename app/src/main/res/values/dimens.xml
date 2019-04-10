@@ -7,4 +7,6 @@
     <dimen name="height_image_big">0dp</dimen>
     <dimen name="width_image_small">200dp</dimen>
     <dimen name="height_image_small">0dp</dimen>
+
+    <item name="alpha_imgs_bg" format="float" type="dimen">1.0</item>
 </resources>

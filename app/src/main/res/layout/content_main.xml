@@ -6,16 +6,17 @@
     android:orientation="vertical">
 
 
+    <!--Actually, tabs color are configured in file /color/text_tab.xml-->
     <android.support.design.widget.TabLayout
         android:id="@+id/tabs_days"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="@color/red_general"
+        android:background="@color/headers_main"
         app:tabGravity="fill"
         app:tabMode="fixed"
         app:tabSelectedTextColor="@color/tab_selected"
-        app:tabTextColor="@android:color/white"
-        app:tabIndicatorColor="@color/blue_general_light"
+        app:tabTextColor="@color/tab_unselected"
+        app:tabIndicatorColor="@color/tab_selected"
         app:tabIndicatorHeight="5dp"
         android:layout_marginBottom="5dp"/>
 
@@ -32,7 +33,7 @@
 
         <TextView
             android:id="@+id/tv_empty_message"
-            style="@style/TextBase.White"
+            style="@style/TextBase.Inverted"
             android:text="@string/no_favourites"
             android:visibility="gone"
             android:layout_centerInParent="true"
@@ -45,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@color/red_general"
+            android:background="@color/headers_main"
             android:layout_alignParentBottom="true"
             android:gravity="center_horizontal"
             android:visibility="gone">

@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/img_star_selectable"
             android:padding="10dp"
-            android:tint="@color/colorAccent"/>
+            android:tint="@color/items_main"/>
 
     </LinearLayout>
 

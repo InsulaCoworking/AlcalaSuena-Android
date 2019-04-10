@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue_general">
+    android:background="@color/bg_color_main">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
-        android:alpha="0.5"
+        android:alpha="@dimen/alpha_imgs_bg"
         android:scaleType="centerCrop"
-        android:src="@mipmap/img_chico_violin_bg_transp" />
+        android:src="@mipmap/img_bg_2019" />
 
 
     <LinearLayout
@@ -36,7 +36,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/red_general">
+                    android:background="@color/headers_main">
 
                     <TextView
                         android:id="@+id/tv_band_name"
@@ -69,11 +69,11 @@
 
                 <TextView
                     android:id="@+id/tv_band_genre"
-                    style="@style/TextBase.White"
+                    style="@style/TextBase"
                     android:text="Jazz"
                     android:layout_marginTop="10dp"/>
 
-                <View style="@style/SeparatorHorizontal.Grey"
+                <View style="@style/SeparatorHorizontal"
                     android:layout_marginTop="10dp"/>
 
                 <android.support.v7.widget.RecyclerView
@@ -82,15 +82,16 @@
                     android:layout_height="wrap_content"
                     android:padding="5dp" />
 
-                <View style="@style/SeparatorHorizontal.Grey" />
+                <View style="@style/SeparatorHorizontal" />
 
                 <TextView
                     android:id="@+id/tv_band_description"
-                    style="@style/TextBase.White"
+                    style="@style/TextBase"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="15dp"
                     android:autoLink="all"
                     android:padding="15dp"
+                    android:textSize="18sp"
                     android:text="asdlfkjasldf asñdkfjñalsf jñlaskfj ñlaskfjñalskfjñ asfjñ asklf lñaskjlkasjdf ñlasf ñlaskf lña" />
 
 

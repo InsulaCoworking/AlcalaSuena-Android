@@ -3,15 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue_general">
+    android:background="@color/bg_color_main">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
-        android:alpha="0.5"
+        android:alpha="@dimen/alpha_imgs_bg"
         android:scaleType="centerCrop"
-        android:src="@mipmap/img_chica_gris_bg_transp" />
+        android:layout_centerInParent="true"
+        android:src="@mipmap/img_bg_2019" />
 
 
     <LinearLayout
@@ -34,8 +35,8 @@
             android:background="@android:color/transparent"
             app:tabGravity="fill"
             app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/colorAccent"
-            app:tabTextColor="@android:color/white">
+            app:tabSelectedTextColor="@color/tab_selected"
+            app:tabTextColor="@color/tab_unselected">
 
             <android.support.design.widget.TabItem
                 android:layout_width="match_parent"

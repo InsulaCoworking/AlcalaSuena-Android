@@ -15,7 +15,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:alpha="0.5"
+        android:alpha="0.7"
         android:background="#fff" />
 
     <ScrollView
@@ -145,7 +145,7 @@
                 android:padding="5dp">
 
                 <TextView
-                    style="@style/TextBase.White"
+                    style="@style/TextBase.Inverted"
                     android:text="@string/sponsor"/>
 
                 <ImageView
@@ -158,7 +158,7 @@
                     android:visibility="visible"/>
 
                 <TextView
-                    style="@style/TextBase.White"
+                    style="@style/TextBase.Inverted"
                     android:text="@string/amstel_recomends"
                     android:gravity="center_horizontal"
                     android:textSize="14sp"/>

@@ -5,14 +5,14 @@
         <shape
             android:shape="oval">
             <solid
-                android:color="@color/red_general_dark"/>
+                android:color="@color/headers_main_dark"/>
 
         </shape>
 
     </item>
     <item>
         <shape android:shape="oval">
-            <solid android:color="@color/red_general" />
+            <solid android:color="@color/headers_main" />
 
         </shape>
 
