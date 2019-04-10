@@ -95,9 +95,9 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
 
         setImageTitle(R.mipmap.img_title_alcalasuena);
 
+        tabsDays.addTab(tabsDays.newTab().setCustomView(getTabView(0)));
         tabsDays.addTab(tabsDays.newTab().setCustomView(getTabView(1)));
         tabsDays.addTab(tabsDays.newTab().setCustomView(getTabView(2)));
-        tabsDays.addTab(tabsDays.newTab().setCustomView(getTabView(3)));
 
         tabsDays.addOnTabSelectedListener(this);
 
@@ -179,23 +179,9 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
         TextView tvDayWeek = (TextView) tabView.findViewById(R.id.tv_tab_day_week);
         TextView tvDayMonth = (TextView) tabView.findViewById(R.id.tv_tab_day_month);
 
-        switch (day) {
-            case 1:
-                tvDayWeek.setText(R.string.friday_abrev);
-                tvDayMonth.setText("1 " + getString(R.string.june));
-                break;
+        tvDayWeek.setText(presenter.getWeekDayForTabPosition(day));
+        tvDayMonth.setText(presenter.getDayMonthForTabPosition(day));
 
-            case 2:
-                tvDayWeek.setText(R.string.saturday_abrev);
-                tvDayMonth.setText("2 " + getString(R.string.june));
-                break;
-
-            case 3:
-                tvDayWeek.setText(R.string.sunday_abrev);
-                tvDayMonth.setText("3 " + getString(R.string.june));
-                break;
-
-        }
         return tabView;
     }
 

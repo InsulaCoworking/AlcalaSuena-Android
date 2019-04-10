@@ -31,10 +31,13 @@ import com.triskelapps.alcalasuena.ui.band_info.BandInfoPresenter;
 import com.triskelapps.alcalasuena.ui.info.WebViewActivity;
 import com.triskelapps.alcalasuena.ui.news_info.NewsInfoPresenter;
 import com.triskelapps.alcalasuena.ui.splash.SplashPresenter;
+import com.triskelapps.alcalasuena.util.DateUtils;
 import com.triskelapps.alcalasuena.util.Util;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -59,12 +62,12 @@ public class MainPresenter extends BasePresenter {
     private final BandInteractor bandInteractor;
     private final EventInteractor eventInteractor;
 
-    private static List<String> tabsDays = new ArrayList<>();
+    public static List<String> tabsDays = new ArrayList<>();
 
     static {
-        tabsDays.add("2018-06-01");
-        tabsDays.add("2018-06-02");
-        tabsDays.add("2018-06-03");
+        tabsDays.add("2019-06-07");
+        tabsDays.add("2019-06-08");
+        tabsDays.add("2019-06-09");
     }
 
     private final SettingsInteractor settingsInteractor;
@@ -72,6 +75,32 @@ public class MainPresenter extends BasePresenter {
     private final VenueInteractor venueInteractor;
 
     private Filter filter;
+
+    public String getWeekDayForTabPosition(int position) {
+
+        DateFormat weekDayDF = new SimpleDateFormat("EEE");
+
+        try {
+            Date date = DateUtils.formatDateApi.parse(tabsDays.get(position));
+            return weekDayDF.format(date).toUpperCase().replace(".", "");
+        } catch (ParseException e) {
+            e.printStackTrace();
+            throw new IllegalStateException("Date format invalid");
+        }
+    }
+
+    public String getDayMonthForTabPosition(int position) {
+
+        DateFormat dayMonthDF = new SimpleDateFormat("d MMMM");
+
+        try {
+            Date date = DateUtils.formatDateApi.parse(tabsDays.get(position));
+            return dayMonthDF.format(date).toLowerCase();
+        } catch (ParseException e) {
+            e.printStackTrace();
+            throw new IllegalStateException("Date format invalid");
+        }
+    }
 
     private BroadcastReceiver receiverRefreshData = new BroadcastReceiver() {
         @Override
