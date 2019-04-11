@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.ToxicBakery.viewpager.transforms.TabletTransformer;
 import com.triskelapps.alcalasuena.R;
@@ -17,14 +18,17 @@ public class IntroActivity extends BaseActivity implements IntroView, View.OnCli
     private ImageView imgArrowLeft;
     private ImageView imgArrowRight;
     private IntroViewPagerAdapter adapter;
+    private TextView tvIntroEnter;
 
     private void findViews() {
         viewpagerIntro = (ViewPager)findViewById( R.id.viewpager_intro );
         imgArrowLeft = (ImageView)findViewById( R.id.img_arrow_left );
         imgArrowRight = (ImageView)findViewById( R.id.img_arrow_right );
+        tvIntroEnter = (TextView)findViewById( R.id.tv_intro_enter );
 
         imgArrowLeft.setOnClickListener(this);
         imgArrowRight.setOnClickListener(this);
+        tvIntroEnter.setOnClickListener(this);
     }
 
 
@@ -60,6 +64,7 @@ public class IntroActivity extends BaseActivity implements IntroView, View.OnCli
                 break;
 
 
+            case R.id.tv_intro_enter:
             case R.id.img_arrow_right:
 
                 if (viewpagerIntro.getCurrentItem() == adapter.getCount() - 1) {
@@ -90,7 +95,10 @@ public class IntroActivity extends BaseActivity implements IntroView, View.OnCli
 
         imgArrowLeft.setVisibility(position == 0 ? View.INVISIBLE : View.VISIBLE);
         imgArrowRight.setVisibility(View.VISIBLE);
-        imgArrowRight.setImageResource(position == adapter.getCount()-1 ? R.mipmap.ic_logo_alcala_suena : R.mipmap.ic_arrow_right_intro);
+        boolean lastScreen = position == adapter.getCount() - 1;
+//        imgArrowRight.setImageResource(lastScreen ? R.mipmap.ic_logo_alcala_suena : R.mipmap.ic_arrow_right_intro);
+        imgArrowRight.setVisibility(lastScreen ? View.GONE : View.VISIBLE);
+        tvIntroEnter.setVisibility(lastScreen ? View.VISIBLE : View.GONE);
     }
 
     @Override

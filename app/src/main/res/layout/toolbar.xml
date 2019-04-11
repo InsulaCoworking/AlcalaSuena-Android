@@ -9,8 +9,8 @@
         android:id="@+id/appbar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay"
         android:orientation="vertical"
+        android:theme="@style/AppTheme.AppBarOverlay"
         app:elevation="0dp">
 
         <RelativeLayout
@@ -19,45 +19,45 @@
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
-                app:theme="@style/AppTheme.PopupOverlay"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/headers_main">
+                android:background="@color/headers_main"
+                app:theme="@style/AppTheme.PopupOverlay">
 
                 <TextView
                     android:id="@+id/tv_title_toolbar"
                     style="@style/TextTitle"
+                    android:gravity="left"
                     android:text="@string/app_name"
-                    android:visibility="gone"
-                    android:gravity="left"/>
+                    android:visibility="gone" />
 
                 <ImageView
-                        android:id="@+id/img_title_toolbar"
+                    android:id="@+id/img_title_toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
-                    android:src="@mipmap/img_title_alcalasuena_padding"/>
+                    android:src="@mipmap/img_title_alcalasuena" />
 
             </android.support.v7.widget.Toolbar>
 
 
             <!--<TextView-->
-                <!--android:id="@+id/tv_invitations_indicator"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="18dp"-->
-                <!--android:minWidth="18dp"-->
-                <!--android:layout_alignParentRight="true"-->
-                <!--android:layout_margin="5dp"-->
-                <!--android:background="@drawable/bg_invitations_indicator"-->
-                <!--android:textColor="@android:color/white"-->
-                <!--android:includeFontPadding="false"-->
-                <!--android:padding="4dp"-->
-                <!--android:textSize="14sp"-->
-                <!--android:gravity="center"-->
-                <!--android:text="0"-->
-                <!--fontPath="fonts/Vaud-SemiBold.otf"-->
-                <!--tools:ignore="MissingPrefix"-->
-                <!--android:visibility="invisible"/>-->
+            <!--android:id="@+id/tv_invitations_indicator"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="18dp"-->
+            <!--android:minWidth="18dp"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_margin="5dp"-->
+            <!--android:background="@drawable/bg_invitations_indicator"-->
+            <!--android:textColor="@android:color/white"-->
+            <!--android:includeFontPadding="false"-->
+            <!--android:padding="4dp"-->
+            <!--android:textSize="14sp"-->
+            <!--android:gravity="center"-->
+            <!--android:text="0"-->
+            <!--fontPath="fonts/Vaud-SemiBold.otf"-->
+            <!--tools:ignore="MissingPrefix"-->
+            <!--android:visibility="invisible"/>-->
 
         </RelativeLayout>
 
@@ -66,9 +66,9 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="10dp"
+            android:layout_marginTop="-10dp"
             android:indeterminate="true"
-            android:visibility="invisible"
-            android:layout_marginTop="-10dp" />
+            android:visibility="invisible" />
 
     </android.support.design.widget.AppBarLayout>
 
