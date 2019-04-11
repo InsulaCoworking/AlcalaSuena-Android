@@ -25,7 +25,7 @@
                 android:layout_alignBottom="@+id/img_venue"
                 android:layout_alignTop="@+id/img_venue"
                 android:background="@color/grey_dark_general"
-                android:alpha="@dimen/alpha_imgs_bg"/>
+                android:alpha="0.5"/>
 
             <TextView
                 android:id="@+id/tv_venue_name"

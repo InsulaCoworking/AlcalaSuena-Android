@@ -1,7 +1,5 @@
 package com.triskelapps.alcalasuena.model;
 
-import android.net.Uri;
-
 import com.triskelapps.alcalasuena.api.common.ApiClient;
 
 import java.io.Serializable;
@@ -29,7 +27,7 @@ public class Venue extends RealmObject implements Serializable {
     private RealmList<Event> events;
 
 
-    public Uri getImageUrlFull() {
+    public String getImageUrlFull() {
         if (getImage() == null) {
             return null;
         }
@@ -40,8 +38,7 @@ public class Venue extends RealmObject implements Serializable {
 //        }
 
         String urlFull = ApiClient.BASE_URL + image;
-        urlFull.replace("//", "/");
-        return Uri.parse(urlFull);
+        return urlFull;
     }
 
 

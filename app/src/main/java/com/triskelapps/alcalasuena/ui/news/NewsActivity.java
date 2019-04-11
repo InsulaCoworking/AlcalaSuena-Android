@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BaseActivity;
@@ -17,6 +18,7 @@ public class NewsActivity extends BaseActivity implements NewsView, NewsAdapter.
     private NewsPresenter presenter;
     private NewsAdapter adapter;
     private RecyclerView recyclerNews;
+    private TextView tvEmptyList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,8 @@ public class NewsActivity extends BaseActivity implements NewsView, NewsAdapter.
         recyclerNews = (RecyclerView)findViewById(R.id.recycler_news);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerNews.setLayoutManager(layoutManager);
+
+        tvEmptyList = (TextView) findViewById(R.id.tv_empty_list_news);
 
         presenter.onCreate();
     }
@@ -55,6 +59,8 @@ public class NewsActivity extends BaseActivity implements NewsView, NewsAdapter.
             recyclerNews.getRecycledViewPool().clear();
             adapter.notifyDataSetChanged();
         }
+
+        tvEmptyList.setVisibility(newsList.isEmpty() ? View.VISIBLE : View.GONE);
     }
 
     @Override

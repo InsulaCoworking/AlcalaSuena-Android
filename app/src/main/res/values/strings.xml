@@ -115,5 +115,6 @@
     <string name="sponsor">Patrocina</string>
     <string name="amstel_recomends">Amstel recomienda el consumo responsable</string>
     <string name="enter_excl">¡Entrar!</string>
+    <string name="empty_list_news">De momento en este año no hay noticias. ¡Pronto te avisaremos de todas las novedades!</string>
 
 </resources>
