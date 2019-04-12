@@ -12,8 +12,8 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.content.res.AppCompatResources;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -238,7 +238,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        toolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white);
 
-        final Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back);
+        final Drawable upArrow = AppCompatResources.getDrawable(this, R.drawable.ic_arrow_back);
         upArrow.setColorFilter(getResources().getColor(R.color.items_main), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
     }
