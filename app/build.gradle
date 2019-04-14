@@ -9,22 +9,28 @@ android {
         applicationId "com.triskelapps.alcalasuena"
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 1905
-        versionName "19.0.5"
+        versionCode 1907
+        versionName "19.0.7"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
+
     buildTypes {
         release {
             buildType = "release"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+
+            buildConfigField "boolean", "MODE_PREPARING", "true"
         }
 
         debug {
             buildType = "debug"
             applicationIdSuffix ".debug"
             versionNameSuffix " debug"
+
+            buildConfigField "boolean", "MODE_PREPARING", "true"
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.triskelapps.alcalasuena.ui;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -142,7 +143,10 @@ public class MainPresenter extends BasePresenter {
             checkNewVersionInMarket();
         }
 
-        if (getPrefs().getBoolean(SHARED_FIRST_TIME_APP_LAUNCHING, true)) {
+        if (BuildConfig.MODE_PREPARING) {
+            SplashPresenter.launchSplashActivity(context, SplashPresenter.NEXT_SCREEN_NONE);
+            ((Activity)context).finish();
+        } else if (getPrefs().getBoolean(SHARED_FIRST_TIME_APP_LAUNCHING, true)) {
 //        if(true) {
             SplashPresenter.launchSplashActivity(context, SplashPresenter.NEXT_SCREEN_INTRO);
             getPrefs().edit().putBoolean(SHARED_FIRST_TIME_APP_LAUNCHING, false).commit();

@@ -8,7 +8,8 @@ import java.util.Date;
  */
 public class DateUtils {
 
-    public static SimpleDateFormat formatDateTimeApi = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.S'Z'");
+//    public static SimpleDateFormat formatDateTimeApi = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.S'Z'");
+    public static SimpleDateFormat formatDateTimeApi = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
     public static SimpleDateFormat formatDateTimeUser = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
     public static SimpleDateFormat formatDateApi = new SimpleDateFormat("yyyy-MM-dd");

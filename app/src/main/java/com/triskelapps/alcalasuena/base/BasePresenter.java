@@ -1,5 +1,6 @@
 package com.triskelapps.alcalasuena.base;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -50,6 +51,14 @@ public class BasePresenter {
         }
 
         return isConnected;
+    }
+
+    public String getString(int stringId) {
+        return context.getString(stringId);
+    }
+
+    public void finish() {
+        ((Activity) context).finish();
     }
 
     public void setBaseView(BaseView baseView) {

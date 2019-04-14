@@ -116,5 +116,7 @@
     <string name="amstel_recomends">Amstel recomienda el consumo responsable</string>
     <string name="enter_excl">¡Entrar!</string>
     <string name="empty_list_news">De momento en este año no hay noticias. ¡Pronto te avisaremos de todas las novedades!</string>
+    <string name="preparing_app_edition_current_year">Preparando aplicación para la edición de 2019....\n¡Te avisaremos cuando esté lista!</string>
+    <string name="new_version_available">¡Aplicación preparada!\\nPulsa aquí para actualizar</string>
 
 </resources>

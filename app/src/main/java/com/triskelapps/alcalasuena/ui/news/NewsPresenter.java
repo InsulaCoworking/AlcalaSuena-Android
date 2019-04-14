@@ -66,9 +66,6 @@ import java.util.List;
                  showStoredNews();
              }
 
-             private void filterCurrentYearNews(List<News> newsList) {
-
-             }
 
              @Override
              public void onError(String error) {
