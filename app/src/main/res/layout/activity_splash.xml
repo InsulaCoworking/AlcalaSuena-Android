@@ -28,7 +28,6 @@
     <TextView
         android:id="@+id/tv_splash_info"
         style="@style/TextBase"
-        android:text="@string/preparing_app_edition_current_year"
         android:gravity="center"
         android:padding="20dp"
         android:layout_alignParentBottom="true"

@@ -9,11 +9,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.triskelapps.alcalasuena.App;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BaseActivity;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.model.News;
-import com.triskelapps.alcalasuena.ui.MainPresenter;
 import com.triskelapps.alcalasuena.ui.image_full.ImageFullActivity;
 import com.triskelapps.alcalasuena.ui.info.WebViewActivity;
 
@@ -92,7 +92,7 @@ public class NewsInfoActivity extends BaseActivity implements NewsInfoView {
                         @Override
                         public void onClick(View v) {
 
-                            String text = String.format(getString(R.string.share_app_text), MainPresenter.URL_GOOGLE_PLAY_APP);
+                            String text = String.format(getString(R.string.share_app_text), App.URL_GOOGLE_PLAY_APP);
 
                             Intent intent = new Intent(Intent.ACTION_SEND);
                             intent.putExtra(Intent.EXTRA_TEXT, text);

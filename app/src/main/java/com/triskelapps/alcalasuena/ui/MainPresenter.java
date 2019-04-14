@@ -55,8 +55,6 @@ import static com.triskelapps.alcalasuena.App.SHARED_FIRST_TIME_APP_LAUNCHING;
 public class MainPresenter extends BasePresenter {
 
     private static final String URL_QUERY_SHARE = "share";
-    public static final String URL_GOOGLE_PLAY_APP = "https://play.google.com/store/apps/details?id=com.triskelapps.alcalasuena";
-    public static final String URL_DIRECT_GOOGLE_PLAY_APP = "market://details?id=com.triskelapps.alcalasuena";
 
 
     private final MainView view;
@@ -324,13 +322,7 @@ public class MainPresenter extends BasePresenter {
 
 
     public void onUpdateVersionClick() {
-
-        Intent directPlayIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL_DIRECT_GOOGLE_PLAY_APP));
-        if (directPlayIntent.resolveActivity(context.getPackageManager()) != null) {
-            context.startActivity(directPlayIntent);
-        } else {
-            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(URL_GOOGLE_PLAY_APP)));
-        }
+        App.openAppInGooglePlay(context);
     }
 
 
@@ -356,7 +348,7 @@ public class MainPresenter extends BasePresenter {
 
         importLink = importLink.substring(0, importLink.length() - 1);
         text += "\n\n" + String.format(context.getString(R.string.import_link_text), importLink);
-        text += "\n\n" + String.format(context.getString(R.string.download_app_text), URL_GOOGLE_PLAY_APP);
+        text += "\n\n" + String.format(context.getString(R.string.download_app_text), App.URL_GOOGLE_PLAY_APP);
 
         return text;
     }

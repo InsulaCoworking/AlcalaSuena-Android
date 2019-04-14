@@ -3,14 +3,13 @@ package com.triskelapps.alcalasuena.ui.splash;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Handler;
 
+import com.triskelapps.alcalasuena.App;
 import com.triskelapps.alcalasuena.BuildConfig;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.interactor.SettingsInteractor;
-import com.triskelapps.alcalasuena.ui.MainPresenter;
 import com.triskelapps.alcalasuena.ui.about.AboutAlcalaSuenaActivity;
 import com.triskelapps.alcalasuena.ui.intro.IntroPresenter;
 import com.triskelapps.alcalasuena.util.Util;
@@ -141,12 +140,7 @@ public class SplashPresenter extends BasePresenter {
 
     public void onSplashInfoTextClick() {
         if (newVersionAvailable) {
-            Intent directPlayIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(MainPresenter.URL_DIRECT_GOOGLE_PLAY_APP));
-            if (directPlayIntent.resolveActivity(context.getPackageManager()) != null) {
-                context.startActivity(directPlayIntent);
-            } else {
-                context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(MainPresenter.URL_GOOGLE_PLAY_APP)));
-            }
+            App.openAppInGooglePlay(context);
         }
     }
 }

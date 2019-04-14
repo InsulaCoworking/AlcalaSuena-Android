@@ -2,7 +2,9 @@ package com.triskelapps.alcalasuena;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -37,6 +39,11 @@ public class App extends Application {
 
     public static final String ACTION_REFRESH_DATA = PREFIX + "action_refresh_data";
     public static final String ACTION_SHOW_NOTIFICATION = PREFIX + "action_show_notification";
+
+
+    public static final String URL_GOOGLE_PLAY_APP = "https://play.google.com/store/apps/details?id=com.triskelapps.alcalasuena";
+    public static final String URL_DIRECT_GOOGLE_PLAY_APP = "market://details?id=com.triskelapps.alcalasuena";
+
 
 
     @Override
@@ -106,6 +113,14 @@ public class App extends Application {
         Realm.setDefaultConfiguration(config);
     }
 
+    public static void openAppInGooglePlay(Context context) {
+//        Intent directPlayIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL_DIRECT_GOOGLE_PLAY_APP));
+//        if (directPlayIntent.resolveActivity(context.getPackageManager()) != null) {
+//            context.startActivity(directPlayIntent);
+//        } else {
+            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(URL_GOOGLE_PLAY_APP)));
+//        }
+    }
 
     public static SharedPreferences getPrefs(Context context) {
 //        return new SecurePreferences(context);
