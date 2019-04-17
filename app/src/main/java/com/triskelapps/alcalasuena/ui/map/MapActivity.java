@@ -1,42 +1,40 @@
 package com.triskelapps.alcalasuena.ui.map;
 
-import android.os.Build;
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
 import com.squareup.picasso.Picasso;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BaseActivity;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.model.Venue;
-import com.triskelapps.alcalasuena.util.PermissionHelper;
 
-import org.osmdroid.config.Configuration;
-import org.osmdroid.events.MapEventsReceiver;
-import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
-import org.osmdroid.util.BoundingBox;
-import org.osmdroid.util.GeoPoint;
-import org.osmdroid.views.MapView;
-import org.osmdroid.views.overlay.ItemizedIconOverlay;
-import org.osmdroid.views.overlay.ItemizedOverlay;
-import org.osmdroid.views.overlay.MapEventsOverlay;
-import org.osmdroid.views.overlay.OverlayItem;
-import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
-
-import java.util.ArrayList;
 import java.util.List;
 
-public class MapActivity extends BaseActivity implements com.triskelapps.alcalasuena.ui.map.MapView, PermissionHelper.PermissionCallback, MapEventsReceiver, View.OnClickListener {
+public class MapActivity extends BaseActivity implements MapView, View.OnClickListener, OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnMapClickListener {
 
-    private MapView mapView;
     private MapPresenter presenter;
 
     private final double latNorthAlcala = 40.483310;
@@ -44,18 +42,15 @@ public class MapActivity extends BaseActivity implements com.triskelapps.alcalas
     private final double lngEastAlcala = -3.360175;
     private final double lngWestAlcala = -3.374004;
 
-    private final GeoPoint pointCenterAlcala = new GeoPoint(40.48261741167103,-3.3674168586730957);
+    private LatLng positionAlcalaCenter = new LatLng(40.481534, -3.366189);
 
-    private MapEventsOverlay mapEventsOverlay;
-    private ItemizedOverlay<OverlayItem> mOverlay;
-    private MyLocationNewOverlay myLocationOverlay;
-    private GpsPlayLocationProvider gpsPlayLocationProvider;
     private RelativeLayout viewVenueInfo;
     private ImageView imgVenue;
     private TextView tvVenueName;
     private TextView tvVenueMoreInfo;
     private TextView tvVenueIndications;
     private TextView tvVenueDescription;
+    private GoogleMap map;
 
     /**
      * Find the Views in the layout<br />
@@ -64,18 +59,16 @@ public class MapActivity extends BaseActivity implements com.triskelapps.alcalas
      * (http://www.buzzingandroid.com/tools/android-layout-finder)
      */
     private void findViews() {
-        viewVenueInfo = (RelativeLayout)findViewById( R.id.view_venue_info );
-        imgVenue = (ImageView)findViewById( R.id.img_venue );
-        tvVenueName = (TextView)findViewById( R.id.tv_venue_name );
-        tvVenueDescription = (TextView)findViewById( R.id.tv_venue_description );
-        tvVenueMoreInfo = (TextView)findViewById( R.id.tv_venue_more_info );
-        tvVenueIndications = (TextView)findViewById( R.id.tv_venue_indications );
-        mapView = (MapView) findViewById(R.id.mapview);
+        viewVenueInfo = (RelativeLayout) findViewById(R.id.view_venue_info);
+        imgVenue = (ImageView) findViewById(R.id.img_venue);
+        tvVenueName = (TextView) findViewById(R.id.tv_venue_name);
+        tvVenueDescription = (TextView) findViewById(R.id.tv_venue_description);
+        tvVenueMoreInfo = (TextView) findViewById(R.id.tv_venue_more_info);
+        tvVenueIndications = (TextView) findViewById(R.id.tv_venue_indications);
 
         tvVenueMoreInfo.setOnClickListener(this);
         tvVenueIndications.setOnClickListener(this);
     }
-
 
 
     @Override
@@ -88,13 +81,8 @@ public class MapActivity extends BaseActivity implements com.triskelapps.alcalas
 
         presenter = MapPresenter.newInstance(this, this);
         super.onCreate(savedInstanceState);
-
-        Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this));
-
         setContentView(R.layout.activity_map);
-
         configureSecondLevelActivity();
-
         findViews();
 
         configureMap();
@@ -104,42 +92,102 @@ public class MapActivity extends BaseActivity implements com.triskelapps.alcalas
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_map, menu);
-        return super.onCreateOptionsMenu(menu);
+    private void checkLocationPermission() {
+
+        Dexter.withActivity(this)
+                .withPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+                .withListener(new PermissionListener() {
+                    @Override
+                    public void onPermissionGranted(PermissionGrantedResponse response) {
+                        enableMyPositionInMaps();
+                    }
+
+                    @Override
+                    public void onPermissionDenied(PermissionDeniedResponse response) {
+                        toast(R.string.location_wont_show);
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(PermissionRequest permission, final PermissionToken token) {
+                        new AlertDialog.Builder(MapActivity.this)
+                                .setTitle(R.string.location_permission)
+                                .setMessage(R.string.location_permission_rationale_message)
+                                .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        token.continuePermissionRequest();
+                                    }
+                                })
+                                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        token.cancelPermissionRequest();
+                                    }
+                                })
+                                .show();
+                    }
+                }).check();
     }
 
-
+    @SuppressLint("MissingPermission") // Always will enter here with permission granted
+    private void enableMyPositionInMaps() {
+        if (map != null) {
+            map.setMyLocationEnabled(true);
+        }
+    }
 
     private void configureMap() {
 
-        mapEventsOverlay = new MapEventsOverlay(this);
-        mapView.getOverlays().add(0, mapEventsOverlay);
-        mapView.setTileSource(TileSourceFactory.MAPNIK);
-        mapView.setMultiTouchControls(true);
-
-        mapView.getController().setCenter(pointCenterAlcala);
-        mapView.getController().setZoom(16);
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        SupportMapFragment mapFragment = new SupportMapFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.frame_map_support, mapFragment).commit();
+        mapFragment.getMapAsync(this);
 
     }
 
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
+        map = googleMap;
+
+        /*
+        Styling Google Map:
+        https://mapstyle.withgoogle.com/
+        https://developers.google.com/maps/documentation/android-api/style-reference
+        boolean success = googleMap.setMapStyle(
+                MapStyleOptions.loadRawResourceStyle(
+                        this, R.raw.style_map));
+         */
+
+        map.setBuildingsEnabled(false);
+        map.setIndoorEnabled(false);
+
+//        map.setOnInfoWindowClickListener(this);
+        map.setOnMarkerClickListener(this);
+        map.setOnMapClickListener(this);
+
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(positionAlcalaCenter, 12));
+
+        presenter.onMapReady();
+
+        checkLocationPermission();
+    }
 
 
     // INTERACTIONS
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            case R.id.menuItem_myLocation:
-                viewVenueInfo.setVisibility(View.GONE);
-                presenter.onMyLocationButtonClick();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
+    public boolean onMarkerClick(Marker marker) {
+        Venue venue = (Venue) marker.getTag();
+        presenter.onVenuesMarkerClick(venue);
+        return false;
     }
 
+    @Override
+    public void onMapClick(LatLng latLng) {
+        presenter.onMapClick();
+    }
 
     @Override
     public void onClick(View v) {
@@ -150,8 +198,7 @@ public class MapActivity extends BaseActivity implements com.triskelapps.alcalas
                 break;
 
             case R.id.tv_venue_indications:
-                presenter.onVenueIndicationsClick(gpsPlayLocationProvider != null ?
-                        gpsPlayLocationProvider.getLastKnownLocation() : null);
+                presenter.onVenueIndicationsClick();
                 break;
         }
     }
@@ -168,43 +215,51 @@ public class MapActivity extends BaseActivity implements com.triskelapps.alcalas
     // Presenter Callbacks
     @Override
     public void showVenues(final List<Venue> venues) {
-        if (mapView.getOverlays().contains(mOverlay)) {
-            mapView.getOverlays().remove(mOverlay);
+
+        if (map == null) {
+            return;
         }
 
-        ArrayList<OverlayItem> items = new ArrayList<>();
+        map.clear();
+
+        LatLngBounds.Builder latlngBuilder = LatLngBounds.builder();
         for (Venue venue : venues) {
-            OverlayItem overlayItem = new OverlayItem(
-                    venue.getId()+"",
-                    venue.getName(),
-                    venue.getDescription(),
-                    new GeoPoint(venue.getLatitude(), venue.getLongitude()));
 
-            overlayItem.setMarker(getResources().getDrawable(R.mipmap.ic_marker));
+            LatLng latLng = new LatLng(venue.getLatitude(), venue.getLongitude());
+            Marker marker = map.addMarker(new MarkerOptions()
+                    .position(latLng)
+                    .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_marker))
+            );
+            marker.setTag(venue);
+            latlngBuilder.include(latLng);
 
-            items.add(overlayItem); // Lat/Lon decimal degrees
+
         }
 
-        mOverlay = new ItemizedIconOverlay<>(this, items,
-                new ItemizedIconOverlay.OnItemGestureListener<OverlayItem>() {
-                    @Override
-                    public boolean onItemSingleTapUp(final int index, final OverlayItem item) {
-                        mapView.getController().animateTo(item.getPoint());
-                        presenter.onVenuesMarkerClick(venues.get(index));
-                        return true;
-                    }
+        showMapBounds(latlngBuilder.build());
 
-                    @Override
-                    public boolean onItemLongPress(final int index, final OverlayItem item) {
-                        return false;
-                    }
-                });
-//        mOverlay.setFocusItemsOnTap(true);
 
-        mapView.getOverlays().add(mOverlay);
+    }
 
-//        zoomToBoundingBox(computeArea(items));
+    public void showMapBounds(LatLngBounds latLngBounds) {
+        if (map == null) {
+            return;
+        }
 
+        int padding = getResources().getDimensionPixelSize(R.dimen.padding_map);
+        try {
+            map.animateCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds,
+                    padding), 1500, null);
+        } catch (Exception e) {
+            // Map was not loaded
+            map.setOnMapLoadedCallback(() -> {
+                if (map != null) {
+                    map.animateCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds, padding), 1500, null);
+                }
+            });
+//            mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds,
+//                    getResources().getDimensionPixelSize(R.dimen.padding_map), 400, 800), 1500, null);
+        }
     }
 
     @Override
@@ -226,106 +281,5 @@ public class MapActivity extends BaseActivity implements com.triskelapps.alcalas
         viewVenueInfo.setVisibility(View.GONE);
     }
 
-    @Override
-    public void configureMyLocationOverlay() {
-
-        gpsPlayLocationProvider = new GpsPlayLocationProvider(this);
-        this.myLocationOverlay = new MyLocationNewOverlay(gpsPlayLocationProvider, mapView);
-        this.myLocationOverlay.enableMyLocation();
-        mapView.getOverlays().add(this.myLocationOverlay);
-    }
-
-    @Override
-    public void goToMyLocation() {
-
-        if (myLocationOverlay != null) {
-            GeoPoint myLocation = myLocationOverlay.getMyLocation();
-            if (myLocation != null) {
-                mapView.getController().animateTo(myLocation);
-            } else {
-                toast(R.string.location_not_found);
-            }
-        }
-    }
-
-    private void zoomToBoundingBox(final BoundingBox boundingBox) {
-
-        if (mapView.getScreenRect(null).height() > 0) {
-            mapView.zoomToBoundingBox(boundingBox, true);
-        } else {
-            mapView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                @Override
-                public void onGlobalLayout() {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                        mapView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                    }
-                    mapView.zoomToBoundingBox(boundingBox, true);
-                }
-            });
-        }
-    }
-
-    public BoundingBox computeArea(ArrayList<OverlayItem> items) {
-
-//        double nord = 0, sud = 0, ovest = 0, est = 0;
-//
-//        for (int i = 0; i < items.size(); i++) {
-//            IGeoPoint point = items.get(i).getPoint();
-//            if (point == null) continue;
-//
-//            double lat = point.getLatitude();
-//            double lon = point.getLongitude();
-//
-//            if ((i == 0) || (lat > nord)) nord = lat;
-//            if ((i == 0) || (lat < sud)) sud = lat;
-//            if ((i == 0) || (lon < ovest)) ovest = lon;
-//            if ((i == 0) || (lon > est)) est = lon;
-//
-//        }
-
-        return new BoundingBox(latNorthAlcala, lngEastAlcala, latSouthAlcala, lngWestAlcala);
-
-    }
-
-    // Permission logic
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        presenter.onRequestPermissionsResult(requestCode, permissions, grantResults);
-    }
-
-    @Override
-    public void onPermissionGranted(String permission) {
-//        switch (permission) {
-//            case Manifest.permission.ACCESS_FINE_LOCATION:
-////                checkStoragePermissionGranted();
-////                break;
-////
-////            case Manifest.permission.WRITE_EXTERNAL_STORAGE:
-//                break;
-//        }
-
-        configureMap();
-    }
-
-    @Override
-    public void onPermissionDenied(String permission) {
-//        finish();
-        toast("permission denied: " + permission);
-    }
-
-
-    // Map
-    @Override
-    public boolean singleTapConfirmedHelper(GeoPoint p) {
-        presenter.onMapClick();
-        return false;
-    }
-
-    @Override
-    public boolean longPressHelper(GeoPoint p) {
-        return false;
-    }
 
 }

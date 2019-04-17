@@ -15,6 +15,7 @@ import com.triskelapps.alcalasuena.base.BasePresenter;
 public class SplashActivity extends BaseActivity implements SplashView, View.OnClickListener {
     private SplashPresenter presenter;
     private TextView tvSplashInfo;
+    private View imgAlcalaSuenaSplash;
 
     @Override
     public BasePresenter getPresenter() {
@@ -29,6 +30,8 @@ public class SplashActivity extends BaseActivity implements SplashView, View.OnC
         setContentView(R.layout.activity_splash);
 
         tvSplashInfo = (TextView) findViewById(R.id.tv_splash_info);
+        imgAlcalaSuenaSplash = findViewById(R.id.img_alcalasuena_splash);
+        imgAlcalaSuenaSplash.setOnClickListener(this);
         tvSplashInfo.setOnClickListener(this);
 
         presenter.onCreate(getIntent());
@@ -51,6 +54,10 @@ public class SplashActivity extends BaseActivity implements SplashView, View.OnC
         switch (v.getId()) {
             case R.id.tv_splash_info:
                 presenter.onSplashInfoTextClick();
+                break;
+
+            case R.id.img_alcalasuena_splash:
+                presenter.onSplashImageClick();
                 break;
         }
     }

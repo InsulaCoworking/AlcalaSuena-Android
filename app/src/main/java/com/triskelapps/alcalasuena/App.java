@@ -7,13 +7,16 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 
-import com.google.firebase.iid.FirebaseInstanceId;
+import com.crashlytics.android.Crashlytics;
+import com.crashlytics.android.core.CrashlyticsCore;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 import com.triskelapps.alcalasuena.interactor.BandInteractor;
 import com.triskelapps.alcalasuena.interactor.VenueInteractor;
+import com.triskelapps.alcalasuena.util.NotificationHelper;
 
+import io.fabric.sdk.android.Fabric;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
@@ -34,7 +37,6 @@ public class App extends Application {
     public static final String SHARED_CURRENT_DATA_VERSION = PREFIX + "shared_current_data_version_2018";
     public static final String SHARED_FIRST_TIME_APP_LAUNCHING = PREFIX + "extra_first_time_app_lauching_2018";
     private static final String SHARED_CACHED_DATA_STORED = PREFIX + "shared_cached_data_stored_2018";
-    public static final String SHARED_SUBSCRIBED_NEWS_NOTIFS = PREFIX + "shared_subscribed_news_notifs";
     public static final String SHARED_PIN_SEND_NEWS_ENCRIPT = PREFIX + "shared_pin_send_news_encript";
 
     public static final String ACTION_REFRESH_DATA = PREFIX + "action_refresh_data";
@@ -49,6 +51,12 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+
+        CrashlyticsCore core = new CrashlyticsCore.Builder().disabled(false).build();
+        Fabric.with(this, new Crashlytics.Builder().core(core).build());
+
+        NotificationHelper.with(this).initializeOreoChannelsNotification();
 
         configureRealm();
 
@@ -70,15 +78,15 @@ public class App extends Application {
 //        String token = FirebaseInstanceId.getInstance().getToken();
 //        Log.d(TAG, "Refreshed token: " + token);
 
-        if (FirebaseInstanceId.getInstance().getToken() != null
-                && !getPrefs(this).getBoolean(SHARED_SUBSCRIBED_NEWS_NOTIFS, false)) {
-            FirebaseMessaging.getInstance().subscribeToTopic("news");
-            getPrefs(this).edit().putBoolean(SHARED_SUBSCRIBED_NEWS_NOTIFS, true).commit();
-        }
+        FirebaseMessaging.getInstance().subscribeToTopic("news");
 
         if (BuildConfig.DEBUG) {
             FirebaseMessaging.getInstance().subscribeToTopic("test_news");
         }
+
+//        if (true) {
+//            throw new RuntimeException("esprueba");
+//        }
 
     }
 

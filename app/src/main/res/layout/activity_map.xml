@@ -27,9 +27,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <org.osmdroid.views.MapView
-                android:id="@+id/mapview"
-                tilesource="Mapnik"
+
+            <FrameLayout
+                android:id="@+id/frame_map_support"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 

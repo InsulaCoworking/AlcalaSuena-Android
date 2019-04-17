@@ -84,11 +84,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/headers_main"
+        android:background="@drawable/bg_headers_main_with_frame"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="7dp"
-        android:visibility="visible">
+        android:visibility="gone"
+        android:clickable="true">
 
         <TextView
             style="@style/TextBase"

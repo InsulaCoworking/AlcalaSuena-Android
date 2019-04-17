@@ -8,9 +8,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
+import android.text.TextUtils;
 import android.util.Log;
 
-import com.google.firebase.crash.FirebaseCrash;
+import com.crashlytics.android.Crashlytics;
 import com.google.gson.Gson;
 import com.triskelapps.alcalasuena.App;
 import com.triskelapps.alcalasuena.BuildConfig;
@@ -34,8 +35,6 @@ import com.triskelapps.alcalasuena.ui.news_info.NewsInfoPresenter;
 import com.triskelapps.alcalasuena.ui.splash.SplashPresenter;
 import com.triskelapps.alcalasuena.util.DateUtils;
 import com.triskelapps.alcalasuena.util.Util;
-
-import org.apache.commons.lang3.StringUtils;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -160,7 +159,7 @@ public class MainPresenter extends BasePresenter {
         String deviceId = Util.getDeviceId(context);
         String hash = Util.getMD5Hash(pin + deviceId);
         String hashStored = getPrefs().getString(App.SHARED_PIN_SEND_NEWS_ENCRIPT, null);
-        if (StringUtils.equals(hash, hashStored)) {
+        if (TextUtils.equals(hash, hashStored)) {
             view.showSendNewsButton();
         }
     }
@@ -209,7 +208,7 @@ public class MainPresenter extends BasePresenter {
 
             @Override
             public void onError(String error) {
-                FirebaseCrash.report(new Error("Error updating bands from API: " + error));
+                Crashlytics.logException(new Error("Error updating bands from API: " + error));
 //                Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
                 Log.i(TAG, "---> update bands error");
             }
@@ -232,7 +231,7 @@ public class MainPresenter extends BasePresenter {
 
             @Override
             public void onError(String error) {
-                FirebaseCrash.report(new Error("Error updating venues from API: " + error));
+                Crashlytics.logException(new Error("Error updating venues from API: " + error));
 //                Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
 
                 Log.i(TAG, "---> update venues error");
@@ -277,7 +276,7 @@ public class MainPresenter extends BasePresenter {
             }
         } catch (Exception e) {
             // Bad idea if this little extra make an app crash :S
-            FirebaseCrash.report(e);
+            Crashlytics.logException(e);
         }
 
     }
@@ -375,6 +374,7 @@ public class MainPresenter extends BasePresenter {
             if (news != null) {
                 news.configureDatesTime();
                 int newsId = news.getId();
+                newsInteractor.storeNewsIndividual(news);
                 context.startActivity(NewsInfoPresenter.newNewsInfoActivity(context, newsId));
 
             }

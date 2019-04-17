@@ -13,10 +13,6 @@ public interface MapView extends BaseView {
 
     void showVenues(List<Venue> venues);
 
-    void configureMyLocationOverlay();
-
-    void goToMyLocation();
-
     void showVenueInfo(Venue venue);
 
     void hideVenueInfo();

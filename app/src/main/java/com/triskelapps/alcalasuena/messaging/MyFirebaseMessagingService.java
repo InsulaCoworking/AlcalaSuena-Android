@@ -25,6 +25,7 @@ import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.model.News;
 import com.triskelapps.alcalasuena.model.notification.FirebasePush;
 import com.triskelapps.alcalasuena.ui.MainActivity;
+import com.triskelapps.alcalasuena.util.NotificationHelper;
 
 import java.util.Map;
 
@@ -35,6 +36,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "MyFirebaseMsgService";
     private static final String KEY_CUSTOM_BUTTON_TEXT = "btn-text";
     private static final String KEY_CUSTOM_BUTTON_LINK = "btn-link";
+
+
+    @Override
+    public void onNewToken(String s) {
+        super.onNewToken(s);
+
+    }
 
     /**
      * Called when message is received.
@@ -131,12 +139,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             final News news = new Gson().fromJson(newsJson, News.class);
             if (news != null) {
                 news.configureDatesTime();
-                Realm.getDefaultInstance().executeTransaction(new Realm.Transaction() {
-                    @Override
-                    public void execute(Realm realm) {
-                        realm.insertOrUpdate(news);
-                    }
-                });
+                Realm.getDefaultInstance().executeTransaction(realm -> realm.insertOrUpdate(news));
             }
         }
     }
@@ -150,7 +153,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 PendingIntent.FLAG_ONE_SHOT);
 
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, "0")
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NotificationHelper.CHANNEL_NOVELTIES_PUSH)
                 .setSmallIcon(R.mipmap.img_logo_alcalasuena_notif)
                 .setLargeIcon(BitmapFactory.decodeResource(getResources(),
                         idNews != null ? R.mipmap.ic_notif_news : R.mipmap.ic_notif_announcement))

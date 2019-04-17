@@ -16,6 +16,7 @@ import com.triskelapps.alcalasuena.util.Util;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -100,6 +101,12 @@ public class NewsInteractor extends BaseInteractor {
         realm.delete(News.class);
         realm.insertOrUpdate(newsList);
         realm.commitTransaction();
+    }
+
+    public void storeNewsIndividual(News news) {
+        List<News> newsList = new ArrayList<>();
+        newsList.add(news);
+        storeNews(newsList);
     }
 
 
@@ -220,7 +227,7 @@ public class NewsInteractor extends BaseInteractor {
 
         FirebasePush firebasePush = new FirebasePush();
         firebasePush.setTo(BuildConfig.DEBUG ? "/topics/test_news" : "/topics/news");
-//        firebasePush.setNotification(new FirebasePush.FirebaseNotification(title,  text));
+//        firebasePush.setNotification(new FirebasePushNotification(title,  text));
 
         FirebasePushData firebaseData = new FirebasePushData();
         firebaseData.setTitle(title);
@@ -233,7 +240,8 @@ public class NewsInteractor extends BaseInteractor {
         }
         firebasePush.setData(firebaseData);
 
-        String serverKey = "key=" + context.getString(R.string.firebase_server_key);
+        String serverKeyMod = context.getString(R.string.firebase_server_key);
+        String serverKey = "key=" + serverKeyMod.substring(0, serverKeyMod.length()-4);
 
         getApi().sendPush(serverKey, firebasePush)
                 .subscribeOn(Schedulers.newThread())

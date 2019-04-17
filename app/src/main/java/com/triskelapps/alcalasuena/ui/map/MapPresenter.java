@@ -1,21 +1,19 @@
 package com.triskelapps.alcalasuena.ui.map;
 
-import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.net.Uri;
-import android.os.Build;
 
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.interactor.VenueInteractor;
 import com.triskelapps.alcalasuena.model.Venue;
 import com.triskelapps.alcalasuena.ui.venue_info.VenueInfoPresenter;
-import com.triskelapps.alcalasuena.util.PermissionHelper;
 
 import java.util.List;
+
+import io.nlopez.smartlocation.SmartLocation;
 
 
 /**
@@ -23,99 +21,52 @@ import java.util.List;
  */
 
 
- public class MapPresenter extends BasePresenter implements PermissionHelper.PermissionCallback {
+public class MapPresenter extends BasePresenter {
 
-     private final MapView view;
+    private final MapView view;
     private final VenueInteractor venuesInteractor;
-    private PermissionHelper permissionHelper;
     private Location mLastLocation;
     private Venue lastVenueSelected;
 
     public static Intent newMapActivity(Context context) {
 
-         Intent intent = new Intent(context, MapActivity.class);
+        Intent intent = new Intent(context, MapActivity.class);
 
-         return intent;
-     }
+        return intent;
+    }
 
-     public static MapPresenter newInstance(MapView view, Context context) {
+    public static MapPresenter newInstance(MapView view, Context context) {
 
-         return new MapPresenter(view, context);
+        return new MapPresenter(view, context);
 
-     }
+    }
 
-     private MapPresenter(MapView view, Context context) {
-         super(context, view);
+    private MapPresenter(MapView view, Context context) {
+        super(context, view);
 
-         this.view = view;
-         venuesInteractor = new VenueInteractor(context, view);
+        this.view = view;
+        venuesInteractor = new VenueInteractor(context, view);
 
-     }
+    }
 
-     public void onCreate() {
+    public void onCreate() {
 
-
-
-         permissionHelper = new PermissionHelper((Activity)context, this);
-         if (isLocationReady()) {
-             view.configureMyLocationOverlay();
-         }
-         refreshData();
-     }
+    }
 
 
     public void onResume() {
 
-     }
-
-
-     public void refreshData() {
-
-         List<Venue> venues = venuesInteractor.getVenuesDB();
-         view.showVenues(venues);
-
-     }
-
-    private boolean isLocationReady() {
-        boolean permissionGranted = permissionHelper.isPermissionGranted(Manifest.permission.ACCESS_FINE_LOCATION);
-        return Build.VERSION.SDK_INT < Build.VERSION_CODES.M || permissionGranted;
     }
 
-    public void onMyLocationButtonClick() {
-
-        if (isLocationReady()) {
-            view.goToMyLocation();
-        } else {
-            checkLocationPermissionGranted();
-        }
+    public void onMapReady() {
+        refreshData();
     }
 
+    public void refreshData() {
 
-    // PERMISSIONS
-    @Override
-    public void onPermissionGranted(String permission) {
-        view.goToMyLocation();
-    }
+        List<Venue> venues = venuesInteractor.getVenuesDB();
+        view.showVenues(venues);
 
-    @Override
-    public void onPermissionDenied(String permission) {
-
-    }
-
-
-    public boolean checkLocationPermissionGranted() {
-
-        boolean permissionGranted = permissionHelper.isPermissionGranted(Manifest.permission.ACCESS_FINE_LOCATION);
-        if (!permissionGranted) {
-            permissionHelper.requestPermission(Manifest.permission.ACCESS_FINE_LOCATION,
-                    context.getString(R.string.explanation_permission_location));
-        }
-
-        return permissionGranted;
-    }
-
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        permissionHelper.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
 
@@ -134,7 +85,8 @@ import java.util.List;
         context.startActivity(VenueInfoPresenter.newVenueInfoActivity(context, lastVenueSelected.getId()));
     }
 
-    public void onVenueIndicationsClick(Location location) {
+    public void onVenueIndicationsClick() {
+        Location location = SmartLocation.with(context).location().getLastLocation();
 
         String destinationCoords = lastVenueSelected.getLatitude() + "," + lastVenueSelected.getLongitude();
 
@@ -159,4 +111,5 @@ import java.util.List;
         }
 
     }
+
 }

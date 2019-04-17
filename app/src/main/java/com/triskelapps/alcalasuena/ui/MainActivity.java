@@ -14,8 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.google.firebase.crash.FirebaseCrash;
-import com.triskelapps.alcalasuena.BuildConfig;
+import com.crashlytics.android.Crashlytics;
 import com.triskelapps.alcalasuena.DebugHelper;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BaseActivity;
@@ -23,7 +22,6 @@ import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.model.Event;
 import com.triskelapps.alcalasuena.ui.events.EventsAdapter;
 import com.triskelapps.alcalasuena.ui.news.send.SendNewsActivity;
-import com.triskelapps.alcalasuena.ui.splash.SplashPresenter;
 import com.triskelapps.alcalasuena.views.animation_adapter.AlphaInAnimationAdapter;
 import com.triskelapps.alcalasuena.views.animation_adapter.AnimationAdapter;
 
@@ -302,7 +300,7 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
                 });
             } catch (Exception e) {
                 e.printStackTrace();
-                FirebaseCrash.report(e);
+                Crashlytics.logException(e);
             }
         }
 

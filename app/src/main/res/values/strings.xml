@@ -118,5 +118,10 @@
     <string name="empty_list_news">De momento en este año no hay noticias. ¡Pronto te avisaremos de todas las novedades!</string>
     <string name="preparing_app_edition_current_year">Preparando aplicación para la edición de 2019....\n¡Te avisaremos cuando esté lista!</string>
     <string name="new_version_available">¡Aplicación preparada!\nPulsa aquí para actualizar</string>
+    <string name="location_wont_show">No se mostrará tu ubicación (puedes cambiar esta configuración en los ajustes)</string>
+    <string name="location_permission">Permiso de acceso a localización</string>
+    <string name="location_permission_rationale_message">Si quieres que se muestre tu ubicación en el mapa es necesario aceptar este permiso, si no tampoco pasa nada, se seguirán mostrando los escenarios en el mapa ;)</string>
+    <string name="channel_novelties_push_name">Noticias de AlcalaSuena</string>
+    <string name="channel_novelties_push_description">Todas las novedades directamente en tu móvil!</string>
 
 </resources>

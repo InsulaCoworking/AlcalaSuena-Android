@@ -3,6 +3,7 @@ package com.triskelapps.alcalasuena.ui.splash;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Handler;
 
 import com.triskelapps.alcalasuena.App;
@@ -141,6 +142,12 @@ public class SplashPresenter extends BasePresenter {
     public void onSplashInfoTextClick() {
         if (newVersionAvailable) {
             App.openAppInGooglePlay(context);
+        }
+    }
+
+    public void onSplashImageClick() {
+        if (BuildConfig.MODE_PREPARING) {
+            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://alcalasuena.es")));
         }
     }
 }

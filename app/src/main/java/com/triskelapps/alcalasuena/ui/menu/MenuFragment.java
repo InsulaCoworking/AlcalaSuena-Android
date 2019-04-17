@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +24,6 @@ import com.triskelapps.alcalasuena.ui.news.send.SendNewsActivity;
 import com.triskelapps.alcalasuena.ui.splash.SplashPresenter;
 import com.triskelapps.alcalasuena.ui.venues.VenuesActivity;
 import com.triskelapps.alcalasuena.util.Util;
-
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * Created by julio on 23/05/17.
@@ -144,7 +143,7 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener, 
                     public void onClick(DialogInterface dialog, int which) {
                         String pin = getString(R.string.pin_send_news);
                         String userPin = editText.getText().toString();
-                        if (StringUtils.equals(pin, userPin)) {
+                        if (TextUtils.equals(pin, userPin)) {
                             String deviceId = Util.getDeviceId(getActivity());
                             getPrefs().edit().putString(App.SHARED_PIN_SEND_NEWS_ENCRIPT, Util.getMD5Hash(pin + deviceId)).commit();
                             startActivity(new Intent(getActivity(), SendNewsActivity.class));

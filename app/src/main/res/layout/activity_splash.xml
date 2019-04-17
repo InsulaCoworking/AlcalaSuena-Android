@@ -17,6 +17,7 @@
         android:src="@mipmap/img_bg_2019" />
 
     <ImageView
+        android:id="@+id/img_alcalasuena_splash"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
