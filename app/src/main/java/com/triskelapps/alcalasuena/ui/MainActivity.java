@@ -43,6 +43,8 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
     private View btnUpdateNewVersion;
     private View viewBtnShareFavs;
     private View btnSendNews;
+    private View btnHappeningNow;
+    private View progressHappeningNow;
 
     private void findViews() {
         tabsDays = (TabLayout) findViewById(R.id.tabs_days);
@@ -56,12 +58,15 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
         btnUpdateNewVersion = findViewById(R.id.btn_update_new_version);
 
         btnSendNews = findViewById(R.id.btn_send_news);
+        btnHappeningNow = findViewById(R.id.btn_happening_now);
+        progressHappeningNow = findViewById(R.id.progress_happening_now);
 
         btnShareFavs.setOnClickListener(this);
         btnHideNewVersionView.setOnClickListener(this);
         btnUpdateNewVersion.setOnClickListener(this);
 
         btnSendNews.setOnClickListener(this);
+        btnHappeningNow.setOnClickListener(this);
     }
 
     @Override
@@ -116,6 +121,7 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
     protected void onStop() {
         super.onStop();
         drawerLayout.closeDrawer(Gravity.LEFT);
+        presenter.onStop();
     }
 
     @Override
@@ -211,6 +217,10 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
 
             case R.id.btn_send_news:
                 startActivity(new Intent(this, SendNewsActivity.class));
+                break;
+
+            case R.id.btn_happening_now:
+                presenter.onHappeningNowButtonClick();
                 break;
         }
     }
@@ -342,5 +352,10 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
     @Override
     public void showSendNewsButton() {
         btnSendNews.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showProgressHappeningNow(boolean show) {
+        progressHappeningNow.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
     }
 }

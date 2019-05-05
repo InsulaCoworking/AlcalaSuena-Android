@@ -62,12 +62,7 @@ public class NewsInfoActivity extends BaseActivity implements NewsInfoView {
                     .load(news.getImageUrlFull())
                     .into(imgNews);
 
-            imgNews.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    lauchImageZoom(news.getImageUrlFull());
-                }
-            });
+            imgNews.setOnClickListener(v -> lauchImageZoom(news.getImageUrlFull()));
         }
 
         if (news.hasValidLinkButton()) {

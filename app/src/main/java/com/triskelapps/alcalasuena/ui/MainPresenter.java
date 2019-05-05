@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.location.Location;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
@@ -33,6 +34,7 @@ import com.triskelapps.alcalasuena.ui.band_info.BandInfoPresenter;
 import com.triskelapps.alcalasuena.ui.info.WebViewActivity;
 import com.triskelapps.alcalasuena.ui.news_info.NewsInfoPresenter;
 import com.triskelapps.alcalasuena.ui.splash.SplashPresenter;
+import com.triskelapps.alcalasuena.ui.venue_info.VenueInfoPresenter;
 import com.triskelapps.alcalasuena.util.DateUtils;
 import com.triskelapps.alcalasuena.util.Util;
 
@@ -43,6 +45,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import io.nlopez.smartlocation.SmartLocation;
 
 import static com.triskelapps.alcalasuena.App.SHARED_FIRST_TIME_APP_LAUNCHING;
 
@@ -85,6 +89,7 @@ public class MainPresenter extends BasePresenter {
     };
     private Integer newDataVersion;
     private List<Event> events = new ArrayList<>();
+    private boolean searchingLocation;
 
     public static Intent newMainActivity(Context context) {
 
@@ -142,7 +147,7 @@ public class MainPresenter extends BasePresenter {
 
         if (BuildConfig.MODE_PREPARING) {
             SplashPresenter.launchSplashActivity(context, SplashPresenter.NEXT_SCREEN_NONE);
-            ((Activity)context).finish();
+            ((Activity) context).finish();
         } else if (getPrefs().getBoolean(SHARED_FIRST_TIME_APP_LAUNCHING, true)) {
 //        if(true) {
             SplashPresenter.launchSplashActivity(context, SplashPresenter.NEXT_SCREEN_INTRO);
@@ -168,6 +173,12 @@ public class MainPresenter extends BasePresenter {
     public void onResume() {
 
         refreshData();
+    }
+
+    public void onStop() {
+        if (searchingLocation) {
+            onHappeningNowButtonClick();
+        }
     }
 
     public void onDestroy() {
@@ -481,4 +492,83 @@ public class MainPresenter extends BasePresenter {
         }
     }
 
+    public void onHappeningNowButtonClick() {
+
+        searchingLocation = !searchingLocation;
+
+        if (searchingLocation) {
+            SmartLocation.with(context).location().oneFix().start(location -> {
+//                view.toast("encontrado: precisión: " + location.getAccuracy());
+                if (searchingLocation) {
+                    onHappeningNowButtonClick();
+                }
+
+                if (location.getAccuracy() > 50) {
+                    view.toast(R.string.accuracy_enought_location_not_found);
+                    return;
+                }
+
+                Venue venue = searchClosestVenue(location);
+                if (venue != null) {
+//                    view.toast("Escenario cercano: " + venue.getName());
+                    context.startActivity(VenueInfoPresenter.newVenueInfoActivity(context, venue.getId(), true));
+                }
+            });
+        } else {
+            SmartLocation.with(context).location().stop();
+        }
+
+        view.showProgressHappeningNow(searchingLocation);
+
+
+    }
+
+    private Venue searchClosestVenue(Location location) {
+        List<Venue> venues = venueInteractor.getVenuesDB();
+        double closestDistance = Double.MAX_VALUE;
+        int indexVenueClosestDistance = -1;
+        for (int i = 0; i < venues.size(); i++) {
+            Venue venue = venues.get(i);
+            double distanceKm = calculateDistance(location.getLatitude(), location.getLongitude(),
+                    venue.getLatitude(), venue.getLongitude(), "K");
+            double distanceMeters = distanceKm * 1000;
+            if (distanceMeters < closestDistance) {
+                closestDistance = distanceMeters;
+                indexVenueClosestDistance = i;
+            }
+        }
+
+        if (indexVenueClosestDistance == -1) {
+            view.toast(R.string.error);
+            return null;
+        }
+
+        if (closestDistance > 100) {
+            view.toast(R.string.not_close_to_venue);
+            return null;
+        }
+
+        return venues.get(indexVenueClosestDistance);
+    }
+
+
+    // https://www.geodatasource.com/developers/java
+    private static double calculateDistance(double lat1, double lon1, double lat2, double lon2, String unit) {
+        if ((lat1 == lat2) && (lon1 == lon2)) {
+            return 0;
+        } else {
+            double theta = lon1 - lon2;
+            double dist = Math.sin(Math.toRadians(lat1)) * Math.sin(Math.toRadians(lat2))
+                    + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) * Math.cos(Math.toRadians(theta));
+            dist = Math.acos(dist);
+            dist = Math.toDegrees(dist);
+            dist = dist * 60 * 1.1515;
+            if (unit == "K") {
+                dist = dist * 1.609344;
+            } else if (unit == "N") {
+                dist = dist * 0.8684;
+            }
+            return (dist);
+        }
+    }
 }

@@ -23,4 +23,6 @@ public interface MainView extends BaseView {
     void goToEventsTakingPlaceNow(int positionFirstEvent);
 
     void showSendNewsButton();
+
+    void showProgressHappeningNow(boolean show);
 }

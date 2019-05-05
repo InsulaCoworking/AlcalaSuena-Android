@@ -28,6 +28,7 @@ public class VenueInfoActivity extends BaseActivity implements VenueInfoView, Ta
     private Venue venue;
     private List<Event> eventsVenue;
     private FrameLayout frameVenueInfo;
+    private int indexNextEventFromNow;
 
     private void findViews() {
         tvVenueName = (TextView) findViewById(R.id.tv_venue_name);
@@ -81,9 +82,10 @@ public class VenueInfoActivity extends BaseActivity implements VenueInfoView, Ta
 
     //PRESENTER CALLBACKS
     @Override
-    public void showVenueInfo(Venue venue, List<Event> events) {
+    public void showVenueInfo(Venue venue, List<Event> events, int indexNextEventFromNow) {
         this.venue = venue;
         this.eventsVenue = events;
+        this.indexNextEventFromNow = indexNextEventFromNow;
 
         tvVenueName.setText(venue.getName());
 
@@ -126,5 +128,15 @@ public class VenueInfoActivity extends BaseActivity implements VenueInfoView, Ta
     public List<Event> getEventsVenue() {
         return eventsVenue;
     }
+
+    public int getIndexNextEventFromNow() {
+        return indexNextEventFromNow;
+    }
+
+    @Override
+    public void selectEventsView() {
+        tabsVenueInfo.getTabAt(1).select();
+    }
+
 }
 

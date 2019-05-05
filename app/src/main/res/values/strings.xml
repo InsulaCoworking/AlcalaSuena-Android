@@ -123,5 +123,7 @@
     <string name="location_permission_rationale_message">Si quieres que se muestre tu ubicación en el mapa es necesario aceptar este permiso, si no tampoco pasa nada, se seguirán mostrando los escenarios en el mapa ;)</string>
     <string name="channel_novelties_push_name">Noticias de AlcalaSuena</string>
     <string name="channel_novelties_push_description">Todas las novedades directamente en tu móvil!</string>
+    <string name="accuracy_enought_location_not_found">No se ha encontrado una localización suficientemente precisa</string>
+    <string name="not_close_to_venue">No estás cerca de ningún escenario (acércate por lo menos a 100 metros)</string>
 
 </resources>

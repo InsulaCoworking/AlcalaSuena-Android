@@ -48,7 +48,7 @@ public class Event extends RealmObject implements Comparable {
     private Band bandEntity;
     private Venue venue;
 
-    private int timeHourMidnightSafe;
+    private long timeHourMidnightSafe;
 
     public String getDayShareFormat() {
         try {
@@ -112,7 +112,7 @@ public class Event extends RealmObject implements Comparable {
 
     @Override
     public int compareTo(@NonNull Object o) {
-        return getTimeHourMidnightSafe() - ((Event) o).getTimeHourMidnightSafe();
+        return (int) (getTimeHourMidnightSafe() - ((Event) o).getTimeHourMidnightSafe());
     }
 
     public int getId() {
@@ -180,11 +180,11 @@ public class Event extends RealmObject implements Comparable {
         this.starred = starred;
     }
 
-    public int getTimeHourMidnightSafe() {
+    public long getTimeHourMidnightSafe() {
         return timeHourMidnightSafe;
     }
 
-    public void setTimeHourMidnightSafe(int timeHourMidnightSafe) {
+    public void setTimeHourMidnightSafe(long timeHourMidnightSafe) {
         this.timeHourMidnightSafe = timeHourMidnightSafe;
     }
 

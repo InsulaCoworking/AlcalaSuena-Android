@@ -7,6 +7,8 @@ import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.interactor.NewsInteractor;
 import com.triskelapps.alcalasuena.model.News;
 
+import io.realm.Realm;
+
 /**
  * Created by julio on 2/06/17.
  */
@@ -56,7 +58,8 @@ public class NewsInfoPresenter extends BasePresenter {
     public void refreshData() {
 
         News news = newsInteractor.getNewsById(idNews);
-        view.showNews(news);
+        News newsCopy = Realm.getDefaultInstance().copyFromRealm(news);
+        view.showNews(newsCopy);
 
     }
 

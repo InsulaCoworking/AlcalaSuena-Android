@@ -12,5 +12,7 @@ import java.util.List;
 
 public interface VenueInfoView extends BaseView {
 
-    void showVenueInfo(Venue venue, List<Event> eventsVenue);
+    void showVenueInfo(Venue venue, List<Event> eventsVenue, int indexNextEventFromNow);
+
+    void selectEventsView();
 }

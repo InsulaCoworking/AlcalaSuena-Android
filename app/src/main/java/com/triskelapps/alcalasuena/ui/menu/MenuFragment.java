@@ -22,7 +22,7 @@ import com.triskelapps.alcalasuena.ui.map.MapActivity;
 import com.triskelapps.alcalasuena.ui.news.NewsActivity;
 import com.triskelapps.alcalasuena.ui.news.send.SendNewsActivity;
 import com.triskelapps.alcalasuena.ui.splash.SplashPresenter;
-import com.triskelapps.alcalasuena.ui.venues.VenuesActivity;
+import com.triskelapps.alcalasuena.ui.venues.VenuesPresenter;
 import com.triskelapps.alcalasuena.util.Util;
 
 /**
@@ -103,7 +103,7 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener, 
                 break;
 
             case R.id.btn_menu_venues:
-                startActivity(new Intent(getActivity(), VenuesActivity.class));
+                startActivity(VenuesPresenter.newVenuesActivity(getActivity()));
                 break;
 
             case R.id.btn_menu_news:

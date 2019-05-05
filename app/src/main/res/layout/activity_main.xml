@@ -67,14 +67,39 @@
                 android:id="@+id/btn_send_news"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:layout_margin="15dp"
                 android:background="@drawable/bg_btn_send_news"
                 android:scaleType="centerInside"
                 android:src="@mipmap/ic_news"
                 android:visibility="gone"
-                app:tint="@color/white" />
+                app:tint="@color/text_color_main"
+                android:layout_above="@+id/view_happening_now"/>
+
+            <RelativeLayout
+                android:id="@+id/view_happening_now"
+                android:layout_width="95dp"
+                android:layout_height="95dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/btn_happening_now"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/bg_btn_send_news"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/ic_happening_now_3"
+                    android:padding="10dp"
+                    app:tint="@color/text_color_main"/>
+
+                <ProgressBar
+                    android:id="@+id/progress_happening_now"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="invisible"/>
+            </RelativeLayout>
         </RelativeLayout>
 
     </LinearLayout>

@@ -52,11 +52,13 @@ public class VenueInfoEventsFragment extends Fragment {
         super.onResume();
 
         List<Event> events = ((VenueInfoActivity) getActivity()).getEventsVenue();
+        int indexNextEventFromNow = ((VenueInfoActivity) getActivity()).getIndexNextEventFromNow();
 
         if (adapter == null) {
 
             adapter = new EventsVenueAdapter(getActivity(), events);
             adapter.setOnItemClickListener((VenueInfoActivity) getActivity());
+            adapter.setHightlightPosition(indexNextEventFromNow);
 
             // https://github.com/edubarr/header-decor
             StickyHeaderDecoration decor = new StickyHeaderDecoration(adapter);
@@ -65,7 +67,12 @@ public class VenueInfoEventsFragment extends Fragment {
             recyclerEventsVenue.addItemDecoration(decor);
 
         } else {
+            adapter.setHightlightPosition(indexNextEventFromNow);
             adapter.updateData(events);
+        }
+
+        if (indexNextEventFromNow > 0) {
+            recyclerEventsVenue.scrollToPosition(indexNextEventFromNow > 1 ? indexNextEventFromNow -1 : 0); // To avoid sticky header from overlaping the event row
         }
     }
 }

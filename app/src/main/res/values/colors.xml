@@ -11,6 +11,7 @@
     <color name="tab_selectedld_o">#ffff71</color>
     <color name="transp_black">#B000</color>
     <color name="transp_white">#b8ffffff</color>
+    <color name="black">#000</color>
     <color name="white">#ffffff</color>
 
     <color name="bg_filter">#F5F5F5</color>
@@ -40,4 +41,5 @@
     <color name="tagWhiteFilter">#4FFF</color>
 
     <color name="black_overlay">#66000000</color>
+    <color name="red">#C50000</color>
 </resources>

@@ -34,6 +34,7 @@ public class EventsVenueAdapter extends RecyclerView.Adapter<EventsVenueAdapter.
     private OnItemClickListener itemClickListener;
 
     private Integer selectedNumber = -1;
+    private int hightlightPosition = -1;
 
 
     public EventsVenueAdapter(Context context, List<Event> events) {
@@ -77,6 +78,8 @@ public class EventsVenueAdapter extends RecyclerView.Adapter<EventsVenueAdapter.
 
         holder.tvEventVenue.setVisibility(View.INVISIBLE);
 
+        holder.rootView.setSelected(hightlightPosition == position);
+
         holder.imgStarred.setSelected(event.isStarred());
 
         if (band.getTag() != null) {
@@ -89,20 +92,7 @@ public class EventsVenueAdapter extends RecyclerView.Adapter<EventsVenueAdapter.
 //        holder.tvEventName.setTextColor(color);
 //        holder.tvEventGenre.setTextColor(color);
 
-        holder.rootView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                itemClickListener.onBandClicked(band.getId());
-            }
-        });
 
-        holder.imgStarred.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                holder.imgStarred.setSelected(!holder.imgStarred.isSelected());
-                itemClickListener.onEventFavouriteClicked(event.getId());
-            }
-        });
     }
 
     private void addClickListener(View view, final int position) {
@@ -132,8 +122,12 @@ public class EventsVenueAdapter extends RecyclerView.Adapter<EventsVenueAdapter.
         notifyDataSetChanged();
     }
 
+    public void setHightlightPosition(int hightlightPosition) {
+        this.hightlightPosition = hightlightPosition;
+    }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
         private CardView cardEvent;
         private ImageView imgBand;
         private TextView tvBandName;
@@ -156,6 +150,24 @@ public class EventsVenueAdapter extends RecyclerView.Adapter<EventsVenueAdapter.
             tvEventTime = (TextView)itemView.findViewById( R.id.tv_event_time );
 
             rootView = itemView;
+
+
+            rootView.setOnClickListener(v -> {
+
+                if (itemClickListener != null) {
+                    final Event event = getItemAtPosition(getAdapterPosition());
+                    final Band band = event.getBandEntity();
+                    itemClickListener.onBandClicked(band.getId());
+                }
+            });
+
+            imgStarred.setOnClickListener(v -> {
+                if (itemClickListener != null) {
+                    final Event event = getItemAtPosition(getAdapterPosition());
+                    imgStarred.setSelected(!imgStarred.isSelected());
+                    itemClickListener.onEventFavouriteClicked(event.getId());
+                }
+            });
         }
     }
 

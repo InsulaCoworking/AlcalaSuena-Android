@@ -3,6 +3,7 @@ package com.triskelapps.alcalasuena.ui.venue_info;
 import android.content.Context;
 import android.content.Intent;
 
+import com.triskelapps.alcalasuena.BuildConfig;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.interactor.EventInteractor;
 import com.triskelapps.alcalasuena.interactor.VenueInteractor;
@@ -10,6 +11,11 @@ import com.triskelapps.alcalasuena.model.Event;
 import com.triskelapps.alcalasuena.model.Venue;
 import com.triskelapps.alcalasuena.ui.band_info.BandInfoPresenter;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,60 +23,111 @@ import java.util.List;
  */
 
 
- public class VenueInfoPresenter extends BasePresenter {
+public class VenueInfoPresenter extends BasePresenter {
 
     private static final String EXTRA_VENUE_ID = "extra_venue_id";
+    private static final String EXTRA_FROM_HAPPENING_NOW = "extra_from_happening_now";
 
     private final VenueInfoView view;
     private final VenueInteractor venueInteractor;
     private final EventInteractor eventInteractor;
     private int idVenue;
+    private boolean fromHappeningNow;
 
     public static Intent newVenueInfoActivity(Context context, int idVenue) {
 
-         Intent intent = new Intent(context, VenueInfoActivity.class);
-         intent.putExtra(EXTRA_VENUE_ID, idVenue);
-         return intent;
-     }
+        Intent intent = new Intent(context, VenueInfoActivity.class);
+        intent.putExtra(EXTRA_VENUE_ID, idVenue);
+        return intent;
+    }
 
-     public static VenueInfoPresenter newInstance(VenueInfoView view, Context context) {
+    public static Intent newVenueInfoActivity(Context context, int idVenue, boolean fromHappeningNow) {
 
-         return new VenueInfoPresenter(view, context);
+        Intent intent = new Intent(context, VenueInfoActivity.class);
+        intent.putExtra(EXTRA_VENUE_ID, idVenue);
+        intent.putExtra(EXTRA_FROM_HAPPENING_NOW, fromHappeningNow);
+        return intent;
+    }
 
-     }
+    public static VenueInfoPresenter newInstance(VenueInfoView view, Context context) {
 
-     private VenueInfoPresenter(VenueInfoView view, Context context) {
-         super(context, view);
+        return new VenueInfoPresenter(view, context);
 
-         this.view = view;
+    }
 
-         venueInteractor = new VenueInteractor(context, view);
-         eventInteractor = new EventInteractor(context, view);
+    private VenueInfoPresenter(VenueInfoView view, Context context) {
+        super(context, view);
 
-     }
+        this.view = view;
 
-     public void onCreate(Intent intent) {
+        venueInteractor = new VenueInteractor(context, view);
+        eventInteractor = new EventInteractor(context, view);
 
-         idVenue = intent.getIntExtra(EXTRA_VENUE_ID, -1);
-         if (idVenue == -1) {
-             throw new IllegalArgumentException("No idVenue passed");
-         }
+    }
 
-         refreshData();
+    public void onCreate(Intent intent) {
 
-     }
+        idVenue = intent.getIntExtra(EXTRA_VENUE_ID, -1);
+        if (idVenue == -1) {
+            throw new IllegalArgumentException("No idVenue passed");
+        }
 
-     public void onResume() {
+        refreshData();
 
-     }
+        fromHappeningNow = intent.getBooleanExtra(EXTRA_FROM_HAPPENING_NOW, false);
+        if (fromHappeningNow) {
+            view.selectEventsView();
+        }
 
-     public void refreshData() {
+    }
 
-         Venue venue = venueInteractor.getVenue(idVenue);
-         List<Event> eventsVenue = eventInteractor.getEventsForVenue(idVenue);
-         view.showVenueInfo(venue, eventsVenue);
+    public void onResume() {
 
-     }
+    }
+
+    public void refreshData() {
+
+        Venue venue = venueInteractor.getVenue(idVenue);
+        List<Event> eventsVenue = eventInteractor.getEventsForVenue(idVenue);
+        int indexNextEventFromNow = getIndexNextEventFromNow(eventsVenue);
+        view.showVenueInfo(venue, eventsVenue, indexNextEventFromNow);
+
+    }
+
+    private int getIndexNextEventFromNow(List<Event> eventsVenue) {
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        for (int i = 0; i < eventsVenue.size(); i++) {
+            Event event = eventsVenue.get(i);
+
+            // This must return previous event from which is the first after current time
+            try {
+                String datetimeEvent = event.getDay() + " " + event.getTime();
+                Date eventDate = dateFormat.parse(datetimeEvent);
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(eventDate);
+                int hourOfDayEvent = calendar.get(Calendar.HOUR_OF_DAY);
+                if (hourOfDayEvent > 0 && hourOfDayEvent < Event.TIME_HOUR_MIDNIGHT_SAFE_THRESHOLD) {
+                    calendar.add(Calendar.DAY_OF_MONTH, 1);
+                }
+                eventDate.setTime(calendar.getTimeInMillis());
+
+                // todo finish this. fix case when events in new day have not started yet
+
+//                Date eventDate = new Date(event.getTimeHourMidnightSafe());
+                Date currentDate = BuildConfig.MOCK_CURRENT_DATETIME ? dateFormat.parse("2019-06-08 05:30:00") : new Date();
+                if (eventDate.after(currentDate)) {
+                    return i - 1;
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        return 0;
+    }
 
     public void onEventFavouriteClicked(int idEvent) {
         eventInteractor.toggleFavState(idEvent, false);
