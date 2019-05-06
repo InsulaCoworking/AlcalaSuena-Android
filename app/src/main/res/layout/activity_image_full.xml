@@ -21,8 +21,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:keepScreenOn="true"
-            android:adjustViewBounds="true"
-            app:srcCompat="@mipmap/img_bloco_virado_grupo"/>
+            android:adjustViewBounds="true"/>
 
         <ImageView
             android:id="@+id/img_close"

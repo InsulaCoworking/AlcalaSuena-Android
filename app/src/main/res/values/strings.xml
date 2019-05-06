@@ -60,19 +60,18 @@
     <string name="about_app">Sobre la app</string>
     <string name="insula_coworking">Ínsula Coworking</string>
 
-    <string name="text_about_insula">Esta aplicación de Android y la web interactiva www.alcalasuena.es ha sido desarrollada gracias a la iniciativa y colaboración de un grupo de personas de la Ínsula Coworking, un espacio compartido de trabajo y emprendimiento en la Calle Mayor de Alcalá
-        \n\nAdemás de informáticos y diseñadores, somos unos apasionados de la buena música y la cultura de nuestra ciudad, así que sin más compartimos con vosotr@s este proyecto y ¡a disfrutar del festival!.
+    <string name="text_about_insula">Esta aplicación de Android y la web interactiva www.alcalasuena.es nacieron en 2017 por iniciativa colectiva de un grupo de informáticos y diseñadores de la Ínsula Coworking.\n\nGracias a la buena acogida y los comentarios positivos que nos habéis dado, este año cuenta con el apoyo del Ayuntamiento de Alcalá para seguir mejorando. Como gran novedad, en esta edición de 2019 ¡por fin estará la tan esperada aplicación para iOS!</string>
 
-    </string>
-    <string name="joseba_info">Joseba Saenz de Navarrete\nDesarrollador backend\nChaotic Kingdoms</string>
-    <string name="jaime_info">Jaime Pérez Dans\nDiseñador web\nIntroarte S.L.</string>
-    <string name="vicente_info">Vicente Molina Martínez\nDiseñador gráfico\nMr. MadBar</string>
-    <string name="julio_info">Julio Berzal Carrascosa\nDesarrollador Android\nTriskel Apps</string>
+    <string name="joseba_info">Joseba Saenz de Navarrete\nBackend y página web</string>
+    <string name="roberto_info">Roberto Román Moran\nApp iOS</string>
+    <string name="julio_info">Julio Berzal Carrascosa\nApp Android</string>
+    <string name="collaborators_insula">Además hemos contado con la indispensable colaboración de varios miembros del coworking en tareas de control de calidad como detección de fallos y propuestas de mejora.</string>
+
     <string name="meet_us">Conócenos</string>
     <string name="telegram_channel">Canal de Telegram</string>
     <string name="news_channel">Canal de noticias</string>
     <string name="import_link_text">Manda este enlace a tus amigos para que marquen automáticamente tus favoritos y podáis ir juntos a los conciertos ;)\n\n%s</string>
-    <string name="download_app_text">( Si todavía no tienen la app diles que la descarguen pasándoles este link: %s )</string>
+    <string name="download_app_text">(Si todavía no tienen la app diles que la descarguen gratuitamente:\n- Android: %s\n- iOS: %s)</string>
     <string name="add_favs_events">Añadir conciertos favoritos</string>
     <string name="add">¡Añadir!</string>
     <string name="no_thanks">No, gracias</string>
@@ -85,15 +84,12 @@
     <string name="follow_link">Seguir enlace</string>
     <string name="funny_text_user_enter_with_wrong_link">El enlace que quieres ver tienes que abrirlo desde un navegador. Esta app solo recibe enlaces para añadir favoritos.\n\nEn cualquier caso, ¡un gusto tenerte por aquí! ;)\n\nElige qué quieres hacer</string>
 
-    <string name="title_activity_fullscreen">FullscreenActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="download_app_text_2">¡Bájate gratis la app para Android del Festival #AlcalaSuena!\n\n%s</string>
     <string name="news">Noticias</string>
     <string name="share_band">Compartir banda</string>
     <string name="send_band_text">¡Echa un ojo a esta banda!\n\n%s</string>
     <string name="share_app">¡Comparte la app de #AlcalaSuena!</string>
-    <string name="share_app_text">¡Ya está disponible la app gratuita del festival #AlcalaSuena!\n\nToda la información de bandas, horarios, mapa de escenarios y noticias directas en tu teléfono.\n\nDescárgala gratis en: %s</string>
+    <string name="share_app_text">¡Ya está disponible la app gratuita del festival #AlcalaSuena!\n\nToda la información de bandas, horarios, mapa de escenarios y noticias directas en tu teléfono.\n\nDescárgala gratis:\n- Android %s\n- iOS: %s</string>
     <string name="secret_key">Clave secreta</string>
     <string name="title">Título</string>
     <string name="text">Texto</string>
@@ -125,5 +121,7 @@
     <string name="channel_novelties_push_description">Todas las novedades directamente en tu móvil!</string>
     <string name="accuracy_enought_location_not_found">No se ha encontrado una localización suficientemente precisa</string>
     <string name="not_close_to_venue">No estás cerca de ningún escenario (acércate por lo menos a 100 metros)</string>
+    <string name="code_released_gpl">El código fuente de esta plataforma está liberado con licencia GPL. Puedes verlo aquí:</string>
+    <string name="developers">Desarrolladores</string>
 
 </resources>

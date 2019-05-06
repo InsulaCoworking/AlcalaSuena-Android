@@ -22,6 +22,8 @@ import io.realm.annotations.PrimaryKey;
 public class Event extends RealmObject implements Comparable {
 
     public static final int TIME_HOUR_MIDNIGHT_SAFE_THRESHOLD = 5; // After 5:00 is "next day"
+    public static final int MIN_DISTANCE_TO_VENUE_HAPPENING_NOW = 100; // in meters
+    public static final float MIN_ACCURACY_LOCATION_HAPPENING_NOW = 50; // in meters
 
     public static final String TIME = "time";
     public static final String DAY = "day";

@@ -42,4 +42,5 @@
 
     <color name="black_overlay">#66000000</color>
     <color name="red">#C50000</color>
+    <color name="grey_dark_skyline">#181818</color>
 </resources>

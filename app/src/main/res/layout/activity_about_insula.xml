@@ -11,7 +11,7 @@
         android:adjustViewBounds="true"
         android:alpha="@dimen/alpha_imgs_bg"
         android:scaleType="centerCrop"
-        android:src="@mipmap/img_logo_insula_black" />
+        android:src="@mipmap/img_bg_2019" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,53 +30,27 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
-                android:padding="15dp">
+                android:padding="5dp">
 
 
                 <TextView
                     style="@style/TextBase.Bold"
                     android:autoLink="all"
-                    android:background="@color/cardBackground"
                     android:padding="10dp"
                     android:text="@string/text_about_insula" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_frame_accent"
-                    android:tag="https://github.com/InsulaCoworking"
-                    android:paddingTop="15dp"
-                    android:paddingBottom="15dp"
-                    android:paddingLeft="25dp"
-                    android:paddingRight="25dp"
-                    android:layout_marginTop="10dp">
-
-                    <ImageView
-                        style="@style/ImageMenuIcon"
-                        android:src="@mipmap/ic_social_github"
-                        android:tint="@color/colorAccent"
-                        android:layout_marginRight="20dp"/>
-
-                    <TextView
-                        style="@style/TextBase"
-                        android:tag="https://github.com/InsulaCoworking"
-                        android:text="@string/see_github_repositories"
-                        android:textSize="16sp"/>
-                </LinearLayout>
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:background="@color/cardBackground"
                     android:orientation="vertical"
-                    android:padding="10dp">
+                    android:padding="5dp">
 
                     <TextView
                         style="@style/TextTitle"
                         android:layout_margin="10dp"
-                        android:text="Coworkers"
+                        android:text="@string/developers"
                         android:textColor="@color/grey_dark_general" />
 
                     <LinearLayout style="@style/LinearMenu">
@@ -87,9 +61,9 @@
 
                         <TextView
                             style="@style/BtnMenu"
-                            android:tag="http://www.chaotic-kingdoms.com/"
-                            android:text="@string/joseba_info"
-                            android:background="@drawable/background_pressed_custom" />
+                            android:background="@drawable/background_pressed_custom"
+                            android:tag="https://github.com/jjoseba"
+                            android:text="@string/joseba_info" />
 
                     </LinearLayout>
 
@@ -101,23 +75,9 @@
 
                         <TextView
                             style="@style/BtnMenu"
-                            android:tag="http://www.introarte.net"
-                            android:text="@string/jaime_info"
-                            android:background="@drawable/background_pressed_custom" />
-
-                    </LinearLayout>
-
-                    <LinearLayout style="@style/LinearMenu">
-
-                        <ImageView
-                            style="@style/ImageMenuIcon"
-                            android:src="@mipmap/logo_bullet" />
-
-                        <TextView
-                            style="@style/BtnMenu"
-                            android:tag="http://mrmadbar.com/"
-                            android:text="@string/vicente_info"
-                            android:background="@drawable/background_pressed_custom"/>
+                            android:background="@drawable/background_pressed_custom"
+                            android:tag="https://www.linkedin.com/in/roberto-roman-a1398031/"
+                            android:text="@string/roberto_info" />
 
                     </LinearLayout>
 
@@ -131,48 +91,50 @@
 
                         <TextView
                             style="@style/BtnMenu"
+                            android:background="@drawable/background_pressed_custom"
                             android:tag="http://triskelapps.com/"
-                            android:text="@string/julio_info"
-                            android:background="@drawable/background_pressed_custom"/>
+                            android:text="@string/julio_info" />
 
                     </LinearLayout>
+
+                    <TextView
+                        style="@style/TextBase"
+                        android:padding="10dp"
+                        android:text="@string/collaborators_insula" />
 
                 </LinearLayout>
 
 
+                <TextView
+                    style="@style/TextBase.Bold"
+                    android:layout_marginTop="10dp"
+                    android:autoLink="all"
+                    android:padding="5dp"
+                    android:text="@string/code_released_gpl" />
+
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:orientation="vertical"
-                    android:padding="10dp">
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_frame_accent"
+                    android:paddingLeft="25dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="25dp"
+                    android:paddingBottom="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:tag="https://github.com/InsulaCoworking">
+
+                    <ImageView
+                        style="@style/ImageMenuIcon"
+                        android:layout_marginRight="20dp"
+                        android:src="@mipmap/ic_social_github"
+                        android:tint="@color/colorAccent" />
 
                     <TextView
-                        style="@style/TextTitle"
-                        android:layout_margin="10dp"
-                        android:text="Ínsula Coworking" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <Button
-                            style="@style/TextButton"
-                            android:tag="http://insulacoworking.es/"
-                            android:text="@string/meet_us"
-                            android:textSize="16sp"/>
-
-                        <Button
-                            style="@style/TextButton"
-                            android:tag="https://telegram.me/insulacoworking"
-                            android:text="@string/news_channel"
-                            android:textSize="16sp"
-                            android:layout_marginLeft="20dp"/>
-                    </LinearLayout>
-
-
+                        style="@style/TextBase"
+                        android:tag="https://github.com/InsulaCoworking"
+                        android:text="@string/see_github_repositories"
+                        android:textSize="16sp" />
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

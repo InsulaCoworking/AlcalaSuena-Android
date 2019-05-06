@@ -15,6 +15,7 @@ import com.triskelapps.alcalasuena.base.BaseActivity;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.model.Band;
 import com.triskelapps.alcalasuena.model.Event;
+import com.triskelapps.alcalasuena.model.SocialItem;
 import com.triskelapps.alcalasuena.views.CircleTransform;
 
 import java.util.List;
@@ -31,14 +32,11 @@ public class BandInfoActivity extends BaseActivity implements BandInfoView, View
     private ImageView imgBand;
     private TextView tvBandGenre;
     private TextView tvBandDescription;
-    private ImageView imgFacebook;
-    private ImageView imgTwitter;
-    private ImageView imgYoutube;
-    private ImageView imgBandcamp;
-    private ImageView imgPresskit;
     private RecyclerView recyclerEventsBand;
     private EventsBandAdapter adapter;
     private ImageView imgBandRound;
+    private RecyclerView recyclerSocialItems;
+    private SocialItemsBandAdapter adapterSocialItems;
 
 
     private void findViews() {
@@ -47,18 +45,9 @@ public class BandInfoActivity extends BaseActivity implements BandInfoView, View
         imgBandRound = (ImageView) findViewById(R.id.img_band_round);
         tvBandGenre = (TextView) findViewById(R.id.tv_band_genre);
         tvBandDescription = (TextView) findViewById(R.id.tv_band_description);
-        imgFacebook = (ImageView) findViewById(R.id.img_facebook);
-        imgTwitter = (ImageView) findViewById(R.id.img_twitter);
-        imgYoutube = (ImageView) findViewById(R.id.img_youtube);
-        imgBandcamp = (ImageView) findViewById(R.id.img_bandcamp);
-        imgPresskit= (ImageView) findViewById(R.id.img_presskit);
         recyclerEventsBand = (RecyclerView) findViewById(R.id.recycler_events_band);
+        recyclerSocialItems = (RecyclerView) findViewById(R.id.recycler_social_items);
 
-        imgFacebook.setOnClickListener(this);
-        imgTwitter.setOnClickListener(this);
-        imgYoutube.setOnClickListener(this);
-        imgBandcamp.setOnClickListener(this);
-        imgPresskit.setOnClickListener(this);
         imgBand.setOnClickListener(this);
     }
 
@@ -139,12 +128,6 @@ public class BandInfoActivity extends BaseActivity implements BandInfoView, View
             imgBandRound.setVisibility(View.GONE);
         }
 
-        imgFacebook.setVisibility(band.getFacebook_link() != null ? View.VISIBLE : View.GONE);
-        imgTwitter.setVisibility(band.getTwitter_link() != null ? View.VISIBLE : View.GONE);
-        imgYoutube.setVisibility(band.getYoutube_link() != null ? View.VISIBLE : View.GONE);
-        imgBandcamp.setVisibility(band.getBandcamp_link() != null ? View.VISIBLE : View.GONE);
-        imgPresskit.setVisibility(band.getPresskit_link() != null ? View.VISIBLE : View.GONE);
-
         if (adapter == null) {
 
             adapter = new EventsBandAdapter(this, eventsBand);
@@ -159,14 +142,22 @@ public class BandInfoActivity extends BaseActivity implements BandInfoView, View
     }
 
     @Override
+    public void showSocialItems(List<SocialItem> socialItems) {
+
+        if (adapterSocialItems == null) {
+            adapterSocialItems = new SocialItemsBandAdapter(this, socialItems);
+            recyclerSocialItems.setAdapter(adapterSocialItems);
+        }
+
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.img_band:
                 presenter.onImageBandClick();
                 break;
 
-            default:
-                presenter.onSocialNetworkClicked(v.getId());
         }
     }
 

@@ -23,8 +23,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
                 android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                android:src="@mipmap/img_bloco_virado_grupo" />
+                android:scaleType="centerCrop" />
 
             <TextView
                 android:id="@+id/tv_venue_description"

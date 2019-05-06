@@ -9,7 +9,7 @@ Software to manage music festivals:
 - Venues info
 - Geolocalization
 - Push notifications
-- Notices
+- News
 
 
 Developed by [Triskel Apps](https://triskelapps.com) at [Ínsula Coworking](http://insulacoworking.es)

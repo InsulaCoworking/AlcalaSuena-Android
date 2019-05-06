@@ -58,7 +58,7 @@ public class VenueInfoEventsFragment extends Fragment {
 
             adapter = new EventsVenueAdapter(getActivity(), events);
             adapter.setOnItemClickListener((VenueInfoActivity) getActivity());
-            adapter.setHightlightPosition(indexNextEventFromNow);
+//            adapter.setHightlightPosition(indexNextEventFromNow);
 
             // https://github.com/edubarr/header-decor
             StickyHeaderDecoration decor = new StickyHeaderDecoration(adapter);
@@ -67,7 +67,7 @@ public class VenueInfoEventsFragment extends Fragment {
             recyclerEventsVenue.addItemDecoration(decor);
 
         } else {
-            adapter.setHightlightPosition(indexNextEventFromNow);
+//            adapter.setHightlightPosition(indexNextEventFromNow);
             adapter.updateData(events);
         }
 

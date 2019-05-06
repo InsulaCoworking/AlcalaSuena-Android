@@ -27,7 +27,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="10dp">
 
             <LinearLayout
                 android:id="@+id/btn_menu_bands"
@@ -100,74 +101,43 @@
 
             </LinearLayout>
 
-            <View style="@style/SeparatorHorizontal.Grey" />
-
-            <View style="@style/XpansorVert" />
+            <!--<View style="@style/SeparatorHorizontal.Grey" />-->
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:id="@+id/btn_about_insula"
+                style="@style/LinearMenu">
+
+                <ImageView
+                    style="@style/ImageMenuIcon"
+                    android:src="@mipmap/logo_bullet" />
 
                 <TextView
-                    android:id="@+id/tv_developed"
-                    style="@style/TextBase.Bold"
-                    android:layout_below="@+id/img_logo_insula"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center_horizontal"
-                    android:padding="5dp"
-                    android:text="@string/developed_by_insula"
-                    android:textSize="14sp" />
-
-                <LinearLayout
-                    android:id="@+id/btn_about_insula"
-                    style="@style/LinearMenu">
-
-                    <ImageView
-                        style="@style/ImageMenuIcon"
-                        android:src="@mipmap/logo_bullet" />
-
-                    <TextView
-                        style="@style/BtnMenu"
-                        android:text="@string/about_app" />
-
-                </LinearLayout>
-
+                    style="@style/BtnMenu"
+                    android:text="@string/about_app" />
 
             </LinearLayout>
 
+            <View style="@style/XpansorVert" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@mipmap/img_skyline_alcala" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/grey_dark_general"
+                android:background="@color/grey_dark_skyline"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="5dp">
 
-                <TextView
-                    style="@style/TextBase.Inverted"
-                    android:text="@string/sponsor"/>
-
-                <ImageView
-                    android:id="@+id/btn_logo_mahou"
-                    android:layout_width="180dp"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:src="@mipmap/ic_logo_radler"
-                    android:tag="https://www.amstel.es/"
-                    android:visibility="visible"/>
-
-                <TextView
-                    style="@style/TextBase.Inverted"
-                    android:text="@string/amstel_recomends"
-                    android:gravity="center_horizontal"
-                    android:textSize="14sp"/>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="15dp">
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:id="@+id/btn_logo_alcalasuena"
@@ -184,6 +154,7 @@
                         android:padding="11dp"
                         android:src="@mipmap/img_logo_alcalaesmusica"
                         android:tag="http://www.alcalaesmusica.org/" />
+
                     <View style="@style/XpansorHoriz" />
 
                     <ImageView

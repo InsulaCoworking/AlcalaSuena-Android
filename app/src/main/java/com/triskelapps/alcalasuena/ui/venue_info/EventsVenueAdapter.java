@@ -78,7 +78,7 @@ public class EventsVenueAdapter extends RecyclerView.Adapter<EventsVenueAdapter.
 
         holder.tvEventVenue.setVisibility(View.INVISIBLE);
 
-        holder.rootView.setSelected(hightlightPosition == position);
+//        holder.rootView.setSelected(hightlightPosition == position);
 
         holder.imgStarred.setSelected(event.isStarred());
 

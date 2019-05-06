@@ -2,7 +2,6 @@ package com.triskelapps.alcalasuena.ui.band_info;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Patterns;
 
@@ -13,8 +12,10 @@ import com.triskelapps.alcalasuena.interactor.BandInteractor;
 import com.triskelapps.alcalasuena.interactor.EventInteractor;
 import com.triskelapps.alcalasuena.model.Band;
 import com.triskelapps.alcalasuena.model.Event;
+import com.triskelapps.alcalasuena.model.SocialItem;
 import com.triskelapps.alcalasuena.ui.image_full.ImageFullActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -66,8 +67,8 @@ public class BandInfoPresenter extends BasePresenter {
         bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, band.getName());
         FirebaseAnalytics.getInstance(context).logEvent(FirebaseAnalytics.Event.VIEW_ITEM, bundle);
 
-
         refreshData();
+
     }
 
     public void onResume() {
@@ -79,34 +80,44 @@ public class BandInfoPresenter extends BasePresenter {
         Band band = bandInteractor.getBandDB(idBand);
         List<Event> eventsBand = eventInteractor.getEventsForBand(idBand);
         view.showBand(band, eventsBand);
+
+        configureSocialItems(band);
     }
 
-    public void onSocialNetworkClicked(int id) {
-
-        String url = null;
-        Band band = bandInteractor.getBandDB(idBand);
-
-        switch (id) {
-            case R.id.img_facebook:
-                url = band.getFacebook_link();
-                break;
-            case R.id.img_twitter:
-                url = band.getTwitter_link();
-                break;
-            case R.id.img_youtube:
-                url = band.getYoutube_link();
-                break;
-            case R.id.img_bandcamp:
-                url = band.getBandcamp_link();
-                break;
-            case R.id.img_presskit:
-                url = band.getPresskit_link();
-                break;
+    private void configureSocialItems(Band band) {
+        List<SocialItem> socialItems = new ArrayList<>();
+        if (isValidUrl(band.getFacebook_link())) {
+            socialItems.add(new SocialItem(R.mipmap.ic_facebook, band.getFacebook_link()));
+        }
+        if (isValidUrl(band.getTwitter_link())) {
+            socialItems.add(new SocialItem(R.mipmap.ic_twitter, band.getTwitter_link()));
+        }
+        if (isValidUrl(band.getYoutube_link())) {
+            socialItems.add(new SocialItem(R.mipmap.ic_youtube, band.getYoutube_link()));
+        }
+        if (isValidUrl(band.getInstagram_link())) {
+            socialItems.add(new SocialItem(R.mipmap.ic_instagram, band.getInstagram_link()));
+        }
+        if (isValidUrl(band.getWebpage_link())) {
+            socialItems.add(new SocialItem(R.mipmap.ic_web, band.getWebpage_link()));
+        }
+        if (isValidUrl(band.getSpotify_link())) {
+            socialItems.add(new SocialItem(R.mipmap.ic_spotify, band.getSpotify_link()));
+        }
+        if (isValidUrl(band.getBandcamp_link())) {
+            socialItems.add(new SocialItem(R.mipmap.ic_bandcamp, band.getBandcamp_link()));
+        }
+        if (isValidUrl(band.getPresskit_link())) {
+            socialItems.add(new SocialItem(R.mipmap.ic_presskit, band.getPresskit_link()));
         }
 
-        if (url != null && Patterns.WEB_URL.matcher(url).matches()) {
-            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
-        }
+
+        view.showSocialItems(socialItems);
+    }
+
+
+    private boolean isValidUrl(String url) {
+        return url != null && Patterns.WEB_URL.matcher(url).matches();
     }
 
     public void onEventFavouriteClicked(int idEvent) {

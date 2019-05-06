@@ -32,7 +32,7 @@ public class Band extends RealmObject {
     private String band_image;
     private int num_members;
     private String city;
-    private String facebook_link, twitter_link, youtube_link, bandcamp_link, presskit_link;
+    private String facebook_link, twitter_link, youtube_link, bandcamp_link, presskit_link, webpage_link, instagram_link, spotify_link;
     private RealmList<Event> events;
 
     public Uri getImageLogoUrlFull() {
@@ -229,4 +229,27 @@ public class Band extends RealmObject {
         this.presskit_link = presskit_link;
     }
 
+    public String getSpotify_link() {
+        return spotify_link;
+    }
+
+    public void setSpotify_link(String spotify_link) {
+        this.spotify_link = spotify_link;
+    }
+
+    public String getInstagram_link() {
+        return instagram_link;
+    }
+
+    public void setInstagram_link(String instagram_link) {
+        this.instagram_link = instagram_link;
+    }
+
+    public String getWebpage_link() {
+        return webpage_link;
+    }
+
+    public void setWebpage_link(String webpage_link) {
+        this.webpage_link = webpage_link;
+    }
 }

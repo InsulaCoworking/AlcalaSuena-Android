@@ -14,7 +14,7 @@ import io.realm.RealmSchema;
 
 public class MyRealmMigration implements RealmMigration {
 
-    public final static int VERSION = 3;
+    public final static int VERSION = 4;
 
     @Override
     public void migrate(DynamicRealm realm, long oldVersion, long newVersion) {

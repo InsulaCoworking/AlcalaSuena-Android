@@ -41,40 +41,41 @@
                     <TextView
                         android:id="@+id/tv_band_name"
                         style="@style/TextTitle.Header"
-                        android:padding="10dp"
-                        android:gravity="left"
+                        android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@+id/img_band_round"
-                        android:layout_marginLeft="10dp"/>
+                        android:gravity="left"
+                        android:padding="10dp" />
 
                     <ImageView
                         android:id="@+id/img_band"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:maxHeight="250dp"
+                        android:layout_below="@+id/tv_band_name"
                         android:adjustViewBounds="true"
-                        android:scaleType="centerCrop"
-                        android:layout_below="@+id/tv_band_name"/>
+                        android:maxHeight="250dp"
+                        android:scaleType="centerCrop" />
 
                     <ImageView
                         android:id="@+id/img_band_round"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:layout_marginLeft="10dp"
                         android:layout_alignBottom="@+id/tv_band_name"
+                        android:layout_marginLeft="10dp"
                         android:layout_marginBottom="-40dp"
-                        android:src="@mipmap/ic_launcher_round"
+                        android:adjustViewBounds="true"
                         android:scaleType="centerCrop"
-                        android:adjustViewBounds="true"/>
+                        android:src="@mipmap/ic_launcher_round" />
                 </RelativeLayout>
 
                 <TextView
                     android:id="@+id/tv_band_genre"
                     style="@style/TextBase"
-                    android:text="Jazz"
-                    android:layout_marginTop="10dp"/>
+                    android:layout_marginTop="10dp"
+                    android:text="Jazz" />
 
-                <View style="@style/SeparatorHorizontal"
-                    android:layout_marginTop="10dp"/>
+                <View
+                    style="@style/SeparatorHorizontal"
+                    android:layout_marginTop="10dp" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recycler_events_band"
@@ -87,50 +88,28 @@
                 <TextView
                     android:id="@+id/tv_band_description"
                     style="@style/TextBase"
-                    android:layout_marginBottom="10dp"
                     android:layout_marginTop="15dp"
+                    android:layout_marginBottom="10dp"
                     android:autoLink="all"
                     android:padding="15dp"
-                    android:textSize="18sp"
-                    android:text="asdlfkjasldf asñdkfjñalsf jñlaskfj ñlaskfjñalskfjñ asfjñ asklf lñaskjlkasjdf ñlasf ñlaskf lña" />
+                    android:text="asdlfkjasldf asñdkfjñalsf jñlaskfj ñlaskfjñalskfjñ asfjñ asklf lñaskjlkasjdf ñlasf ñlaskf lña"
+                    android:textSize="18sp" />
 
-
-                <android.support.v7.widget.FitWindowsLinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorAccentTransp"
-                    android:gravity="center_horizontal"
-                    android:orientation="horizontal"
-                    android:padding="5dp">
+                    android:background="@color/colorAccentTransp">
 
-                    <ImageView
-                        android:id="@+id/img_facebook"
-                        style="@style/ImgSocialIcon"
-                        android:layout_marginTop="10dp"
-                        android:src="@mipmap/ic_facebook" />
-
-                    <ImageView
-                        android:id="@+id/img_twitter"
-                        style="@style/ImgSocialIcon"
-                        android:src="@mipmap/ic_twitter" />
-
-                    <ImageView
-                        android:id="@+id/img_youtube"
-                        style="@style/ImgSocialIcon"
-                        android:src="@mipmap/ic_youtube" />
-
-                    <ImageView
-                        android:id="@+id/img_bandcamp"
-                        style="@style/ImgSocialIcon"
-                        android:src="@mipmap/ic_bandcamp" />
-
-                    <ImageView
-                        android:id="@+id/img_presskit"
-                        style="@style/ImgSocialIcon"
-                        android:layout_marginBottom="10dp"
-                        android:src="@mipmap/ic_presskit" />
-
-                </android.support.v7.widget.FitWindowsLinearLayout>
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler_social_items"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:layout_centerHorizontal="true"
+                        app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+                </RelativeLayout>
 
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>

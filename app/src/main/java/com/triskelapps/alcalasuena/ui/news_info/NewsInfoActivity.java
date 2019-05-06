@@ -83,17 +83,14 @@ public class NewsInfoActivity extends BaseActivity implements NewsInfoView {
 
                     btnNewsLink.setVisibility(View.VISIBLE);
                     btnNewsLink.setText(R.string.share_app);
-                    btnNewsLink.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
+                    btnNewsLink.setOnClickListener(v -> {
 
-                            String text = String.format(getString(R.string.share_app_text), App.URL_GOOGLE_PLAY_APP);
+                        String text = String.format(getString(R.string.share_app_text), App.URL_GOOGLE_PLAY_APP, App.URL_APPLE_STORE_APP);
 
-                            Intent intent = new Intent(Intent.ACTION_SEND);
-                            intent.putExtra(Intent.EXTRA_TEXT, text);
-                            intent.setType("text/plain");
-                            startActivity(intent);
-                        }
+                        Intent intent = new Intent(Intent.ACTION_SEND);
+                        intent.putExtra(Intent.EXTRA_TEXT, text);
+                        intent.setType("text/plain");
+                        startActivity(intent);
                     });
 
                     break;

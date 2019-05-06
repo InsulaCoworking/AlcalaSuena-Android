@@ -3,6 +3,7 @@ package com.triskelapps.alcalasuena.ui.band_info;
 import com.triskelapps.alcalasuena.base.BaseView;
 import com.triskelapps.alcalasuena.model.Band;
 import com.triskelapps.alcalasuena.model.Event;
+import com.triskelapps.alcalasuena.model.SocialItem;
 
 import java.util.List;
 
@@ -13,4 +14,6 @@ import java.util.List;
 public interface BandInfoView extends BaseView {
 
     void showBand(Band band, List<Event> eventsBand);
+
+    void showSocialItems(List<SocialItem> socialItems);
 }

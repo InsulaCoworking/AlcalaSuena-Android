@@ -4,25 +4,18 @@
     "description": "Alcala Suena tambien cuenta con animación en calle, y conjuntos itinerantes, batucadas, grupos de folclore... espectáculo en movimiento para hacer mágicos espacios tan sensacionales como la Calle Mayor",
     "events": [
       {
-        "band": 7,
-        "day": "2018-06-01",
-        "duration": 30,
-        "id": 25,
-        "time": "23:30:00"
-      },
-      {
-        "band": 7,
-        "day": "2018-06-02",
-        "duration": 60,
-        "id": 72,
-        "time": "13:30:00"
-      },
-      {
-        "band": 13,
-        "day": "2018-06-03",
+        "band": 114,
+        "day": "2019-06-07",
         "duration": 40,
-        "id": 69,
-        "time": "21:00:00"
+        "id": 118,
+        "time": "00:00:00"
+      },
+      {
+        "band": 102,
+        "day": "2019-06-08",
+        "duration": 40,
+        "id": 148,
+        "time": "23:40:00"
       }
     ],
     "id": 7,
@@ -36,94 +29,115 @@
     "description": "Centro de la ciudad, plaza del ayuntamiento y escenario principal de Alcalá Suena",
     "events": [
       {
-        "band": 52,
-        "day": "2018-06-01",
-        "duration": 40,
-        "id": 17,
-        "time": "20:00:00"
-      },
-      {
-        "band": 34,
-        "day": "2018-06-01",
-        "duration": 40,
-        "id": 18,
-        "time": "21:00:00"
-      },
-      {
-        "band": 28,
-        "day": "2018-06-01",
-        "duration": 40,
-        "id": 45,
-        "time": "22:00:00"
-      },
-      {
-        "band": 46,
-        "day": "2018-06-01",
-        "duration": 40,
-        "id": 19,
-        "time": "23:00:00"
-      },
-      {
-        "band": 73,
-        "day": "2018-06-02",
-        "duration": 40,
-        "id": 44,
-        "time": "19:00:00"
-      },
-      {
-        "band": 47,
-        "day": "2018-06-02",
-        "duration": 40,
-        "id": 68,
-        "time": "20:00:00"
-      },
-      {
-        "band": 36,
-        "day": "2018-06-02",
-        "duration": 40,
-        "id": 46,
-        "time": "21:00:00"
-      },
-      {
-        "band": 42,
-        "day": "2018-06-02",
-        "duration": 40,
-        "id": 47,
-        "time": "22:00:00"
-      },
-      {
-        "band": 44,
-        "day": "2018-06-02",
-        "duration": 40,
-        "id": 20,
-        "time": "23:00:00"
-      },
-      {
-        "band": 57,
-        "day": "2018-06-03",
-        "duration": 40,
-        "id": 66,
-        "time": "19:00:00"
-      },
-      {
-        "band": 20,
-        "day": "2018-06-03",
-        "duration": 40,
-        "id": 67,
-        "time": "20:00:00"
-      },
-      {
-        "band": 24,
-        "day": "2018-06-03",
-        "duration": 40,
-        "id": 48,
-        "time": "21:00:00"
-      },
-      {
-        "band": 74,
-        "day": "2018-06-03",
+        "band": 165,
+        "day": "2019-06-07",
         "duration": 90,
-        "id": 71,
+        "id": 97,
+        "time": "00:20:00"
+      },
+      {
+        "band": 163,
+        "day": "2019-06-07",
+        "duration": 60,
+        "id": 92,
+        "time": "19:00:00"
+      },
+      {
+        "band": 149,
+        "day": "2019-06-07",
+        "duration": 40,
+        "id": 93,
+        "time": "20:20:00"
+      },
+      {
+        "band": 144,
+        "day": "2019-06-07",
+        "duration": 40,
+        "id": 94,
+        "time": "21:20:00"
+      },
+      {
+        "band": 101,
+        "day": "2019-06-07",
+        "duration": 40,
+        "id": 95,
+        "time": "22:20:00"
+      },
+      {
+        "band": 135,
+        "day": "2019-06-07",
+        "duration": 40,
+        "id": 96,
+        "time": "23:20:00"
+      },
+      {
+        "band": 164,
+        "day": "2019-06-08",
+        "duration": 90,
+        "id": 144,
+        "time": "00:00:00"
+      },
+      {
+        "band": 146,
+        "day": "2019-06-08",
+        "duration": 40,
+        "id": 139,
+        "time": "19:00:00"
+      },
+      {
+        "band": 109,
+        "day": "2019-06-08",
+        "duration": 40,
+        "id": 140,
+        "time": "20:00:00"
+      },
+      {
+        "band": 120,
+        "day": "2019-06-08",
+        "duration": 40,
+        "id": 141,
+        "time": "21:00:00"
+      },
+      {
+        "band": 119,
+        "day": "2019-06-08",
+        "duration": 40,
+        "id": 142,
+        "time": "22:00:00"
+      },
+      {
+        "band": 118,
+        "day": "2019-06-08",
+        "duration": 40,
+        "id": 143,
+        "time": "23:00:00"
+      },
+      {
+        "band": 104,
+        "day": "2019-06-09",
+        "duration": 40,
+        "id": 154,
+        "time": "19:00:00"
+      },
+      {
+        "band": 107,
+        "day": "2019-06-09",
+        "duration": 40,
+        "id": 155,
+        "time": "20:00:00"
+      },
+      {
+        "band": 153,
+        "day": "2019-06-09",
+        "duration": 40,
+        "id": 156,
+        "time": "21:00:00"
+      },
+      {
+        "band": 162,
+        "day": "2019-06-09",
+        "duration": 90,
+        "id": 157,
         "time": "22:00:00"
       }
     ],
@@ -138,73 +152,66 @@
     "description": "El Jazz, la música clásica, la Bossa y acústicos deliciosos serán los responsables de llenar de música este auditorio improvisado. Uno de los escenarios con más calidad musical del festival",
     "events": [
       {
-        "band": 9,
-        "day": "2018-06-01",
+        "band": 131,
+        "day": "2019-06-07",
         "duration": 40,
-        "id": 12,
-        "time": "19:20:00"
+        "id": 108,
+        "time": "19:40:00"
       },
       {
-        "band": 5,
-        "day": "2018-06-01",
+        "band": 150,
+        "day": "2019-06-07",
         "duration": 40,
-        "id": 39,
-        "time": "20:20:00"
+        "id": 109,
+        "time": "20:40:00"
       },
       {
-        "band": 38,
-        "day": "2018-06-01",
+        "band": 137,
+        "day": "2019-06-07",
         "duration": 40,
-        "id": 43,
-        "time": "21:20:00"
+        "id": 110,
+        "time": "21:40:00"
       },
       {
-        "band": 1,
-        "day": "2018-06-01",
+        "band": 157,
+        "day": "2019-06-07",
         "duration": 40,
-        "id": 15,
-        "time": "22:20:00"
+        "id": 111,
+        "time": "22:40:00"
       },
       {
-        "band": 60,
-        "day": "2018-06-01",
+        "band": 103,
+        "day": "2019-06-07",
         "duration": 40,
-        "id": 16,
-        "time": "23:20:00"
+        "id": 112,
+        "time": "23:40:00"
       },
       {
-        "band": 37,
-        "day": "2018-06-02",
+        "band": 156,
+        "day": "2019-06-08",
         "duration": 40,
-        "id": 42,
-        "time": "19:00:00"
-      },
-      {
-        "band": 53,
-        "day": "2018-06-02",
-        "duration": 40,
-        "id": 40,
+        "id": 135,
         "time": "20:00:00"
       },
       {
-        "band": 14,
-        "day": "2018-06-02",
+        "band": 154,
+        "day": "2019-06-08",
         "duration": 40,
-        "id": 41,
+        "id": 136,
         "time": "21:00:00"
       },
       {
-        "band": 59,
-        "day": "2018-06-02",
+        "band": 138,
+        "day": "2019-06-08",
         "duration": 40,
-        "id": 14,
+        "id": 137,
         "time": "22:00:00"
       },
       {
-        "band": 39,
-        "day": "2018-06-02",
+        "band": 124,
+        "day": "2019-06-08",
         "duration": 40,
-        "id": 13,
+        "id": 138,
         "time": "23:00:00"
       }
     ],
@@ -219,25 +226,18 @@
     "description": "Este escenario dará cabida a todas propuestas de folclore y a la III edición del festival de folclore cervantino organizado por el grupo la nacencia. Un autentico maratón de bailes y música tradicional de nuestro país",
     "events": [
       {
-        "band": 3,
-        "day": "2018-06-01",
+        "band": 96,
+        "day": "2019-06-07",
         "duration": 40,
-        "id": 6,
-        "time": "23:00:00"
+        "id": 103,
+        "time": "22:30:00"
       },
       {
-        "band": 56,
-        "day": "2018-06-02",
-        "duration": 49,
-        "id": 59,
-        "time": "23:00:00"
-      },
-      {
-        "band": 51,
-        "day": "2018-06-03",
+        "band": 134,
+        "day": "2019-06-08",
         "duration": 40,
-        "id": 33,
-        "time": "21:00:00"
+        "id": 130,
+        "time": "22:00:00"
       }
     ],
     "id": 3,
@@ -251,136 +251,136 @@
     "description": "Uno de los enclaves más fascinantes de nuestra ciudad, será tambien uno de sus escenarios principales, acogiendo a la música negra durante el Viernes, albergando en el dia un lugar donde poder resguardarse a la sombra, bailar y escuchar música, y un maratón de fusión y World Music durante el Sábado por la tarde, y el Domingo la música infantil abre abre un programa variado y de mucha calidad",
     "events": [
       {
-        "band": 48,
-        "day": "2018-06-01",
+        "band": 112,
+        "day": "2019-06-07",
         "duration": 40,
-        "id": 7,
+        "id": 104,
         "time": "19:20:00"
       },
       {
-        "band": 50,
-        "day": "2018-06-01",
+        "band": 92,
+        "day": "2019-06-07",
         "duration": 40,
-        "id": 8,
+        "id": 105,
         "time": "20:20:00"
       },
       {
-        "band": 22,
-        "day": "2018-06-01",
+        "band": 116,
+        "day": "2019-06-07",
         "duration": 40,
-        "id": 9,
+        "id": 106,
         "time": "21:20:00"
       },
       {
-        "band": 55,
-        "day": "2018-06-01",
+        "band": 151,
+        "day": "2019-06-07",
         "duration": 40,
-        "id": 10,
+        "id": 107,
         "time": "22:20:00"
       },
       {
-        "band": 2,
-        "day": "2018-06-01",
+        "band": 166,
+        "day": "2019-06-07",
         "duration": 40,
-        "id": 11,
+        "id": 164,
         "time": "23:20:00"
       },
       {
-        "band": 62,
-        "day": "2018-06-02",
+        "band": 132,
+        "day": "2019-06-08",
         "duration": 40,
-        "id": 26,
+        "id": 119,
         "time": "12:30:00"
       },
       {
-        "band": 40,
-        "day": "2018-06-02",
+        "band": 143,
+        "day": "2019-06-08",
         "duration": 40,
-        "id": 61,
+        "id": 149,
         "time": "13:30:00"
       },
       {
-        "band": 15,
-        "day": "2018-06-02",
+        "band": 111,
+        "day": "2019-06-08",
         "duration": 40,
-        "id": 28,
+        "id": 121,
         "time": "14:30:00"
       },
       {
-        "band": 29,
-        "day": "2018-06-02",
+        "band": 136,
+        "day": "2019-06-08",
         "duration": 40,
-        "id": 34,
+        "id": 131,
         "time": "19:20:00"
       },
       {
-        "band": 10,
-        "day": "2018-06-02",
+        "band": 133,
+        "day": "2019-06-08",
         "duration": 40,
-        "id": 35,
+        "id": 132,
         "time": "20:20:00"
       },
       {
-        "band": 6,
-        "day": "2018-06-02",
+        "band": 108,
+        "day": "2019-06-08",
         "duration": 40,
-        "id": 36,
+        "id": 133,
         "time": "21:20:00"
       },
       {
-        "band": 54,
-        "day": "2018-06-02",
+        "band": 141,
+        "day": "2019-06-08",
         "duration": 40,
-        "id": 37,
+        "id": 134,
         "time": "22:20:00"
       },
       {
-        "band": 11,
-        "day": "2018-06-02",
+        "band": 113,
+        "day": "2019-06-08",
         "duration": 40,
-        "id": 38,
-        "time": "23:00:00"
+        "id": 163,
+        "time": "23:20:00"
       },
       {
-        "band": 21,
-        "day": "2018-06-03",
+        "band": 155,
+        "day": "2019-06-09",
         "duration": 40,
-        "id": 60,
+        "id": 120,
         "time": "12:30:00"
       },
       {
-        "band": 16,
-        "day": "2018-06-03",
+        "band": 125,
+        "day": "2019-06-09",
         "duration": 40,
-        "id": 27,
+        "id": 150,
         "time": "13:30:00"
       },
       {
-        "band": 27,
-        "day": "2018-06-03",
+        "band": 139,
+        "day": "2019-06-09",
         "duration": 40,
-        "id": 62,
+        "id": 151,
         "time": "14:30:00"
       },
       {
-        "band": 8,
-        "day": "2018-06-03",
+        "band": 105,
+        "day": "2019-06-09",
         "duration": 40,
-        "id": 63,
+        "id": 152,
         "time": "19:00:00"
       },
       {
-        "band": 43,
-        "day": "2018-06-03",
+        "band": 145,
+        "day": "2019-06-09",
         "duration": 40,
-        "id": 64,
+        "id": 153,
         "time": "20:00:00"
       },
       {
-        "band": 12,
-        "day": "2018-06-03",
+        "band": 128,
+        "day": "2019-06-09",
         "duration": 40,
-        "id": 65,
+        "id": 162,
         "time": "21:00:00"
       }
     ],
@@ -395,81 +395,137 @@
     "description": "La Plaza de San Diego de Alcalá de Henares nace en el siglo XVI con motivo de la construcción de la fachada del Colegio Mayor de San Ildefonso. El lado oriental de la plaza lo ocupa el gigantesco volumen del conocido como Cuartel de San Diego, edificado en el siglo XIX sobre el solar del monasterio franciscano de Santa María de Jesús (siglo XV).",
     "events": [
       {
-        "band": 72,
-        "day": "2018-06-01",
+        "band": 127,
+        "day": "2019-06-07",
         "duration": 40,
-        "id": 21,
-        "time": "20:20:00"
+        "id": 113,
+        "time": "20:00:00"
       },
       {
-        "band": 58,
-        "day": "2018-06-01",
+        "band": 140,
+        "day": "2019-06-07",
         "duration": 40,
-        "id": 22,
-        "time": "21:20:00"
+        "id": 115,
+        "time": "21:00:00"
       },
       {
-        "band": 23,
-        "day": "2018-06-01",
+        "band": 147,
+        "day": "2019-06-07",
         "duration": 40,
-        "id": 23,
-        "time": "22:20:00"
+        "id": 116,
+        "time": "22:00:00"
       },
       {
-        "band": 67,
-        "day": "2018-06-01",
+        "band": 170,
+        "day": "2019-06-07",
         "duration": 40,
-        "id": 24,
-        "time": "23:20:00"
+        "id": 168,
+        "time": "23:00:00"
       },
       {
-        "band": 31,
-        "day": "2018-06-02",
+        "band": 126,
+        "day": "2019-06-08",
         "duration": 40,
-        "id": 49,
+        "id": 122,
         "time": "12:30:00"
       },
       {
-        "band": 17,
-        "day": "2018-06-02",
+        "band": 94,
+        "day": "2019-06-08",
         "duration": 40,
-        "id": 50,
+        "id": 123,
         "time": "13:30:00"
       },
       {
-        "band": 41,
-        "day": "2018-06-02",
+        "band": 171,
+        "day": "2019-06-08",
         "duration": 40,
-        "id": 51,
+        "id": 124,
         "time": "14:30:00"
       },
       {
-        "band": 18,
-        "day": "2018-06-02",
+        "band": 161,
+        "day": "2019-06-08",
         "duration": 40,
-        "id": 52,
+        "id": 145,
+        "time": "19:20:00"
+      },
+      {
+        "band": 130,
+        "day": "2019-06-08",
+        "duration": 40,
+        "id": 114,
         "time": "20:20:00"
       },
       {
-        "band": 32,
-        "day": "2018-06-02",
+        "band": 115,
+        "day": "2019-06-08",
         "duration": 40,
-        "id": 53,
+        "id": 146,
         "time": "21:20:00"
       },
       {
-        "band": 69,
-        "day": "2018-06-02",
+        "band": 99,
+        "day": "2019-06-08",
         "duration": 40,
-        "id": 54,
+        "id": 147,
         "time": "22:20:00"
       },
       {
-        "band": 49,
-        "day": "2018-06-02",
+        "band": 122,
+        "day": "2019-06-08",
         "duration": 40,
-        "id": 55,
+        "id": 117,
         "time": "23:20:00"
+      },
+      {
+        "band": 142,
+        "day": "2019-06-09",
+        "duration": 40,
+        "id": 165,
+        "time": "12:30:00"
+      },
+      {
+        "band": 93,
+        "day": "2019-06-09",
+        "duration": 40,
+        "id": 166,
+        "time": "13:30:00"
+      },
+      {
+        "band": 117,
+        "day": "2019-06-09",
+        "duration": 40,
+        "id": 167,
+        "time": "14:30:00"
+      },
+      {
+        "band": 169,
+        "day": "2019-06-09",
+        "duration": 20,
+        "id": 159,
+        "time": "18:30:00"
+      },
+      {
+        "band": 95,
+        "day": "2019-06-09",
+        "duration": 40,
+        "id": 158,
+        "time": "19:00:00"
+      },
+      {
+        "band": 167,
+        "day": "2019-06-09",
+        "duration": 40,
+        "id": 160,
+        "time": "20:00:00"
+      },
+      {
+        "band": 168,
+        "day": "2019-06-09",
+        "duration": 40,
+        "id": 161,
+        "time": "21:00:00"
       }
     ],
     "id": 5,
@@ -483,95 +539,74 @@
     "description": "La homologa a la puerta de Alcalá será el escenario en el que poder escuchar todas las variantes del rock y el Indie de nuestra ciudad. Una agenda para no perderse.",
     "events": [
       {
-        "band": 63,
-        "day": "2018-06-01",
+        "band": 123,
+        "day": "2019-06-07",
         "duration": 40,
-        "id": 1,
-        "time": "19:20:00"
+        "id": 98,
+        "time": "19:40:00"
       },
       {
-        "band": 61,
-        "day": "2018-06-01",
+        "band": 148,
+        "day": "2019-06-07",
         "duration": 40,
-        "id": 2,
-        "time": "20:20:00"
+        "id": 99,
+        "time": "20:40:00"
       },
       {
-        "band": 19,
-        "day": "2018-06-01",
+        "band": 160,
+        "day": "2019-06-07",
         "duration": 40,
-        "id": 3,
-        "time": "21:20:00"
+        "id": 100,
+        "time": "21:40:00"
       },
       {
-        "band": 45,
-        "day": "2018-06-01",
+        "band": 129,
+        "day": "2019-06-07",
         "duration": 40,
-        "id": 4,
-        "time": "22:20:00"
+        "id": 101,
+        "time": "22:40:00"
       },
       {
-        "band": 35,
-        "day": "2018-06-01",
+        "band": 159,
+        "day": "2019-06-07",
         "duration": 40,
-        "id": 5,
-        "time": "23:20:00"
+        "id": 102,
+        "time": "23:40:00"
       },
       {
-        "band": 26,
-        "day": "2018-06-02",
+        "band": 106,
+        "day": "2019-06-08",
         "duration": 40,
-        "id": 70,
+        "id": 125,
         "time": "19:00:00"
       },
       {
-        "band": 64,
-        "day": "2018-06-02",
+        "band": 98,
+        "day": "2019-06-08",
         "duration": 40,
-        "id": 29,
+        "id": 126,
         "time": "20:00:00"
       },
       {
-        "band": 71,
-        "day": "2018-06-02",
+        "band": 110,
+        "day": "2019-06-08",
         "duration": 40,
-        "id": 30,
+        "id": 127,
         "time": "21:00:00"
       },
       {
-        "band": 66,
-        "day": "2018-06-02",
+        "band": 100,
+        "day": "2019-06-08",
         "duration": 40,
-        "id": 31,
+        "id": 128,
         "time": "22:00:00"
       },
       {
-        "band": 30,
-        "day": "2018-06-02",
+        "band": 121,
+        "day": "2019-06-08",
         "duration": 40,
-        "id": 32,
+        "id": 129,
         "time": "23:00:00"
-      },
-      {
-        "band": 65,
-        "day": "2018-06-03",
-        "duration": 40,
-        "id": 58,
-        "time": "19:00:00"
-      },
-      {
-        "band": 68,
-        "day": "2018-06-03",
-        "duration": 40,
-        "id": 56,
-        "time": "20:00:00"
-      },
-      {
-        "band": 70,
-        "day": "2018-06-03",
-        "duration": 40,
-        "id": 57,
-        "time": "21:00:00"
       }
     ],
     "id": 6,

@@ -358,7 +358,8 @@ public class MainPresenter extends BasePresenter {
 
         importLink = importLink.substring(0, importLink.length() - 1);
         text += "\n\n" + String.format(context.getString(R.string.import_link_text), importLink);
-        text += "\n\n" + String.format(context.getString(R.string.download_app_text), App.URL_GOOGLE_PLAY_APP);
+        text += "\n\n" + String.format(context.getString(R.string.download_app_text),
+                App.URL_GOOGLE_PLAY_APP, App.URL_APPLE_STORE_APP);
 
         return text;
     }
@@ -497,13 +498,14 @@ public class MainPresenter extends BasePresenter {
         searchingLocation = !searchingLocation;
 
         if (searchingLocation) {
+
             SmartLocation.with(context).location().oneFix().start(location -> {
 //                view.toast("encontrado: precisión: " + location.getAccuracy());
                 if (searchingLocation) {
                     onHappeningNowButtonClick();
                 }
 
-                if (location.getAccuracy() > 50) {
+                if (location.getAccuracy() > Event.MIN_ACCURACY_LOCATION_HAPPENING_NOW) {
                     view.toast(R.string.accuracy_enought_location_not_found);
                     return;
                 }
@@ -543,7 +545,7 @@ public class MainPresenter extends BasePresenter {
             return null;
         }
 
-        if (closestDistance > 100) {
+        if (closestDistance > Event.MIN_DISTANCE_TO_VENUE_HAPPENING_NOW) {
             view.toast(R.string.not_close_to_venue);
             return null;
         }

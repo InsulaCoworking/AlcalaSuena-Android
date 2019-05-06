@@ -114,9 +114,10 @@ public class VenueInfoPresenter extends BasePresenter {
                 eventDate.setTime(calendar.getTimeInMillis());
 
                 // todo finish this. fix case when events in new day have not started yet
+                // for the moment it's enought doing only scroll and not highlighting row
 
 //                Date eventDate = new Date(event.getTimeHourMidnightSafe());
-                Date currentDate = BuildConfig.MOCK_CURRENT_DATETIME ? dateFormat.parse("2019-06-08 05:30:00") : new Date();
+                Date currentDate = BuildConfig.MOCK_CURRENT_DATETIME ? dateFormat.parse("2019-06-08 21:30:00") : new Date();
                 if (eventDate.after(currentDate)) {
                     return i - 1;
                 }

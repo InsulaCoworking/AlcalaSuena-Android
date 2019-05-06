@@ -37,7 +37,6 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener, 
     private View btnLogoAytoAlcala;
     private View btnLogoAlcalaSuena;
     private View btnLogoAlcalaEsMusica;
-    private View btnLogoMahou;
     private View btnMenuAboutInsula;
     private View btnMenuNews;
 
@@ -49,7 +48,6 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener, 
         btnMenuNews = layout.findViewById( R.id.btn_menu_news);
         btnMenuAboutInsula = layout.findViewById( R.id.btn_about_insula );
 
-        btnLogoMahou = layout.findViewById(R.id.btn_logo_mahou);
         btnLogoAlcalaSuena = layout.findViewById(R.id.btn_logo_alcalasuena);
         btnLogoAlcalaEsMusica = layout.findViewById(R.id.btn_logo_alcalaesmusica);
         btnLogoAytoAlcala = layout.findViewById(R.id.btn_logo_ayto_alcala);
@@ -61,7 +59,6 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener, 
         btnMenuNews.setOnClickListener(this);
         btnMenuAboutInsula.setOnClickListener(this);
 
-        btnLogoMahou.setOnClickListener(this);
         btnLogoAlcalaSuena.setOnClickListener(this);
         btnLogoAlcalaEsMusica.setOnClickListener(this);
         btnLogoAytoAlcala.setOnClickListener(this);
@@ -116,7 +113,6 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener, 
                 break;
 
 
-            case R.id.btn_logo_mahou:
             case R.id.btn_logo_alcalasuena:
             case R.id.btn_logo_alcalaesmusica:
             case R.id.btn_logo_ayto_alcala:
