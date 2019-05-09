@@ -148,8 +148,8 @@ public class MainPresenter extends BasePresenter {
         if (BuildConfig.MODE_PREPARING) {
             SplashPresenter.launchSplashActivity(context, SplashPresenter.NEXT_SCREEN_NONE);
             ((Activity) context).finish();
-        } else if (getPrefs().getBoolean(SHARED_FIRST_TIME_APP_LAUNCHING, true)) {
-//        if(true) {
+        } else
+            if (getPrefs().getBoolean(SHARED_FIRST_TIME_APP_LAUNCHING, true) /*|| BuildConfig.DEBUG*/) {
             SplashPresenter.launchSplashActivity(context, SplashPresenter.NEXT_SCREEN_INTRO);
             getPrefs().edit().putBoolean(SHARED_FIRST_TIME_APP_LAUNCHING, false).commit();
         }
@@ -165,7 +165,7 @@ public class MainPresenter extends BasePresenter {
         String hash = Util.getMD5Hash(pin + deviceId);
         String hashStored = getPrefs().getString(App.SHARED_PIN_SEND_NEWS_ENCRIPT, null);
         if (TextUtils.equals(hash, hashStored)) {
-            view.showSendNewsButton();
+//            view.showSendNewsButton();
         }
     }
 

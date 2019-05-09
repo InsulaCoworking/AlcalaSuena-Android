@@ -10,9 +10,11 @@
     <color name="tab_unselected">#777777</color>
     <color name="tab_selectedld_o">#ffff71</color>
     <color name="transp_black">#B000</color>
-    <color name="transp_white">#b8ffffff</color>
+    <color name="transp_white">#C6FFFFFF</color>
     <color name="black">#000</color>
     <color name="white">#ffffff</color>
+
+    <color name="shadow">#31000000</color>
 
     <color name="bg_filter">#F5F5F5</color>
 

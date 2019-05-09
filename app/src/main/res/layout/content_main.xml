@@ -31,8 +31,7 @@
             android:layout_height="match_parent"
             android:paddingBottom="70dp"
             android:clipToPadding="false"
-            android:scrollbarStyle="outsideOverlay"
-            android:layout_above="@+id/view_btn_share_favs"/>
+            android:scrollbarStyle="outsideOverlay"/>
 
         <TextView
             android:id="@+id/tv_empty_message"
@@ -49,9 +48,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@color/headers_main"
             android:layout_alignParentBottom="true"
+            android:background="@color/transp_white"
             android:gravity="center_horizontal"
+            android:clickable="true"
             android:visibility="gone">
 
             <android.support.v7.widget.AppCompatButton

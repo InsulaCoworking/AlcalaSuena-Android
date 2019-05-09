@@ -92,6 +92,8 @@
                     android:scaleType="centerInside"
                     android:src="@mipmap/ic_happening_now_3"
                     android:padding="10dp"
+                    android:visibility="visible"
+                    android:elevation="5dp"
                     app:tint="@color/text_color_main"/>
 
                 <ProgressBar

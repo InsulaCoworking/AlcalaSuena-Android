@@ -66,7 +66,7 @@
             style="@style/TextButton"
             android:layout_weight="1"
             android:layout_toRightOf="@+id/pageIndicatorView"
-            app:fontPath="fonts/Old_Press_Italic.ttf"
+            app:fontPath="fonts/Old_Press.ttf"
             android:background="@drawable/bg_frame_accent"
             android:layout_centerVertical="true"
             android:text="@string/enter_excl"

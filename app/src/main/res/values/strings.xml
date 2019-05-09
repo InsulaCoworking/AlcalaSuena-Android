@@ -27,7 +27,7 @@
     <string name="see_dossier">Ver dossier</string>
     <string name="favourites">Favoritos</string>
     <string name="no_favourites">No has marcado de momento ningún evento como favorito para este día.\n¡A qué esperas! Pulsa la estrella y hazte tu lista ;)</string>
-    <string name="share_favs_with_friends">¡Comparte tu lista con tus amig@s!</string>
+    <string name="share_favs_with_friends">¡Comparte tu lista!</string>
     <string name="all_tags">Todos los estilos</string>
     <string name="share_favs_text_intro">¡Esta es mi lista de conciertos para el #AlcalaSuena!</string>
     <string name="no_results_for_tags">En este día no hay conciertos para los estilos de música elegidos :(</string>
@@ -123,5 +123,6 @@
     <string name="not_close_to_venue">No estás cerca de ningún escenario (acércate por lo menos a 100 metros)</string>
     <string name="code_released_gpl">El código fuente de esta plataforma está liberado con licencia GPL. Puedes verlo aquí:</string>
     <string name="developers">Desarrolladores</string>
+    <string name="location_permission_rationale_happening_now_message">Para detectar el escenario más cercano es necesario que la app sepa donde te encuentras</string>
 
 </resources>

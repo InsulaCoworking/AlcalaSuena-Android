@@ -36,7 +36,7 @@
                 android:layout_toRightOf="@+id/img_band"
                 android:layout_toLeftOf="@+id/img_arrow"
                 android:textSize="22sp"
-                app:fontPath="fonts/Old_Press_Italic.ttf"
+                app:fontPath="fonts/Old_Press.ttf"
                 android:lines="1"
                 android:singleLine="true"/>
 

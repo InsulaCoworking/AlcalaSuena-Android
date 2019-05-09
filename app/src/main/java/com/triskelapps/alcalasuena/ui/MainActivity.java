@@ -1,10 +1,12 @@
 package com.triskelapps.alcalasuena.ui;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -15,6 +17,12 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.crashlytics.android.Crashlytics;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
 import com.triskelapps.alcalasuena.DebugHelper;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BaseActivity;
@@ -220,9 +228,36 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
                 break;
 
             case R.id.btn_happening_now:
-                presenter.onHappeningNowButtonClick();
+                checkLocationPermission();
                 break;
         }
+    }
+
+    private void checkLocationPermission() {
+
+        Dexter.withActivity(this)
+                .withPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+                .withListener(new PermissionListener() {
+                    @Override
+                    public void onPermissionGranted(PermissionGrantedResponse response) {
+                        presenter.onHappeningNowButtonClick();
+                    }
+
+                    @Override
+                    public void onPermissionDenied(PermissionDeniedResponse response) {
+                        toast(R.string.location_wont_show);
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(PermissionRequest permission, final PermissionToken token) {
+                        new AlertDialog.Builder(MainActivity.this)
+                                .setTitle(R.string.location_permission)
+                                .setMessage(R.string.location_permission_rationale_happening_now_message)
+                                .setPositiveButton(R.string.accept, (dialog, which) -> token.continuePermissionRequest())
+                                .setNegativeButton(R.string.cancel, (dialog, which) -> token.cancelPermissionRequest())
+                                .show();
+                    }
+                }).check();
     }
 
     @Override
