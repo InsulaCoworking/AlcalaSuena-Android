@@ -20,6 +20,9 @@ public class SocialItem {
     }
 
     public String getUrl() {
+        if (!url.startsWith("http")) {
+            url = "http://" + url.replace("://", "");
+        }
         return url;
     }
 

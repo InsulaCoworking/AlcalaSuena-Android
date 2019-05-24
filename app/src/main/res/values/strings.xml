@@ -124,5 +124,6 @@
     <string name="code_released_gpl">El código fuente de esta plataforma está liberado con licencia GPL. Puedes verlo aquí:</string>
     <string name="developers">Desarrolladores</string>
     <string name="location_permission_rationale_happening_now_message">Para detectar el escenario más cercano es necesario que la app sepa donde te encuentras</string>
+    <string name="link_error">Hay un error con este enlace</string>
 
 </resources>

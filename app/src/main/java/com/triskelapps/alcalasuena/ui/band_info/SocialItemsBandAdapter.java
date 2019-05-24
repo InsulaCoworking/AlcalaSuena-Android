@@ -1,6 +1,7 @@
 package com.triskelapps.alcalasuena.ui.band_info;
 
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -9,7 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.model.SocialItem;
 
@@ -67,14 +70,19 @@ public class SocialItemsBandAdapter extends RecyclerView.Adapter<SocialItemsBand
 
             super(itemView);
 
-            imgSocialItem = (ImageView) itemView.findViewById(R.id.img_social_item);
+            imgSocialItem = itemView.findViewById(R.id.img_social_item);
 
             rootView = itemView;
 
             rootView.setOnClickListener(v -> {
 
                 SocialItem socialItem = getItemAtPosition(getAdapterPosition());
-                context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(socialItem.getUrl())));
+                try {
+                    context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(socialItem.getUrl())));
+                } catch (ActivityNotFoundException e) {
+                    Crashlytics.logException(e);
+                    Toast.makeText(context, context.getString(R.string.link_error), Toast.LENGTH_SHORT).show();
+                }
             });
         }
 
