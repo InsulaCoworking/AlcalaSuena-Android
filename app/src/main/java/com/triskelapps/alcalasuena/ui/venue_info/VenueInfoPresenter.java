@@ -2,7 +2,10 @@ package com.triskelapps.alcalasuena.ui.venue_info;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 
+import com.crashlytics.android.Crashlytics;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.triskelapps.alcalasuena.BuildConfig;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.interactor.EventInteractor;
@@ -10,6 +13,7 @@ import com.triskelapps.alcalasuena.interactor.VenueInteractor;
 import com.triskelapps.alcalasuena.model.Event;
 import com.triskelapps.alcalasuena.model.Venue;
 import com.triskelapps.alcalasuena.ui.band_info.BandInfoPresenter;
+import com.triskelapps.alcalasuena.util.Util;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -33,6 +37,7 @@ public class VenueInfoPresenter extends BasePresenter {
     private final EventInteractor eventInteractor;
     private int idVenue;
     private boolean fromHappeningNow;
+    private Venue venue;
 
     public static Intent newVenueInfoActivity(Context context, int idVenue) {
 
@@ -72,6 +77,7 @@ public class VenueInfoPresenter extends BasePresenter {
             throw new IllegalArgumentException("No idVenue passed");
         }
 
+        venue = venueInteractor.getVenue(idVenue);
         refreshData();
 
         fromHappeningNow = intent.getBooleanExtra(EXTRA_FROM_HAPPENING_NOW, false);
@@ -87,7 +93,6 @@ public class VenueInfoPresenter extends BasePresenter {
 
     public void refreshData() {
 
-        Venue venue = venueInteractor.getVenue(idVenue);
         List<Event> eventsVenue = eventInteractor.getEventsForVenue(idVenue);
         int indexNextEventFromNow = getIndexNextEventFromNow(eventsVenue);
         view.showVenueInfo(venue, eventsVenue, indexNextEventFromNow);
@@ -119,6 +124,7 @@ public class VenueInfoPresenter extends BasePresenter {
 //                Date eventDate = new Date(event.getTimeHourMidnightSafe());
                 Date currentDate = BuildConfig.MOCK_CURRENT_DATETIME ? dateFormat.parse("2019-06-08 21:30:00") : new Date();
                 if (eventDate.after(currentDate)) {
+                    registerEventFound(event);
                     return i - 1;
                 }
             } catch (ParseException e) {
@@ -128,6 +134,24 @@ public class VenueInfoPresenter extends BasePresenter {
         }
 
         return 0;
+    }
+
+    private void registerEventFound(Event event) {
+
+        if (BuildConfig.MOCK_CURRENT_DATETIME) {
+            return;
+        }
+
+        try {
+            Bundle bundle = new Bundle();
+            bundle.putString(FirebaseAnalytics.Param.ITEM_ID, event.getId() + "");
+            bundle.putString(FirebaseAnalytics.Param.LEVEL_NAME, venue.getName());
+            bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, event.getBandEntity().getName());
+            bundle.putString(FirebaseAnalytics.Param.START_DATE, Util.getCurrentDateTime());
+            FirebaseAnalytics.getInstance(context).logEvent(FirebaseAnalytics.Event.VIEW_SEARCH_RESULTS, bundle);
+        } catch (Exception e) {
+            Crashlytics.logException(e);
+        }
     }
 
     public void onEventFavouriteClicked(int idEvent) {

@@ -9,10 +9,12 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.location.Location;
 import android.net.Uri;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.gson.Gson;
 import com.triskelapps.alcalasuena.App;
 import com.triskelapps.alcalasuena.BuildConfig;
@@ -497,11 +499,18 @@ public class MainPresenter extends BasePresenter {
 
         searchingLocation = !searchingLocation;
 
+        if (!BuildConfig.DEBUG) {
+            Bundle bundle = new Bundle();
+            bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "onHappeningNowButtonClick. " + (searchingLocation ? "START" : "STOP"));
+            FirebaseAnalytics.getInstance(context).logEvent(FirebaseAnalytics.Event.BEGIN_CHECKOUT, bundle);
+        }
+
         if (searchingLocation) {
 
             SmartLocation.with(context).location().oneFix().start(location -> {
 //                view.toast("encontrado: precisión: " + location.getAccuracy());
                 if (searchingLocation) {
+                    // to stop location search and refresh ui
                     onHappeningNowButtonClick();
                 }
 
