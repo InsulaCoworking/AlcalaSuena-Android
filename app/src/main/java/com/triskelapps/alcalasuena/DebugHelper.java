@@ -3,6 +3,7 @@ package com.triskelapps.alcalasuena;
 public class DebugHelper {
 
     public static Class SHORTCUT_ACTIVITY = null;
+//    public static Class SHORTCUT_ACTIVITY = SendNewsActivity.class;
 
     // === SWITCHES DEBUG ===
 

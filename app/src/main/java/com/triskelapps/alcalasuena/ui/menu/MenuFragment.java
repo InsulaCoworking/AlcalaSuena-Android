@@ -39,6 +39,7 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener, 
     private View btnLogoAlcalaEsMusica;
     private View btnMenuAboutInsula;
     private View btnMenuNews;
+    private View btnLogoQuadernillos;
 
     private void findViews(View layout) {
         btnMenuBands = layout.findViewById( R.id.btn_menu_bands );
@@ -52,6 +53,8 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener, 
         btnLogoAlcalaEsMusica = layout.findViewById(R.id.btn_logo_alcalaesmusica);
         btnLogoAytoAlcala = layout.findViewById(R.id.btn_logo_ayto_alcala);
 
+        btnLogoQuadernillos = layout.findViewById(R.id.btn_logo_quadernillos);
+
         btnMenuBands.setOnClickListener(this);
         btnMenuMap.setOnClickListener(this);
         btnMenuVenues.setOnClickListener(this);
@@ -62,6 +65,7 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener, 
         btnLogoAlcalaSuena.setOnClickListener(this);
         btnLogoAlcalaEsMusica.setOnClickListener(this);
         btnLogoAytoAlcala.setOnClickListener(this);
+        btnLogoQuadernillos.setOnClickListener(this);
 
         btnLogoAlcalaEsMusica.setOnLongClickListener(this);
     }
@@ -116,6 +120,7 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener, 
             case R.id.btn_logo_alcalasuena:
             case R.id.btn_logo_alcalaesmusica:
             case R.id.btn_logo_ayto_alcala:
+            case R.id.btn_logo_quadernillos:
                 String url = (String) v.getTag();
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
                 break;

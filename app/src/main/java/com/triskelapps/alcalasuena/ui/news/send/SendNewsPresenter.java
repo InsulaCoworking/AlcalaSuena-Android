@@ -61,7 +61,7 @@ public class SendNewsPresenter extends BasePresenter {
                 .setImagesFolderName("bg-images");
 
         Dexter.withActivity((Activity) context)
-                .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
                 .withListener(new PermissionListener() {
 
                     @Override

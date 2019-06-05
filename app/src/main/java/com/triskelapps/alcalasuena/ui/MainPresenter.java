@@ -167,7 +167,7 @@ public class MainPresenter extends BasePresenter {
         String hash = Util.getMD5Hash(pin + deviceId);
         String hashStored = getPrefs().getString(App.SHARED_PIN_SEND_NEWS_ENCRIPT, null);
         if (TextUtils.equals(hash, hashStored)) {
-//            view.showSendNewsButton();
+            view.showSendNewsButton();
         }
     }
 

@@ -47,6 +47,8 @@ public class App extends Application {
     public static final String URL_GOOGLE_PLAY_APP = "https://play.google.com/store/apps/details?id=com.triskelapps.alcalasuena";
     public static final String URL_APPLE_STORE_APP = "https://itunes.apple.com/es/app/Alcala-suena/id1458551516";
     public static final String URL_DIRECT_GOOGLE_PLAY_APP = "market://details?id=com.triskelapps.alcalasuena";
+    public static final String TOPIC_NEWS = "news";
+    public static final String TOPIC_NEWS_TEST = "test_news2";
 
 
     @Override
@@ -79,10 +81,10 @@ public class App extends Application {
 //        String token = FirebaseInstanceId.getInstance().getToken();
 //        Log.d(TAG, "Refreshed token: " + token);
 
-        FirebaseMessaging.getInstance().subscribeToTopic("news");
+        FirebaseMessaging.getInstance().subscribeToTopic(TOPIC_NEWS);
 
         if (BuildConfig.DEBUG) {
-            FirebaseMessaging.getInstance().subscribeToTopic("test_news");
+            FirebaseMessaging.getInstance().subscribeToTopic(TOPIC_NEWS_TEST);
         }
 
 //        if (true) {

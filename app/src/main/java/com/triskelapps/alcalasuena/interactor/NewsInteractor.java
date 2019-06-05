@@ -3,6 +3,7 @@ package com.triskelapps.alcalasuena.interactor;
 import android.content.Context;
 
 import com.google.gson.Gson;
+import com.triskelapps.alcalasuena.App;
 import com.triskelapps.alcalasuena.BuildConfig;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.api.Api;
@@ -12,6 +13,7 @@ import com.triskelapps.alcalasuena.model.News;
 import com.triskelapps.alcalasuena.model.NewsState;
 import com.triskelapps.alcalasuena.model.notification.FirebasePush;
 import com.triskelapps.alcalasuena.model.notification.FirebasePushData;
+import com.triskelapps.alcalasuena.model.notification.FirebasePushNotification;
 import com.triskelapps.alcalasuena.util.Util;
 
 import java.io.File;
@@ -226,8 +228,8 @@ public class NewsInteractor extends BaseInteractor {
     public void sendNewsNotification(String title, String text, String link, String linkButtonText, News news, final BasePOSTCallback callback) {
 
         FirebasePush firebasePush = new FirebasePush();
-        firebasePush.setTo(BuildConfig.DEBUG ? "/topics/test_news" : "/topics/news");
-//        firebasePush.setNotification(new FirebasePushNotification(title,  text));
+        firebasePush.setTo("/topics/" + (BuildConfig.DEBUG ? App.TOPIC_NEWS_TEST : App.TOPIC_NEWS));
+        firebasePush.setNotification(new FirebasePushNotification(title,  text));
 
         FirebasePushData firebaseData = new FirebasePushData();
         firebaseData.setTitle(title);
