@@ -57,6 +57,7 @@
                     android:layout_marginTop="15dp"
                     android:padding="15dp"
                     android:textSize="18sp"
+                    android:autoLink="all"
                     android:text="asdlfkjasldf asñdkfjñalsf jñlaskfj ñlaskfjñalskfjñ asfjñ asklf lñaskjlkasjdf ñlasf ñlaskf lña" />
 
                 <Button
