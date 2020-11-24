@@ -7,8 +7,9 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 
-import com.crashlytics.android.Crashlytics;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.crashlytics.android.core.CrashlyticsCore;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
@@ -56,8 +57,7 @@ public class App extends Application {
         super.onCreate();
 
 
-        CrashlyticsCore core = new CrashlyticsCore.Builder().disabled(false).build();
-        Fabric.with(this, new Crashlytics.Builder().core(core).build());
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(DebugHelper.SWITCH_CRASH_REPORT_ENABLED);
 
         NotificationHelper.with(this).initializeOreoChannelsNotification();
 

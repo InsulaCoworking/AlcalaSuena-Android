@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.crashlytics.android.Crashlytics;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.squareup.picasso.Picasso;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.model.Band;
@@ -59,7 +59,7 @@ public class EventsVenueAdapter extends RecyclerView.Adapter<EventsVenueAdapter.
 
         final Band band = event.getBandEntity();
         if (band == null) {
-            Crashlytics.logException(new Error("band is null in this event! (eventsVenueAdapter): " + event.toString()));
+            FirebaseCrashlytics.getInstance().recordException(new Error("band is null in this event! (eventsVenueAdapter): " + event.toString()));
             return;
         }
 

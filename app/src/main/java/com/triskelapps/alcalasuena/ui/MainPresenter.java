@@ -13,7 +13,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.crashlytics.android.Crashlytics;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.gson.Gson;
 import com.triskelapps.alcalasuena.App;
@@ -221,7 +221,7 @@ public class MainPresenter extends BasePresenter {
 
             @Override
             public void onError(String error) {
-                Crashlytics.logException(new Error("Error updating bands from API: " + error));
+                FirebaseCrashlytics.getInstance().recordException(new Error("Error updating bands from API: " + error));
 //                Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
                 Log.i(TAG, "---> update bands error");
             }
@@ -244,7 +244,7 @@ public class MainPresenter extends BasePresenter {
 
             @Override
             public void onError(String error) {
-                Crashlytics.logException(new Error("Error updating venues from API: " + error));
+                FirebaseCrashlytics.getInstance().recordException(new Error("Error updating venues from API: " + error));
 //                Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
 
                 Log.i(TAG, "---> update venues error");
@@ -289,7 +289,7 @@ public class MainPresenter extends BasePresenter {
             }
         } catch (Exception e) {
             // Bad idea if this little extra make an app crash :S
-            Crashlytics.logException(e);
+            FirebaseCrashlytics.getInstance().recordException(e);
         }
 
     }

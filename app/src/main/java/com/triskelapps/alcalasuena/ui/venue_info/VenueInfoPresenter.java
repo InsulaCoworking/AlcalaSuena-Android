@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.crashlytics.android.Crashlytics;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.triskelapps.alcalasuena.BuildConfig;
 import com.triskelapps.alcalasuena.base.BasePresenter;
@@ -150,7 +150,7 @@ public class VenueInfoPresenter extends BasePresenter {
             bundle.putString(FirebaseAnalytics.Param.START_DATE, Util.getCurrentDateTime());
             FirebaseAnalytics.getInstance(context).logEvent(FirebaseAnalytics.Event.VIEW_SEARCH_RESULTS, bundle);
         } catch (Exception e) {
-            Crashlytics.logException(e);
+            FirebaseCrashlytics.getInstance().recordException(e);
         }
     }
 

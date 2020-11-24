@@ -2,7 +2,7 @@ package com.triskelapps.alcalasuena.interactor;
 
 import android.content.Context;
 
-import com.crashlytics.android.Crashlytics;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.triskelapps.alcalasuena.api.Api;
 import com.triskelapps.alcalasuena.base.BaseInteractor;
 import com.triskelapps.alcalasuena.base.BaseView;
@@ -61,7 +61,7 @@ public class SettingsInteractor extends BaseInteractor {
                             callback.onResponse(versionInt);
                         } catch (NumberFormatException e) {
                             e.printStackTrace();
-                            Crashlytics.logException(e);
+                            FirebaseCrashlytics.getInstance().recordException(e);
                         }
 
 
@@ -101,7 +101,7 @@ public class SettingsInteractor extends BaseInteractor {
                             callback.onResponse(versionInt);
                         } catch (NumberFormatException e) {
                             e.printStackTrace();
-                            Crashlytics.logException(e);
+                            FirebaseCrashlytics.getInstance().recordException(e);
                         }
 
 

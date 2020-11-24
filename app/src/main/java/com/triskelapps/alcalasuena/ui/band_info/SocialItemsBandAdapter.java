@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.crashlytics.android.Crashlytics;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.model.SocialItem;
 
@@ -80,7 +80,7 @@ public class SocialItemsBandAdapter extends RecyclerView.Adapter<SocialItemsBand
                 try {
                     context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(socialItem.getUrl())));
                 } catch (ActivityNotFoundException e) {
-                    Crashlytics.logException(e);
+                    FirebaseCrashlytics.getInstance().recordException(e);
                     Toast.makeText(context, context.getString(R.string.link_error), Toast.LENGTH_SHORT).show();
                 }
             });
