@@ -8,8 +8,6 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
-import com.crashlytics.android.core.CrashlyticsCore;
-import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
@@ -17,7 +15,6 @@ import com.triskelapps.alcalasuena.interactor.BandInteractor;
 import com.triskelapps.alcalasuena.interactor.VenueInteractor;
 import com.triskelapps.alcalasuena.util.NotificationHelper;
 
-import io.fabric.sdk.android.Fabric;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
@@ -32,7 +29,7 @@ public class App extends Application {
 
     public static final int CACHED_DATA_VERSION = 1;
 
-    public static final String PREFIX = "com.triskelapps.alcalasuena.";
+    public static final String PREFIX = BuildConfig.APPLICATION_ID + ".";
 
 //    public static final String SHARED_FIRST_TIME = PREFIX + "first_time_7";
     public static final String SHARED_CURRENT_DATA_VERSION = PREFIX + "shared_current_data_version_2018";
@@ -45,9 +42,9 @@ public class App extends Application {
     public static final String ACTION_SHOW_NOTIFICATION = PREFIX + "action_show_notification";
 
 
-    public static final String URL_GOOGLE_PLAY_APP = "https://play.google.com/store/apps/details?id=com.triskelapps.alcalasuena";
+    public static final String URL_GOOGLE_PLAY_APP = "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID;
     public static final String URL_APPLE_STORE_APP = "https://itunes.apple.com/es/app/Alcala-suena/id1458551516";
-    public static final String URL_DIRECT_GOOGLE_PLAY_APP = "market://details?id=com.triskelapps.alcalasuena";
+    public static final String URL_DIRECT_GOOGLE_PLAY_APP = "market://details?id=" + BuildConfig.APPLICATION_ID;
     public static final String TOPIC_NEWS = "news";
     public static final String TOPIC_NEWS_TEST = "test_news3";
 

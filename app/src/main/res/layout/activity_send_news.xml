@@ -34,7 +34,7 @@
                 android:orientation="vertical"
                 android:padding="10dp">
 
-                <android.support.v7.widget.AppCompatEditText
+                <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edit_send_news_title"
                     style="@style/TextBase.Bold"
                     android:textColor="@color/white"
@@ -47,7 +47,7 @@
                     android:textSize="18sp"
                     app:backgroundTint="@color/white"/>
 
-                <android.support.v7.widget.AppCompatEditText
+                <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edit_send_news_text"
                     style="@style/TextBase.Inverted"
                     android:layout_width="match_parent"
@@ -66,7 +66,7 @@
                     android:orientation="horizontal"
                     android:layout_marginTop="15dp">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/edit_link"
                         style="@style/TextBase.Inverted"
                         android:layout_width="0dp"
@@ -77,7 +77,7 @@
                         android:textColorHint="@color/transp_white"
                         app:backgroundTint="@color/white"/>
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/edit_link_button_text"
                         style="@style/TextBase.Inverted"
                         android:layout_width="0dp"
@@ -98,13 +98,13 @@
                     android:gravity="center_horizontal"
                     android:orientation="horizontal">
 
-                    <android.support.v7.widget.AppCompatButton
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btn_camera"
                         style="@style/TextBase.Inverted"
                         android:backgroundTint="@color/headers_main"
                         android:text="@string/camera" />
 
-                    <android.support.v7.widget.AppCompatButton
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btn_gallery"
                         style="@style/TextBase.Inverted"
                         android:layout_marginLeft="40dp"
@@ -112,7 +112,7 @@
                         android:text="@string/gallery" />
                 </LinearLayout>
 
-                <android.support.v7.widget.AppCompatImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/img_send_news"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

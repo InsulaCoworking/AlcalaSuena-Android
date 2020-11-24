@@ -43,7 +43,7 @@
                     style="@style/TextBase"
                     android:layout_marginTop="15dp" />
 
-                <android.support.v7.widget.AppCompatButton
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_see_dossier"
                     style="@style/TextButton"
                     android:layout_marginTop="15dp"

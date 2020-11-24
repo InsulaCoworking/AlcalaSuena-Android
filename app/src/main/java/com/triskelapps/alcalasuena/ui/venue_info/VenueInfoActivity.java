@@ -1,7 +1,7 @@
 package com.triskelapps.alcalasuena.ui.venue_info;
 
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
+import com.google.android.material.tabs.TabLayout;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 

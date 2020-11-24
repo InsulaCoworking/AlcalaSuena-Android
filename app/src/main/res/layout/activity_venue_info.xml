@@ -28,7 +28,7 @@
             android:id="@+id/tv_venue_name"
             style="@style/TextTitle.Header" />
 
-        <android.support.design.widget.TabLayout
+        <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs_venue_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,17 +38,17 @@
             app:tabSelectedTextColor="@color/tab_selected"
             app:tabTextColor="@color/tab_unselected">
 
-            <android.support.design.widget.TabItem
+            <com.google.android.material.tabs.TabItem
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/meet_the_place" />
 
-            <android.support.design.widget.TabItem
+            <com.google.android.material.tabs.TabItem
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/gigs" />
 
-        </android.support.design.widget.TabLayout>
+        </com.google.android.material.tabs.TabLayout>
 
         <FrameLayout
             android:id="@+id/frame_venue_info"

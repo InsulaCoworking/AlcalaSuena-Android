@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:padding="10dp">
 
-    <android.support.v7.widget.AppCompatEditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/edit_pin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,4 +17,4 @@
         android:inputType="numberPassword"
         android:gravity="center_horizontal"/>
 
-</android.support.v7.widget.LinearLayoutCompat>
+</androidx.appcompat.widget.LinearLayoutCompat>

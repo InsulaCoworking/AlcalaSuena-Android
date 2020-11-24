@@ -8,7 +8,7 @@ import android.util.AttributeSet;
  * Created by julio on 28/05/17.
  */
 
-public class TypeWriterTextView extends android.support.v7.widget.AppCompatTextView {
+public class TypeWriterTextView extends androidx.appcompat.widget.AppCompatTextView {
 
     private CharSequence mText;
     private int mIndex;

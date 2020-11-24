@@ -1,7 +1,7 @@
 package com.triskelapps.alcalasuena.views.animation_adapter;
 
 import android.animation.Animator;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Interpolator;

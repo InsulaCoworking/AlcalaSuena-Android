@@ -1,6 +1,6 @@
 package com.triskelapps.alcalasuena.views.animation_adapter;
 
-import android.support.v4.view.ViewCompat;
+import androidx.core.view.ViewCompat;
 import android.view.View;
 
 /**

@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <android.support.v4.widget.DrawerLayout
+            <androidx.drawerlayout.widget.DrawerLayout
                 android:id="@+id/drawer_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -61,9 +61,9 @@
                     android:layout_marginLeft="20dp"
                     tools:layout="@layout/fragment_filter_bands" />
 
-            </android.support.v4.widget.DrawerLayout>
+            </androidx.drawerlayout.widget.DrawerLayout>
 
-            <android.support.v7.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/btn_send_news"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -83,7 +83,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true">
 
-                <android.support.v7.widget.AppCompatImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/btn_happening_now"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
