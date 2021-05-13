@@ -39,8 +39,6 @@ public class SplashActivity extends BaseActivity implements SplashView, View.OnC
 
         presenter.onCreate(getIntent());
 
-        binding.tvSplashInfo.setVisibility(View.GONE);
-
     }
 
     @Override
