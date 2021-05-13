@@ -73,7 +73,6 @@ public class SplashPresenter extends BasePresenter {
 
         if (nextScreen == NEXT_SCREEN_NONE) {
             view.showTvInfoText(getString(R.string.preparing_app_edition_current_year));
-            checkNewVersionInMarket();
         }
 
         handler = new Handler();
@@ -121,24 +120,6 @@ public class SplashPresenter extends BasePresenter {
     }
 
 
-    private void checkNewVersionInMarket() {
-        new SettingsInteractor(context, view).getAppVersionInMarket(new SettingsInteractor.SettingsIntValueCallback() {
-            @Override
-            public void onResponse(Integer newVersion) {
-                int currentVersion = BuildConfig.VERSION_CODE;
-                if (newVersion > currentVersion) {
-                    newVersionAvailable = true;
-                    view.showTvInfoText(getString(R.string.new_version_available));
-                }
-            }
-
-            @Override
-            public void onError(String error) {
-
-            }
-        });
-    }
-
     public void onSplashInfoTextClick() {
         if (newVersionAvailable) {
             App.openAppInGooglePlay(context);
@@ -148,6 +129,13 @@ public class SplashPresenter extends BasePresenter {
     public void onSplashImageClick() {
         if (BuildConfig.MODE_PREPARING) {
             context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://alcalasuena.es")));
+        }
+    }
+
+    public void onUpdateAvailable() {
+        if (nextScreen == NEXT_SCREEN_NONE) {
+            newVersionAvailable = true;
+            view.showTvInfoText(getString(R.string.new_version_available));
         }
     }
 }

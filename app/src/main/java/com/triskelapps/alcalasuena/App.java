@@ -17,7 +17,6 @@ import com.triskelapps.alcalasuena.util.NotificationHelper;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
  * Created by julio on 17/06/16.
@@ -66,11 +65,6 @@ public class App extends Application {
 //        built.setIndicatorsEnabled(true);
         built.setLoggingEnabled(true);
         Picasso.setSingletonInstance(built);
-
-        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/Exo-Regular.otf")
-                .setFontAttrId(R.attr.fontPath)
-                .build());
 
         initializeDataFirstTime();
 //        updateDataFromApi();
@@ -129,12 +123,12 @@ public class App extends Application {
     }
 
     public static void openAppInGooglePlay(Context context) {
-//        Intent directPlayIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL_DIRECT_GOOGLE_PLAY_APP));
-//        if (directPlayIntent.resolveActivity(context.getPackageManager()) != null) {
-//            context.startActivity(directPlayIntent);
-//        } else {
+        Intent directPlayIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL_DIRECT_GOOGLE_PLAY_APP.replace(".debug", "")));
+        if (directPlayIntent.resolveActivity(context.getPackageManager()) != null) {
+            context.startActivity(directPlayIntent);
+        } else {
             context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(URL_GOOGLE_PLAY_APP)));
-//        }
+        }
     }
 
     public static SharedPreferences getPrefs(Context context) {

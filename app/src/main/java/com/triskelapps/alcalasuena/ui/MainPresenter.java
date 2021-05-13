@@ -144,7 +144,6 @@ public class MainPresenter extends BasePresenter {
 
         if (Util.isConnected(context)) {
             checkDataVersionAndUpdate();
-            checkNewVersionInMarket();
         }
 
         if (BuildConfig.MODE_PREPARING) {
@@ -338,12 +337,6 @@ public class MainPresenter extends BasePresenter {
         context.startActivity(intent);
     }
 
-
-    public void onUpdateVersionClick() {
-        App.openAppInGooglePlay(context);
-    }
-
-
     //------------
 
     private String getMyListTextToShare() {
@@ -404,26 +397,6 @@ public class MainPresenter extends BasePresenter {
             String link = intent.getStringExtra(FirebasePush.NOTIFICATION_CUSTOM_BUTTON_LINK);
             WebViewActivity.startRemoteUrl(context, null, link);
         }
-    }
-
-
-    private void checkNewVersionInMarket() {
-        settingsInteractor.getAppVersionInMarket(new SettingsInteractor.SettingsIntValueCallback() {
-            @Override
-            public void onResponse(Integer newVersion) {
-                int currentVersion = BuildConfig.VERSION_CODE;
-                if (newVersion > currentVersion) {
-//                    if (!BuildConfig.DEBUG) {
-                    view.showNewVersionAvailable();
-//                    }
-                }
-            }
-
-            @Override
-            public void onError(String error) {
-
-            }
-        });
     }
 
 

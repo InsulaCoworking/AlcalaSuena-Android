@@ -75,9 +75,6 @@
     <string name="add_favs_events">Añadir conciertos favoritos</string>
     <string name="add">¡Añadir!</string>
     <string name="no_thanks">No, gracias</string>
-    <string name="new_version">¡Nueva versión!</string>
-    <string name="later">Mas tarde</string>
-    <string name="update">Actualizar</string>
     <string name="see_github_repositories">Ver repositorios en GitHub</string>
     <string name="hello_excl">¡Hola!</string>
     <string name="stay_in_app">Ya que estoy, me quedo</string>
@@ -112,7 +109,7 @@
     <string name="amstel_recomends">Amstel recomienda\nel consumo responsable</string>
     <string name="enter_excl">¡Entrar!</string>
     <string name="empty_list_news">De momento en este año no hay noticias. ¡Pronto te avisaremos de todas las novedades!</string>
-    <string name="preparing_app_edition_current_year">Preparando aplicación para la edición de 2019....\n¡Te avisaremos cuando esté lista!</string>
+    <string name="preparing_app_edition_current_year">Preparando aplicación para la edición de 2021....\n¡Te avisaremos cuando esté lista!</string>
     <string name="new_version_available">¡Aplicación preparada!\nPulsa aquí para actualizar</string>
     <string name="location_wont_show">No se mostrará tu ubicación (puedes cambiar esta configuración en los ajustes)</string>
     <string name="location_permission">Permiso de acceso a localización</string>

@@ -22,10 +22,14 @@
     <color name="bg_color_main_light">#52FFDD98</color>
     <color name="bg_color_main_semitransp">#73edbe4a</color>
 
-    <color name="headers_main">#edbe4a</color>
-    <color name="headers_main_semitransp">#63EDBE4A</color>
-    <color name="headers_main_light">#F1DD92</color>
-    <color name="headers_main_dark">#D1A53F</color>
+    <color name="headers_main">#5d1b4e</color>
+    <color name="headers_main_semitransp">#635d1b4e</color>
+    <color name="headers_main_light">#CC6DB6</color>
+    <color name="headers_main_dark">#531645</color>
+
+
+    <color name="bg_gradient_start">#c0598e</color>
+    <color name="bg_gradient_end">#f6deaf</color>
 
     <color name="text_color_main">#000</color>
     <color name="text_color_inverted">#FFF</color>

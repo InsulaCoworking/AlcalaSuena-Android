@@ -12,11 +12,6 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import com.google.android.material.appbar.AppBarLayout;
-import androidx.core.content.ContextCompat;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.content.res.AppCompatResources;
-import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -24,13 +19,19 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.triskelapps.alcalasuena.App;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.model.notification.FirebasePush;
 import com.triskelapps.alcalasuena.views.DialogShowNotification;
 
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 
 public abstract class BaseActivity extends AppCompatActivity implements BaseView {
 
@@ -110,12 +111,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-    }
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-//        super.attachBaseContext(newBase);
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
     public abstract BasePresenter getPresenter();

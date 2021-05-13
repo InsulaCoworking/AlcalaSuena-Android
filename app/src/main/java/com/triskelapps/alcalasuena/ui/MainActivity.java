@@ -46,9 +46,6 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
     private TextView tvEmptyMessage;
     private TextView btnShareFavs;
     private AlphaInAnimationAdapter animationAdapter;
-    private View viewNewVersion;
-    private View btnHideNewVersionView;
-    private View btnUpdateNewVersion;
     private View viewBtnShareFavs;
     private View btnSendNews;
     private View btnHappeningNow;
@@ -61,17 +58,12 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
         btnShareFavs = (TextView) findViewById(R.id.btn_share_favs);
         viewBtnShareFavs = findViewById(R.id.view_btn_share_favs);
 
-        viewNewVersion = findViewById(R.id.view_new_version);
-        btnHideNewVersionView = findViewById(R.id.btn_hide_new_version);
-        btnUpdateNewVersion = findViewById(R.id.btn_update_new_version);
 
         btnSendNews = findViewById(R.id.btn_send_news);
         btnHappeningNow = findViewById(R.id.btn_happening_now);
         progressHappeningNow = findViewById(R.id.progress_happening_now);
 
         btnShareFavs.setOnClickListener(this);
-        btnHideNewVersionView.setOnClickListener(this);
-        btnUpdateNewVersion.setOnClickListener(this);
 
         btnSendNews.setOnClickListener(this);
         btnHappeningNow.setOnClickListener(this);
@@ -213,14 +205,6 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
         switch (v.getId()) {
             case R.id.btn_share_favs:
                 presenter.onShareFavsButtonClicked();
-                break;
-
-            case R.id.btn_update_new_version:
-                presenter.onUpdateVersionClick();
-                break;
-
-            case R.id.btn_hide_new_version:
-                viewNewVersion.setVisibility(View.GONE);
                 break;
 
             case R.id.btn_send_news:
@@ -366,12 +350,6 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
     @Override
     public void setTabPosition(int position) {
         tabsDays.getTabAt(position).select();
-    }
-
-    @Override
-    public void showNewVersionAvailable() {
-
-        viewNewVersion.setVisibility(View.VISIBLE);
     }
 
     @Override

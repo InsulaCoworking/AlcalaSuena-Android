@@ -8,7 +8,7 @@
         <item name="android:textSize">17sp</item>
         <item name="android:lineSpacingExtra">2dp</item>
         <item name="android:textColor">@color/text_color_main</item>
-        <!--<item name="fontPath">fonts/Vaud.otf</item>  NOT NECESSARY-->
+        <item name="fontFamily">@font/kodchasan</item>
     </style>
 
     <style name="TextBase.Inverted">
@@ -20,7 +20,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:gravity">center_horizontal</item>
         <item name="android:textSize">50sp</item>
-        <item name="fontPath">fonts/Old_Press.ttf</item>
+        <item name="fontFamily">@font/kodchasan</item>
     </style>
 
     <style name="TextTitle.Inverted">
@@ -33,12 +33,11 @@
         <item name="android:textSize">30sp</item>
         <item name="android:paddingTop">5dp</item>
         <item name="android:paddingBottom">5dp</item>
-        <item name="fontPath">fonts/Exo-Medium.otf</item>
+        <item name="fontFamily">@font/kodchasan</item>
     </style>
 
     <style name="TextBase.Bold">
         <item name="android:textStyle">bold</item>
-        <item name="fontPath">fonts/Aller.ttf</item>
 
     </style>
 

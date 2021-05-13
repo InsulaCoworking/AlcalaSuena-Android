@@ -106,43 +106,7 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/view_new_version"
+    <com.triskelapps.alcalasuena.views.UpdateAppView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/bg_headers_main_with_frame"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="7dp"
-        android:visibility="gone"
-        android:clickable="true">
-
-        <TextView
-            style="@style/TextBase"
-            android:layout_weight="1"
-            android:text="@string/new_version" />
-
-        <TextView
-            android:id="@+id/btn_update_new_version"
-            style="@style/TextBase"
-            android:background="@drawable/background_pressed_custom"
-            android:padding="5dp"
-            android:text="@string/update"
-            android:textAllCaps="true"
-            app:fontPath="fonts/Exo-Medium.otf" />
-
-        <TextView
-            android:id="@+id/btn_hide_new_version"
-            style="@style/TextBase.Inverted"
-            android:layout_marginLeft="15dp"
-            android:background="@drawable/background_pressed_custom"
-            android:padding="5dp"
-            android:textColor="@color/tab_unselected"
-            android:text="@string/later"
-            android:textSize="14sp"
-            android:textAllCaps="true" />
-
-
-    </LinearLayout>
+        android:layout_height="wrap_content" />
 </RelativeLayout>

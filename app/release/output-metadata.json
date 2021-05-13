@@ -5,13 +5,13 @@
     "kind": "Directory"
   },
   "applicationId": "com.triskelapps.alcalasuena",
-  "variantName": "processReleaseResources",
+  "variantName": "release",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
-      "versionCode": 1929,
-      "versionName": "19.2.9",
+      "versionCode": 2100,
+      "versionName": "21.0.0",
       "outputFile": "app-release.apk"
     }
   ]
