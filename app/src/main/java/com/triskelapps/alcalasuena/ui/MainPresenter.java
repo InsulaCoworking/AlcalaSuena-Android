@@ -190,6 +190,12 @@ public class MainPresenter extends BasePresenter {
 
     private void checkDataVersionAndUpdate() {
 
+        // TODO REMOVE
+//        if (true) {
+//            updateBandsFromApi();
+//            return;
+//        }
+
         settingsInteractor.getLastDataVersion(new SettingsInteractor.SettingsIntValueCallback() {
             @Override
             public void onResponse(Integer version) {
