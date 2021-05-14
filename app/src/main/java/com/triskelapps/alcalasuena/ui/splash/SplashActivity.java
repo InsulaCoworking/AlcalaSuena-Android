@@ -3,13 +3,12 @@ package com.triskelapps.alcalasuena.ui.splash;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
 
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BaseActivity;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.databinding.ActivitySplashBinding;
-import com.triskelapps.alcalasuena.views.UpdateAppView;
+import com.triskelapps.alcalasuena.util.update_app.UpdateAppManager;
 
 /**
  * Created by julio on 29/05/17.
@@ -18,6 +17,7 @@ import com.triskelapps.alcalasuena.views.UpdateAppView;
 public class SplashActivity extends BaseActivity implements SplashView, View.OnClickListener {
     private SplashPresenter presenter;
     private ActivitySplashBinding binding;
+    private UpdateAppManager updateAppManager;
 
     @Override
     public BasePresenter getPresenter() {
@@ -33,9 +33,10 @@ public class SplashActivity extends BaseActivity implements SplashView, View.OnC
         setContentView(binding.getRoot());
 
         binding.imgAlcalasuenaSplash.setOnClickListener(this);
-        binding.tvSplashInfo.setOnClickListener(this);
 
-        binding.viewUpdateApp.setCustomListener(() -> presenter.onUpdateAvailable(), false);
+        updateAppManager = new UpdateAppManager(this);
+        updateAppManager.setUpdateAvailableListener(() -> presenter.onUpdateAvailable());
+        updateAppManager.checkUpdateAvailable();
 
         presenter.onCreate(getIntent());
 
@@ -44,6 +45,7 @@ public class SplashActivity extends BaseActivity implements SplashView, View.OnC
     @Override
     protected void onResume() {
         super.onResume();
+        updateAppManager.onResume();
         presenter.onResume();
     }
 
@@ -57,7 +59,7 @@ public class SplashActivity extends BaseActivity implements SplashView, View.OnC
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_splash_info:
-                presenter.onSplashInfoTextClick();
+                updateAppManager.onUpdateVersionClick();
                 break;
 
             case R.id.img_alcalasuena_splash:
@@ -67,8 +69,9 @@ public class SplashActivity extends BaseActivity implements SplashView, View.OnC
     }
 
     @Override
-    public void showTvInfoText(String text) {
+    public void showTvInfoText(String text, boolean enableClick) {
         binding.tvSplashInfo.setText(text);
+        binding.tvSplashInfo.setOnClickListener(enableClick ? this : null);
     }
 
 }

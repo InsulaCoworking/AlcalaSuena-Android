@@ -7,13 +7,23 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 
+import androidx.work.Constraints;
+import androidx.work.ExistingPeriodicWorkPolicy;
+import androidx.work.NetworkType;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
+
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 import com.triskelapps.alcalasuena.interactor.BandInteractor;
 import com.triskelapps.alcalasuena.interactor.VenueInteractor;
+import com.triskelapps.alcalasuena.util.update_app.UpdateAppCheckWorker;
 import com.triskelapps.alcalasuena.util.NotificationHelper;
+import com.triskelapps.alcalasuena.util.update_app.UpdateAppManager;
+
+import java.util.concurrent.TimeUnit;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -67,6 +77,9 @@ public class App extends Application {
         Picasso.setSingletonInstance(built);
 
         initializeDataFirstTime();
+
+        UpdateAppManager.scheduleAppUpdateCheckWork(this);
+
 //        updateDataFromApi();
 
 //        String token = FirebaseInstanceId.getInstance().getToken();
@@ -99,6 +112,7 @@ public class App extends Application {
         }
 
     }
+
 
     private void configureRealm() {
 

@@ -6,11 +6,9 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
 
-import com.triskelapps.alcalasuena.App;
 import com.triskelapps.alcalasuena.BuildConfig;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BasePresenter;
-import com.triskelapps.alcalasuena.interactor.SettingsInteractor;
 import com.triskelapps.alcalasuena.ui.about.AboutAlcalaSuenaActivity;
 import com.triskelapps.alcalasuena.ui.intro.IntroPresenter;
 import com.triskelapps.alcalasuena.util.Util;
@@ -31,7 +29,6 @@ public class SplashPresenter extends BasePresenter {
     private final SplashView view;
     private Handler handler;
     private boolean launchMainActivity = true;
-    private boolean newVersionAvailable;
 
     public static void launchSplashActivity(Context context, int nextScreen) {
 
@@ -72,7 +69,7 @@ public class SplashPresenter extends BasePresenter {
         }
 
         if (nextScreen == NEXT_SCREEN_NONE) {
-            view.showTvInfoText(getString(R.string.preparing_app_edition_current_year));
+            view.showTvInfoText(getString(R.string.preparing_app_edition_current_year), true);
         }
 
         handler = new Handler();
@@ -120,12 +117,6 @@ public class SplashPresenter extends BasePresenter {
     }
 
 
-    public void onSplashInfoTextClick() {
-        if (newVersionAvailable) {
-            App.openAppInGooglePlay(context);
-        }
-    }
-
     public void onSplashImageClick() {
         if (BuildConfig.MODE_PREPARING) {
             context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://alcalasuena.es")));
@@ -134,8 +125,7 @@ public class SplashPresenter extends BasePresenter {
 
     public void onUpdateAvailable() {
         if (nextScreen == NEXT_SCREEN_NONE) {
-            newVersionAvailable = true;
-            view.showTvInfoText(getString(R.string.new_version_available));
+            view.showTvInfoText(getString(R.string.new_version_available), true);
         }
     }
 }

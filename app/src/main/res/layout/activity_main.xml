@@ -106,7 +106,7 @@
 
     </LinearLayout>
 
-    <com.triskelapps.alcalasuena.views.UpdateAppView
+    <com.triskelapps.alcalasuena.util.update_app.UpdateAppView
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </RelativeLayout>
