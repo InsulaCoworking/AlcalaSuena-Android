@@ -93,6 +93,10 @@ public class UpdateAppManager {
 
     public void onUpdateVersionClick() {
 
+        if (appUpdateInfo == null) {
+            return;
+        }
+
         if (appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
             AppUpdateOptions options = AppUpdateOptions.newBuilder(AppUpdateType.IMMEDIATE)
                     .setAllowAssetPackDeletion(true).build();

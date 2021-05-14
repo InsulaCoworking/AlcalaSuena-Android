@@ -11,8 +11,8 @@ android {
         applicationId "com.triskelapps.alcalasuena"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 2110
-        versionName "21.1.0"
+        versionCode 2114
+        versionName "21.1.4"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         vectorDrawables.useSupportLibrary = true
     }

@@ -7,11 +7,12 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
@@ -21,6 +22,7 @@ import androidx.work.WorkerParameters;
 import androidx.work.impl.utils.futures.SettableFuture;
 
 import com.google.common.util.concurrent.ListenableFuture;
+import com.triskelapps.alcalasuena.BuildConfig;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.ui.MainActivity;
 
@@ -32,11 +34,13 @@ public class UpdateAppCheckWorker extends ListenableWorker {
 
 
     private static final String TAG = UpdateAppCheckWorker.class.getSimpleName();
+    private static final String PREF_LAST_VERSION_NOTIFIED = "pref_last_version_notified";
     private SettableFuture<Result> future;
     private UpdateAppManager updateAppManager;
 
     private static final String CHANNEL_NOTIF_UPDATE_APP = "channel_update_app";
     private static final int ID_UPDATE_APP_NOTIF = 1000;
+    private SharedPreferences prefs;
 
     public UpdateAppCheckWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);
@@ -50,7 +54,13 @@ public class UpdateAppCheckWorker extends ListenableWorker {
 
         future = SettableFuture.create();
 
-        updateTracking();
+        prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        int lastVersionNotified = prefs.getInt(PREF_LAST_VERSION_NOTIFIED, 0);
+        if (lastVersionNotified < BuildConfig.VERSION_CODE) {
+            checkAppUpdateAvailable();
+        } else {
+            future.set(Result.success());
+        }
 
         return future;
     }
@@ -61,7 +71,7 @@ public class UpdateAppCheckWorker extends ListenableWorker {
         Log.i(TAG, "onStopped");
     }
 
-    public void updateTracking() {
+    public void checkAppUpdateAvailable() {
 
         updateAppManager = new UpdateAppManager(getApplicationContext());
         updateAppManager.setUpdateAvailableListener(() -> prepareAndShowNotification());
@@ -74,6 +84,7 @@ public class UpdateAppCheckWorker extends ListenableWorker {
     private void prepareAndShowNotification() {
         initializeOreoChannelsNotification();
         showNotification();
+        prefs.edit().putInt(PREF_LAST_VERSION_NOTIFIED, BuildConfig.VERSION_CODE).commit();
     }
 
 

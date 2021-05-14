@@ -69,7 +69,7 @@ public class SplashPresenter extends BasePresenter {
         }
 
         if (nextScreen == NEXT_SCREEN_NONE) {
-            view.showTvInfoText(getString(R.string.preparing_app_edition_current_year), true);
+            view.showTvInfoText(getString(R.string.preparing_app_edition_current_year), false);
         }
 
         handler = new Handler();
