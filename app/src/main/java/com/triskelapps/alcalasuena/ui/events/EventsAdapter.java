@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.squareup.picasso.Picasso;
 import com.triskelapps.alcalasuena.R;
+import com.triskelapps.alcalasuena.databinding.RowEventBinding;
 import com.triskelapps.alcalasuena.model.Band;
 import com.triskelapps.alcalasuena.model.Event;
 import com.triskelapps.alcalasuena.views.CircleTransform;
@@ -53,50 +54,51 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
 
         final Event event = getItemAtPosition(holder.getAdapterPosition());
 
-        final Band band = event.getBandEntity();
-        if (band == null) {
-            FirebaseCrashlytics.getInstance().recordException(new Error("band is null in this event! (eventsAdapter): " + event.toString()));
+        final List<Band> bands = event.getBands();
+        if (bands == null) {
+            FirebaseCrashlytics.getInstance().recordException(new Error("band is null in this event! (eventsVenueAdapter): " + event.toString()));
             return;
         }
 
-        holder.tvBandName.setText(band.getName());
-        holder.tvBandGenre.setText(band.getGenreOrTag());
         Picasso.with(context)
-                .load(band.getImageLogoUrlFull())
+                .load(event.getImageUrlFull())
                 .placeholder(R.mipmap.img_default_grid)
                 .error(R.mipmap.img_default_grid)
                 .transform(new CircleTransform())
                 .resizeDimen(R.dimen.width_image_small, R.dimen.height_image_small)
-                .into(holder.imgBand);
+                .into(holder.binding.imgBand);
 
-        holder.tvEventTime.setText(event.getTimeFormatted());
-        holder.tvEventVenue.setText(event.getVenue().getName());
+        holder.binding.tvEventTime.setText(event.getTimeFormatted());
+        holder.binding.tvEventVenue.setText(event.getVenue().getName());
+        holder.binding.imgStarred.setSelected(event.isStarred());
 
-        holder.imgStarred.setSelected(event.isStarred());
+        holder.binding.tvEventVenue.setVisibility(View.GONE);
 
-        if (band.getTag() != null) {
-            int color = Color.parseColor(band.getTag().getColor());
-            int colorAlpha = ColorUtils.setAlphaComponent(color, 230);
-            holder.cardEvent.setCardBackgroundColor(colorAlpha);
+
+        Band band1 = bands.get(0);
+        holder.binding.tvBandName.setText(band1.getName());
+        holder.binding.tvBandGenre.setText(band1.getGenreOrTag());
+        if (band1.getTag() != null) {
+            int color = Color.parseColor(band1.getTag().getColor());
+            holder.binding.viewPointGenreColor.setColorFilter(color);
         }
 
-//        int color = ContextCompat.getColor(context, event.getImageLogoUrlFull() != null ? android.R.color.white : android.R.color.black);
-//        holder.tvEventName.setTextColor(color);
-//        holder.tvEventGenre.setTextColor(color);
+        if (bands.size() > 1) {
+            Band band2 = bands.get(1);
+            holder.binding.tvBandName2.setVisibility(View.VISIBLE);
+            holder.binding.viewGenre2.setVisibility(View.VISIBLE);
 
-        holder.rootView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                itemClickListener.onBandClicked(getItemAtPosition(holder.getAdapterPosition()).getBandEntity().getId());
-            }
-        });
+            holder.binding.tvBandName2.setText(band2.getName());
+            holder.binding.tvBandGenre2.setText(band2.getGenreOrTag());
 
-        holder.imgStarred.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                itemClickListener.onEventFavouriteClicked(getItemAtPosition(holder.getAdapterPosition()).getId());
+            if (band2.getTag() != null) {
+                int color = Color.parseColor(band2.getTag().getColor());
+                holder.binding.viewPointGenreColor2.setColorFilter(color);
             }
-        });
+        } else {
+            holder.binding.tvBandName2.setVisibility(View.GONE);
+            holder.binding.viewGenre2.setVisibility(View.GONE);
+        }
     }
 
 
@@ -115,29 +117,31 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
     }
 
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        private CardView cardEvent;
-        private ImageView imgBand;
-        private TextView tvBandName;
-        private TextView tvBandGenre;
-        private ImageView imgStarred;
-        private TextView tvEventVenue;
-        private TextView tvEventTime;
-        public View rootView;
+    public class ViewHolder extends RecyclerView.ViewHolder {
+
+        RowEventBinding binding;
 
         public ViewHolder(View itemView) {
 
             super(itemView);
 
-            cardEvent = (CardView)itemView.findViewById( R.id.card_event );
-            imgBand = (ImageView)itemView.findViewById( R.id.img_band );
-            tvBandName = (TextView)itemView.findViewById( R.id.tv_band_name );
-            tvBandGenre = (TextView)itemView.findViewById( R.id.tv_band_genre );
-            imgStarred = (ImageView)itemView.findViewById( R.id.img_starred );
-            tvEventVenue = (TextView)itemView.findViewById( R.id.tv_event_venue );
-            tvEventTime = (TextView)itemView.findViewById( R.id.tv_event_time );
+            binding = RowEventBinding.bind(itemView);
 
-            rootView = itemView;
+            binding.getRoot().setOnClickListener(v -> {
+
+                if (itemClickListener != null) {
+                    final Event event = getItemAtPosition(getAdapterPosition());
+                    itemClickListener.onEventClicked(event);
+                }
+            });
+
+            binding.imgStarred.setOnClickListener(v -> {
+                if (itemClickListener != null) {
+                    final Event event = getItemAtPosition(getAdapterPosition());
+                    binding.imgStarred.setSelected(!binding.imgStarred.isSelected());
+                    itemClickListener.onEventFavouriteClicked(event.getId());
+                }
+            });
         }
     }
 
@@ -147,7 +151,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
     }
 
     public interface OnItemClickListener {
-        void onBandClicked(int idBand);
+        void onEventClicked(Event event);
 
         void onEventFavouriteClicked(int idEvent);
 

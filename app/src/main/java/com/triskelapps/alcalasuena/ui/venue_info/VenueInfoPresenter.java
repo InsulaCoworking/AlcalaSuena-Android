@@ -13,6 +13,7 @@ import com.triskelapps.alcalasuena.interactor.VenueInteractor;
 import com.triskelapps.alcalasuena.model.Event;
 import com.triskelapps.alcalasuena.model.Venue;
 import com.triskelapps.alcalasuena.ui.band_info.BandInfoPresenter;
+import com.triskelapps.alcalasuena.ui.event_info.EventInfoPresenter;
 import com.triskelapps.alcalasuena.util.Util;
 
 import java.text.DateFormat;
@@ -146,7 +147,7 @@ public class VenueInfoPresenter extends BasePresenter {
             Bundle bundle = new Bundle();
             bundle.putString(FirebaseAnalytics.Param.ITEM_ID, event.getId() + "");
             bundle.putString(FirebaseAnalytics.Param.LEVEL_NAME, venue.getName());
-            bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, event.getBandEntity().getName());
+            bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, event.getBandsNames());
             bundle.putString(FirebaseAnalytics.Param.START_DATE, Util.getCurrentDateTime());
             FirebaseAnalytics.getInstance(context).logEvent(FirebaseAnalytics.Event.VIEW_SEARCH_RESULTS, bundle);
         } catch (Exception e) {
@@ -159,7 +160,7 @@ public class VenueInfoPresenter extends BasePresenter {
 //        refreshData();
     }
 
-    public void onBandClick(int idBand) {
-        context.startActivity(BandInfoPresenter.newBandInfoActivity(context, idBand));
+    public void onEventClick(Event event) {
+        EventInfoPresenter.launchEventInfoActivity(context, event.getId());
     }
 }

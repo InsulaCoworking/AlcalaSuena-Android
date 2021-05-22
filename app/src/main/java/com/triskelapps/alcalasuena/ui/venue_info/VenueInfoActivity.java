@@ -112,8 +112,8 @@ public class VenueInfoActivity extends BaseActivity implements VenueInfoView, Ta
     }
 
     @Override
-    public void onBandClicked(int idBand) {
-        presenter.onBandClick(idBand);
+    public void onEventClicked(Event event) {
+        presenter.onEventClick(event);
     }
 
     @Override

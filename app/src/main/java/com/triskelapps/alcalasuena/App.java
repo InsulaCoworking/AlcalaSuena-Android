@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 
+import androidx.multidex.MultiDex;
+import androidx.multidex.MultiDexApplication;
 import androidx.work.Constraints;
 import androidx.work.ExistingPeriodicWorkPolicy;
 import androidx.work.NetworkType;
@@ -32,7 +34,7 @@ import io.realm.RealmConfiguration;
  * Created by julio on 17/06/16.
  */
 
-public class App extends Application {
+public class App extends MultiDexApplication {
 
     private static final String TAG = "App";
 
@@ -45,11 +47,9 @@ public class App extends Application {
     public static final String SHARED_FIRST_TIME_APP_LAUNCHING = PREFIX + "extra_first_time_app_lauching_2018";
     private static final String SHARED_CACHED_DATA_STORED = PREFIX + "shared_cached_data_stored_2018";
     public static final String SHARED_PIN_SEND_NEWS_ENCRIPT = PREFIX + "shared_pin_send_news_encript";
-    private static final String SHARED_MIGRATION_3_4_DONE = "shared_migration_3_4_done";
 
     public static final String ACTION_REFRESH_DATA = PREFIX + "action_refresh_data";
     public static final String ACTION_SHOW_NOTIFICATION = PREFIX + "action_show_notification";
-
 
     public static final String URL_GOOGLE_PLAY_APP = "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID;
     public static final String URL_APPLE_STORE_APP = "https://itunes.apple.com/es/app/Alcala-suena/id1458551516";
@@ -62,6 +62,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
 
+        MultiDex.install(this);
 
         FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(DebugHelper.SWITCH_CRASH_REPORT_ENABLED);
 
@@ -99,13 +100,9 @@ public class App extends Application {
 
     private void initializeDataFirstTime() {
 
-        if (!getPrefs(this).getBoolean(SHARED_MIGRATION_3_4_DONE, false)) {
-//        if(true) {
-            getPrefs(this).edit().putBoolean(SHARED_CACHED_DATA_STORED, false).commit();
-            getPrefs(this).edit().putBoolean(SHARED_MIGRATION_3_4_DONE, true).commit();
-        }
-
-        if (!getPrefs(this).getBoolean(SHARED_CACHED_DATA_STORED, false)) {
+        // TODO REMOVE
+//        if (!getPrefs(this).getBoolean(SHARED_CACHED_DATA_STORED, false)) {
+        if(true) {
             new BandInteractor(this, null).initializeBandsFirstTime();
             new VenueInteractor(this,null).initializeVenuesFirstTime();
             getPrefs(this).edit().putBoolean(SHARED_CACHED_DATA_STORED, true).commit();
@@ -146,7 +143,6 @@ public class App extends Application {
     }
 
     public static SharedPreferences getPrefs(Context context) {
-//        return new SecurePreferences(context);
         return PreferenceManager.getDefaultSharedPreferences(context);
     }
 

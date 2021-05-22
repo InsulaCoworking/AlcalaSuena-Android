@@ -66,10 +66,6 @@ public class BandInfoActivity extends BaseActivity implements BandInfoView, View
 
         configureSecondLevelActivity();
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        recyclerEventsBand.setLayoutManager(layoutManager);
-        recyclerEventsBand.setNestedScrollingEnabled(false);
-
         presenter.onCreate(getIntent());
     }
 

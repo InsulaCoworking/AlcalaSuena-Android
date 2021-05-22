@@ -21,8 +21,8 @@ public class ApiClient {
     // Tutorial Retrofit 2.0
     // http://inthecheesefactory.com/blog/retrofit-2.0/en
 
-    public static final String BASE_URL_PRODUCTION = "https://triskelapps.es/apps/alcalasuena";
-    public static final String BASE_URL_DEBUG = "https://triskelapps.es/apps/alcalasuena";
+    public static final String BASE_URL_PRODUCTION = "https://alcalasuena.es";
+    public static final String BASE_URL_DEBUG = "https://alcalasuena.es";
 
     public static final String BASE_URL =
             (DebugHelper.SWITCH_PROD_ENVIRONMENT ? BASE_URL_PRODUCTION : BASE_URL_DEBUG);

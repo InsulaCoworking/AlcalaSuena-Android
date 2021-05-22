@@ -122,5 +122,9 @@
     <string name="developers">Desarrolladores</string>
     <string name="location_permission_rationale_happening_now_message">Para detectar el escenario más cercano es necesario que la app sepa donde te encuentras</string>
     <string name="link_error">Hay un error con este enlace</string>
+    <string name="event_info">Información del evento</string>
+    <string name="app_name_year">Alcalá Suena 2021</string>
+    <string name="date_time_info_format">Día: %s\nHora: %s\nDuración: %s</string>
+    <string name="buy_ticekts">Comprar entradas</string>
 
 </resources>

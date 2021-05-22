@@ -15,6 +15,7 @@ import com.triskelapps.alcalasuena.util.Util;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.Arrays;
 import java.util.List;
 
 import io.realm.Realm;
@@ -50,8 +51,7 @@ public class VenueInteractor extends BaseInteractor {
             final String jsonTotal = Util.getStringFromAssets(context, filePath);
             final Gson gson = new GsonBuilder().create();
 
-            Type listType = new TypeToken<List<Venue>>() {
-            }.getType();
+            Type listType = new TypeToken<List<Venue>>() {}.getType();
             final List<Venue> venues = gson.fromJson(jsonTotal, listType);
 
             storeVenues(venues);
@@ -112,7 +112,10 @@ public class VenueInteractor extends BaseInteractor {
 
         for (Venue venue : venues) {
             for (Event event : venue.getEvents()) {
-                event.setBandEntity(BandInteractor.getBandDB(event.getBand()));
+                for (int idBand : event.getBandsIds()) {
+                    event.addBand(BandInteractor.getBandDB(idBand));
+                }
+                event.setBandsIdsStr(getStringCommaSeparated(event.getBandsIds()));
                 event.configureTimeMidnightSafe();
                 event.setVenue(venue);
             }
@@ -127,6 +130,14 @@ public class VenueInteractor extends BaseInteractor {
         realm.beginTransaction();
         realm.insert(venues);
         realm.commitTransaction();
+    }
+
+    private String getStringCommaSeparated(List<Integer> ids) {
+        String idsStr = "";
+        for (int i = 0; i < ids.size(); i++) {
+            idsStr += ids.get(i) + (i < ids.size() - 1 ? "," : "");
+        }
+        return idsStr;
     }
 
     public Venue getVenue(int idVenue) {

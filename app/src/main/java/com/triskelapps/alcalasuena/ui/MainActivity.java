@@ -174,7 +174,7 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.items_main));
+//        toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.items_main));
     }
 
     private View getTabView(int day) {
@@ -190,8 +190,8 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
 
     // INTERACTIONS
     @Override
-    public void onBandClicked(int idBand) {
-        presenter.onBandClicked(idBand);
+    public void onEventClicked(Event event) {
+        presenter.onEventClick(event);
     }
 
     @Override

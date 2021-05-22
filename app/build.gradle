@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
-apply plugin: 'realm-android'
 apply plugin: 'com.google.firebase.crashlytics'
+apply plugin: 'realm-android'
 
 
 def buildType
@@ -15,6 +15,8 @@ android {
         versionName "21.1.5"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+
     }
 
     buildTypes {
@@ -47,24 +49,27 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.appcompat:appcompat:1.3.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.cardview:cardview:1.0.0'
 
-    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava:2.3.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
-    implementation 'com.squareup.okhttp3:okhttp:3.4.1'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava:2.4.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.4.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.4.0'
+
+    implementation 'com.squareup.okhttp3:okhttp:4.4.0'
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
     implementation 'io.reactivex:rxandroid:1.2.1'
-    implementation 'io.reactivex:rxjava:1.1.7'
+    implementation 'io.reactivex:rxjava:1.3.0'
 
     implementation 'com.google.android.play:core:1.10.0'
     implementation "androidx.work:work-runtime:2.5.0"
@@ -88,11 +93,15 @@ dependencies {
     implementation 'com.github.jkwiecien:EasyImage:1.3.1'
     implementation 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32'
 
+    implementation "androidx.browser:browser:1.3.0"
+
     testImplementation 'junit:junit:4.12'
 
     debugImplementation('com.github.jonasrottmann.realm-browser:realm-browser:0.0.14') {
         exclude group: 'com.android.support';
     }
+
+//    implementation "androidx.multidex:multidex:2.0.1"
 
 
 }

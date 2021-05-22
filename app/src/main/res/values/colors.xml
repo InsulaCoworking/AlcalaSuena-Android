@@ -6,9 +6,8 @@
     <color name="colorAccent">@color/items_main</color><!--ffff71-->
 
     <color name="grey">#AAA</color>
-    <color name="tab_selected">#000000</color>
-    <color name="tab_unselected">#777777</color>
-    <color name="tab_selectedld_o">#ffff71</color>
+    <color name="tab_unselected">#fff</color>
+    <color name="tab_selected">#ffff71</color>
     <color name="transp_black">#B000</color>
     <color name="transp_white">#C6FFFFFF</color>
     <color name="black">#000</color>
@@ -18,7 +17,7 @@
 
     <color name="bg_filter">#F5F5F5</color>
 
-    <color name="bg_color_main">#99EDBE4A</color>
+    <color name="bg_color_main">#99FFFFFF</color>
     <color name="bg_color_main_light">#52FFDD98</color>
     <color name="bg_color_main_semitransp">#73edbe4a</color>
 
@@ -36,14 +35,14 @@
     <color name="text_color_main_semitransp">#99000000</color>
 
 
-    <color name="items_main">#000</color>
+    <color name="items_main">#fff</color>
 
     <color name="btn_menu">@color/bg_color_main</color>
     <color name="colorAccentTransp">#99ffffff</color>
     <color name="colorAccentDark">#0ab7af</color>
     <color name="cardBackground">@color/headers_main_semitransp</color>
     <color name="grey_dark_general">#40474A</color>
-    <color name="cardBackgroundEvent">#4FFF</color>
+    <color name="cardBackgroundEvent">#90FFFFFF</color>
     <color name="tagWhiteFilter">#4FFF</color>
 
     <color name="black_overlay">#66000000</color>

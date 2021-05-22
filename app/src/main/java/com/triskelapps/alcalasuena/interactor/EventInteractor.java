@@ -12,6 +12,7 @@ import com.triskelapps.alcalasuena.model.Event;
 import com.triskelapps.alcalasuena.model.Favourite;
 import com.triskelapps.alcalasuena.model.Filter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.Realm;
@@ -43,30 +44,62 @@ public class EventInteractor extends BaseInteractor {
         if (filter.isStarred()) {
             query.equalTo(Event.STARRED, true);
         } else {
-            query.equalTo("bandEntity.tag.active", true);
+//            query.equalTo("bandEntity.tag.active", true);
         }
-
 
         List<Event> events = query.findAll().sort(Event.DAY, Sort.ASCENDING, Event.TIME_HOUR_MIDNIGHT_SAFE, Sort.ASCENDING);
 
-        return Realm.getDefaultInstance().copyFromRealm(events);
+        List<Event> eventsCopy =  Realm.getDefaultInstance().copyFromRealm(events);
+        addBandsToEvents(eventsCopy);
+        return eventsCopy;
+    }
+
+    private void addBandsToEvents(List<Event> events) {
+        for (Event event : events) {
+            addBandsToEvent(event);
+        }
+    }
+
+    public static void addBandsToEvent(Event event) {
+        String[] idsStr = event.getBandsIdsStr().split(",");
+        for (String idStr : idsStr) {
+            Band band = BandInteractor.getBandDB(Integer.parseInt(idStr));
+            event.addBand(band);
+        }
     }
 
 
     public List<Event> getEventsForBand(int idBand) {
 
         resetStarredState();
-        return Realm.getDefaultInstance().where(Event.class)
-                .equalTo(Event.BAND_ID, idBand)
+        List<Event> eventsRealm = Realm.getDefaultInstance().where(Event.class)
                 .findAll().sort(Event.DAY, Sort.ASCENDING, Event.TIME_HOUR_MIDNIGHT_SAFE, Sort.ASCENDING);
+
+        List<Event> events =  Realm.getDefaultInstance().copyFromRealm(eventsRealm);
+        addBandsToEvents(events);
+
+        List<Event> eventsBand = new ArrayList<>();
+        for (Event event : events) {
+            for (Band band : event.getBands()) {
+                if (band.getId() == idBand) {
+                    eventsBand.add(event);
+                }
+            }
+        }
+
+        return eventsBand;
     }
 
 
     public List<Event> getEventsForVenue(int idVenue) {
         resetStarredState();
-        return Realm.getDefaultInstance().where(Event.class)
+        List<Event> events = Realm.getDefaultInstance().where(Event.class)
                 .equalTo("venue.id", idVenue)
                 .findAll().sort(Event.DAY, Sort.ASCENDING, Event.TIME_HOUR_MIDNIGHT_SAFE, Sort.ASCENDING);
+
+        List<Event> eventsCopy =  Realm.getDefaultInstance().copyFromRealm(events);
+        addBandsToEvents(eventsCopy);
+        return eventsCopy;
     }
 
 
@@ -89,25 +122,22 @@ public class EventInteractor extends BaseInteractor {
                 .equalTo(Favourite.ID_EVENT, idEvent)
                 .findFirst();
 
-        Band band = getEventById(idEvent).getBandEntity();
+        Event event = getEventById(idEvent);
 
         Bundle bundle = new Bundle();
-        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, band.getId()+"");
-        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, band.getName());
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, event.getId()+"");
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, event.getBandsNames());
         bundle.putString(FirebaseAnalytics.Param.SCORE, favourite == null || !favourite.isStarred() ? "1" : "-1"); // is toggling
         FirebaseAnalytics.getInstance(context).logEvent(FirebaseAnalytics.Event.ADD_TO_WISHLIST, bundle);
 
-        realm.executeTransaction(new Realm.Transaction() {
-            @Override
-            public void execute(Realm realm) {
+        realm.executeTransaction(realm1 -> {
 
-                if (favourite != null) {
-                    favourite.setStarred(forzeStar || !favourite.isStarred());
-                } else {
-                    Favourite favouriteNew = realm.createObject(Favourite.class);
-                    favouriteNew.setStarred(true);
-                    favouriteNew.setIdEvent(idEvent);
-                }
+            if (favourite != null) {
+                favourite.setStarred(forzeStar || !favourite.isStarred());
+            } else {
+                Favourite favouriteNew = realm1.createObject(Favourite.class);
+                favouriteNew.setStarred(true);
+                favouriteNew.setIdEvent(idEvent);
             }
         });
 
@@ -143,14 +173,18 @@ public class EventInteractor extends BaseInteractor {
         }
     }
 
-    private static Event getEventById(int idEvent) {
-        return Realm.getDefaultInstance().where(Event.class).equalTo(Event.ID, idEvent).findFirst();
+    public static Event getEventById(int idEvent) {
+        Event event = Realm.getDefaultInstance().where(Event.class).equalTo(Event.ID, idEvent).findFirst();
+        addBandsToEvent(event);
+        return event;
     }
 
 
     public List<Event> getEventsFavsDB(Integer[] idsFavsEvents) {
-        return Realm.getDefaultInstance().where(Event.class).in(Event.ID, idsFavsEvents).
+        List<Event> events = Realm.getDefaultInstance().where(Event.class).in(Event.ID, idsFavsEvents).
                 findAll().sort(Event.TIME_HOUR_MIDNIGHT_SAFE);
+        addBandsToEvents(events);
+        return events;
     }
 
     private Api getApi() {

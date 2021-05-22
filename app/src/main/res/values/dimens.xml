@@ -9,5 +9,5 @@
     <dimen name="height_image_small">0dp</dimen>
     <dimen name="padding_map">40dp</dimen>
 
-    <item name="alpha_imgs_bg" format="float" type="dimen">1.0</item>
+    <item name="alpha_imgs_bg" format="float" type="dimen">0.6</item>
 </resources>

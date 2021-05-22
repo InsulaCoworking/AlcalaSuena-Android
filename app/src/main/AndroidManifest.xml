@@ -16,6 +16,8 @@
         android:roundIcon="@mipmap/img_logo_alcalasuena_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.event_info.EventInfoActivity"></activity>
+
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@mipmap/img_logo_alcalasuena_notif" />
@@ -63,14 +65,13 @@
         </service>
 
         <activity android:name=".ui.news.send.SendNewsActivity" />
-        <activity android:name=".ui.info.WebViewActivity"
-            android:parentActivityName=".ui.MainActivity"/>
-
+        <activity
+            android:name=".ui.info.WebViewActivity"
+            android:parentActivityName=".ui.MainActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/maps_api_key" />
-
     </application>
 
 </manifest>

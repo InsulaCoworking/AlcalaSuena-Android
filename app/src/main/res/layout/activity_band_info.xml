@@ -11,7 +11,7 @@
         android:adjustViewBounds="true"
         android:alpha="@dimen/alpha_imgs_bg"
         android:scaleType="centerCrop"
-        android:src="@mipmap/img_bg_2019" />
+        android:src="@mipmap/img_bg" />
 
 
     <LinearLayout
@@ -75,15 +75,20 @@
 
                 <View
                     style="@style/SeparatorHorizontal"
-                    android:layout_marginTop="10dp" />
+                    android:layout_marginTop="10dp"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_events_band"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:orientation="vertical"
+                    android:nestedScrollingEnabled="true"
+                    android:visibility="gone"
                     android:padding="5dp" />
 
-                <View style="@style/SeparatorHorizontal" />
+                <View style="@style/SeparatorHorizontal"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/tv_band_description"

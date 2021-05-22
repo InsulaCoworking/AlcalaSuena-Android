@@ -43,7 +43,7 @@
                 style="@style/TextTitle.Inverted"
                 android:maxLines="2"
                 android:ellipsize="middle"
-                android:textSize="30sp"
+                android:textSize="24sp"
                 android:text="asdasfd"/>
 
             <TextView

@@ -51,8 +51,7 @@ public class BandInteractor extends BaseInteractor {
 
             final Gson gson = new GsonBuilder().create();
 
-            Type listType = new TypeToken<List<Band>>() {
-            }.getType();
+            Type listType = new TypeToken<List<Band>>() {}.getType();
             final List<Band> bands = gson.fromJson(jsonTotal, listType);
 
             storeBands(bands);

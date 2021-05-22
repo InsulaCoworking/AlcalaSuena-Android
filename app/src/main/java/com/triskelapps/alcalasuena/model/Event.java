@@ -2,17 +2,28 @@ package com.triskelapps.alcalasuena.model;
 
 
 import android.content.Context;
+import android.net.Uri;
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 
+import com.google.gson.annotations.SerializedName;
 import com.triskelapps.alcalasuena.R;
+import com.triskelapps.alcalasuena.api.common.ApiClient;
+import com.triskelapps.alcalasuena.util.DateUtils;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
+import io.realm.annotations.Ignore;
 import io.realm.annotations.PrimaryKey;
 
 /**
@@ -30,7 +41,6 @@ public class Event extends RealmObject implements Comparable {
     public static final String FAVOURITE = "favourite";
     public static final String ID = "id";
     public static final String STARRED = "starred";
-    public static final String BAND_ID = "band";
     public static final String TIME_HOUR_MIDNIGHT_SAFE = "timeHourMidnightSafe";
 
     public static DateFormat dateFormatApi = new SimpleDateFormat("yyyy-MM-dd");
@@ -40,17 +50,25 @@ public class Event extends RealmObject implements Comparable {
     public static DateFormat timeFormatUser = new SimpleDateFormat("HH:mm");
 
 
+    // JSON fields
     @PrimaryKey
     private Integer id;
     private String day;
     private String time;
-    private int band;
     private int duration;
-    private boolean starred;
-    private Band bandEntity;
-    private Venue venue;
+    @Ignore
+    @SerializedName("bands")
+    private List<Integer> bandsIds;
+    private String image;
+    @SerializedName("tickets_url")
+    private String ticketsUrl;
 
+    // Processed fields
+    private Venue venue;
+    @Ignore private boolean starred;
     private long timeHourMidnightSafe;
+    @Ignore private transient List<Band> bands;
+    private String bandsIdsStr;
 
     public String getDayShareFormat() {
         try {
@@ -141,14 +159,6 @@ public class Event extends RealmObject implements Comparable {
         this.day = day;
     }
 
-    public int getBand() {
-        return band;
-    }
-
-    public void setBand(int band) {
-        this.band = band;
-    }
-
     public int getDuration() {
         return duration;
     }
@@ -156,15 +166,6 @@ public class Event extends RealmObject implements Comparable {
     public void setDuration(int duration) {
         this.duration = duration;
     }
-
-    public Band getBandEntity() {
-        return bandEntity;
-    }
-
-    public void setBandEntity(Band bandEntity) {
-        this.bandEntity = bandEntity;
-    }
-
 
     public Venue getVenue() {
         return venue;
@@ -190,4 +191,85 @@ public class Event extends RealmObject implements Comparable {
         this.timeHourMidnightSafe = timeHourMidnightSafe;
     }
 
+    public String getTicketsUrl() {
+        return ticketsUrl;
+    }
+
+    public void setTicketsUrl(String ticketsUrl) {
+        this.ticketsUrl = ticketsUrl;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Uri getImageUrlFull() {
+        if (getImage() == null) {
+            return null;
+        }
+
+        String urlFull = ApiClient.BASE_URL + getImage();
+        urlFull.replace("//", "/");
+        return Uri.parse(urlFull);
+    }
+
+    public List<Band> getBands() {
+        return bands;
+    }
+
+    public void setBands(List<Band> bands) {
+        this.bands = bands;
+    }
+
+    public void addBand(Band band) {
+        if (bands == null) {
+            bands = new RealmList<>();
+        }
+        bands.add(band);
+    }
+
+    public String getBandsNames() {
+        String names = "";
+        for (int i = 0; i < bands.size(); i++) {
+            names += bands.get(i).getName() + (i < bands.size() - 1 ? " + " : "");
+        }
+        return names;
+    }
+
+    public List<Integer> getBandsIds() {
+        return bandsIds;
+    }
+
+    public void setBandsIds(List<Integer> bandsIds) {
+        this.bandsIds = bandsIds;
+    }
+
+    public String getBandsIdsStr() {
+        return bandsIdsStr;
+    }
+
+    public void setBandsIdsStr(String bandsIdsStr) {
+        this.bandsIdsStr = bandsIdsStr;
+    }
+
+    public String getDateTimeInfo(Context context) {
+        SimpleDateFormat formatDateTimeApi = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat formatDateUser = new SimpleDateFormat("EEE, d 'de' MMMM");
+        SimpleDateFormat formatTimeUser = new SimpleDateFormat("HH:mm");
+
+        try {
+            Date date = formatDateTimeApi.parse(getDay() + " " + getTime());
+            String dateUser = formatDateUser.format(date);
+            String timeUser = formatTimeUser.format(date);
+            return context.getString(R.string.date_time_info_format, dateUser, timeUser, getDurationFormatted(context));
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return getDay() + "\n" + getTime() + "\n" + getDurationFormatted(context);
+        }
+    }
 }

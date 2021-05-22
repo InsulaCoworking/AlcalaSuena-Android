@@ -47,7 +47,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     public static final int REQ_CODE_EDIT = 1;
     public static final int RESULT_DELETED = 1234;
     private AppBarLayout appBarLayout;
-    private ImageView imgTitleToolbar;
+//    private ImageView imgTitleToolbar;
     private FirebaseAnalytics mFirebaseAnalytics;
 
     private BroadcastReceiver receiverShowNotification = new BroadcastReceiver() {
@@ -213,11 +213,11 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         setSupportActionBar(toolbar);
 
         progressBar = (ProgressBar) findViewById(R.id.progressbar);
-        imgTitleToolbar = (ImageView) findViewById(R.id.img_title_toolbar);
+//        imgTitleToolbar = (ImageView) findViewById(R.id.img_title_toolbar);
         tvTitleToolbar = (TextView) findViewById(R.id.tv_title_toolbar);
 //        tvTitleToolbar.setVisibility(View.GONE);
 
-        tvTitleToolbar.setText(getSupportActionBar().getTitle());
+//        tvTitleToolbar.setText(getSupportActionBar().getTitle());
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
@@ -239,12 +239,12 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
 //        toolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white);
 
         final Drawable upArrow = AppCompatResources.getDrawable(this, R.drawable.ic_arrow_back);
-        upArrow.setColorFilter(getResources().getColor(R.color.items_main), PorterDuff.Mode.SRC_ATOP);
+        upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
     }
 
     public void setImageTitle(int imageId) {
-        imgTitleToolbar.setImageResource(imageId);
+//        imgTitleToolbar.setImageResource(imageId);
     }
 
     public void setToolbarTitle(String title) {
@@ -252,7 +252,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     }
 
     public void setToolbarTitle(int stringId) {
-        imgTitleToolbar.setVisibility(View.GONE);
+//        imgTitleToolbar.setVisibility(View.GONE);
         tvTitleToolbar.setVisibility(View.VISIBLE);
         tvTitleToolbar.setText(stringId);
     }

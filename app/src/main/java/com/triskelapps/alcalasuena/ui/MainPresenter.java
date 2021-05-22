@@ -33,6 +33,7 @@ import com.triskelapps.alcalasuena.model.News;
 import com.triskelapps.alcalasuena.model.Venue;
 import com.triskelapps.alcalasuena.model.notification.FirebasePush;
 import com.triskelapps.alcalasuena.ui.band_info.BandInfoPresenter;
+import com.triskelapps.alcalasuena.ui.event_info.EventInfoPresenter;
 import com.triskelapps.alcalasuena.ui.info.WebViewActivity;
 import com.triskelapps.alcalasuena.ui.news_info.NewsInfoPresenter;
 import com.triskelapps.alcalasuena.ui.splash.SplashPresenter;
@@ -69,9 +70,9 @@ public class MainPresenter extends BasePresenter {
     public static List<String> tabsDays = new ArrayList<>();
 
     static {
-        tabsDays.add("2019-06-07");
-        tabsDays.add("2019-06-08");
-        tabsDays.add("2019-06-09");
+        tabsDays.add("2021-06-04");
+        tabsDays.add("2021-06-05");
+        tabsDays.add("2021-06-06");
     }
 
     private final SettingsInteractor settingsInteractor;
@@ -190,10 +191,10 @@ public class MainPresenter extends BasePresenter {
     private void checkDataVersionAndUpdate() {
 
         // TODO REMOVE
-//        if (true) {
-//            updateBandsFromApi();
-//            return;
-//        }
+        if (true) {
+            updateBandsFromApi();
+            return;
+        }
 
         settingsInteractor.getLastDataVersion(new SettingsInteractor.SettingsIntValueCallback() {
             @Override
@@ -323,8 +324,8 @@ public class MainPresenter extends BasePresenter {
         refreshData();
     }
 
-    public void onBandClicked(int idBand) {
-        context.startActivity(BandInfoPresenter.newBandInfoActivity(context, idBand));
+    public void onEventClick(Event event) {
+        EventInfoPresenter.launchEventInfoActivity(context, event.getId());
     }
 
     public void onShareFavsButtonClicked() {
@@ -350,7 +351,7 @@ public class MainPresenter extends BasePresenter {
 
         for (Event eventFav : eventsFav) {
             text += "\n\n";
-            text += eventFav.getBandEntity().getName() + "\n";
+            text += eventFav.getBandsNames() + "\n";
             text += eventFav.getDayShareFormat() + " - " + eventFav.getTimeFormatted() + "\n";
             text += eventFav.getVenue().getName();
 
@@ -413,7 +414,7 @@ public class MainPresenter extends BasePresenter {
 
         for (Event eventFav : eventsFav) {
             text += "\n\n";
-            text += eventFav.getBandEntity().getName() + "\n";
+            text += eventFav.getBandsNames() + "\n";
             text += eventFav.getDayShareFormat() + " - " + eventFav.getTimeFormatted() + "\n";
             text += eventFav.getVenue().getName();
         }
