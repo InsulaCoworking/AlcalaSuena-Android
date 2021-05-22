@@ -174,6 +174,7 @@ public class EventInteractor extends BaseInteractor {
     }
 
     public static Event getEventById(int idEvent) {
+        resetStarredState();
         Event event = Realm.getDefaultInstance().where(Event.class).equalTo(Event.ID, idEvent).findFirst();
         addBandsToEvent(event);
         return event;
@@ -181,6 +182,7 @@ public class EventInteractor extends BaseInteractor {
 
 
     public List<Event> getEventsFavsDB(Integer[] idsFavsEvents) {
+        resetStarredState();
         List<Event> events = Realm.getDefaultInstance().where(Event.class).in(Event.ID, idsFavsEvents).
                 findAll().sort(Event.TIME_HOUR_MIDNIGHT_SAFE);
         addBandsToEvents(events);

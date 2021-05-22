@@ -1,6 +1,7 @@
 package com.triskelapps.alcalasuena.ui.event_info;
 
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -19,7 +20,9 @@ public class EventInfoPresenter extends BasePresenter {
 
     private static final String EXTRA_EVENT_ID = "extra_event";
     private final EventInfoView view;
+    private final EventInteractor eventInteractor;
     private Event event;
+    private int eventId;
 
     public static void launchEventInfoActivity(Context context, int eventId) {
 
@@ -39,27 +42,30 @@ public class EventInfoPresenter extends BasePresenter {
 
         this.view = view;
 
+        eventInteractor = new EventInteractor(context, view);
+
     }
 
     public void onCreate(Intent intent) {
 
-        int eventId = intent.getIntExtra(EXTRA_EVENT_ID, -1);
+        eventId = intent.getIntExtra(EXTRA_EVENT_ID, -1);
         if (eventId == -1) {
             throw new IllegalArgumentException("wrong event id");
         }
 
-        event = EventInteractor.getEventById(eventId);
-        view.showEventInfo(event);
+        refreshData();
+
 
     }
 
     public void onResume() {
 
-        refreshData();
     }
 
     public void refreshData() {
 
+        event = EventInteractor.getEventById(eventId);
+        view.showEventInfo(event);
 
     }
 
@@ -80,11 +86,20 @@ public class EventInfoPresenter extends BasePresenter {
                 .setDefaultColorSchemeParams(params)
                 .build();
 
-        customTabsIntent.launchUrl(context, Uri.parse(url));
+        try {
+            customTabsIntent.launchUrl(context, Uri.parse(url));
+        } catch (ActivityNotFoundException e) {
+            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+        }
 
     }
 
     public void onBandClick(int id) {
         context.startActivity(BandInfoPresenter.newBandInfoActivity(context, id));
+    }
+
+    public void onEventFavouriteClicked(int idEvent) {
+        eventInteractor.toggleFavState(idEvent, false);
+        refreshData();
     }
 }

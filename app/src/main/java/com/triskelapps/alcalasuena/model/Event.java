@@ -65,7 +65,7 @@ public class Event extends RealmObject implements Comparable {
 
     // Processed fields
     private Venue venue;
-    @Ignore private boolean starred;
+    private boolean starred;
     private long timeHourMidnightSafe;
     @Ignore private transient List<Band> bands;
     private String bandsIdsStr;

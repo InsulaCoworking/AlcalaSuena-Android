@@ -70,6 +70,6 @@ public class EventInfoActivity extends BaseActivity implements EventInfoView {
 
         binding.viewEventInfo.imgStarred.setSelected(event.isStarred());
 
-//        binding.viewEventInfo.imgStarred.setOnClickListener(v -> itemClickListener.onEventFavouriteClicked(getItemAtPosition(holder.getAdapterPosition()).getId()));
+        binding.viewEventInfo.imgStarred.setOnClickListener(v -> presenter.onEventFavouriteClicked(event.getId()));
     }
 }
