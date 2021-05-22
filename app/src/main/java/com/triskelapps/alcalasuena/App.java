@@ -25,6 +25,8 @@ import com.triskelapps.alcalasuena.util.update_app.UpdateAppCheckWorker;
 import com.triskelapps.alcalasuena.util.NotificationHelper;
 import com.triskelapps.alcalasuena.util.update_app.UpdateAppManager;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.realm.Realm;
@@ -38,6 +40,15 @@ public class App extends MultiDexApplication {
 
     private static final String TAG = "App";
 
+    public static final int FEST_YEAR = 2021;
+    public static List<String> festDates = new ArrayList<>();
+
+    static {
+        festDates.add("2021-06-04");
+        festDates.add("2021-06-05");
+        festDates.add("2021-06-06");
+    }
+
     public static final int CACHED_DATA_VERSION = 1;
 
     public static final String PREFIX = BuildConfig.APPLICATION_ID + ".";
@@ -45,7 +56,7 @@ public class App extends MultiDexApplication {
 //    public static final String SHARED_FIRST_TIME = PREFIX + "first_time_7";
     public static final String SHARED_CURRENT_DATA_VERSION = PREFIX + "shared_current_data_version_2018";
     public static final String SHARED_FIRST_TIME_APP_LAUNCHING = PREFIX + "extra_first_time_app_lauching_2018";
-    private static final String SHARED_CACHED_DATA_STORED = PREFIX + "shared_cached_data_stored_2018";
+    private static final String SHARED_CACHED_DATA_STORED = PREFIX + "shared_cached_data_stored_" + FEST_YEAR;
     public static final String SHARED_PIN_SEND_NEWS_ENCRIPT = PREFIX + "shared_pin_send_news_encript";
 
     public static final String ACTION_REFRESH_DATA = PREFIX + "action_refresh_data";
@@ -56,6 +67,7 @@ public class App extends MultiDexApplication {
     public static final String URL_DIRECT_GOOGLE_PLAY_APP = "market://details?id=" + BuildConfig.APPLICATION_ID;
     public static final String TOPIC_NEWS = "news";
     public static final String TOPIC_NEWS_TEST = "test_news3";
+
 
 
     @Override
@@ -101,8 +113,8 @@ public class App extends MultiDexApplication {
     private void initializeDataFirstTime() {
 
         // TODO REMOVE
-//        if (!getPrefs(this).getBoolean(SHARED_CACHED_DATA_STORED, false)) {
-        if(true) {
+        if (!getPrefs(this).getBoolean(SHARED_CACHED_DATA_STORED, false)) {
+//        if(true) {
             new BandInteractor(this, null).initializeBandsFirstTime();
             new VenueInteractor(this,null).initializeVenuesFirstTime();
             getPrefs(this).edit().putBoolean(SHARED_CACHED_DATA_STORED, true).commit();

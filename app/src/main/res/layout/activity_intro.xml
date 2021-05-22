@@ -14,7 +14,7 @@
         android:adjustViewBounds="true"
         android:alpha="@dimen/alpha_imgs_bg"
         android:scaleType="centerCrop"
-        android:src="@mipmap/img_bg_2019" />
+        android:src="@mipmap/img_bg" />
 
 
     <androidx.viewpager.widget.ViewPager

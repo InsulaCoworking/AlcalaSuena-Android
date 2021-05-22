@@ -15,7 +15,7 @@
         android:adjustViewBounds="true"
         android:alpha="@dimen/alpha_imgs_bg"
         android:scaleType="centerCrop"
-        android:src="@mipmap/img_bg_2019" />
+        android:src="@mipmap/img_bg" />
 
     <View
         android:layout_width="match_parent"
@@ -73,7 +73,7 @@
                 android:scaleType="centerInside"
                 android:src="@mipmap/ic_news"
                 android:visibility="gone"
-                app:tint="@color/text_color_main"
+                app:tint="@color/items_main"
                 android:layout_above="@+id/view_happening_now"/>
 
             <RelativeLayout
@@ -92,7 +92,7 @@
                     android:scaleType="centerInside"
                     android:src="@mipmap/ic_happening_now_3"
                     android:padding="10dp"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     android:elevation="5dp"
                     app:tint="@color/text_color_main"/>
 

@@ -12,7 +12,7 @@
         android:alpha="@dimen/alpha_imgs_bg"
         android:scaleType="centerCrop"
         android:layout_centerInParent="true"
-        android:src="@mipmap/img_bg_2019" />
+        android:src="@mipmap/img_bg" />
 
 
     <LinearLayout

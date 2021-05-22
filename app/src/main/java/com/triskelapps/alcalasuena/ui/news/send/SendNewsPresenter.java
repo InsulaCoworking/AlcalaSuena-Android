@@ -160,18 +160,8 @@ public class SendNewsPresenter extends BasePresenter {
         new AlertDialog.Builder(context, R.style.CustomDialogTheme)
                 .setTitle(title)
                 .setMessage(text)
-                .setPositiveButton(R.string.send_news, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        sendNews(title, text, link, finalLinkButtonText);
-                    }
-                })
-                .setNegativeButton(R.string.send_notification, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        sendNotificationPush(title, text,link, finalLinkButtonText,null);
-                    }
-                })
+                .setPositiveButton(R.string.send_news, (dialog, which) -> sendNews(title, text, link, finalLinkButtonText))
+                .setNegativeButton(R.string.send_notification, (dialog, which) -> sendNotificationPush(title, text,link, finalLinkButtonText,null))
                 .setNeutralButton(R.string.back, null)
                 .show();
     }

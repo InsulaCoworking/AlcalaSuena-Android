@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@mipmap/img_bg_2019"
+        android:src="@mipmap/img_bg"
         android:alpha="@dimen/alpha_imgs_bg"/>
 
     <View

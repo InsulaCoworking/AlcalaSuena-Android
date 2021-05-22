@@ -13,6 +13,7 @@ import com.triskelapps.alcalasuena.model.Favourite;
 import com.triskelapps.alcalasuena.model.Filter;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import io.realm.Realm;
@@ -51,7 +52,26 @@ public class EventInteractor extends BaseInteractor {
 
         List<Event> eventsCopy =  Realm.getDefaultInstance().copyFromRealm(events);
         addBandsToEvents(eventsCopy);
+        if (!filter.isStarred()) {
+            removeEventsWithNoTagsActive(eventsCopy);
+        }
         return eventsCopy;
+    }
+
+    private void removeEventsWithNoTagsActive(List<Event> eventsCopy) {
+        Iterator<Event> iterator = eventsCopy.iterator();
+        while (iterator.hasNext()) {
+            Event event = iterator.next();
+            boolean tagsActive = false;
+            for (Band band : event.getBands()) {
+                if (band.getTag().isActive()) {
+                    tagsActive = true;
+                }
+            }
+            if (!tagsActive) {
+                iterator.remove();
+            }
+        }
     }
 
     private void addBandsToEvents(List<Event> events) {

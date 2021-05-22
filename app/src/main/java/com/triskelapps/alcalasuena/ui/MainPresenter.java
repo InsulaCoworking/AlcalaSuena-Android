@@ -67,13 +67,7 @@ public class MainPresenter extends BasePresenter {
     private final BandInteractor bandInteractor;
     private final EventInteractor eventInteractor;
 
-    public static List<String> tabsDays = new ArrayList<>();
-
-    static {
-        tabsDays.add("2021-06-04");
-        tabsDays.add("2021-06-05");
-        tabsDays.add("2021-06-06");
-    }
+    public static List<String> tabsDays = App.festDates;
 
     private final SettingsInteractor settingsInteractor;
     private final NewsInteractor newsInteractor;
