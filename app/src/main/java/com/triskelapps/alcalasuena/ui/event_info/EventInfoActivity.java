@@ -13,6 +13,7 @@ import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.databinding.ActivityEventInfoBinding;
 import com.triskelapps.alcalasuena.model.Event;
 import com.triskelapps.alcalasuena.ui.bands.BandsAdapter;
+import com.triskelapps.alcalasuena.ui.image_full.ImageFullActivity;
 import com.triskelapps.alcalasuena.views.CircleTransform;
 
 public class EventInfoActivity extends BaseActivity implements EventInfoView {
@@ -71,5 +72,8 @@ public class EventInfoActivity extends BaseActivity implements EventInfoView {
         binding.viewEventInfo.imgStarred.setSelected(event.isStarred());
 
         binding.viewEventInfo.imgStarred.setOnClickListener(v -> presenter.onEventFavouriteClicked(event.getId()));
+
+        binding.imgEvent.setOnClickListener(v ->
+                startActivity(ImageFullActivity.newImageFullActivity(this, event.getImageUrlFull().toString())));
     }
 }
