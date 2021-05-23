@@ -32,6 +32,7 @@ import com.triskelapps.alcalasuena.model.Filter;
 import com.triskelapps.alcalasuena.model.News;
 import com.triskelapps.alcalasuena.model.Venue;
 import com.triskelapps.alcalasuena.model.notification.FirebasePush;
+import com.triskelapps.alcalasuena.ui.about.AboutInsulaActivity;
 import com.triskelapps.alcalasuena.ui.band_info.BandInfoPresenter;
 import com.triskelapps.alcalasuena.ui.event_info.EventInfoPresenter;
 import com.triskelapps.alcalasuena.ui.info.WebViewActivity;
@@ -40,6 +41,7 @@ import com.triskelapps.alcalasuena.ui.splash.SplashPresenter;
 import com.triskelapps.alcalasuena.ui.venue_info.VenueInfoPresenter;
 import com.triskelapps.alcalasuena.util.DateUtils;
 import com.triskelapps.alcalasuena.util.Util;
+import com.triskelapps.alcalasuena.util.WebUtils;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -185,10 +187,10 @@ public class MainPresenter extends BasePresenter {
     private void checkDataVersionAndUpdate() {
 
         // TODO REMOVE
-        if (true) {
-            updateBandsFromApi();
-            return;
-        }
+//        if (true) {
+//            updateBandsFromApi();
+//            return;
+//        }
 
         settingsInteractor.getLastDataVersion(new SettingsInteractor.SettingsIntValueCallback() {
             @Override
@@ -433,11 +435,8 @@ public class MainPresenter extends BasePresenter {
         AlertDialog.Builder ab = new AlertDialog.Builder(context);
         ab.setTitle(R.string.hello_excl);
         ab.setMessage(R.string.funny_text_user_enter_with_wrong_link);
-        ab.setPositiveButton(R.string.follow_link, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                context.startActivity(new Intent(Intent.ACTION_VIEW, appLinkData));
-            }
+        ab.setPositiveButton(R.string.follow_link, (dialog, which) -> {
+            WebUtils.openCustomTab(context, appLinkData.toString());
         });
         ab.setNeutralButton(R.string.stay_in_app, null);
         ab.show();

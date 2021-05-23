@@ -19,7 +19,7 @@ import android.widget.ProgressBar;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BaseActivity;
 import com.triskelapps.alcalasuena.base.BasePresenter;
-
+import com.triskelapps.alcalasuena.util.WebUtils;
 
 
 public class WebViewActivity extends BaseActivity {
@@ -97,7 +97,7 @@ public class WebViewActivity extends BaseActivity {
 
         sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
 
-        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+        WebUtils.openCustomTab(this, url);
         finish();
 
     }
@@ -153,7 +153,7 @@ public class WebViewActivity extends BaseActivity {
                 return true;
 
             case R.id.menuItem_web:
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+                WebUtils.openCustomTab(this, url);
                 finish();
                 break;
         }

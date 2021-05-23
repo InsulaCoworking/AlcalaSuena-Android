@@ -15,6 +15,7 @@ import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.interactor.EventInteractor;
 import com.triskelapps.alcalasuena.model.Event;
 import com.triskelapps.alcalasuena.ui.band_info.BandInfoPresenter;
+import com.triskelapps.alcalasuena.util.WebUtils;
 
 public class EventInfoPresenter extends BasePresenter {
 
@@ -71,28 +72,10 @@ public class EventInfoPresenter extends BasePresenter {
 
     public void onBuyTicketsClick() {
         if (event != null) {
-            openCustomTab(event.getTicketsUrl());
+            WebUtils.openCustomTab(context, event.getTicketsUrl());
         }
     }
 
-    private void openCustomTab(String url) {
-
-        CustomTabColorSchemeParams params = new CustomTabColorSchemeParams.Builder()
-                .setToolbarColor(ContextCompat.getColor(context, R.color.colorPrimary))
-                .build();
-
-        CustomTabsIntent customTabsIntent = new CustomTabsIntent.Builder()
-                .setColorScheme(CustomTabsIntent.COLOR_SCHEME_SYSTEM)
-                .setDefaultColorSchemeParams(params)
-                .build();
-
-        try {
-            customTabsIntent.launchUrl(context, Uri.parse(url));
-        } catch (ActivityNotFoundException e) {
-            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
-        }
-
-    }
 
     public void onBandClick(int id) {
         context.startActivity(BandInfoPresenter.newBandInfoActivity(context, id));

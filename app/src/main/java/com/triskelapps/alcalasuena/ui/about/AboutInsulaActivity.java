@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BaseActivity;
 import com.triskelapps.alcalasuena.base.BasePresenter;
+import com.triskelapps.alcalasuena.util.WebUtils;
 
 /**
  * Created by julio on 26/05/17.
@@ -55,12 +56,7 @@ public class AboutInsulaActivity extends BaseActivity {
     private boolean linkViewIfProceed(View child) {
         if (child.getTag() != null) {
             final String url = (String) child.getTag();
-            child.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
-                }
-            });
+            child.setOnClickListener(v -> WebUtils.openCustomTab(AboutInsulaActivity.this, url));
             return true;
         }
 

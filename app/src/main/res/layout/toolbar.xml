@@ -24,14 +24,23 @@
                 android:background="@color/headers_main"
                 app:theme="@style/AppTheme.PopupOverlay">
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_title_toolbar"
                     style="@style/TextTitle.Inverted"
+                    android:layout_width="match_parent"
                     android:gravity="left"
                     android:text="@string/app_name_year"
                     android:textAllCaps="true"
-                    android:textSize="20sp"
-                    android:visibility="visible" />
+                    android:textSize="21sp"
+                    android:textStyle="bold"
+                    android:visibility="visible"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:freezesText="true"
+                    android:scrollHorizontally="true"
+                    android:marqueeRepeatLimit="marquee_forever"/>
 
 
             </androidx.appcompat.widget.Toolbar>

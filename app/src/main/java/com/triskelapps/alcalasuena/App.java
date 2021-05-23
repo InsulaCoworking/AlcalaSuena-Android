@@ -112,9 +112,7 @@ public class App extends MultiDexApplication {
 
     private void initializeDataFirstTime() {
 
-        // TODO REMOVE
         if (!getPrefs(this).getBoolean(SHARED_CACHED_DATA_STORED, false)) {
-//        if(true) {
             new BandInteractor(this, null).initializeBandsFirstTime();
             new VenueInteractor(this,null).initializeVenuesFirstTime();
             getPrefs(this).edit().putBoolean(SHARED_CACHED_DATA_STORED, true).commit();

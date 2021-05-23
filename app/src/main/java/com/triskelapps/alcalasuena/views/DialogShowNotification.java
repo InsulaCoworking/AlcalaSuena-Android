@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 
 import com.triskelapps.alcalasuena.R;
+import com.triskelapps.alcalasuena.util.WebUtils;
 
 /**
  * Created by julio on 31/05/17.
@@ -33,13 +34,10 @@ public class DialogShowNotification {
 
         ab.setMessage(message);
         String buttonText = btnText != null ? btnText : context.getString(R.string.continue_str);
-        ab.setPositiveButton(buttonText, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+        ab.setPositiveButton(buttonText, (dialog, which) -> {
 
-                if (btnText != null && btnLink != null) {
-                    context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(btnLink)));
-                }
+            if (btnText != null && btnLink != null) {
+                WebUtils.openCustomTab(context, btnLink);
             }
         });
         ab.show();

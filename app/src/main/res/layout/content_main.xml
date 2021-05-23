@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_alignParentBottom="true"
-            android:background="@color/transp_white"
+            android:background="@color/headers_main_semitransp"
             android:gravity="center_horizontal"
             android:clickable="true"
             android:visibility="gone">

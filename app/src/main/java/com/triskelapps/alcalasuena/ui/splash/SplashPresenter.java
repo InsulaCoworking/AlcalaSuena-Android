@@ -12,6 +12,7 @@ import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.ui.about.AboutAlcalaSuenaActivity;
 import com.triskelapps.alcalasuena.ui.intro.IntroPresenter;
 import com.triskelapps.alcalasuena.util.Util;
+import com.triskelapps.alcalasuena.util.WebUtils;
 
 /**
  * Created by julio on 29/05/17.
@@ -119,7 +120,7 @@ public class SplashPresenter extends BasePresenter {
 
     public void onSplashImageClick() {
         if (BuildConfig.MODE_PREPARING) {
-            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://alcalasuena.es")));
+            WebUtils.openCustomTab(context, "https://alcalasuena.es");
         }
     }
 

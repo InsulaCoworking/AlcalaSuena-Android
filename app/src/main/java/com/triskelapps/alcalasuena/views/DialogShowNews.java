@@ -8,6 +8,7 @@ import android.net.Uri;
 
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.model.News;
+import com.triskelapps.alcalasuena.util.WebUtils;
 
 /**
  * Created by julio on 31/05/17.
@@ -33,13 +34,7 @@ public class DialogShowNews {
 
         ab.setMessage(news.getText());
         if (news.hasValidLinkButton()) {
-            ab.setPositiveButton(news.getBtn_text(), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-
-                    context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(news.getBtn_link())));
-                }
-            });
+            ab.setPositiveButton(news.getBtn_text(), (dialog, which) -> WebUtils.openCustomTab(context, news.getBtn_link()));
         }
         ab.setNegativeButton(R.string.close, null);
         ab.show();

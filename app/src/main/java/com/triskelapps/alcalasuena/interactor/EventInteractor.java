@@ -205,8 +205,10 @@ public class EventInteractor extends BaseInteractor {
         resetStarredState();
         List<Event> events = Realm.getDefaultInstance().where(Event.class).in(Event.ID, idsFavsEvents).
                 findAll().sort(Event.TIME_HOUR_MIDNIGHT_SAFE);
-        addBandsToEvents(events);
-        return events;
+
+        List<Event> eventsCopy =  Realm.getDefaultInstance().copyFromRealm(events);
+        addBandsToEvents(eventsCopy);
+        return eventsCopy;
     }
 
     private Api getApi() {

@@ -109,8 +109,6 @@ public class SendNewsActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void setImageUri(Uri uri) {
-        Picasso.with(this)
-                .load(uri)
-                .into(imgSendNews);
+        imgSendNews.setImageURI(uri);
     }
 }

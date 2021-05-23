@@ -15,6 +15,8 @@ import android.widget.Toast;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.model.SocialItem;
+import com.triskelapps.alcalasuena.ui.about.AboutAlcalaSuenaActivity;
+import com.triskelapps.alcalasuena.util.WebUtils;
 
 import java.util.List;
 
@@ -77,12 +79,8 @@ public class SocialItemsBandAdapter extends RecyclerView.Adapter<SocialItemsBand
             rootView.setOnClickListener(v -> {
 
                 SocialItem socialItem = getItemAtPosition(getAdapterPosition());
-                try {
-                    context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(socialItem.getUrl())));
-                } catch (ActivityNotFoundException e) {
-                    FirebaseCrashlytics.getInstance().recordException(e);
-                    Toast.makeText(context, context.getString(R.string.link_error), Toast.LENGTH_SHORT).show();
-                }
+                WebUtils.openCustomTab(context, socialItem.getUrl());
+
             });
         }
 

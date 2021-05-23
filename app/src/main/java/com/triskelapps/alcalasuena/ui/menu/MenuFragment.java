@@ -24,6 +24,7 @@ import com.triskelapps.alcalasuena.ui.news.send.SendNewsActivity;
 import com.triskelapps.alcalasuena.ui.splash.SplashPresenter;
 import com.triskelapps.alcalasuena.ui.venues.VenuesPresenter;
 import com.triskelapps.alcalasuena.util.Util;
+import com.triskelapps.alcalasuena.util.WebUtils;
 
 /**
  * Created by julio on 23/05/17.
@@ -126,7 +127,7 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener, 
             case R.id.btn_logo_quadernillos:
             case R.id.btn_logo_amstel:
                 String url = (String) v.getTag();
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+                WebUtils.openCustomTab(getActivity(), url);
                 break;
         }
     }
