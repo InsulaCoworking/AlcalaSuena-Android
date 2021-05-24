@@ -133,54 +133,6 @@
                 android:orientation="vertical"
                 android:padding="5dp">
 
-                <TextView
-                    style="@style/TextBase.Inverted"
-                    android:text="@string/sponsor"
-                    android:visibility="visible" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:visibility="visible">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:visibility="visible">
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/btn_logo_amstel"
-                            android:layout_width="60dp"
-                            android:layout_height="wrap_content"
-                            android:adjustViewBounds="true"
-                            android:src="@mipmap/img_sponsor_amstel_2019"
-                            android:tag="https://www.amstel.es/"/>
-
-                        <TextView
-                            style="@style/TextBase.Inverted"
-                            android:text="@string/amstel_recomends"
-                            android:textSize="9sp"
-                            android:gravity="center_horizontal"
-                            android:lineSpacingMultiplier="0.8"
-                            android:visibility="visible" />
-                    </LinearLayout>
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/btn_logo_quadernillos"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:adjustViewBounds="true"
-                        android:src="@mipmap/img_sponsor_quadernillos"
-                        android:tag="https://quadernillos.com/"/>
-
-                </LinearLayout>
-
 
                 <LinearLayout
                     android:layout_width="match_parent"

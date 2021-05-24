@@ -147,8 +147,8 @@ public class MainPresenter extends BasePresenter {
             SplashPresenter.launchSplashActivity(context, SplashPresenter.NEXT_SCREEN_NONE);
             ((Activity) context).finish();
         } else
-            if (getPrefs().getBoolean(SHARED_FIRST_TIME_APP_LAUNCHING, true) || BuildConfig.DEBUG) {
-            SplashPresenter.launchSplashActivity(context, SplashPresenter.NEXT_SCREEN_INTRO);
+            if (getPrefs().getBoolean(SHARED_FIRST_TIME_APP_LAUNCHING, true) /*|| BuildConfig.DEBUG*/) {
+            SplashPresenter.launchSplashActivity(context, SplashPresenter.NEXT_SCREEN_MAIN);
             getPrefs().edit().putBoolean(SHARED_FIRST_TIME_APP_LAUNCHING, false).commit();
         }
 

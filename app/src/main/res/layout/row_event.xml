@@ -74,7 +74,7 @@
                 style="@style/TextBase"
                 android:layout_width="match_parent"
                 android:layout_marginRight="5dp"
-                android:layout_toLeftOf="@+id/img_starred"
+                android:layout_toLeftOf="@+id/tv_event_time"
                 android:layout_below="@+id/view_genre"
                 android:layout_marginTop="8dp"
                 android:ellipsize="end"

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/headers_main_light"
+    android:background="@color/white"
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:paddingLeft="5dp"
@@ -12,13 +12,15 @@
     android:paddingBottom="10dp">
 
     <androidx.appcompat.widget.AppCompatTextView
-        style="@style/TextBase.Inverted"
+        style="@style/TextBase"
+        android:textColor="@color/headers_main_dark"
         android:layout_weight="1"
         android:text="@string/update_available" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/btn_update_app"
-        style="@style/TextBase.Inverted"
+        style="@style/TextBase"
+        android:textColor="@color/headers_main_dark"
         android:layout_marginRight="15dp"
         android:background="@drawable/background_pressed_common"
         android:padding="5dp"
@@ -29,7 +31,7 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/btn_close_update_app_view"
         app:srcCompat="@drawable/ic_close"
-        app:tint="@color/white"
+        app:tint="@color/headers_main_dark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"

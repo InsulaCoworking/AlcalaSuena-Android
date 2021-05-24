@@ -5,14 +5,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
+import android.os.Looper;
 
 import com.triskelapps.alcalasuena.BuildConfig;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BasePresenter;
+import com.triskelapps.alcalasuena.ui.MainPresenter;
 import com.triskelapps.alcalasuena.ui.about.AboutAlcalaSuenaActivity;
 import com.triskelapps.alcalasuena.ui.intro.IntroPresenter;
 import com.triskelapps.alcalasuena.util.Util;
 import com.triskelapps.alcalasuena.util.WebUtils;
+import com.triskelapps.alcalasuena.util.update_app.UpdateAppManager;
 
 /**
  * Created by julio on 29/05/17.
@@ -23,13 +26,14 @@ public class SplashPresenter extends BasePresenter {
 
     public static final int NEXT_SCREEN_INTRO = 0;
     public static final int NEXT_SCREEN_ABOUT = 1;
+    public static final int NEXT_SCREEN_MAIN = 2;
     public static final int NEXT_SCREEN_NONE = -1;
 
     private int nextScreen;
 
     private final SplashView view;
     private Handler handler;
-    private boolean launchMainActivity = true;
+    private UpdateAppManager updateAppManager;
 
     public static void launchSplashActivity(Context context, int nextScreen) {
 
@@ -52,13 +56,9 @@ public class SplashPresenter extends BasePresenter {
     }
 
 
-    private Runnable runnableNextScreen = new Runnable() {
-        @Override
-        public void run() {
-
-            // If connection failed, launch it anyway
-            launchNextScreen();
-        }
+    private Runnable runnableNextScreen = () -> {
+        // If connection failed, launch it anyway
+        launchNextScreen();
     };
 
     public void onCreate(Intent intent) {
@@ -71,26 +71,23 @@ public class SplashPresenter extends BasePresenter {
 
         if (nextScreen == NEXT_SCREEN_NONE) {
             view.showTvInfoText(getString(R.string.preparing_app_edition_current_year), false);
+
+            updateAppManager = new UpdateAppManager(context);
+            updateAppManager.setUpdateAvailableListener(() -> onUpdateAvailable());
+            updateAppManager.checkUpdateAvailable();
         }
 
-        handler = new Handler();
-
-//        if (intent.getAction() != null && intent.getAction().equals(ACTION_SHOW_NOTIFICATION)) {
-//
-//            launchMainActivity = false;
-//            String title = intent.getStringExtra(EXTRA_NOTIFICATION_TITLE);
-//            String message = intent.getStringExtra(EXTRA_NOTIFICATION_MESSAGE);
-//            String btnText = intent.getStringExtra(EXTRA_NOTIFICATION_CUSTOM_BUTTON_TEXT);
-//            String btnLink = intent.getStringExtra(EXTRA_NOTIFICATION_CUSTOM_BUTTON_LINK);
-//
-//            DialogShowNotification.newInstace(context).show(title, message, btnText, btnLink);
-//        }
+        handler = new Handler(Looper.getMainLooper());
     }
 
 
     public void onResume() {
 
         handler.postDelayed(runnableNextScreen, 3000);
+
+        if (updateAppManager != null) {
+            updateAppManager.onResume();
+        }
     }
 
     public void onPause() {
@@ -107,6 +104,10 @@ public class SplashPresenter extends BasePresenter {
 
             case NEXT_SCREEN_ABOUT:
                 context.startActivity(new Intent(context, AboutAlcalaSuenaActivity.class));
+                break;
+
+            case NEXT_SCREEN_MAIN:
+                context.startActivity(MainPresenter.newMainActivity(context));
                 break;
 
             case NEXT_SCREEN_NONE:
@@ -128,5 +129,9 @@ public class SplashPresenter extends BasePresenter {
         if (nextScreen == NEXT_SCREEN_NONE) {
             view.showTvInfoText(getString(R.string.new_version_available), true);
         }
+    }
+
+    public void onUpdateVersionClick() {
+        updateAppManager.onUpdateVersionClick();
     }
 }

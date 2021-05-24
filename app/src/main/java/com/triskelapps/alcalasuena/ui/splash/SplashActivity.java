@@ -17,7 +17,6 @@ import com.triskelapps.alcalasuena.util.update_app.UpdateAppManager;
 public class SplashActivity extends BaseActivity implements SplashView {
     private SplashPresenter presenter;
     private ActivitySplashBinding binding;
-    private UpdateAppManager updateAppManager;
 
     @Override
     public BasePresenter getPresenter() {
@@ -34,10 +33,6 @@ public class SplashActivity extends BaseActivity implements SplashView {
 
         binding.imgAlcalasuenaSplash.setOnClickListener(v -> presenter.onSplashImageClick());
 
-        updateAppManager = new UpdateAppManager(this);
-        updateAppManager.setUpdateAvailableListener(() -> presenter.onUpdateAvailable());
-        updateAppManager.checkUpdateAvailable();
-
         presenter.onCreate(getIntent());
 
     }
@@ -45,7 +40,6 @@ public class SplashActivity extends BaseActivity implements SplashView {
     @Override
     protected void onResume() {
         super.onResume();
-        updateAppManager.onResume();
         presenter.onResume();
     }
 
@@ -58,7 +52,7 @@ public class SplashActivity extends BaseActivity implements SplashView {
     @Override
     public void showTvInfoText(String text, boolean enableClick) {
         binding.tvSplashInfo.setText(text);
-        binding.tvSplashInfo.setOnClickListener(enableClick ? v -> updateAppManager.onUpdateVersionClick() : null);
+        binding.tvSplashInfo.setOnClickListener(enableClick ? v -> presenter.onUpdateVersionClick() : null);
     }
 
 }

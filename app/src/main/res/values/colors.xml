@@ -33,6 +33,7 @@
     <color name="text_color_main">#000</color>
     <color name="text_color_inverted">#FFF</color>
     <color name="text_color_main_semitransp">#99000000</color>
+    <color name="text_color_inverted_semitransp">#9FFF</color>
 
 
     <color name="items_main">#fff</color>

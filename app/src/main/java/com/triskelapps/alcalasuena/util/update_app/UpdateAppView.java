@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -16,16 +17,15 @@ import androidx.lifecycle.OnLifecycleEvent;
 
 import com.triskelapps.alcalasuena.BuildConfig;
 import com.triskelapps.alcalasuena.R;
+import com.triskelapps.alcalasuena.databinding.ViewUpdateAppBinding;
 
 
-public class UpdateAppView extends FrameLayout implements View.OnClickListener, LifecycleObserver {
+public class UpdateAppView extends FrameLayout implements LifecycleObserver {
 
-    private static final String TAG = "UpdateAppView";
-
-    private TextView btnUpdateApp;
-    private AppCompatImageView btnCloseUpdateAppView;
+    private static final String TAG = UpdateAppView.class.getSimpleName();
 
     private UpdateAppManager updateAppManager;
+    private ViewUpdateAppBinding binding;
 
     public UpdateAppView(Context context) {
         super(context);
@@ -43,19 +43,11 @@ public class UpdateAppView extends FrameLayout implements View.OnClickListener, 
         init();
     }
 
-    private void findViews(View layout) {
-        btnUpdateApp = (TextView) layout.findViewById(R.id.btn_update_app);
-        btnCloseUpdateAppView = (AppCompatImageView) layout.findViewById(R.id.btn_close_update_app_view);
-
-        btnUpdateApp.setOnClickListener(this);
-        btnCloseUpdateAppView.setOnClickListener(this);
-    }
-
     private void init() {
-        View layout = View.inflate(getContext(), R.layout.view_update_app, null);
-        findViews(layout);
+        binding = ViewUpdateAppBinding.inflate(LayoutInflater.from(getContext()), this, true);
 
-        addView(layout);
+        binding.btnUpdateApp.setOnClickListener(v -> updateAppManager.onUpdateVersionClick());
+        binding.btnCloseUpdateAppView.setOnClickListener(v -> setVisibility(GONE));
 
         setVisibility(GONE);
 
@@ -102,26 +94,6 @@ public class UpdateAppView extends FrameLayout implements View.OnClickListener, 
         updateAppManager.onResume();
 
     }
-
-
-
-    @Override
-    public void onClick(View v) {
-
-        switch (v.getId()) {
-            case R.id.btn_close_update_app_view:
-                setVisibility(GONE);
-                break;
-
-            case R.id.btn_update_app:
-                updateAppManager.onUpdateVersionClick();
-//                CountlyUtil.recordEvent("update_app_button_click");
-                break;
-        }
-
-    }
-
-
 
     private void checkUpdateAvailable() {
 

@@ -84,11 +84,10 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     android:orientation="vertical"
                     android:nestedScrollingEnabled="true"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:padding="5dp" />
 
-                <View style="@style/SeparatorHorizontal"
-                    android:visibility="gone"/>
+                <View style="@style/SeparatorHorizontal"/>
 
                 <TextView
                     android:id="@+id/tv_band_description"

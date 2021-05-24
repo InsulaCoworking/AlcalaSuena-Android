@@ -33,80 +33,76 @@
 
         <include layout="@layout/toolbar" />
 
-        <RelativeLayout
+        <com.triskelapps.alcalasuena.util.update_app.UpdateAppView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <androidx.drawerlayout.widget.DrawerLayout
+            android:id="@+id/drawer_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.drawerlayout.widget.DrawerLayout
-                android:id="@+id/drawer_layout"
+            <include layout="@layout/content_main" />
+
+            <fragment
+                android:id="@+id/menu_fragment"
+                class="com.triskelapps.alcalasuena.ui.menu.MenuFragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                tools:layout="@layout/fragment_menu" />
 
-                <include layout="@layout/content_main" />
+            <fragment
+                android:id="@+id/filter_bands_fragment"
+                class="com.triskelapps.alcalasuena.ui.filter.FilterBandsFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginLeft="20dp"
+                tools:layout="@layout/fragment_filter_bands" />
 
-                <fragment
-                    android:id="@+id/menu_fragment"
-                    class="com.triskelapps.alcalasuena.ui.menu.MenuFragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="start"
-                    tools:layout="@layout/fragment_menu" />
+        </androidx.drawerlayout.widget.DrawerLayout>
 
-                <fragment
-                    android:id="@+id/filter_bands_fragment"
-                    class="com.triskelapps.alcalasuena.ui.filter.FilterBandsFragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginLeft="20dp"
-                    tools:layout="@layout/fragment_filter_bands" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btn_send_news"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_above="@+id/view_happening_now"
+            android:layout_alignParentRight="true"
+            android:layout_margin="15dp"
+            android:background="@drawable/bg_btn_send_news"
+            android:scaleType="centerInside"
+            android:src="@mipmap/ic_news"
+            android:visibility="gone"
+            app:tint="@color/items_main" />
 
-            </androidx.drawerlayout.widget.DrawerLayout>
+        <RelativeLayout
+            android:id="@+id/view_happening_now"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/btn_send_news"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_alignParentRight="true"
+                android:id="@+id/btn_happening_now"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_margin="15dp"
                 android:background="@drawable/bg_btn_send_news"
+                android:elevation="5dp"
+                android:padding="10dp"
                 android:scaleType="centerInside"
-                android:src="@mipmap/ic_news"
+                android:src="@mipmap/ic_happening_now_3"
                 android:visibility="gone"
-                app:tint="@color/items_main"
-                android:layout_above="@+id/view_happening_now"/>
+                app:tint="@color/text_color_main" />
 
-            <RelativeLayout
-                android:id="@+id/view_happening_now"
-                android:layout_width="95dp"
-                android:layout_height="95dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/btn_happening_now"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="15dp"
-                    android:background="@drawable/bg_btn_send_news"
-                    android:scaleType="centerInside"
-                    android:src="@mipmap/ic_happening_now_3"
-                    android:padding="10dp"
-                    android:visibility="gone"
-                    android:elevation="5dp"
-                    app:tint="@color/text_color_main"/>
-
-                <ProgressBar
-                    android:id="@+id/progress_happening_now"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:visibility="invisible"/>
-            </RelativeLayout>
+            <ProgressBar
+                android:id="@+id/progress_happening_now"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="invisible" />
         </RelativeLayout>
 
     </LinearLayout>
 
-    <com.triskelapps.alcalasuena.util.update_app.UpdateAppView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 </RelativeLayout>
