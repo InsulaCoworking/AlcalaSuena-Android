@@ -95,7 +95,7 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
         configureDrawerLayout();
         configureToolbarBackArrowBehaviour();
 
-        setImageTitle(R.mipmap.img_title_alcalasuena);
+//        setImageTitle(R.mipmap.img_title_alcalasuena);
 
         tabsDays.addTab(tabsDays.newTab().setCustomView(getTabView(0)));
         tabsDays.addTab(tabsDays.newTab().setCustomView(getTabView(1)));
