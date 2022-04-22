@@ -321,7 +321,11 @@ public class MainPresenter extends BasePresenter {
     }
 
     public void onEventClick(Event event) {
-        EventInfoPresenter.launchEventInfoActivity(context, event.getId());
+        if (event.getBands().size() == 1) {
+            context.startActivity(BandInfoPresenter.newBandInfoActivity(context, event.getBands().get(0).getId()));
+        } else {
+            EventInfoPresenter.launchEventInfoActivity(context, event.getId());
+        }
     }
 
     public void onShareFavsButtonClicked() {

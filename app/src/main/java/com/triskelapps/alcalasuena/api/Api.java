@@ -27,7 +27,7 @@ public interface Api {
     @GET("bands")
     Observable<List<Band>> getBands();
 
-    @GET("venues")
+    @GET("https://triskelapps.com/static/venues.json")
     Observable<List<Venue>> getVenues();
 
     @GET("settings/app_version_market")

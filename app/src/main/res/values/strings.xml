@@ -109,7 +109,7 @@
     <string name="amstel_recomends">Amstel recomienda\nel consumo responsable</string>
     <string name="enter_excl">¡Entrar!</string>
     <string name="empty_list_news">De momento en este año no hay noticias. ¡Pronto te avisaremos de todas las novedades!</string>
-    <string name="preparing_app_edition_current_year">Preparando aplicación para la edición de 2021....\n¡Te avisaremos cuando esté lista!</string>
+    <string name="preparing_app_edition_current_year">Preparando aplicación para la edición de 2022....\n¡Te avisaremos cuando esté lista!</string>
     <string name="new_version_available">¡Aplicación preparada!\nPulsa aquí para actualizar</string>
     <string name="location_wont_show">No se mostrará tu ubicación (puedes cambiar esta configuración en los ajustes)</string>
     <string name="location_permission">Permiso de acceso a localización</string>
@@ -123,7 +123,7 @@
     <string name="location_permission_rationale_happening_now_message">Para detectar el escenario más cercano es necesario que la app sepa donde te encuentras</string>
     <string name="link_error">Hay un error con este enlace</string>
     <string name="event_info">Información del evento</string>
-    <string name="app_name_year">Alcalá Suena 2021</string>
+    <string name="app_name_year">AlcaláSuena 2022</string>
     <string name="date_time_info_format">Día: %s\nHora: %s\nDuración: %s</string>
     <string name="buy_ticekts">Comprar entradas</string>
 

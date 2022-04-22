@@ -1,6 +1,5 @@
 package com.triskelapps.alcalasuena;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,11 +8,6 @@ import android.preference.PreferenceManager;
 
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
-import androidx.work.Constraints;
-import androidx.work.ExistingPeriodicWorkPolicy;
-import androidx.work.NetworkType;
-import androidx.work.PeriodicWorkRequest;
-import androidx.work.WorkManager;
 
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -21,13 +15,11 @@ import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 import com.triskelapps.alcalasuena.interactor.BandInteractor;
 import com.triskelapps.alcalasuena.interactor.VenueInteractor;
-import com.triskelapps.alcalasuena.util.update_app.UpdateAppCheckWorker;
 import com.triskelapps.alcalasuena.util.NotificationHelper;
 import com.triskelapps.alcalasuena.util.update_app.UpdateAppManager;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -40,13 +32,13 @@ public class App extends MultiDexApplication {
 
     private static final String TAG = "App";
 
-    public static final int FEST_YEAR = 2021;
+    public static final int FEST_YEAR = 2022;
     public static List<String> festDates = new ArrayList<>();
 
     static {
-        festDates.add("2021-06-04");
-        festDates.add("2021-06-05");
-        festDates.add("2021-06-06");
+        festDates.add("2022-06-03");
+        festDates.add("2022-06-04");
+        festDates.add("2022-06-05");
     }
 
     public static final int CACHED_DATA_VERSION = 1;
@@ -54,8 +46,8 @@ public class App extends MultiDexApplication {
     public static final String PREFIX = BuildConfig.APPLICATION_ID + ".";
 
 //    public static final String SHARED_FIRST_TIME = PREFIX + "first_time_7";
-    public static final String SHARED_CURRENT_DATA_VERSION = PREFIX + "shared_current_data_version_2018";
-    public static final String SHARED_FIRST_TIME_APP_LAUNCHING = PREFIX + "extra_first_time_app_lauching_2018";
+    public static final String SHARED_CURRENT_DATA_VERSION = PREFIX + "shared_current_data_version_" + FEST_YEAR;
+    public static final String SHARED_FIRST_TIME_APP_LAUNCHING = PREFIX + "extra_first_time_app_lauching_" + FEST_YEAR;
     private static final String SHARED_CACHED_DATA_STORED = PREFIX + "shared_cached_data_stored_" + FEST_YEAR;
     public static final String SHARED_PIN_SEND_NEWS_ENCRIPT = PREFIX + "shared_pin_send_news_encript";
 

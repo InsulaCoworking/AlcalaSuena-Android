@@ -6,7 +6,7 @@ with open('data.json', 'r') as f:
 data = json.loads(data_str)
 for venue in data:
 	for event in venue['events']:
-		event['bands'] = [event['bands'][0]]
+		event['bands'] = [43]
 
 
 with open('data2.json', 'w') as f:
