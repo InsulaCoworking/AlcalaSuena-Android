@@ -1,0 +1,416 @@
+[
+    {
+        "address": "Calle Bosnia Herzegovina, 6",
+        "description": "La antigua fábrica de perfumería GAL fue construida a principios de los años 60 por el arquitecto José Manuel Sáenz de Vicuña, y forma parte de un catálogo internacional por ser “un edificio emblemático, de especial interés y muy interesante como espacio público”, según apunta el arquitecto municipal, Cristóbal Vallhonrat.",
+        "events": [
+            {
+                "bands": [
+                    91,
+                    94
+                ],
+                "day": "2022-06-03",
+                "duration": 90,
+                "id": 72,
+                "image": "/media/event/ca77a681-e28b-41fb-af47-016a0e0e3742.jpg",
+                "tickets_url": "https://eldiario.es",
+                "time": "18:30:00"
+            },
+            {
+                "bands": [
+                    117,
+                    118
+                ],
+                "day": "2022-06-03",
+                "duration": 90,
+                "id": 79,
+                "image": "/media/event/f9bf90e7-14d4-42f6-81cd-deff66b65655.jpg",
+                "tickets_url": "",
+                "time": "22:00:00"
+            },
+            {
+                "bands": [
+                    68,
+                    82
+                ],
+                "day": "2022-06-04",
+                "duration": 90,
+                "id": 83,
+                "image": "/media/event/0a1dbe6e-c0ae-415d-95b1-e3549ec7a68e.jpg",
+                "tickets_url": "",
+                "time": "12:30:00"
+            },
+            {
+                "bands": [
+                    106,
+                    129
+                ],
+                "day": "2022-06-04",
+                "duration": 90,
+                "id": 86,
+                "image": "/media/event/e9ecdafc-2dcc-4bfd-a283-379884ff2361.jpg",
+                "tickets_url": "",
+                "time": "18:00:00"
+            },
+            {
+                "bands": [
+                    112,
+                    130
+                ],
+                "day": "2022-06-04",
+                "duration": 90,
+                "id": 90,
+                "image": "/media/event/c0fb298a-812c-44e4-9d0f-19e90201e573.jpg",
+                "tickets_url": "",
+                "time": "21:30:00"
+            },
+            {
+                "bands": [
+                    98,
+                    121
+                ],
+                "day": "2022-06-05",
+                "duration": 90,
+                "id": 100,
+                "image": "/media/event/b1c6d9a6-588c-4d19-848b-06cc897ccd52.jpg",
+                "tickets_url": "",
+                "time": "12:30:00"
+            },
+            {
+                "bands": [
+                    66,
+                    110
+                ],
+                "day": "2022-06-05",
+                "duration": 90,
+                "id": 97,
+                "image": null,
+                "tickets_url": "",
+                "time": "18:00:00"
+            },
+            {
+                "bands": [
+                    81,
+                    97
+                ],
+                "day": "2022-06-05",
+                "duration": 90,
+                "id": 95,
+                "image": null,
+                "tickets_url": "",
+                "time": "21:00:00"
+            }
+        ],
+        "id": 11,
+        "image": "/media/venue/ef390163-5349-4373-ad45-61f5dfa510f6.jpg",
+        "latitude": 40.4812464530771,
+        "longitude": -3.37908983230591,
+        "name": "ANTIGUA FÁBRICA GAL"
+    },
+    {
+        "address": "C/ Padre Llanos, 2 con Avda. Jesuitas",
+        "description": "El parque está vinculado al antiguo convento de Gilitos, hoy centro sociocultural del Ayto. El convento se levantaba sobre un solar, en una zona alta que dominaba el llano del valle formado por las terrazas del Henares. El convento se erigió sobre un solar antiguamente denominado como ‘La horca vieja’ donde había una pequeña ermita bajo la advocación del Santo Ángel de la Guarda.",
+        "events": [
+            {
+                "bands": [
+                    83,
+                    114
+                ],
+                "day": "2022-06-03",
+                "duration": 90,
+                "id": 75,
+                "image": "/media/event/804052df-129b-4e44-b0b2-08177c82cab7.jpg",
+                "tickets_url": "",
+                "time": "18:30:00"
+            },
+            {
+                "bands": [
+                    103,
+                    104
+                ],
+                "day": "2022-06-03",
+                "duration": 90,
+                "id": 80,
+                "image": "/media/event/767d5021-d2b2-4a59-93a1-ed5c1ad783d0.jpg",
+                "tickets_url": "",
+                "time": "22:00:00"
+            },
+            {
+                "bands": [
+                    86,
+                    89
+                ],
+                "day": "2022-06-04",
+                "duration": 90,
+                "id": 84,
+                "image": "/media/event/ceb85446-9c2e-4098-9da2-1201e81c5178.jpg",
+                "tickets_url": "",
+                "time": "12:30:00"
+            },
+            {
+                "bands": [
+                    71,
+                    74
+                ],
+                "day": "2022-06-04",
+                "duration": 90,
+                "id": 87,
+                "image": "/media/event/f1aa3fed-32d0-4904-a098-9ed661b1a9b5.jpg",
+                "tickets_url": "",
+                "time": "18:00:00"
+            },
+            {
+                "bands": [
+                    67,
+                    96
+                ],
+                "day": "2022-06-04",
+                "duration": 90,
+                "id": 91,
+                "image": null,
+                "tickets_url": "",
+                "time": "21:30:00"
+            },
+            {
+                "bands": [
+                    123,
+                    85
+                ],
+                "day": "2022-06-05",
+                "duration": 90,
+                "id": 101,
+                "image": "/media/event/549080cb-ee4d-46c4-8edb-8e7940addf17.jpg",
+                "tickets_url": "",
+                "time": "12:30:00"
+            },
+            {
+                "bands": [
+                    79,
+                    128
+                ],
+                "day": "2022-06-05",
+                "duration": 90,
+                "id": 98,
+                "image": null,
+                "tickets_url": "",
+                "time": "18:00:00"
+            }
+        ],
+        "id": 9,
+        "image": "/media/venue/06f8ab9e-3eb9-494d-b0fb-1a90ba8277bf.JPG",
+        "latitude": 40.492221497,
+        "longitude": -3.36664438248,
+        "name": "AUDITORIO GILITOS"
+    },
+    {
+        "address": "Calle  Nuestra Señora del Pilar, s/n",
+        "description": "",
+        "events": [
+            {
+                "bands": [
+                    125
+                ],
+                "day": "2022-06-03",
+                "duration": 40,
+                "id": 81,
+                "image": "/media/event/52ef9640-cb21-4cd1-a2de-18f22937515f.jpg",
+                "tickets_url": "",
+                "time": "18:30:00"
+            },
+            {
+                "bands": [
+                    102,
+                    105
+                ],
+                "day": "2022-06-03",
+                "duration": 90,
+                "id": 78,
+                "image": "/media/event/415638d6-a7b4-4bae-a373-3fc9d3c3cd61.jpg",
+                "tickets_url": "",
+                "time": "20:30:00"
+            }
+        ],
+        "id": 10,
+        "image": "/media/venue/38324f08-51cb-4328-9f45-d89b7e51cb54.JPG",
+        "latitude": 40.4712408718256,
+        "longitude": -3.37563514709473,
+        "name": "AUDITORIO PACO DE LUCIA"
+    },
+    {
+        "address": "C/Cardenal Sandoval y Rojas S/N",
+        "description": "",
+        "events": [
+            {
+                "bands": [
+                    75,
+                    90
+                ],
+                "day": "2022-06-03",
+                "duration": 90,
+                "id": 76,
+                "image": "/media/event/f43185bd-0e13-43cd-a766-36b32da7ab60.jpg",
+                "tickets_url": "",
+                "time": "19:00:00"
+            },
+            {
+                "bands": [
+                    80,
+                    76
+                ],
+                "day": "2022-06-03",
+                "duration": 90,
+                "id": 77,
+                "image": "/media/event/8757999b-4668-4493-84ec-beae38e1bd5f.jpg",
+                "tickets_url": "",
+                "time": "22:00:00"
+            },
+            {
+                "bands": [
+                    127,
+                    107
+                ],
+                "day": "2022-06-04",
+                "duration": 90,
+                "id": 88,
+                "image": "/media/event/91b920d0-64ca-4523-aa59-e20264971a0f.jpg",
+                "tickets_url": "",
+                "time": "19:00:00"
+            },
+            {
+                "bands": [
+                    88,
+                    77
+                ],
+                "day": "2022-06-04",
+                "duration": 90,
+                "id": 92,
+                "image": "/media/event/46765ef3-4c4c-4659-afab-254f924f16b6.jpg",
+                "tickets_url": "",
+                "time": "22:00:00"
+            },
+            {
+                "bands": [
+                    111,
+                    113
+                ],
+                "day": "2022-06-05",
+                "duration": 90,
+                "id": 93,
+                "image": "/media/event/37d105ad-4d60-4257-be75-0dc4b5a5d2e2.jpg",
+                "tickets_url": "",
+                "time": "21:30:00"
+            }
+        ],
+        "id": 12,
+        "image": "/media/venue/7531ef53-7755-4900-bf5f-b9a053d11872.jpeg",
+        "latitude": 40.4818829730492,
+        "longitude": -3.37142944335938,
+        "name": "HUERTA DEL OBISPO"
+    },
+    {
+        "address": "Calle Cervantes, 7",
+        "description": "El Teatro Salón Cervantes es uno de los teatros más importante de Alcalá junto con el Corral de Comedias.\r\n\r\nLa única sala de espectáculos y teatro de Alcalá ha sido durante mucho tiempo el Teatro Salón Cervantes. Está situado en pleno centro de la ciudad, en la calle que lleva el apellido del escritor y junto a la calle Mayor. Es un local que ha sido teatro, sala de baile, cine y bingo, y tras la estupenda reforma de 1989, de nuevo un precioso teatro decimonónico.",
+        "events": [
+            {
+                "bands": [
+                    92,
+                    116
+                ],
+                "day": "2022-06-03",
+                "duration": 90,
+                "id": 74,
+                "image": "/media/event/0cf1ec33-6c26-42ee-8a50-7bbbfc277e33.jpg",
+                "tickets_url": "",
+                "time": "18:30:00"
+            },
+            {
+                "bands": [
+                    108,
+                    78
+                ],
+                "day": "2022-06-03",
+                "duration": 90,
+                "id": 71,
+                "image": "/media/event/657d8d5a-6b83-4a75-b099-6f8827e8c3bb.jpg",
+                "tickets_url": "HOLA",
+                "time": "22:00:00"
+            },
+            {
+                "bands": [
+                    99,
+                    100
+                ],
+                "day": "2022-06-04",
+                "duration": 90,
+                "id": 82,
+                "image": null,
+                "tickets_url": "",
+                "time": "12:30:00"
+            },
+            {
+                "bands": [
+                    119,
+                    87
+                ],
+                "day": "2022-06-04",
+                "duration": 90,
+                "id": 85,
+                "image": "/media/event/63e20b60-aeae-446c-a5d5-5df211103491.jpg",
+                "tickets_url": "",
+                "time": "18:00:00"
+            },
+            {
+                "bands": [
+                    70,
+                    95
+                ],
+                "day": "2022-06-04",
+                "duration": 90,
+                "id": 89,
+                "image": "/media/event/ad7862ed-a42b-49f0-ae7d-614bc776279b.jpg",
+                "tickets_url": "",
+                "time": "21:30:00"
+            },
+            {
+                "bands": [
+                    72,
+                    73
+                ],
+                "day": "2022-06-05",
+                "duration": 90,
+                "id": 99,
+                "image": "/media/event/c7f9dece-616b-40e8-8b0a-de61f21d6ac7.jpg",
+                "tickets_url": "",
+                "time": "12:30:00"
+            },
+            {
+                "bands": [
+                    84,
+                    109
+                ],
+                "day": "2022-06-05",
+                "duration": 90,
+                "id": 96,
+                "image": "/media/event/31bd86e7-3a3a-4333-bc7e-04cedfcc2b8f.jpg",
+                "tickets_url": "",
+                "time": "18:00:00"
+            },
+            {
+                "bands": [
+                    69,
+                    126
+                ],
+                "day": "2022-06-05",
+                "duration": 90,
+                "id": 94,
+                "image": null,
+                "tickets_url": "",
+                "time": "21:00:00"
+            }
+        ],
+        "id": 8,
+        "image": "/media/venue/dc3e7e77-4f48-423e-b262-2fd307e9beef.JPG",
+        "latitude": 40.483466086293,
+        "longitude": -3.36612939834595,
+        "name": "TEATRO SALON CERVANTES"
+    }
+]

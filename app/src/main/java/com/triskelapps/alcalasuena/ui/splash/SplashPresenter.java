@@ -107,7 +107,7 @@ public class SplashPresenter extends BasePresenter {
                 break;
 
             case NEXT_SCREEN_MAIN:
-                context.startActivity(MainPresenter.newMainActivity(context));
+//                context.startActivity(MainPresenter.newMainActivity(context));
                 break;
 
             case NEXT_SCREEN_NONE:
