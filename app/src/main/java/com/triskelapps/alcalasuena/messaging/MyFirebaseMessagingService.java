@@ -150,7 +150,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         intent.setAction(App.ACTION_SHOW_NOTIFICATION);
         intent.putExtras(extras);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
-                PendingIntent.FLAG_ONE_SHOT);
+                PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_IMMUTABLE);
 
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NotificationHelper.CHANNEL_NOVELTIES_PUSH)
@@ -186,7 +186,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         intent.putExtras(extras);
         intent.putExtra(FirebasePush.EXTRA_OPEN_URL_LINK, true);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 1 /* Request code */, intent,
-                PendingIntent.FLAG_ONE_SHOT);
+                PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_IMMUTABLE);
 
         return pendingIntent;
     }

@@ -11,8 +11,8 @@ android {
         applicationId "com.triskelapps.alcalasuena"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 2128
-        versionName "21.2.8"
+        versionCode 2200
+        versionName "22.0.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
@@ -26,7 +26,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
 
-            buildConfigField "boolean", "MODE_PREPARING", "false"
+            buildConfigField "boolean", "MODE_PREPARING", "true"
             buildConfigField "boolean", "MOCK_CURRENT_DATETIME", "false"
         }
 
@@ -35,7 +35,7 @@ android {
             applicationIdSuffix ".debug"
             versionNameSuffix " debug"
 
-            buildConfigField "boolean", "MODE_PREPARING", "false"
+            buildConfigField "boolean", "MODE_PREPARING", "true"
             buildConfigField "boolean", "MOCK_CURRENT_DATETIME", "true"
         }
     }
@@ -75,7 +75,7 @@ dependencies {
     implementation 'io.reactivex:rxjava:1.3.0'
 
     implementation 'com.google.android.play:core:1.10.0'
-    implementation "androidx.work:work-runtime:2.5.0"
+    implementation "androidx.work:work-runtime:2.7.1"
 
     implementation 'com.karumi:dexter:6.0.0'
 
