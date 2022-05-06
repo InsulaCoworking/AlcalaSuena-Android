@@ -65,7 +65,7 @@ public class EventsVenueAdapter extends RecyclerView.Adapter<EventsVenueAdapter.
             return;
         }
 
-        Picasso.with(context)
+        Picasso.get()
                 .load(event.getImageUrlFull())
                 .placeholder(R.mipmap.img_default_grid)
                 .error(R.mipmap.img_default_grid)

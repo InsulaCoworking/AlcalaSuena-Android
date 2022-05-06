@@ -58,7 +58,7 @@ public class NewsInfoActivity extends BaseActivity implements NewsInfoView {
 
         if (news.getImage() != null) {
 
-            Picasso.with(this)
+            Picasso.get()
                     .load(news.getImageUrlFull())
                     .into(imgNews);
 

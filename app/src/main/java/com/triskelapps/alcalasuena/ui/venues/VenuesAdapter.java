@@ -48,7 +48,7 @@ public class VenuesAdapter extends RecyclerView.Adapter<VenuesAdapter.ViewHolder
         Venue venue = getItemAtPosition(holder.getAdapterPosition());
 
         holder.tvVenueName.setText(venue.getName());
-        Picasso.with(context)
+        Picasso.get()
                 .load(venue.getImageUrlFull())
 //                .placeholder(R.mipmap.img_default_grid)
 //                .error(R.mipmap.img_default_grid)

@@ -71,7 +71,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
         holder.binding.tvBandName.setText(band1.getName());
         holder.binding.tvBandGenre.setText(band1.getGenreOrTag());
 
-        Picasso.with(context)
+        Picasso.get()
                 .load(band1.getImageLogoUrlFull())
                 .placeholder(R.mipmap.img_default_grid)
                 .error(R.mipmap.img_default_grid)

@@ -25,7 +25,8 @@
         <activity
             android:name=".ui.splash.SplashActivity"
             android:label="@string/app_name" />
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -58,7 +59,8 @@
         <activity android:name=".ui.news.NewsActivity" />
         <activity android:name=".ui.news_info.NewsInfoActivity" />
 
-        <service android:name=".messaging.MyFirebaseMessagingService">
+        <service android:name=".messaging.MyFirebaseMessagingService"
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

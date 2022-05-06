@@ -269,7 +269,7 @@ public class MapActivity extends BaseActivity implements MapView, View.OnClickLi
         tvVenueName.setText(venue.getName());
         tvVenueDescription.setText(venue.getDescription());
 
-        Picasso.with(this)
+        Picasso.get()
                 .load(venue.getImageUrlFull())
                 .resizeDimen(R.dimen.width_image_big, R.dimen.height_image_big)
                 .into(imgVenue);

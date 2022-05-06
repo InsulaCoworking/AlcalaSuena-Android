@@ -49,7 +49,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
         holder.tvNewsTitle.setText(news.getTitle());
         holder.tvNewsText.setText(news.getText());
-        Picasso.with(context)
+        Picasso.get()
                 .load(news.getImageUrlFull())
                 .placeholder(R.mipmap.img_default_grid)
 //                .error(R.mipmap.img_default_grid)

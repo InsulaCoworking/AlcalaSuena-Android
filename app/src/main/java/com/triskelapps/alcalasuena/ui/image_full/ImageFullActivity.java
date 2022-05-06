@@ -127,7 +127,7 @@ public class ImageFullActivity extends AppCompatActivity {
         String imageUrl = getIntent().getStringExtra(EXTRA_IMAGE_URL);
 
 //        imageFull.setDisplayType(ImageViewTouchBase.DisplayType.FIT_TO_SCREEN);
-        Picasso.with(this)
+        Picasso.get()
                 .load(Uri.parse(imageUrl))
 //                .placeholder(R.mipmap.img_placeholder)
 //                .error(android.R.drawable.stat_notify_error)

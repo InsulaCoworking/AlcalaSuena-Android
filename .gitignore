@@ -9,3 +9,4 @@
 .externalNativeBuild
 /app/src/main/res/values/secret.xml
 /app/src/main/res/values/secret2.xml
+/app/src/main/java/com/triskelapps/alcalasuena/log/

@@ -47,7 +47,7 @@ public class EventInfoActivity extends BaseActivity implements EventInfoView {
     @Override
     public void showEventInfo(Event event) {
 
-        Picasso.with(this)
+        Picasso.get()
                 .load(event.getImageUrlFull())
                 .placeholder(R.mipmap.img_default_grid)
                 .error(R.mipmap.img_default_grid)

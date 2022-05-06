@@ -44,7 +44,7 @@ public class VenueInfoMeetFragment extends Fragment {
         final Venue venue = ((VenueInfoActivity) getActivity()).getVenue();
 
 
-        Picasso.with(getActivity())
+        Picasso.get()
                 .load(venue.getImageUrlFull())
                 .resizeDimen(R.dimen.width_image_big, R.dimen.height_image_big)
                 .into(imgVenue);

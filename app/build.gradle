@@ -6,13 +6,13 @@ apply plugin: 'realm-android'
 def buildType
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
     defaultConfig {
         applicationId "com.triskelapps.alcalasuena"
-        minSdkVersion 16
-        targetSdkVersion 30
-        versionCode 2200
-        versionName "22.0.0"
+        minSdkVersion 19
+        targetSdkVersion 31
+        versionCode 2201
+        versionName "22.0.1"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
@@ -52,14 +52,13 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    implementation 'androidx.appcompat:appcompat:1.3.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.cardview:cardview:1.0.0'
 
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
@@ -69,12 +68,12 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.4.0'
 
     implementation 'com.squareup.okhttp3:okhttp:4.4.0'
-    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
     implementation 'io.reactivex:rxandroid:1.2.1'
     implementation 'io.reactivex:rxjava:1.3.0'
 
-    implementation 'com.google.android.play:core:1.10.0'
+    implementation 'com.google.android.play:core:1.10.3'
     implementation "androidx.work:work-runtime:2.7.1"
 
     implementation 'com.karumi:dexter:6.0.0'
@@ -88,17 +87,17 @@ dependencies {
 
 
     implementation 'io.nlopez.smartlocation:library:3.3.3'
-    implementation 'com.google.android.gms:play-services-location:18.0.0'
-    implementation 'com.google.android.gms:play-services-maps:17.0.1'
-    implementation 'com.google.maps.android:android-maps-utils:0.5'
+    implementation 'com.google.android.gms:play-services-location:19.0.1'
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
+    implementation 'com.google.maps.android:android-maps-utils:0.6.2'
 
     implementation 'com.romandanylyk:pageindicatorview:1.0.1'
     implementation 'com.github.jkwiecien:EasyImage:1.3.1'
     implementation 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32'
 
-    implementation "androidx.browser:browser:1.3.0"
+    implementation "androidx.browser:browser:1.4.0"
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13.2'
 
     debugImplementation('com.github.jonasrottmann.realm-browser:realm-browser:0.0.14') {
         exclude group: 'com.android.support';

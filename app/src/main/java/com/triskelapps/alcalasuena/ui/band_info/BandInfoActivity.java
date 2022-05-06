@@ -105,14 +105,14 @@ public class BandInfoActivity extends BaseActivity implements BandInfoView, View
         if (band.hasValidImage()) {
             imgBand.setVisibility(View.VISIBLE);
             imgBandRound.setVisibility(View.VISIBLE);
-            Picasso.with(this)
+            Picasso.get()
                     .load(band.getImageCoverUrlFull())
                     .placeholder(R.mipmap.img_default_grid)
                     .error(R.mipmap.img_default_grid)
                     .resizeDimen(R.dimen.width_image_big, R.dimen.height_image_big)
                     .into(imgBand);
 
-            Picasso.with(this)
+            Picasso.get()
                     .load(band.getImageLogoUrlFull())
                     .placeholder(R.mipmap.img_default_grid)
                     .error(R.mipmap.img_default_grid)
