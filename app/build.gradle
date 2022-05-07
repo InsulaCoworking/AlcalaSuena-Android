@@ -11,8 +11,8 @@ android {
         applicationId "com.triskelapps.alcalasuena"
         minSdkVersion 19
         targetSdkVersion 31
-        versionCode 2209
-        versionName "22.0.9"
+        versionCode 2210
+        versionName "22.1.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
@@ -85,6 +85,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'com.google.firebase:firebase-analytics'
 
+    def room_version = "2.4.1"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
 
     implementation 'io.nlopez.smartlocation:library:3.3.3'
     implementation 'com.google.android.gms:play-services-location:19.0.1'

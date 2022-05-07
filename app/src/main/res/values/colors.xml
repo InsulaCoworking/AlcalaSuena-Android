@@ -21,10 +21,10 @@
     <color name="bg_color_main_light">#52FFDD98</color>
     <color name="bg_color_main_semitransp">#73edbe4a</color>
 
-    <color name="headers_main">#bb4e87</color>
+    <color name="headers_main">#dc5772</color>
     <color name="headers_main_semitransp">#635d1b4e</color>
-    <color name="headers_main_light">#CC6DB6</color>
-    <color name="headers_main_dark">#5d1b4e</color>
+    <color name="headers_main_light">#F48AA0</color>
+    <color name="headers_main_dark">#B1445A</color>
 
 
     <color name="bg_gradient_start">#c0598e</color>
