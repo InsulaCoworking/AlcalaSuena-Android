@@ -8,6 +8,7 @@ import android.view.View;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BaseActivity;
 import com.triskelapps.alcalasuena.base.BasePresenter;
+import com.triskelapps.alcalasuena.databinding.ActivityVenuesBinding;
 import com.triskelapps.alcalasuena.model.Venue;
 import com.triskelapps.alcalasuena.views.TypeWriterTextView;
 import com.triskelapps.alcalasuena.views.animation_adapter.AnimationAdapter;
@@ -17,11 +18,10 @@ import java.util.List;
 
 public class VenuesActivity extends BaseActivity implements VenuesView, VenuesAdapter.OnItemClickListener {
 
-    private RecyclerView recyclerVenues;
     private VenuesAdapter adapter;
     private VenuesPresenter presenter;
     private ScaleInAnimationAdapter animationAdapter;
-    private TypeWriterTextView typeWriterIntro;
+    private ActivityVenuesBinding binding;
 
     @Override
     public BasePresenter getPresenter() {
@@ -29,19 +29,13 @@ public class VenuesActivity extends BaseActivity implements VenuesView, VenuesAd
     }
 
 
-    private void findViews() {
-        typeWriterIntro = (TypeWriterTextView) findViewById(R.id.typewriter_venues_intro);
-        recyclerVenues = (RecyclerView) findViewById(R.id.recycler_venues);
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
         presenter = VenuesPresenter.newInstance(this, this);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_venues);
-
-        findViews();
+        binding = ActivityVenuesBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         configureSecondLevelActivity();
         setToolbarTitle(R.string.venues);
@@ -49,8 +43,8 @@ public class VenuesActivity extends BaseActivity implements VenuesView, VenuesAd
 //        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
 //        RecyclerView.LayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        recyclerVenues.setLayoutManager(layoutManager);
-        recyclerVenues.setNestedScrollingEnabled(false);
+        binding.recyclerVenues.setLayoutManager(layoutManager);
+        binding.recyclerVenues.setNestedScrollingEnabled(false);
 
 
 //        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,
@@ -91,28 +85,24 @@ public class VenuesActivity extends BaseActivity implements VenuesView, VenuesAd
 
             animationAdapter = new ScaleInAnimationAdapter(adapter);
             animationAdapter.setFirstOnly(false);
-            recyclerVenues.setAdapter(animationAdapter);
+            binding.recyclerVenues.setAdapter(animationAdapter);
 
         } else {
             // Little trick to avoid animation when searching
             animationAdapter.setDuration(0);
             adapter.updateData(venues);
-            recyclerVenues.getRecycledViewPool().clear();
+            binding.recyclerVenues.getRecycledViewPool().clear();
             adapter.notifyDataSetChanged();
-            recyclerVenues.post(new Runnable() {
-                @Override
-                public void run() {
-                    animationAdapter.setDuration(AnimationAdapter.DEFAULT_DURATION);
-                }
-            });
+            binding.recyclerVenues.post(() -> animationAdapter.setDuration(AnimationAdapter.DEFAULT_DURATION));
         }
+
+        binding.tvVenuesEmptyView.setVisibility(venues.isEmpty() ? View.VISIBLE : View.GONE);
 
     }
 
     @Override
     public void animateIntro() {
-        typeWriterIntro.animateText(getString(R.string.venues_intro));
-
+        binding.typewriterVenuesIntro.animateText(getString(R.string.venues_intro));
     }
 
 

@@ -6,6 +6,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.triskelapps.alcalasuena.App;
 import com.triskelapps.alcalasuena.api.Api;
 import com.triskelapps.alcalasuena.base.BaseInteractor;
 import com.triskelapps.alcalasuena.base.BaseView;
@@ -15,10 +16,9 @@ import com.triskelapps.alcalasuena.util.Util;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import io.realm.Realm;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -65,18 +65,11 @@ public class VenueInteractor extends BaseInteractor {
     }
 
 
-    public List<Venue> getVenuesDB() {
-        return Realm.getDefaultInstance().where(Venue.class).findAll();
-    }
-
     public void getVenuesApi(final VenuesCallback callback) {
 
         if (!Util.isConnected(context)) {
-//            baseView.toast(R.string.no_connection);
             return;
         }
-
-//        baseView.setRefresing(true);
 
         getApi().getVenues()
                 .subscribeOn(Schedulers.newThread())
@@ -96,8 +89,6 @@ public class VenueInteractor extends BaseInteractor {
                     @Override
                     public void onNext(List<Venue> venues) {
 
-//                        baseView.setRefresing(false);
-
                         storeVenues(venues);
                         callback.onResponse(venues);
 
@@ -110,40 +101,50 @@ public class VenueInteractor extends BaseInteractor {
 
     private void storeVenues(List<Venue> venues) {
 
-        for (Venue venue : venues) {
-            for (Event event : venue.getEvents()) {
-                for (int idBand : event.getBandsIds()) {
-                    event.addBand(BandInteractor.getBandDB(idBand));
-                }
+//        for (Venue venue : venues) {
+//            for (Event event : venue.getEvents()) {
+//                for (int idBand : event.getBandsIds()) {
+//                    event.addBand(App.getDB().bandDao().getBandById(idBand));
+//                }
+//                event.setBandsIdsStr(getStringCommaSeparated(event.getBandsIds()));
+//                event.configureTimeMidnightSafe();
+//                event.setVenue(venue);
+//            }
+//        }
+
+        App.getDB().venueDao().deleteAll();
+        App.getDB().eventDao().deleteAll();
+
+        App.getDB().venueDao().insertAll(venues);
+
+        venues.stream().forEach(venue -> {
+            venue.getEvents().stream().forEach(event -> {
                 event.setBandsIdsStr(getStringCommaSeparated(event.getBandsIds()));
                 event.configureTimeMidnightSafe();
-                event.setVenue(venue);
-            }
-        }
-        Realm realm = Realm.getDefaultInstance();
-
-        realm.beginTransaction();
-        realm.where(Venue.class).findAll().deleteAllFromRealm();
-        realm.where(Event.class).findAll().deleteAllFromRealm();
-        realm.commitTransaction();
-
-        realm.beginTransaction();
-        realm.insert(venues);
-        realm.commitTransaction();
+                event.setIdVenue(venue.getId());
+            });
+            App.getDB().eventDao().insertAll(venue.getEvents());
+        });
     }
 
     private String getStringCommaSeparated(List<Integer> ids) {
-        String idsStr = "";
-        for (int i = 0; i < ids.size(); i++) {
-            idsStr += ids.get(i) + (i < ids.size() - 1 ? "," : "");
+
+        if (ids.isEmpty()) {
+            Log.i(TAG, "getStringCommaSeparated: ");
         }
-        return idsStr;
-    }
 
-    public Venue getVenue(int idVenue) {
-        return Realm.getDefaultInstance().where(Venue.class).equalTo(Venue.ID, idVenue).findFirst();
-    }
+        String commaSeparatedNumbers = ids.stream()
+                .map(i -> String.valueOf(i))
+                .collect(Collectors.joining(", "));
 
+        return commaSeparatedNumbers;
+
+//        String idsStr = "";
+//        for (int i = 0; i < ids.size(); i++) {
+//            idsStr += ids.get(i) + (i < ids.size() - 1 ? "," : "");
+//        }
+//        return idsStr;
+    }
 
     private Api getApi() {
         return getApi(Api.class);

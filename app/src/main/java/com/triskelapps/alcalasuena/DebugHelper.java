@@ -14,7 +14,7 @@ public class DebugHelper {
 
 
     // Falses
-    private static final boolean FORZE_DATA_SYNC = false;
+    private static final boolean FORZE_DATA_SYNC = true;
     private static final boolean MOCK_NOTIF_NEWS = false;
 
 

@@ -10,7 +10,6 @@ import com.triskelapps.alcalasuena.api.Api;
 import com.triskelapps.alcalasuena.base.BaseInteractor;
 import com.triskelapps.alcalasuena.base.BaseView;
 import com.triskelapps.alcalasuena.model.News;
-import com.triskelapps.alcalasuena.model.NewsState;
 import com.triskelapps.alcalasuena.model.notification.FirebasePush;
 import com.triskelapps.alcalasuena.model.notification.FirebasePushData;
 import com.triskelapps.alcalasuena.model.notification.FirebasePushNotification;
@@ -25,8 +24,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import io.realm.Realm;
-import io.realm.Sort;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -89,20 +86,12 @@ public class NewsInteractor extends BaseInteractor {
     }
 
     private void storeNews(List<News> newsList) {
-        Realm realm = Realm.getDefaultInstance();
-
-//        realm.beginTransaction();
-//        realm.where(News.class).findAll().deleteAllFromRealm();
-//        realm.commitTransaction();
 
         for (News news : newsList) {
             news.configureDatesTime();
         }
 
-        realm.beginTransaction();
-        realm.delete(News.class);
-        realm.insertOrUpdate(newsList);
-        realm.commitTransaction();
+        App.getDB().newsDao().insertAll(newsList);
     }
 
     public void storeNewsIndividual(News news) {
@@ -110,54 +99,6 @@ public class NewsInteractor extends BaseInteractor {
         newsList.add(news);
         storeNews(newsList);
     }
-
-
-    public List<News> getNewsFromDB() {
-        return Realm.getDefaultInstance().where(News.class).findAll().sort(News.START_DATE_POPUP_TIME, Sort.DESCENDING);
-    }
-
-    public News getNewsById(int idNews) {
-        return Realm.getDefaultInstance().where(News.class).equalTo(News.ID, idNews).findFirst();
-    }
-
-
-    public News getLastUnseenNews() {
-
-        long currentTime = System.currentTimeMillis();
-
-        News news = Realm.getDefaultInstance().where(News.class)
-                .greaterThanOrEqualTo(News.END_DATE_POPUP_TIME, currentTime)
-                .lessThanOrEqualTo(News.START_DATE_POPUP_TIME, currentTime)
-                .findAll().sort(News.START_DATE_POPUP_TIME, Sort.DESCENDING).first();
-
-        if (news == null) {
-            return null;
-        } else if (isNewsSeen(news.getId())) {
-            return null;
-        } else if (news.getId() == 1) {
-            return null;
-        }
-
-        return news;
-
-
-    }
-
-    private boolean isNewsSeen(int idNews) {
-        return Realm.getDefaultInstance().where(NewsState.class).equalTo(NewsState.ID_NEWS, idNews).findFirst() != null;
-    }
-
-
-    public void setNewsSeen(final int idNews) {
-
-        Realm realm = Realm.getDefaultInstance();
-        realm.beginTransaction();
-        NewsState newsState = realm.createObject(NewsState.class);
-        newsState.setIdNews(idNews);
-        newsState.setSeen(true);
-        realm.commitTransaction();
-    }
-
 
     public void sendNews(String title, String text, String link, String linkButtonText, String imagePath, final BasePOSTFullEntityCallback<News> callback) {
 
@@ -170,13 +111,13 @@ public class NewsInteractor extends BaseInteractor {
         if (imagePath != null) {
             filePart = MultipartBody.Part.createFormData("image",
                     title.replace(" ", "-") + ".jpg",
-                    RequestBody.create(MediaType.parse("image/*"), new File(imagePath)));
+                    RequestBody.create(new File(imagePath), MediaType.parse("image/*")));
         }
-        params.put(News.TITLE, RequestBody.create(MediaType.parse("text/plain"), title));
-        params.put(News.TEXT, RequestBody.create(MediaType.parse("text/plain"), text));
-        params.put(News.BTN_TEXT, RequestBody.create(MediaType.parse("text/plain"), linkButtonText));
-        params.put(News.BTN_LINK, RequestBody.create(MediaType.parse("text/plain"), link));
-        params.put(News.NATIVE_SCREEN_CODE, RequestBody.create(MediaType.parse("text/plain"), "-1"));
+        params.put(News.TITLE, RequestBody.create(title, MediaType.parse("text/plain")));
+        params.put(News.TEXT, RequestBody.create(text, MediaType.parse("text/plain")));
+        params.put(News.BTN_TEXT, RequestBody.create(linkButtonText, MediaType.parse("text/plain")));
+        params.put(News.BTN_LINK, RequestBody.create(link, MediaType.parse("text/plain")));
+        params.put(News.NATIVE_SCREEN_CODE, RequestBody.create("-1", MediaType.parse("text/plain")));
 
         Calendar calendar = Calendar.getInstance();
         String startDate = News.datetimeNewsFormatApiPost.format(new Date(calendar.getTimeInMillis()));
@@ -184,11 +125,11 @@ public class NewsInteractor extends BaseInteractor {
         calendar.add(Calendar.MONTH, 6);
         String endDate = News.datetimeNewsFormatApiPost.format(new Date(calendar.getTimeInMillis()));
 
-        params.put(News.START_DATE_POPUP, RequestBody.create(MediaType.parse("text/plain"), startDate));
-        params.put(News.END_DATE_POPUP, RequestBody.create(MediaType.parse("text/plain"), endDate));
-        params.put(News.CADUCITY_DATE, RequestBody.create(MediaType.parse("text/plain"), endDate));
+        params.put(News.START_DATE_POPUP, RequestBody.create(startDate, MediaType.parse("text/plain")));
+        params.put(News.END_DATE_POPUP, RequestBody.create(endDate, MediaType.parse("text/plain")));
+        params.put(News.CADUCITY_DATE, RequestBody.create(endDate, MediaType.parse("text/plain")));
 
-        params.put("api_key", RequestBody.create(MediaType.parse("text/plain"), context.getString(R.string.api_key)));
+        params.put("api_key", RequestBody.create(context.getString(R.string.api_key), MediaType.parse("text/plain")));
 
 
         getApi().sendNews(filePart, params)

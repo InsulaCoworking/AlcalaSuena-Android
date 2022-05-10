@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">@color/headers_main</color>
+    <color name="colorPrimaryDark">@color/headers_main_dark</color>
+    <!--<color name="colorAccent">#4beae2</color>-->
+    <color name="colorAccent">@color/white</color><!--ffff71-->
+
+    <color name="items_over_primary_color">@color/white</color>
+    <color name="text_over_bg">@color/headers_main_dark</color>
+
+    <color name="skyline">#649892</color>
+
+</resources>

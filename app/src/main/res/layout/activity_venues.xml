@@ -48,18 +48,32 @@
                 <com.triskelapps.alcalasuena.views.TypeWriterTextView
                     android:id="@+id/typewriter_venues_intro"
                     android:layout_width="match_parent"
-                    style="@style/TextBase.Accent"
+                    style="@style/TextBase"
+                    android:textColor="@color/items_over_primary_color"
                     android:gravity="center_horizontal"
                     android:text="@string/venues_intro"
                     android:padding="15dp"
                     android:minLines="4"
                     android:background="@color/headers_main"/>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_venues"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:nestedScrollingEnabled="true"/>
+                    android:layout_height="match_parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_venues"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:nestedScrollingEnabled="true"/>
+
+                    <TextView
+                        android:id="@+id/tv_venues_empty_view"
+                        style="@style/TextBase"
+                        android:text="@string/no_venues_data"
+                        android:layout_centerInParent="true"
+                        android:layout_margin="15dp"
+                        android:visibility="gone"/>
+                </RelativeLayout>
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

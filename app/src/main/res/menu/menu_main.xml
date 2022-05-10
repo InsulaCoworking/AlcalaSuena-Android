@@ -10,7 +10,7 @@
         android:title="@string/favourites"
         android:orderInCategory="100"
         android:visible="true"
-        app:iconTint="@color/items_main"/>
+        app:iconTint="@color/items_over_primary_color"/>
 
     <item
         android:id="@+id/menuItem_filter"
@@ -19,5 +19,5 @@
         android:title="@string/filter"
         android:orderInCategory="200"
         android:visible="true"
-        app:iconTint="@color/items_main"       />
+        app:iconTint="@color/items_over_primary_color"       />
 </menu>

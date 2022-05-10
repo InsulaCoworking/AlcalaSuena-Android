@@ -32,46 +32,6 @@ public class SettingsInteractor extends BaseInteractor {
 
     }
 
-    public void getAppVersionInMarket(final SettingsIntValueCallback callback) {
-
-        if (!Util.isConnected(context)) {
-            return;
-        }
-
-        getApi().getAppVersionInMarket()
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnTerminate(actionTerminate)
-                .subscribe(new Observer<String>() {
-                    @Override
-                    public void onCompleted() {
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                        callback.onError(e.getMessage());
-                    }
-
-                    @Override
-                    public void onNext(String version) {
-
-                        try {
-                            int versionInt = Integer.parseInt(version);
-                            callback.onResponse(versionInt);
-                        } catch (NumberFormatException e) {
-                            e.printStackTrace();
-                            FirebaseCrashlytics.getInstance().recordException(e);
-                        }
-
-
-                    }
-                });
-
-
-    }
-
-
     public void getLastDataVersion(final SettingsIntValueCallback callback) {
 
         if (!Util.isConnected(context)) {

@@ -60,7 +60,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:src="@mipmap/ic_arrow_right_intro"
-                app:tint="@color/items_main"/>
+                app:tint="@color/items_over_primary_color"/>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 

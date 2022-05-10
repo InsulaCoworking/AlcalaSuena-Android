@@ -64,8 +64,6 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
         holder.binding.tvEventVenue.setText(event.getVenue().getName());
         holder.binding.imgStarred.setSelected(event.isStarred());
 
-        holder.binding.tvEventVenue.setVisibility(View.GONE);
-
 
         Band band1 = bands.get(0);
         holder.binding.tvBandName.setText(band1.getName());

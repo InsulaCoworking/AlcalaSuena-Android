@@ -2,6 +2,7 @@ package com.triskelapps.alcalasuena.ui.filter;
 
 import android.content.Context;
 
+import com.triskelapps.alcalasuena.App;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.interactor.BandInteractor;
 import com.triskelapps.alcalasuena.model.Filter;
@@ -53,21 +54,24 @@ public class FilterBandsPresenter extends BasePresenter {
 
     public void refreshData() {
 
-        List<Tag> tags = bandInteractor.getTags();
+        List<Tag> tags = App.getDB().tagDao().getAll();
         view.showTags(tags);
 
     }
 
     public void onTagClick(String idTag) {
 
-        if (bandInteractor.areAllTagsActive()) {
-            bandInteractor.setAllTagsInactiveUnlessThisOne(idTag);
+        boolean allTagsActive = App.getDB().tagStateDao().getInactive().isEmpty();
+        if (allTagsActive) {
+            App.getDB().tagStateDao().inactiveAll();
+            App.getDB().tagStateDao().setActive(idTag);
         } else {
-            bandInteractor.toggleTagState(idTag);
+            App.getDB().tagStateDao().toggleState(idTag);
         }
 
-        if (bandInteractor.areAllTagsInactive()) {
-            bandInteractor.setAllTagsActive();
+        boolean allTagsInactive = App.getDB().tagStateDao().getActive().isEmpty();
+        if (allTagsInactive) {
+            App.getDB().tagStateDao().activeAll();
         }
 
         refreshData();
@@ -77,7 +81,7 @@ public class FilterBandsPresenter extends BasePresenter {
     }
 
     public void onAllTagsButtonClick() {
-        bandInteractor.setAllTagsActive();
+        App.getDB().tagStateDao().activeAll();
         refreshData();
 
         ((MainPresenter)((MainActivity)context).getPresenter()).refreshData();

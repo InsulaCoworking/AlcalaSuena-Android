@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.triskelapps.alcalasuena.App;
 import com.triskelapps.alcalasuena.BuildConfig;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.interactor.EventInteractor;
@@ -36,7 +37,6 @@ public class VenueInfoPresenter extends BasePresenter {
     private final VenueInfoView view;
     private final VenueInteractor venueInteractor;
     private final EventInteractor eventInteractor;
-    private int idVenue;
     private boolean fromHappeningNow;
     private Venue venue;
 
@@ -73,12 +73,12 @@ public class VenueInfoPresenter extends BasePresenter {
 
     public void onCreate(Intent intent) {
 
-        idVenue = intent.getIntExtra(EXTRA_VENUE_ID, -1);
+        int idVenue = intent.getIntExtra(EXTRA_VENUE_ID, -1);
         if (idVenue == -1) {
             throw new IllegalArgumentException("No idVenue passed");
         }
 
-        venue = venueInteractor.getVenue(idVenue);
+        venue = App.getDB().venueDao().getVenueById(idVenue);
         refreshData();
 
         fromHappeningNow = intent.getBooleanExtra(EXTRA_FROM_HAPPENING_NOW, false);
@@ -94,7 +94,7 @@ public class VenueInfoPresenter extends BasePresenter {
 
     public void refreshData() {
 
-        List<Event> eventsVenue = eventInteractor.getEventsForVenue(idVenue);
+        List<Event> eventsVenue = eventInteractor.getEventsForVenue(venue.getId());
         int indexNextEventFromNow = getIndexNextEventFromNow(eventsVenue);
         view.showVenueInfo(venue, eventsVenue, indexNextEventFromNow);
 
@@ -156,11 +156,15 @@ public class VenueInfoPresenter extends BasePresenter {
     }
 
     public void onEventFavouriteClicked(int idEvent) {
-        eventInteractor.toggleFavState(idEvent, false);
+        eventInteractor.toggleFavState(idEvent);
 //        refreshData();
     }
 
     public void onEventClick(Event event) {
-        EventInfoPresenter.launchEventInfoActivity(context, event.getId());
+        if (event.mustShowBandInfo()) {
+            context.startActivity(BandInfoPresenter.newBandInfoActivity(context, event.getBands().get(0).getId()));
+        } else {
+            EventInfoPresenter.launchEventInfoActivity(context, event.getId());
+        }
     }
 }

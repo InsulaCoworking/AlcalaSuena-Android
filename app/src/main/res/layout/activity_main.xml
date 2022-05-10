@@ -42,7 +42,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <include layout="@layout/content_main" />
+            <include
+                android:id="@+id/content_main"
+                layout="@layout/content_main" />
 
             <fragment
                 android:id="@+id/menu_fragment"
@@ -74,7 +76,7 @@
             android:scaleType="centerInside"
             android:src="@mipmap/ic_news"
             android:visibility="gone"
-            app:tint="@color/items_main" />
+            app:tint="@color/items_over_primary_color" />
 
         <RelativeLayout
             android:id="@+id/view_happening_now"

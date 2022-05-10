@@ -10,6 +10,6 @@
         android:title="@string/share_band"
         android:orderInCategory="100"
         android:visible="true"
-        app:iconTint="@color/items_main"/>
+        app:iconTint="@color/items_over_primary_color"/>
 
 </menu>

@@ -23,4 +23,6 @@ public interface MainView extends BaseView {
     void showSendNewsButton();
 
     void showProgressHappeningNow(boolean show);
+
+    void showEventDataNotPreparedView(boolean show);
 }

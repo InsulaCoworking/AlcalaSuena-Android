@@ -110,7 +110,6 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener, 
 
             case R.id.btn_about_insula:
                 startActivity(new Intent(getActivity(), AboutInsulaActivity.class));
-//                RealmBrowser.startRealmModelsActivity(getActivity(), Realm.getDefaultConfiguration());
                 break;
 
 

@@ -3,6 +3,9 @@ package com.triskelapps.alcalasuena.model;
 import android.net.Uri;
 import android.webkit.URLUtil;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.triskelapps.alcalasuena.api.common.ApiClient;
 
 import java.io.Serializable;
@@ -10,14 +13,13 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import io.realm.RealmObject;
-import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by julio on 2/06/17.
  */
 
-public class News extends RealmObject implements Serializable {
+@Entity
+public class News implements Serializable {
 
     public static final String ID = "id";
     public static final String TITLE = "title";
@@ -33,7 +35,8 @@ public class News extends RealmObject implements Serializable {
     public static final String END_DATE_POPUP_TIME = "endDatePopupTime";
     public static final String CADUCITY_DATE_TIME = "caducityDateTime";
 
-    @PrimaryKey private int id;
+    @PrimaryKey
+    private int id;
     private String title;
     private String text;
     private String image;

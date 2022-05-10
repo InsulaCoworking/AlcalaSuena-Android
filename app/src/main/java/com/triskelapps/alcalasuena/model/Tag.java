@@ -1,27 +1,32 @@
 package com.triskelapps.alcalasuena.model;
 
-import io.realm.RealmObject;
-import io.realm.annotations.PrimaryKey;
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 
 /**
  * Music style
  * Created by julio on 23/05/17.
  */
 
-public class Tag extends RealmObject {
-
-
-    public static final String ID = "id";
-    public static final String ACTIVE = "active";
+@Entity
+public class Tag {
 
     @PrimaryKey
+    @NonNull
     private String id;
     private String name;
     private String description;
     private String color;
-    private boolean active = true;
+
+    @Ignore
+    private boolean active;
 
 
+    @Ignore
     public Tag(String id, String name, String color) {
         this.id = id;
         this.name = name;
@@ -56,19 +61,19 @@ public class Tag extends RealmObject {
         this.color = color;
     }
 
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

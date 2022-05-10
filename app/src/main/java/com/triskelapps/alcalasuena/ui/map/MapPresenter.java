@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.location.Location;
 import android.net.Uri;
 
+import com.triskelapps.alcalasuena.App;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.interactor.VenueInteractor;
@@ -24,7 +25,6 @@ import io.nlopez.smartlocation.SmartLocation;
 public class MapPresenter extends BasePresenter {
 
     private final MapView view;
-    private final VenueInteractor venuesInteractor;
     private Location mLastLocation;
     private Venue lastVenueSelected;
 
@@ -45,7 +45,6 @@ public class MapPresenter extends BasePresenter {
         super(context, view);
 
         this.view = view;
-        venuesInteractor = new VenueInteractor(context, view);
 
     }
 
@@ -64,7 +63,7 @@ public class MapPresenter extends BasePresenter {
 
     public void refreshData() {
 
-        List<Venue> venues = venuesInteractor.getVenuesDB();
+        List<Venue> venues = App.getDB().venueDao().getAll();
         view.showVenues(venues);
 
     }

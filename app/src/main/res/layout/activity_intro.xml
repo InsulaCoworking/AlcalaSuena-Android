@@ -67,7 +67,7 @@
             android:layout_weight="1"
             android:layout_toRightOf="@+id/pageIndicatorView"
             android:fontFamily="@font/title"
-            android:background="@drawable/bg_frame_accent"
+            android:background="@drawable/bg_frame_over_primary"
             android:layout_centerVertical="true"
             android:text="@string/enter_excl"
             android:layout_marginRight="5dp"

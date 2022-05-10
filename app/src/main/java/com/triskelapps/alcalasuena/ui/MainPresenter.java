@@ -187,10 +187,10 @@ public class MainPresenter extends BasePresenter {
     private void checkDataVersionAndUpdate() {
 
         // TODO REMOVE
-//        if (true) {
-//            updateBandsFromApi();
-//            return;
-//        }
+        if (true) {
+            updateBandsFromApi();
+            return;
+        }
 
         settingsInteractor.getLastDataVersion(new SettingsInteractor.SettingsIntValueCallback() {
             @Override
@@ -236,7 +236,6 @@ public class MainPresenter extends BasePresenter {
             @Override
             public void onResponse(List<Venue> venues) {
 
-                EventInteractor.resetStarredState();
                 sendUpdateDataBroadcast();
 
                 Log.i(TAG, "---> update end");
@@ -262,9 +261,16 @@ public class MainPresenter extends BasePresenter {
     public void refreshData() {
 
         events.clear();
-        events.addAll(eventInteractor.getEventsDB(filter));
 
-//        List<Event> events = eventInteractor.getEventsDB(filter);
+        if (App.getDB().venueDao().getAll().isEmpty()) {
+            view.showEvents(events, "");
+            view.showEventDataNotPreparedView(true);
+            return;
+        } else {
+            view.showEventDataNotPreparedView(false);
+        }
+
+        events.addAll(eventInteractor.getEventsDB(filter));
 
         String emptyMessage = null;
         if (events.isEmpty()) {
@@ -316,12 +322,12 @@ public class MainPresenter extends BasePresenter {
     }
 
     public void onEventFavouriteClicked(int idEvent) {
-        eventInteractor.toggleFavState(idEvent, false);
+        eventInteractor.toggleFavState(idEvent);
         refreshData();
     }
 
     public void onEventClick(Event event) {
-        if (event.getBands().size() == 1) {
+        if (event.mustShowBandInfo()) {
             context.startActivity(BandInfoPresenter.newBandInfoActivity(context, event.getBands().get(0).getId()));
         } else {
             EventInfoPresenter.launchEventInfoActivity(context, event.getId());
@@ -422,12 +428,9 @@ public class MainPresenter extends BasePresenter {
         AlertDialog.Builder ab = new AlertDialog.Builder(context);
         ab.setTitle(R.string.add_favs_events);
         ab.setMessage(text);
-        ab.setPositiveButton(R.string.add, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                eventInteractor.setFavEvents(idsFavsEvents);
-                refreshData();
-            }
+        ab.setPositiveButton(R.string.add, (dialog, which) -> {
+            eventInteractor.setFavEvents(idsFavsEvents);
+            refreshData();
         });
         ab.setNegativeButton(R.string.no_thanks, null);
         ab.show();
@@ -512,7 +515,7 @@ public class MainPresenter extends BasePresenter {
     }
 
     private Venue searchClosestVenue(Location location) {
-        List<Venue> venues = venueInteractor.getVenuesDB();
+        List<Venue> venues = App.getDB().venueDao().getAll();
         double closestDistance = Double.MAX_VALUE;
         int indexVenueClosestDistance = -1;
         for (int i = 0; i < venues.size(); i++) {

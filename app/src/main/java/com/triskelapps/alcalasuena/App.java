@@ -8,11 +8,13 @@ import android.preference.PreferenceManager;
 
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
+import androidx.room.Room;
 
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.jakewharton.picasso.OkHttp3Downloader;
+import com.squareup.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
+import com.triskelapps.alcalasuena.database.AppDatabase;
 import com.triskelapps.alcalasuena.interactor.BandInteractor;
 import com.triskelapps.alcalasuena.interactor.VenueInteractor;
 import com.triskelapps.alcalasuena.util.NotificationHelper;
@@ -20,9 +22,6 @@ import com.triskelapps.alcalasuena.util.update_app.UpdateAppManager;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import io.realm.Realm;
-import io.realm.RealmConfiguration;
 
 /**
  * Created by julio on 17/06/16.
@@ -61,6 +60,8 @@ public class App extends MultiDexApplication {
     public static final String TOPIC_NEWS_TEST = "test_news3";
 
 
+    private static AppDatabase db;
+    private static final String DB_NAME = "app_db.sqlite";
 
     @Override
     public void onCreate() {
@@ -68,16 +69,21 @@ public class App extends MultiDexApplication {
 
         MultiDex.install(this);
 
+        db = Room.databaseBuilder(getApplicationContext(),
+                AppDatabase.class, DB_NAME)
+//                .addMigrations(DBMigrationBase.MIGRATION_5_6)
+                .fallbackToDestructiveMigration()
+                .allowMainThreadQueries()
+                .build();
+
         FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(DebugHelper.SWITCH_CRASH_REPORT_ENABLED);
 
         NotificationHelper.with(this).initializeOreoChannelsNotification();
 
-        configureRealm();
-
         Picasso.Builder builder = new Picasso.Builder(this);
         builder.downloader(new OkHttp3Downloader(this, Integer.MAX_VALUE));
         Picasso built = builder.build();
-//        built.setIndicatorsEnabled(true);
+        built.setIndicatorsEnabled(false);
         built.setLoggingEnabled(true);
         Picasso.setSingletonInstance(built);
 
@@ -100,6 +106,7 @@ public class App extends MultiDexApplication {
 //            throw new RuntimeException("esprueba");
 //        }
 
+
     }
 
     private void initializeDataFirstTime() {
@@ -112,28 +119,10 @@ public class App extends MultiDexApplication {
 
     }
 
-
-    private void configureRealm() {
-
-        Realm.init(this);
-
-        RealmConfiguration.Builder configBuilder = new RealmConfiguration.Builder()
-//                .name("myrealm.realm")
-//                .encryptionKey(getKey())
-                .schemaVersion(MyRealmMigration.VERSION)
-//                .modules(new MySchemaModule())
-//                .migration(new MyRealmMigration())
-                .deleteRealmIfMigrationNeeded()
-                ;
-
-        if (BuildConfig.DEBUG) {
-//            configBuilder.deleteRealmIfMigrationNeeded();
-        }
-
-        RealmConfiguration config = configBuilder.build();
-
-        Realm.setDefaultConfiguration(config);
+    public static AppDatabase getDB() {
+        return db;
     }
+
 
     public static void openAppInGooglePlay(Context context) {
         Intent directPlayIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL_DIRECT_GOOGLE_PLAY_APP.replace(".debug", "")));

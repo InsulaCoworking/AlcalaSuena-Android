@@ -3,6 +3,7 @@ package com.triskelapps.alcalasuena.ui.venues;
 import android.content.Context;
 import android.content.Intent;
 
+import com.triskelapps.alcalasuena.App;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.interactor.VenueInteractor;
 import com.triskelapps.alcalasuena.model.Venue;
@@ -19,7 +20,6 @@ public class VenuesPresenter extends BasePresenter {
 
     private static final String PREF_INTRO_VENUES_FIRST_TIME = "pref_intro_venues_first_time";
     private final VenuesView view;
-    private final VenueInteractor venueInteractor;
 
     public static Intent newVenuesActivity(Context context) {
 
@@ -38,7 +38,6 @@ public class VenuesPresenter extends BasePresenter {
         super(context, view);
 
         this.view = view;
-        venueInteractor = new VenueInteractor(context, view);
 
     }
 
@@ -58,7 +57,7 @@ public class VenuesPresenter extends BasePresenter {
 
     public void refreshData() {
 
-        List<Venue> venues = venueInteractor.getVenuesDB();
+        List<Venue> venues = App.getDB().venueDao().getAll();
         view.showVenues(venues);
 
     }

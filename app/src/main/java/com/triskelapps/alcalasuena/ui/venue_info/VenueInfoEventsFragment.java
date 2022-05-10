@@ -40,10 +40,6 @@ public class VenueInfoEventsFragment extends Fragment {
 
         recyclerEventsVenue = (RecyclerView) layout.findViewById(R.id.recycler_events_venue);
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        recyclerEventsVenue.setLayoutManager(layoutManager);
-
-
         return layout;
     }
 

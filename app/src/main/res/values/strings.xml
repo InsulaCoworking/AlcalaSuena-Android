@@ -23,7 +23,6 @@
     <string name="venues">Escenarios</string>
     <string name="about_alcalasuena">#AlcalaSuena</string>
     <string name="developed_by_insula">App y web desarrolladas como software libre por coworkers de la Ínsula Coworking</string>
-    <string name="see_on_github">Ver repositorios en GitHub</string>
     <string name="see_dossier">Ver dossier</string>
     <string name="favourites">Favoritos</string>
     <string name="no_favourites">No has marcado de momento ningún evento como favorito para este día.\n¡A qué esperas! Pulsa la estrella y hazte tu lista ;)</string>
@@ -126,5 +125,8 @@
     <string name="app_name_year">AlcaláSuena 2022</string>
     <string name="date_time_info_format">Día: %s\nHora: %s\nDuración: %s</string>
     <string name="buy_ticekts">Comprar entradas</string>
+    <string name="data_not_prepared">Los horarios de los conciertos se están preparando todavía, avisaremos cuando estén listos.\n\n¡Lo que sí está lista es la información de las bandas que participan!\nPulsa el siguiente botón para verlas.</string>
+    <string name="see_bands">Ver bandas</string>
+    <string name="no_venues_data">Los datos de escenario se están preparando. ¡Te avisaremos cuando estén listos!</string>
 
 </resources>

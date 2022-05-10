@@ -32,7 +32,7 @@
             android:id="@+id/tabs_venue_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
+            android:background="@color/colorPrimary"
             app:tabGravity="fill"
             app:tabMode="fixed"
             app:tabSelectedTextColor="@color/tab_selected"

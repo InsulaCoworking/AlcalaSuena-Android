@@ -82,7 +82,7 @@ public class EventInfoPresenter extends BasePresenter {
     }
 
     public void onEventFavouriteClicked(int idEvent) {
-        eventInteractor.toggleFavState(idEvent, false);
+        eventInteractor.toggleFavState(idEvent);
         refreshData();
     }
 }

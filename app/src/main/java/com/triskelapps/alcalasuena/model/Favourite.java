@@ -1,15 +1,20 @@
 package com.triskelapps.alcalasuena.model;
 
-import io.realm.RealmObject;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 /**
  * Created by julio on 25/05/17.
  */
 
-public class Favourite extends RealmObject {
+@Entity
+public class Favourite {
 
     public static final String STARRED = "starred";
     public static final String ID_EVENT = "idEvent";
+
+    @PrimaryKey(autoGenerate = true)
+    private int id;
 
     private int idEvent;
     private boolean starred;
@@ -29,5 +34,13 @@ public class Favourite extends RealmObject {
 
     public void setIdEvent(int idEvent) {
         this.idEvent = idEvent;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

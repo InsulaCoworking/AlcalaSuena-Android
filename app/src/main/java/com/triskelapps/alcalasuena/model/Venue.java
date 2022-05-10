@@ -1,30 +1,33 @@
 package com.triskelapps.alcalasuena.model;
 
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import com.triskelapps.alcalasuena.api.common.ApiClient;
 
 import java.io.Serializable;
+import java.util.List;
 
-import io.realm.RealmList;
-import io.realm.RealmObject;
-import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by julio on 23/05/17.
  */
 
-public class Venue extends RealmObject implements Serializable {
+@Entity
+public class Venue implements Serializable {
 
-    public static final String ID = "id";
-
-
-    @PrimaryKey private int id;
+    @PrimaryKey
+    private int id;
     private String name;
     private String description;
     private String image;
     private String address;
     private double latitude;
     private double longitude;
-    private RealmList<Event> events;
+
+    @Ignore
+    private List<Event> events;
 
 
     public String getImageUrlFull() {
@@ -98,11 +101,11 @@ public class Venue extends RealmObject implements Serializable {
         this.longitude = longitude;
     }
 
-    public RealmList<Event> getEvents() {
+    public List<Event> getEvents() {
         return events;
     }
 
-    public void setEvents(RealmList<Event> events) {
+    public void setEvents(List<Event> events) {
         this.events = events;
     }
 }

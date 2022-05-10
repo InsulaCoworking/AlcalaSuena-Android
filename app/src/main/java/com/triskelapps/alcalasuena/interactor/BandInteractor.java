@@ -6,19 +6,20 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.triskelapps.alcalasuena.App;
 import com.triskelapps.alcalasuena.api.Api;
 import com.triskelapps.alcalasuena.base.BaseInteractor;
 import com.triskelapps.alcalasuena.base.BaseView;
 import com.triskelapps.alcalasuena.model.Band;
 import com.triskelapps.alcalasuena.model.Tag;
+import com.triskelapps.alcalasuena.model.TagState;
 import com.triskelapps.alcalasuena.util.Util;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import io.realm.Case;
-import io.realm.Realm;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -44,17 +45,20 @@ public class BandInteractor extends BaseInteractor {
 
     public void initializeBandsFirstTime() {
         Log.i(TAG, "initializeBandsFirstTime: start");
-        String filePathBands = "bands.json";
+
+        final Gson gson = new GsonBuilder().create();
+
         try {
 
-            final String jsonTotal = Util.getStringFromAssets(context, filePathBands);
-
-            final Gson gson = new GsonBuilder().create();
-
+            final String jsonTotal = Util.getStringFromAssets(context, "bands.json");
             Type listType = new TypeToken<List<Band>>() {}.getType();
             final List<Band> bands = gson.fromJson(jsonTotal, listType);
-
             storeBands(bands);
+
+            final String jsonTags = Util.getStringFromAssets(context, "tags.json");
+            Type listTypeTags = new TypeToken<List<Tag>>() {}.getType();
+            final List<Tag> tags = gson.fromJson(jsonTags, listTypeTags);
+            storeTags(tags);
 
             Log.i(TAG, "initializeBandsFirstTime: end");
 
@@ -65,18 +69,6 @@ public class BandInteractor extends BaseInteractor {
 
     }
 
-
-    public static List<Band> getBandsDB() {
-        return Realm.getDefaultInstance().where(Band.class).findAll();
-    }
-
-    public static List<Band> getBandsDB(String nameFilter) {
-        return Realm.getDefaultInstance().where(Band.class).contains(Band.NAME, nameFilter, Case.INSENSITIVE).findAll();
-    }
-
-    public static Band getBandDB(int idBand) {
-        return Realm.getDefaultInstance().where(Band.class).equalTo(Band.ID, idBand).findFirst();
-    }
 
     public void getBands(final BandsCallback callback) {
 
@@ -113,77 +105,19 @@ public class BandInteractor extends BaseInteractor {
     }
 
     private void storeBands(List<Band> bands) {
-        Realm realm = Realm.getDefaultInstance();
-
-        realm.beginTransaction();
-        realm.where(Band.class).findAll().deleteAllFromRealm();
-        realm.where(Tag.class).findAll().deleteAllFromRealm();
-        realm.commitTransaction();
-
-        realm.beginTransaction();
-        realm.insertOrUpdate(bands);
-        realm.commitTransaction();
+        App.getDB().bandDao().deleteAll();
+        bands.stream().forEach(band -> band.setIdTag(band.getTag().getId()));
+        App.getDB().bandDao().insertAll(bands);
     }
 
+    private void storeTags(List<Tag> tags) {
+        App.getDB().tagDao().deleteAll();
+        App.getDB().tagDao().insertAll(tags);
 
-    // TAGS of bands
-    public List<Tag> getTags() {
-        return Realm.getDefaultInstance().where(Tag.class).findAll();
-    }
 
-//    public void initializeMockTags() {
-//        Realm realm = Realm.getDefaultInstance();
-//        List<Tag> tags = new ArrayList<>();
-//        tags.add(new Tag(1, "Jazz", "#f67800"));
-//        tags.add(new Tag(2, "Blues", "#f678bb"));
-//        tags.add(new Tag(3, "Rock/Pop/Indie", "#007800"));
-//        tags.add(new Tag(4, "Clasica", "#f66341"));
-//
-//        realm.beginTransaction();
-//        realm.insertOrUpdate(tags);
-//        realm.commitTransaction();
-//    }
-
-    public void toggleTagState(String idTag) {
-
-        Realm realm = Realm.getDefaultInstance();
-        Tag tag = realm.where(Tag.class).equalTo(Tag.ID, idTag).findFirst();
-
-        realm.beginTransaction();
-        tag.setActive(!tag.isActive());
-        realm.commitTransaction();
-    }
-
-    public void setAllTagsActive() {
-
-        Realm realm = Realm.getDefaultInstance();
-        List<Tag> tags = realm.where(Tag.class).findAll();
-
-        realm.beginTransaction();
-        for (Tag tag : tags) {
-            tag.setActive(true);
-        }
-        realm.commitTransaction();
-    }
-
-    public boolean areAllTagsActive() {
-        return Realm.getDefaultInstance().where(Tag.class).equalTo(Tag.ACTIVE, false).findAll().isEmpty();
-    }
-
-    public boolean areAllTagsInactive() {
-        return Realm.getDefaultInstance().where(Tag.class).equalTo(Tag.ACTIVE, true).findAll().isEmpty();
-    }
-
-    public void setAllTagsInactiveUnlessThisOne(String idTag) {
-
-        List<Tag> tags = getTags();
-
-        Realm realm = Realm.getDefaultInstance();
-        realm.beginTransaction();
-        for (Tag tag : tags) {
-            tag.setActive(tag.getId().equals(idTag));
-        }
-        realm.commitTransaction();
+        List<TagState> tagsState = tags.stream().map(tag -> new TagState(tag.getId())).collect(Collectors.toList());
+        App.getDB().tagStateDao().deleteAll();
+        App.getDB().tagStateDao().insertAll(tagsState);
     }
 
     private Api getApi() {

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Patterns;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.triskelapps.alcalasuena.App;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.interactor.BandInteractor;
@@ -30,7 +31,7 @@ public class BandInfoPresenter extends BasePresenter {
     private final BandInfoView view;
     private final BandInteractor bandInteractor;
     private final EventInteractor eventInteractor;
-    private int idBand;
+    private Band band;
 
     public static Intent newBandInfoActivity(Context context, int idBand) {
 
@@ -55,12 +56,12 @@ public class BandInfoPresenter extends BasePresenter {
 
     public void onCreate(Intent intent) {
 
-        idBand = intent.getIntExtra(EXTRA_BAND_ID, -1);
+        int idBand = intent.getIntExtra(EXTRA_BAND_ID, -1);
         if (idBand == -1) {
             throw new IllegalArgumentException("Band info must pass a idBand argument");
         }
 
-        Band band = bandInteractor.getBandDB(idBand);
+        band = App.getDB().bandDao().getBandById(idBand);
 
         Bundle bundle = new Bundle();
         bundle.putString(FirebaseAnalytics.Param.ITEM_ID, band.getId()+"");
@@ -77,8 +78,7 @@ public class BandInfoPresenter extends BasePresenter {
 
     public void refreshData() {
 
-        Band band = bandInteractor.getBandDB(idBand);
-        List<Event> eventsBand = eventInteractor.getEventsForBand(idBand);
+        List<Event> eventsBand = eventInteractor.getEventsForBand(band.getId());
         view.showBand(band, eventsBand);
 
         configureSocialItems(band);
@@ -121,18 +121,16 @@ public class BandInfoPresenter extends BasePresenter {
     }
 
     public void onEventFavouriteClicked(int idEvent) {
-        eventInteractor.toggleFavState(idEvent, false);
+        eventInteractor.toggleFavState(idEvent);
         refreshData();
     }
 
     public void onImageBandClick() {
 
-        Band band = bandInteractor.getBandDB(idBand);
         context.startActivity(ImageFullActivity.newImageFullActivity(context, band.getImageCoverUrlFull().toString()));
     }
 
     public void onShareBandClick() {
-        Band band = bandInteractor.getBandDB(idBand);
         String urlBandWeb = band.getUrlBandWeb();
         String text = String.format(context.getString(R.string.send_band_text), urlBandWeb);
 

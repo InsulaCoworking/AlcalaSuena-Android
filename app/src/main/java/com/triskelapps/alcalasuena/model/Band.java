@@ -5,35 +5,40 @@ import android.webkit.URLUtil;
 
 import com.triskelapps.alcalasuena.api.common.ApiClient;
 
-import io.realm.RealmList;
-import io.realm.RealmObject;
-import io.realm.annotations.PrimaryKey;
-
 import static android.webkit.URLUtil.isValidUrl;
+
+import androidx.room.Embedded;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+import java.util.List;
 
 /**
  * Created by julio on 18/05/17.
  */
 
-public class Band extends RealmObject {
+@Entity
+public class Band {
 
     public static final String URL_BAND_WEB = "http://www.alcalasuena.es/bands/";
 
-    public static final String NAME = "name";
-    public static final String ID = "id";
-
-    @PrimaryKey private int id;
-    private String genre;
-    private Tag tag;
-    private String profile_image;
-    private String description;
+    @PrimaryKey
+    private int id;
     private String name;
+    private String description;
+    private String genre;
+    private String profile_image;
     private String embed_code;
     private String band_image;
     private int num_members;
     private String city;
     private String facebook_link, twitter_link, youtube_link, bandcamp_link, presskit_link, webpage_link, instagram_link, spotify_link;
-    private RealmList<Event> events;
+
+    private String idTag;
+
+    @Ignore
+    private Tag tag;
 
     public Uri getImageLogoUrlFull() {
         if (getProfile_image() == null) {
@@ -120,9 +125,8 @@ public class Band extends RealmObject {
         return name;
     }
 
-    public Band setName(String name) {
+    public void setName(String name) {
         this.name = name;
-        return this;
     }
 
     public String getEmbed_code() {
@@ -210,14 +214,6 @@ public class Band extends RealmObject {
         return "ClassPojo [id = " + id + ", genre = " + genre + ", tag = " + tag + ", profile_image = " + profile_image + ", description = " + description + ", name = " + name + ", embed_code = " + embed_code + ", band_image = " + band_image + ", num_members = " + num_members + ", city = " + city + "]";
     }
 
-    public RealmList<Event> getEvents() {
-        return events;
-    }
-
-    public void setEvents(RealmList<Event> events) {
-        this.events = events;
-    }
-
     public String getPresskit_link() {
         if (isValidUrl(presskit_link)) {
             return presskit_link;
@@ -251,5 +247,13 @@ public class Band extends RealmObject {
 
     public void setWebpage_link(String webpage_link) {
         this.webpage_link = webpage_link;
+    }
+
+    public String getIdTag() {
+        return idTag;
+    }
+
+    public void setIdTag(String idTag) {
+        this.idTag = idTag;
     }
 }

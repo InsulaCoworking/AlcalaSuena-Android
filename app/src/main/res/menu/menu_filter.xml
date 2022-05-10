@@ -10,5 +10,5 @@
         android:title="@string/filter"
         android:orderInCategory="200"
         android:visible="true"
-        app:iconTint="@color/items_main" />
+        app:iconTint="@color/items_over_primary_color" />
 </menu>

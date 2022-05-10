@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.triskelapps.alcalasuena.ui.venue_info.VenueInfoMeetFragment">
 
     <ScrollView
@@ -30,9 +31,10 @@
                 android:text="Jazz"
                 android:padding="5dp" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_how_to_arrive"
                 style="@style/TextButton"
+                android:textColor="@color/text_over_bg"
                 android:text="@string/how_to_arrive"
                 android:layout_marginTop="15dp"/>
 

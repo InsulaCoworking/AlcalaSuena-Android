@@ -1,16 +1,17 @@
 package com.triskelapps.alcalasuena.model;
 
-import io.realm.RealmObject;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 /**
  * Created by julio on 25/05/17.
  */
 
-public class NewsState extends RealmObject {
+@Entity
+public class NewsState {
 
-    public static final String ID_NEWS = "idNews";
-    public static final String READ = "read";
-    public static final String SEEN = "seen";
+    @PrimaryKey(autoGenerate = true)
+    private int id;
 
     private int idNews;
     private Boolean read;
@@ -38,5 +39,13 @@ public class NewsState extends RealmObject {
 
     public void setSeen(Boolean seen) {
         this.seen = seen;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

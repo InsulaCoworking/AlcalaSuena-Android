@@ -3,16 +3,16 @@ package com.triskelapps.alcalasuena.model;
 
 import android.content.Context;
 import android.net.Uri;
-import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.api.common.ApiClient;
-import com.triskelapps.alcalasuena.util.DateUtils;
 
-import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -21,16 +21,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import io.realm.RealmList;
-import io.realm.RealmObject;
-import io.realm.annotations.Ignore;
-import io.realm.annotations.PrimaryKey;
-
 /**
  * Created by julio on 23/05/17.
  */
 
-public class Event extends RealmObject implements Comparable {
+@Entity
+public class Event implements Comparable {
 
     public static final int TIME_HOUR_MIDNIGHT_SAFE_THRESHOLD = 5; // After 5:00 is "next day"
     public static final int MIN_DISTANCE_TO_VENUE_HAPPENING_NOW = 100; // in meters
@@ -56,19 +52,28 @@ public class Event extends RealmObject implements Comparable {
     private String day;
     private String time;
     private int duration;
-    @Ignore
-    @SerializedName("bands")
-    private List<Integer> bandsIds;
     private String image;
+
     @SerializedName("tickets_url")
     private String ticketsUrl;
 
-    // Processed fields
-    private Venue venue;
-    private boolean starred;
-    private long timeHourMidnightSafe;
-    @Ignore private transient List<Band> bands;
     private String bandsIdsStr;
+
+    @Ignore
+    @SerializedName("bands")
+    private List<Integer> bandsIds;
+
+    private int idVenue;
+
+
+    // Processed fields
+    private long timeHourMidnightSafe;
+
+    @Ignore private boolean starred;
+    @Ignore private Venue venue;
+    @Ignore private transient List<Band> bands;
+
+
 
     public String getDayShareFormat() {
         try {
@@ -227,7 +232,7 @@ public class Event extends RealmObject implements Comparable {
 
     public void addBand(Band band) {
         if (bands == null) {
-            bands = new RealmList<>();
+            bands = new ArrayList<>();
         }
         bands.add(band);
     }
@@ -271,5 +276,17 @@ public class Event extends RealmObject implements Comparable {
             e.printStackTrace();
             return getDay() + "\n" + getTime() + "\n" + getDurationFormatted(context);
         }
+    }
+
+    public int getIdVenue() {
+        return idVenue;
+    }
+
+    public void setIdVenue(int idVenue) {
+        this.idVenue = idVenue;
+    }
+
+    public boolean mustShowBandInfo() {
+        return getBands() != null && getBands().size() == 1;
     }
 }

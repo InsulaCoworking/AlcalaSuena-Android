@@ -2,14 +2,12 @@ package com.triskelapps.alcalasuena.ui.venue_info;
 
 import android.content.Context;
 import android.graphics.Color;
-import androidx.core.graphics.ColorUtils;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.squareup.picasso.Picasso;
@@ -22,7 +20,6 @@ import com.triskelapps.alcalasuena.views.CircleTransform;
 import java.util.List;
 
 import ca.barrenechea.widget.recyclerview.decoration.StickyHeaderAdapter;
-import io.realm.RealmList;
 
 /**
  * Created by julio on 7/07/16.
@@ -74,8 +71,9 @@ public class EventsVenueAdapter extends RecyclerView.Adapter<EventsVenueAdapter.
                 .into(holder.binding.imgBand);
 
         holder.binding.tvEventTime.setText(event.getTimeFormatted());
-        holder.binding.tvEventVenue.setText(event.getVenue().getName());
         holder.binding.imgStarred.setSelected(event.isStarred());
+
+        holder.binding.tvEventVenue.setVisibility(View.GONE);
 
 
         Band band1 = bands.get(0);

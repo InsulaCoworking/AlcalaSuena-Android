@@ -27,13 +27,11 @@ public class VenueInfoActivity extends BaseActivity implements VenueInfoView, Ta
     private TabLayout tabsVenueInfo;
     private Venue venue;
     private List<Event> eventsVenue;
-    private FrameLayout frameVenueInfo;
     private int indexNextEventFromNow;
 
     private void findViews() {
         tvVenueName = (TextView) findViewById(R.id.tv_venue_name);
         tabsVenueInfo = (TabLayout) findViewById(R.id.tabs_venue_info);
-        frameVenueInfo = (FrameLayout) findViewById(R.id.frame_venue_info);
     }
 
     @Override

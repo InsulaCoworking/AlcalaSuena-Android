@@ -27,19 +27,15 @@ public interface Api {
     @GET("bands")
     Observable<List<Band>> getBands();
 
-    @GET("https://triskelapps.com/static/venues.json")
+    @GET("https://triskelapps.es/apps/alcalasuena/api/v2/venues/")
+//    @GET("venues")
     Observable<List<Venue>> getVenues();
-
-    @GET("settings/app_version_market")
-    Observable<String> getAppVersionInMarket();
 
     @GET("settings/last_data_version")
     Observable<String> getLastDataVersion();
 
-
     @GET("news")
     Observable<List<News>> getNews();
-
 
     @Multipart
     @POST("https://alcalasuena.es/news/add/")

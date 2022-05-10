@@ -27,7 +27,9 @@ import com.triskelapps.alcalasuena.DebugHelper;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BaseActivity;
 import com.triskelapps.alcalasuena.base.BasePresenter;
+import com.triskelapps.alcalasuena.databinding.ActivityMainBinding;
 import com.triskelapps.alcalasuena.model.Event;
+import com.triskelapps.alcalasuena.ui.bands.BandsPresenter;
 import com.triskelapps.alcalasuena.ui.events.EventsAdapter;
 import com.triskelapps.alcalasuena.ui.news.send.SendNewsActivity;
 import com.triskelapps.alcalasuena.views.animation_adapter.AlphaInAnimationAdapter;
@@ -35,68 +37,33 @@ import com.triskelapps.alcalasuena.views.animation_adapter.AnimationAdapter;
 
 import java.util.List;
 
-public class MainActivity extends BaseActivity implements MainView, TabLayout.OnTabSelectedListener, EventsAdapter.OnItemClickListener, View.OnClickListener {
+public class MainActivity extends BaseActivity implements MainView, TabLayout.OnTabSelectedListener, EventsAdapter.OnItemClickListener {
 
-    private RecyclerView recyclerEvents;
-    private EventsAdapter adapter;
-    private TabLayout tabsDays;
     private MainPresenter presenter;
-    private DrawerLayout drawerLayout;
+    private ActivityMainBinding binding;
     private MenuItem itemFav;
-    private TextView tvEmptyMessage;
-    private TextView btnShareFavs;
+    private EventsAdapter adapter;
     private AlphaInAnimationAdapter animationAdapter;
-    private View viewBtnShareFavs;
-    private View btnSendNews;
-    private View btnHappeningNow;
-    private View progressHappeningNow;
 
-    private void findViews() {
-        tabsDays = (TabLayout) findViewById(R.id.tabs_days);
-        recyclerEvents = (RecyclerView) findViewById(R.id.recycler_events);
-        tvEmptyMessage = (TextView) findViewById(R.id.tv_empty_message);
-        btnShareFavs = (TextView) findViewById(R.id.btn_share_favs);
-        viewBtnShareFavs = findViewById(R.id.view_btn_share_favs);
-
-
-        btnSendNews = findViewById(R.id.btn_send_news);
-        btnHappeningNow = findViewById(R.id.btn_happening_now);
-        progressHappeningNow = findViewById(R.id.progress_happening_now);
-
-        btnShareFavs.setOnClickListener(this);
-
-        btnSendNews.setOnClickListener(this);
-        btnHappeningNow.setOnClickListener(this);
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
         presenter = MainPresenter.newInstance(this, this);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        findViews();
-
-//        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-//        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerEvents.setLayoutManager(layoutManager);
-
-//        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,
-//                layoutManager.getOrientation());
-//        recyclerBands.addItemDecoration(dividerItemDecoration);
-
-//        SpaceItemDecoration spaceItemDecoration = new SpaceItemDecoration(20);
-//        recyclerBands.addItemDecoration(spaceItemDecoration);
+        binding.contentMain.recyclerEvents.setLayoutManager(layoutManager);
 
         configureToolbar();
         configureDrawerLayout();
         configureToolbarBackArrowBehaviour();
 
-//        setImageTitle(R.mipmap.img_title_alcalasuena);
+        configureClickListeners();
 
+        TabLayout tabsDays = binding.contentMain.tabsDays;
         tabsDays.addTab(tabsDays.newTab().setCustomView(getTabView(0)));
         tabsDays.addTab(tabsDays.newTab().setCustomView(getTabView(1)));
         tabsDays.addTab(tabsDays.newTab().setCustomView(getTabView(2)));
@@ -111,6 +78,14 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
 
     }
 
+    private void configureClickListeners() {
+
+        binding.contentMain.btnShareFavs.setOnClickListener(v -> presenter.onShareFavsButtonClicked());
+        binding.btnSendNews.setOnClickListener(v -> startActivity(new Intent(this, SendNewsActivity.class)));
+        binding.btnHappeningNow.setOnClickListener(v -> checkLocationPermission());
+
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -120,7 +95,7 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
     @Override
     protected void onStop() {
         super.onStop();
-        drawerLayout.closeDrawer(Gravity.LEFT);
+        binding.drawerLayout.closeDrawer(Gravity.LEFT);
         presenter.onStop();
     }
 
@@ -137,14 +112,14 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
             @Override
             public void onClick(View v) {
 
-                if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
-                    drawerLayout.closeDrawer(Gravity.LEFT);
+                if (binding.drawerLayout.isDrawerOpen(Gravity.LEFT)) {
+                    binding.drawerLayout.closeDrawer(Gravity.LEFT);
                 } else {
 
-                    if (drawerLayout.isDrawerOpen(Gravity.RIGHT)) {
-                        drawerLayout.closeDrawer(Gravity.RIGHT);
+                    if (binding.drawerLayout.isDrawerOpen(Gravity.RIGHT)) {
+                        binding.drawerLayout.closeDrawer(Gravity.RIGHT);
                     } else {
-                        drawerLayout.openDrawer(Gravity.LEFT);
+                        binding.drawerLayout.openDrawer(Gravity.LEFT);
                     }
 
                 }
@@ -162,16 +137,15 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
 
     private void refreshShareFavsVisibility() {
         if (itemFav != null) {
-            viewBtnShareFavs.setVisibility(itemFav.isChecked() && adapter.getItemCount() > 0 ? View.VISIBLE : View.GONE);
+            binding.contentMain.viewBtnShareFavs.setVisibility(itemFav.isChecked() && adapter.getItemCount() > 0 ? View.VISIBLE : View.GONE);
         }
     }
 
     private void configureDrawerLayout() {
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawerLayout.addDrawerListener(toggle);
+                this, binding.drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        binding.drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
 //        toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.items_main));
@@ -199,23 +173,6 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
         presenter.onEventFavouriteClicked(idEvent);
     }
 
-    @Override
-    public void onClick(View v) {
-
-        switch (v.getId()) {
-            case R.id.btn_share_favs:
-                presenter.onShareFavsButtonClicked();
-                break;
-
-            case R.id.btn_send_news:
-                startActivity(new Intent(this, SendNewsActivity.class));
-                break;
-
-            case R.id.btn_happening_now:
-                checkLocationPermission();
-                break;
-        }
-    }
 
     private void checkLocationPermission() {
 
@@ -261,10 +218,10 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
 
     @Override
     public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
-            drawerLayout.closeDrawer(Gravity.LEFT);
-        } else if (drawerLayout.isDrawerOpen(Gravity.RIGHT)) {
-            drawerLayout.closeDrawer(Gravity.RIGHT);
+        if (binding.drawerLayout.isDrawerOpen(Gravity.LEFT)) {
+            binding.drawerLayout.closeDrawer(Gravity.LEFT);
+        } else if (binding.drawerLayout.isDrawerOpen(Gravity.RIGHT)) {
+            binding.drawerLayout.closeDrawer(Gravity.RIGHT);
         }  else {
             super.onBackPressed();
         }
@@ -275,15 +232,15 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
         switch (item.getItemId()) {
             case R.id.menuItem_filter:
 
-                if (drawerLayout.isDrawerOpen(Gravity.RIGHT)) {
-                    drawerLayout.closeDrawer(Gravity.RIGHT);
+                if (binding.drawerLayout.isDrawerOpen(Gravity.RIGHT)) {
+                    binding.drawerLayout.closeDrawer(Gravity.RIGHT);
                 } else {
 
-                    if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
-                        drawerLayout.closeDrawer(Gravity.LEFT);
+                    if (binding.drawerLayout.isDrawerOpen(Gravity.LEFT)) {
+                        binding.drawerLayout.closeDrawer(Gravity.LEFT);
                     }
 
-                    drawerLayout.openDrawer(Gravity.RIGHT);
+                    binding.drawerLayout.openDrawer(Gravity.RIGHT);
                 }
                 return true;
 
@@ -311,30 +268,24 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
 
             animationAdapter = new AlphaInAnimationAdapter(adapter);
             animationAdapter.setFirstOnly(false);
-            recyclerEvents.setAdapter(animationAdapter);
+            binding.contentMain.recyclerEvents.setAdapter(animationAdapter);
 
         } else {
 
             try {
                 // Little trick to avoid animation when searching
                 animationAdapter.setDuration(0);
-//                adapter.updateData(events);
-                recyclerEvents.getRecycledViewPool().clear();
+                binding.contentMain.recyclerEvents.getRecycledViewPool().clear();
                 adapter.notifyDataSetChanged();
-                recyclerEvents.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        animationAdapter.setDuration(AnimationAdapter.DEFAULT_DURATION);
-                    }
-                });
+                binding.contentMain.recyclerEvents.post(() -> animationAdapter.setDuration(AnimationAdapter.DEFAULT_DURATION));
             } catch (Exception e) {
                 e.printStackTrace();
                 FirebaseCrashlytics.getInstance().recordException(e);
             }
         }
 
-        tvEmptyMessage.setVisibility(emptyMessage != null ? View.VISIBLE : View.GONE);
-        tvEmptyMessage.setText(emptyMessage);
+        binding.contentMain.tvEmptyMessage.setVisibility(emptyMessage != null ? View.VISIBLE : View.GONE);
+        binding.contentMain.tvEmptyMessage.setText(emptyMessage);
 
         refreshShareFavsVisibility();
 
@@ -343,18 +294,18 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
     @Override
     public void goToTop() {
         if (adapter.getItemCount() > 0) {
-            recyclerEvents.scrollToPosition(0);
+            binding.contentMain.recyclerEvents.scrollToPosition(0);
         }
     }
 
     @Override
     public void setTabPosition(int position) {
-        tabsDays.getTabAt(position).select();
+        binding.contentMain.tabsDays.getTabAt(position).select();
     }
 
     @Override
     public void goToEventsTakingPlaceNow(int positionFirstEvent) {
-        recyclerEvents.scrollToPosition(positionFirstEvent);
+        binding.contentMain.recyclerEvents.scrollToPosition(positionFirstEvent);
     }
 
     @Override
@@ -364,11 +315,22 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
 
     @Override
     public void showSendNewsButton() {
-        btnSendNews.setVisibility(View.VISIBLE);
+        binding.btnSendNews.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showProgressHappeningNow(boolean show) {
-        progressHappeningNow.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
+        binding.progressHappeningNow.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
+    }
+
+    @Override
+    public void showEventDataNotPreparedView(boolean show) {
+
+        binding.contentMain.tvEmptyMessage.setVisibility(show ? View.VISIBLE : View.GONE);
+        binding.contentMain.btnSeeBands.setVisibility(show ? View.VISIBLE : View.GONE);
+
+        binding.contentMain.tvEmptyMessage.setText(R.string.data_not_prepared);
+        binding.contentMain.btnSeeBands.setOnClickListener(v -> startActivity(BandsPresenter.newBandsActivity(this)));
+
     }
 }

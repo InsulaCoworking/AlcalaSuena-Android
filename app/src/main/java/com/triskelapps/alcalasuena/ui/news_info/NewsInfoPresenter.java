@@ -3,11 +3,10 @@ package com.triskelapps.alcalasuena.ui.news_info;
 import android.content.Context;
 import android.content.Intent;
 
+import com.triskelapps.alcalasuena.App;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.interactor.NewsInteractor;
 import com.triskelapps.alcalasuena.model.News;
-
-import io.realm.Realm;
 
 /**
  * Created by julio on 2/06/17.
@@ -57,9 +56,8 @@ public class NewsInfoPresenter extends BasePresenter {
 
     public void refreshData() {
 
-        News news = newsInteractor.getNewsById(idNews);
-        News newsCopy = Realm.getDefaultInstance().copyFromRealm(news);
-        view.showNews(newsCopy);
+        News news = App.getDB().newsDao().getNewsById(idNews);
+        view.showNews(news);
 
     }
 

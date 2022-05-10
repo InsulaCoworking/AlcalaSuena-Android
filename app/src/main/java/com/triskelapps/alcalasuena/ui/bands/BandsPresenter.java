@@ -3,6 +3,7 @@ package com.triskelapps.alcalasuena.ui.bands;
 import android.content.Context;
 import android.content.Intent;
 
+import com.triskelapps.alcalasuena.App;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.interactor.BandInteractor;
 import com.triskelapps.alcalasuena.model.Band;
@@ -53,7 +54,7 @@ import java.util.List;
 
      public void refreshData() {
 
-         List<Band> bands = bandInteractor.getBandsDB();
+         List<Band> bands = App.getDB().bandDao().getAll();
          view.showBands(bands);
 
      }
@@ -61,7 +62,7 @@ import java.util.List;
 
     public void onSearchTextChanged(String text) {
 
-        List<Band> bands = bandInteractor.getBandsDB(text);
+        List<Band> bands = App.getDB().bandDao().filterByName(text);
         view.showBands(bands);
     }
 

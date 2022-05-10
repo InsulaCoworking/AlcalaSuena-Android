@@ -29,8 +29,6 @@ import com.triskelapps.alcalasuena.util.NotificationHelper;
 
 import java.util.Map;
 
-import io.realm.Realm;
-
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private static final String TAG = "MyFirebaseMsgService";
@@ -139,7 +137,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             final News news = new Gson().fromJson(newsJson, News.class);
             if (news != null) {
                 news.configureDatesTime();
-                Realm.getDefaultInstance().executeTransaction(realm -> realm.insertOrUpdate(news));
+                App.getDB().newsDao().insert(news);
             }
         }
     }

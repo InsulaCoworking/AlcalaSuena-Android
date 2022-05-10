@@ -40,14 +40,14 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="colorControlNormal">@color/items_main</item>
+        <item name="colorControlNormal">@color/items_over_primary_color</item>
         <item name="android:actionMenuTextAppearance">@style/MyMenuTextAppearance</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
     </style>
 
     <style name="DrawerArrowStyle" parent="@style/Widget.AppCompat.DrawerArrowToggle">
         <item name="spinBars">true</item>
-        <item name="color">@color/items_main</item>
+        <item name="color">@color/items_over_primary_color</item>
     </style>
 
     <style name="MyMenuTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Menu">
