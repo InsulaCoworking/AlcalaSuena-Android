@@ -139,10 +139,6 @@ public class MainPresenter extends BasePresenter {
 
         checkIntentUriReceived(intent);
 
-        if (Util.isConnected(context)) {
-            checkDataVersionAndUpdate();
-        }
-
         if (BuildConfig.MODE_PREPARING) {
             SplashPresenter.launchSplashActivity(context, SplashPresenter.NEXT_SCREEN_NONE);
             ((Activity) context).finish();
@@ -171,6 +167,10 @@ public class MainPresenter extends BasePresenter {
     public void onResume() {
 
         refreshData();
+
+        if (Util.isConnected(context)) {
+            checkDataVersionAndUpdate();
+        }
     }
 
     public void onStop() {

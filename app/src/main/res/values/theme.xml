@@ -22,7 +22,7 @@
     </style>
 
     <style name="PositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
-        <item name="android:textColor">@color/bg_color_main</item>
+        <item name="android:textColor">@color/grey_dark_general</item>
     </style>
 
 

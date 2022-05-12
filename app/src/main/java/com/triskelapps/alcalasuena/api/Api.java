@@ -27,8 +27,8 @@ public interface Api {
     @GET("bands")
     Observable<List<Band>> getBands();
 
-    @GET("https://triskelapps.es/apps/alcalasuena/api/v2/venues/")
-//    @GET("venues")
+//    @GET("https://triskelapps.es/apps/alcalasuena/api/v2/venues/")
+    @GET("venues")
     Observable<List<Venue>> getVenues();
 
     @GET("settings/last_data_version")

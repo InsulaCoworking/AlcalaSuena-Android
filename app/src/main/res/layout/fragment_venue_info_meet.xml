@@ -33,7 +33,7 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_how_to_arrive"
-                style="@style/TextButton"
+                style="@style/TextButton.OverBG"
                 android:textColor="@color/text_over_bg"
                 android:text="@string/how_to_arrive"
                 android:layout_marginTop="15dp"/>

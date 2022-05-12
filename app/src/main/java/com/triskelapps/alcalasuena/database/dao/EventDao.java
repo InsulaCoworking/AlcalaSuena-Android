@@ -1,5 +1,7 @@
 package com.triskelapps.alcalasuena.database.dao;
 
+import android.text.TextUtils;
+
 import androidx.room.Dao;
 import androidx.room.Query;
 
@@ -10,6 +12,7 @@ import com.triskelapps.alcalasuena.model.Event;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Dao
@@ -51,12 +54,17 @@ public abstract class EventDao implements BaseDao<Event> {
 
 
     @Query("SELECT * FROM event " +
-            "WHERE day = :day AND id IN (SELECT idEvent FROM favourite WHERE starred = 1) " +
+            "WHERE id IN (SELECT idEvent FROM favourite WHERE starred = 1) " +
             "ORDER BY day, timeHourMidnightSafe")
-    protected abstract List<Event> getEventsForDayStarred(String day);
+    protected abstract List<Event> getEventsStarred();
 
     public List<Event> getEventsForDayStarredFull(String day) {
-        return addBandsAndVenue(getEventsForDayStarred(day));
+        List<Event> eventsStarred = getEventsStarred();
+        if (day != null) {
+            eventsStarred = eventsStarred.stream().filter(event ->
+                    TextUtils.equals(day, event.getDay())).collect(Collectors.toList());
+        }
+        return addBandsAndVenue(eventsStarred);
     }
 
 
