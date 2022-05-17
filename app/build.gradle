@@ -10,8 +10,8 @@ android {
         applicationId "com.triskelapps.alcalasuena"
         minSdkVersion 19
         targetSdkVersion 31
-        versionCode 2213
-        versionName "22.1.3"
+        versionCode 2217
+        versionName "22.1.7"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true

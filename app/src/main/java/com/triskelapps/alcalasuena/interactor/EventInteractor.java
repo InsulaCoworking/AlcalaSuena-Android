@@ -2,6 +2,7 @@ package com.triskelapps.alcalasuena.interactor;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.triskelapps.alcalasuena.App;
@@ -35,22 +36,21 @@ public class EventInteractor extends BaseInteractor {
 
     public List<Event> getEventsDB(Filter filter) {
 
-        List<Event> events;
         if (filter.isStarred()) {
-            events = App.getDB().eventDao().getEventsForDayStarredFull(filter.getDay());
+            return App.getDB().eventDao().getEventsForDayStarredFull(filter.getDay());
         } else {
-            events = App.getDB().eventDao().getEventsForDayFull(filter.getDay());
-            removeEventsWithNoTagsActive(events);
+            List<Event> events = App.getDB().eventDao().getEventsForDayFull(filter.getDay());
+            return removeEventsWithNoTagsActive(events);
         }
 
-        return events;
     }
 
-    private void removeEventsWithNoTagsActive(List<Event> events) {
+    private List<Event> removeEventsWithNoTagsActive(List<Event> events) {
 
-        events.stream().filter(event ->
+        return events.stream().filter(event ->
                 event.getBands().stream().anyMatch(band ->
-                        App.getDB().tagStateDao().isTagActive(band.getIdTag())));
+                        App.getDB().tagStateDao().isTagActive(band.getIdTag())))
+                .collect(Collectors.toList());
 
     }
 

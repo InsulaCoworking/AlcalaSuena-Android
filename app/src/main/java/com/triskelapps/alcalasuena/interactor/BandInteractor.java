@@ -51,14 +51,10 @@ public class BandInteractor extends BaseInteractor {
         try {
 
             final String jsonTotal = Util.getStringFromAssets(context, "bands.json");
-            Type listType = new TypeToken<List<Band>>() {}.getType();
+            Type listType = new TypeToken<List<Band>>() {
+            }.getType();
             final List<Band> bands = gson.fromJson(jsonTotal, listType);
             storeBands(bands);
-
-            final String jsonTags = Util.getStringFromAssets(context, "tags.json");
-            Type listTypeTags = new TypeToken<List<Tag>>() {}.getType();
-            final List<Tag> tags = gson.fromJson(jsonTags, listTypeTags);
-            storeTags(tags);
 
             Log.i(TAG, "initializeBandsFirstTime: end");
 
@@ -68,7 +64,6 @@ public class BandInteractor extends BaseInteractor {
 
 
     }
-
 
     public void getBands(final BandsCallback callback) {
 
@@ -106,19 +101,15 @@ public class BandInteractor extends BaseInteractor {
 
     private void storeBands(List<Band> bands) {
         App.getDB().bandDao().deleteAll();
-        bands.stream().forEach(band -> band.setIdTag(band.getTag().getId()));
+        bands.stream().forEach(band -> {
+            band.setIdTag(band.getTag().getId());
+            App.getDB().tagDao().insert(band.getTag());
+            App.getDB().tagStateDao().insertIfNotExists(new TagState(band.getTag().getId()));
+        });
         App.getDB().bandDao().insertAll(bands);
+
     }
 
-    private void storeTags(List<Tag> tags) {
-        App.getDB().tagDao().deleteAll();
-        App.getDB().tagDao().insertAll(tags);
-
-
-        List<TagState> tagsState = tags.stream().map(tag -> new TagState(tag.getId())).collect(Collectors.toList());
-        App.getDB().tagStateDao().deleteAll();
-        App.getDB().tagStateDao().insertAll(tagsState);
-    }
 
     private Api getApi() {
         return getApi(Api.class);

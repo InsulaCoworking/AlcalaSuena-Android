@@ -25,11 +25,11 @@ public interface TagStateDao extends BaseDao<TagState> {
     @Query("UPDATE tagstate SET active = 0")
     void inactiveAll();
 
-    @Query("UPDATE tagstate SET active = 1 WHERE idTag = :id")
-    void setActive(String id);
+    @Query("UPDATE tagstate SET active = 1 WHERE idTag = :idTag")
+    void setActive(String idTag);
 
-    @Query("UPDATE tagstate SET active = NOT active WHERE idTag = :id")
-    void toggleState(String id);
+    @Query("UPDATE tagstate SET active = NOT active WHERE idTag = :idTag")
+    void toggleState(String idTag);
 
     @Query("SELECT * from tagstate WHERE active = 1")
     List<TagState> getActive();
@@ -37,8 +37,8 @@ public interface TagStateDao extends BaseDao<TagState> {
     @Query("SELECT * from tagstate WHERE active = 0")
     List<TagState> getInactive();
 
-    @Query("SELECT active from tagstate WHERE idTag = :id")
-    boolean isTagActive(String id);
+    @Query("SELECT active from tagstate WHERE idTag = :idTag")
+    boolean isTagActive(String idTag);
 
     @Query("DELETE FROM tagstate")
     void deleteAll();

@@ -32,6 +32,9 @@ public class App extends MultiDexApplication {
     private static final String TAG = "App";
 
     public static final int FEST_YEAR = 2022;
+    public static final int CACHED_DATA_VERSION = 2;
+    public static final int INIT_DATA_VERSION = 3;
+
     public static List<String> festDates = new ArrayList<>();
 
     static {
@@ -40,14 +43,13 @@ public class App extends MultiDexApplication {
         festDates.add("2022-06-05");
     }
 
-    public static final int CACHED_DATA_VERSION = 1;
 
     public static final String PREFIX = BuildConfig.APPLICATION_ID + ".";
 
 //    public static final String SHARED_FIRST_TIME = PREFIX + "first_time_7";
     public static final String SHARED_CURRENT_DATA_VERSION = PREFIX + "shared_current_data_version_" + FEST_YEAR;
     public static final String SHARED_FIRST_TIME_APP_LAUNCHING = PREFIX + "extra_first_time_app_lauching_" + FEST_YEAR;
-    private static final String SHARED_CACHED_DATA_STORED = PREFIX + "shared_cached_data_stored_" + FEST_YEAR;
+    private static final String SHARED_CACHED_DATA_STORED = PREFIX + "shared_cached_data_stored_" + FEST_YEAR + "_" + INIT_DATA_VERSION;
     public static final String SHARED_PIN_SEND_NEWS_ENCRIPT = PREFIX + "shared_pin_send_news_encript";
 
     public static final String ACTION_REFRESH_DATA = PREFIX + "action_refresh_data";
@@ -101,11 +103,6 @@ public class App extends MultiDexApplication {
         if (BuildConfig.DEBUG) {
             FirebaseMessaging.getInstance().subscribeToTopic(TOPIC_NEWS_TEST);
         }
-
-//        if (true) {
-//            throw new RuntimeException("esprueba");
-//        }
-
 
     }
 

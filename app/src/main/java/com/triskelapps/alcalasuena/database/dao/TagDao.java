@@ -23,6 +23,9 @@ public abstract class TagDao implements BaseDao<Tag> {
         return tags;
     }
 
+    @Query("SELECT * FROM tag WHERE id = :id")
+    public abstract Tag getTagById(String id);
+
 
     @Query("DELETE FROM tag")
     public abstract void deleteAll();

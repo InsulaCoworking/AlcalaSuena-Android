@@ -82,7 +82,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
             holder.binding.viewPointGenreColor.setColorFilter(color);
         }
 
-        if (bands.size() > 1) {
+        if (bands.size() == 2) {
             Band band2 = bands.get(1);
             holder.binding.tvBandName2.setVisibility(View.VISIBLE);
             holder.binding.viewGenre2.setVisibility(View.VISIBLE);

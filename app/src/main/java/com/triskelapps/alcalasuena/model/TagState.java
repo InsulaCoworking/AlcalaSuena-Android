@@ -1,13 +1,14 @@
 package com.triskelapps.alcalasuena.model;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
 public class TagState {
 
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+    @PrimaryKey
+    @NonNull
     private String idTag;
     private boolean active = true;
 
@@ -16,14 +17,6 @@ public class TagState {
 
     public TagState(String idTag) {
         this.idTag = idTag;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public boolean isActive() {

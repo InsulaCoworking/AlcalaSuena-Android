@@ -216,7 +216,7 @@ public class MapActivity extends BaseActivity implements MapView, View.OnClickLi
     @Override
     public void showVenues(final List<Venue> venues) {
 
-        if (map == null) {
+        if (map == null || venues.isEmpty()) {
             return;
         }
 

@@ -22,7 +22,7 @@ import com.triskelapps.alcalasuena.model.TagState;
 import com.triskelapps.alcalasuena.model.Venue;
 
 
-@Database(version = 4, exportSchema = false, entities = {
+@Database(version = 7, exportSchema = false, entities = {
         Band.class,
         Event.class,
         Favourite.class,
