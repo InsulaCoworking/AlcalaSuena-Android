@@ -63,6 +63,8 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener, 
         btnLogoAlcalaSuena.setOnClickListener(this);
         btnLogoAlcalaEsMusica.setOnClickListener(this);
         btnLogoAytoAlcala.setOnClickListener(this);
+        layout.findViewById(R.id.btn_logo_sziget).setOnClickListener(this);
+        layout.findViewById(R.id.btn_logo_gigante).setOnClickListener(this);
 
         btnLogoAlcalaEsMusica.setOnLongClickListener(this);
     }
@@ -116,6 +118,8 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener, 
             case R.id.btn_logo_alcalasuena:
             case R.id.btn_logo_alcalaesmusica:
             case R.id.btn_logo_ayto_alcala:
+            case R.id.btn_logo_sziget:
+            case R.id.btn_logo_gigante:
                 String url = (String) v.getTag();
                 WebUtils.openCustomTab(getActivity(), url);
                 break;

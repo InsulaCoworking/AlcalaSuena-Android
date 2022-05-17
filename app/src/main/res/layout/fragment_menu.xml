@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:clickable="true"
     android:background="@color/grey_light"
+    android:clickable="true"
     android:orientation="vertical">
 
     <ImageView
@@ -12,8 +12,7 @@
         android:layout_height="match_parent"
         android:alpha="1"
         android:scaleType="centerCrop"
-        android:src="@mipmap/img_bg_menu"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <View
         android:layout_width="match_parent"
@@ -127,7 +126,7 @@
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:src="@mipmap/img_skyline_alcala"
-                app:tint="@color/skyline"/>
+                app:tint="@color/skyline" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -147,27 +146,68 @@
                     <ImageView
                         android:id="@+id/btn_logo_alcalasuena"
                         style="@style/ImageLogo"
-                        android:padding="6dp"
                         android:src="@mipmap/img_logo_alcalasuena"
-                        android:tag="http://www.alcalasuena.es/" />
+                        android:tag="https://alcalasuena.es/" />
 
                     <View style="@style/XpansorHoriz" />
 
                     <ImageView
                         android:id="@+id/btn_logo_alcalaesmusica"
                         style="@style/ImageLogo"
-                        android:padding="11dp"
                         android:src="@mipmap/img_logo_alcalaesmusica"
-                        android:tag="http://www.alcalaesmusica.org/" />
+                        android:tag="https://alcalaesmusica.org/" />
 
                     <View style="@style/XpansorHoriz" />
 
                     <ImageView
                         android:id="@+id/btn_logo_ayto_alcala"
                         style="@style/ImageLogo"
-                        android:padding="5dp"
                         android:src="@mipmap/img_logo_ayto_alcala"
-                        android:tag="http://ayto-alcaladehenares.es/" />
+                        android:tag="https://www.ayto-alcaladehenares.es/" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/TextBase.Inverted"
+                            android:text="@string/sponsor" />
+
+                        <ImageView
+                            android:id="@+id/btn_logo_sziget"
+                            style="@style/ImageLogo"
+                            android:src="@mipmap/logo_sziget"
+                            android:tag="https://szigetfestival.com/es/" />
+                    </LinearLayout>
+
+                    <View style="@style/XpansorHoriz" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/TextBase.Inverted"
+                            android:text="@string/participate" />
+
+                        <ImageView
+                            android:id="@+id/btn_logo_gigante"
+                            style="@style/ImageLogo"
+                            android:maxWidth="180dp"
+                            android:src="@mipmap/logo_gigante_2022"
+                            android:tag="https://festivalgigante.com/" />
+                    </LinearLayout>
                 </LinearLayout>
 
             </LinearLayout>
