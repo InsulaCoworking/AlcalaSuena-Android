@@ -2,7 +2,7 @@
 <resources>
 
     <color name="tab_unselected">#fff</color>
-    <color name="tab_selected">#ffff71</color>
+    <color name="tab_selected">#a4c8c2</color>
     <color name="transp_black">#B000</color>
     <color name="transp_white">#C6FFFFFF</color>
     <color name="black">#000</color>

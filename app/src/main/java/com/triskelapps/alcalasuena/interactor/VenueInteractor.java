@@ -101,17 +101,6 @@ public class VenueInteractor extends BaseInteractor {
 
     private void storeVenues(List<Venue> venues) {
 
-//        for (Venue venue : venues) {
-//            for (Event event : venue.getEvents()) {
-//                for (int idBand : event.getBandsIds()) {
-//                    event.addBand(App.getDB().bandDao().getBandById(idBand));
-//                }
-//                event.setBandsIdsStr(getStringCommaSeparated(event.getBandsIds()));
-//                event.configureTimeMidnightSafe();
-//                event.setVenue(venue);
-//            }
-//        }
-
         App.getDB().venueDao().deleteAll();
         App.getDB().eventDao().deleteAll();
 

@@ -15,6 +15,7 @@ import com.triskelapps.alcalasuena.model.Band;
 import com.triskelapps.alcalasuena.model.Event;
 import com.triskelapps.alcalasuena.model.SocialItem;
 import com.triskelapps.alcalasuena.ui.image_full.ImageFullActivity;
+import com.triskelapps.alcalasuena.ui.venue_info.VenueInfoPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -138,5 +139,10 @@ public class BandInfoPresenter extends BasePresenter {
         intent.putExtra(Intent.EXTRA_TEXT, text);
         intent.setType("text/plain");
         context.startActivity(intent);
+    }
+
+    public void onEventVenueClicked(int idEvent) {
+        Event event = App.getDB().eventDao().getEventByIdFull(idEvent);
+        context.startActivity(VenueInfoPresenter.newVenueInfoActivity(context, event.getIdVenue()));
     }
 }

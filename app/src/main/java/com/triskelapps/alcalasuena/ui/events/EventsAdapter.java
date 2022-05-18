@@ -2,9 +2,12 @@ package com.triskelapps.alcalasuena.ui.events;
 
 import android.content.Context;
 import android.graphics.Color;
+
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,10 +80,6 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
                 .resizeDimen(R.dimen.width_image_small, R.dimen.height_image_small)
                 .into(holder.binding.imgBand);
 
-        if (band1.getTag() != null) {
-            int color = Color.parseColor(band1.getTag().getColor());
-            holder.binding.viewPointGenreColor.setColorFilter(color);
-        }
 
         if (bands.size() == 2) {
             Band band2 = bands.get(1);
@@ -90,13 +89,26 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
             holder.binding.tvBandName2.setText(band2.getName());
             holder.binding.tvBandGenre2.setText(band2.getGenreOrTag());
 
-            if (band2.getTag() != null) {
-                int color = Color.parseColor(band2.getTag().getColor());
-                holder.binding.viewPointGenreColor2.setColorFilter(color);
-            }
-        } else {
+            holder.binding.viewPointGenreColor.setVisibility(View.VISIBLE);
+            holder.binding.viewPointGenreColor2.setVisibility(View.VISIBLE);
+
+            int color1 = Color.parseColor(band1.getTag().getColor());
+            holder.binding.viewPointGenreColor.setColorFilter(color1);
+
+            int color2 = Color.parseColor(band2.getTag().getColor());
+            holder.binding.viewPointGenreColor2.setColorFilter(color2);
+
+            holder.binding.cardEvent.setCardBackgroundColor(ContextCompat.getColor(context, R.color.cardBackgroundEvent));
+
+        } else if (bands.size() == 1) {
             holder.binding.tvBandName2.setVisibility(View.GONE);
             holder.binding.viewGenre2.setVisibility(View.GONE);
+            holder.binding.viewPointGenreColor.setVisibility(View.GONE);
+            holder.binding.viewPointGenreColor2.setVisibility(View.GONE);
+
+            holder.binding.cardEvent.setCardBackgroundColor(Color.parseColor(band1.getTag().getColor()));
+        } else {
+            throw new IllegalStateException("Not prepared for more than 2 bands in each event");
         }
     }
 

@@ -39,9 +39,9 @@
                 android:layout_toLeftOf="@+id/img_starred"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:textStyle="bold"
                 android:textColor="#000"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:id="@+id/view_genre"
@@ -57,16 +57,17 @@
                     android:id="@+id/view_point_genre_color"
                     android:layout_width="15dp"
                     android:layout_height="15dp"
-                    android:src="@drawable/point_genre_color" />
+                    android:src="@drawable/point_genre_color"
+                    android:layout_marginRight="8dp" />
 
                 <TextView
                     android:id="@+id/tv_band_genre"
                     style="@style/TextBase"
+                    android:textSize="15dp"
                     android:ellipsize="end"
                     android:lines="1"
                     android:singleLine="true"
-                    android:text="Jazz"
-                    android:layout_marginLeft="8dp"/>
+                    android:text="Jazz"/>
             </LinearLayout>
 
             <TextView
@@ -97,16 +98,17 @@
                     android:id="@+id/view_point_genre_color_2"
                     android:layout_width="15dp"
                     android:layout_height="15dp"
-                    android:src="@drawable/point_genre_color" />
+                    android:src="@drawable/point_genre_color"
+                    android:layout_marginRight="8dp" />
 
                 <TextView
                     android:id="@+id/tv_band_genre_2"
                     style="@style/TextBase"
+                    android:textSize="15dp"
                     android:ellipsize="end"
                     android:lines="1"
                     android:singleLine="true"
-                    android:text="Jazz"
-                    android:layout_marginLeft="8dp"/>
+                    android:text="Jazz"/>
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatImageView

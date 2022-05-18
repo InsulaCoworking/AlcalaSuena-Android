@@ -62,13 +62,6 @@ public class EventsVenueAdapter extends RecyclerView.Adapter<EventsVenueAdapter.
             return;
         }
 
-        Picasso.get()
-                .load(event.getImageUrlFull())
-                .placeholder(R.mipmap.img_default_grid)
-                .error(R.mipmap.img_default_grid)
-                .transform(new CircleTransform())
-                .resizeDimen(R.dimen.width_image_small, R.dimen.height_image_small)
-                .into(holder.binding.imgBand);
 
         holder.binding.tvEventTime.setText(event.getTimeFormatted());
         holder.binding.imgStarred.setSelected(event.isStarred());
@@ -79,6 +72,15 @@ public class EventsVenueAdapter extends RecyclerView.Adapter<EventsVenueAdapter.
         Band band1 = bands.get(0);
         holder.binding.tvBandName.setText(band1.getName());
         holder.binding.tvBandGenre.setText(band1.getGenreOrTag());
+
+        Picasso.get()
+                .load(band1.getImageLogoUrlFull())
+                .placeholder(R.mipmap.img_default_grid)
+                .error(R.mipmap.img_default_grid)
+                .transform(new CircleTransform())
+                .resizeDimen(R.dimen.width_image_small, R.dimen.height_image_small)
+                .into(holder.binding.imgBand);
+
         if (band1.getTag() != null) {
             int color = Color.parseColor(band1.getTag().getColor());
             holder.binding.viewPointGenreColor.setColorFilter(color);

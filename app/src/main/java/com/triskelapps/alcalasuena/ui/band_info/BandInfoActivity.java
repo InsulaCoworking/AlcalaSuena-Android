@@ -161,4 +161,9 @@ public class BandInfoActivity extends BaseActivity implements BandInfoView, View
     public void onEventFavouriteClicked(int idEvent) {
         presenter.onEventFavouriteClicked(idEvent);
     }
+
+    @Override
+    public void onEventVenueClicked(int idEvent) {
+        presenter.onEventVenueClicked(idEvent);
+    }
 }

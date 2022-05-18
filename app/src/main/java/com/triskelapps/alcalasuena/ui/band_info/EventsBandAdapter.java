@@ -54,12 +54,6 @@ public class EventsBandAdapter extends RecyclerView.Adapter<EventsBandAdapter.Vi
 
         holder.imgStarred.setSelected(event.isStarred());
 
-        holder.imgStarred.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                itemClickListener.onEventFavouriteClicked(getItemAtPosition(holder.getAdapterPosition()).getId());
-            }
-        });
     }
 
 
@@ -78,7 +72,7 @@ public class EventsBandAdapter extends RecyclerView.Adapter<EventsBandAdapter.Vi
     }
 
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {	private TextView tvEventBandDay;
+    public class ViewHolder extends RecyclerView.ViewHolder {	private TextView tvEventBandDay;
         private TextView tvEventBandTime;
         private TextView tvEventBandVenue;
         private ImageView imgStarred;
@@ -96,6 +90,12 @@ public class EventsBandAdapter extends RecyclerView.Adapter<EventsBandAdapter.Vi
             tvEventBandDuration = (TextView)itemView.findViewById( R.id.tv_event_band_duration );
 
             rootView = itemView;
+
+            imgStarred.setOnClickListener(v ->
+                    itemClickListener.onEventFavouriteClicked(getItemAtPosition(getAdapterPosition()).getId()));
+
+            tvEventBandVenue.setOnClickListener(v ->
+                    itemClickListener.onEventVenueClicked(getItemAtPosition(getAdapterPosition()).getId()));
         }
     }
 
@@ -107,6 +107,7 @@ public class EventsBandAdapter extends RecyclerView.Adapter<EventsBandAdapter.Vi
     public interface OnItemClickListener {
 
         void onEventFavouriteClicked(int idEvent);
+        void onEventVenueClicked(int idEvent);
 
     }
 }
