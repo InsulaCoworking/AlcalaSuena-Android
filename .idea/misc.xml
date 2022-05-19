@@ -15,7 +15,9 @@
         <entry key="app/src/main/res/layout/activity_intro.xml" value="0.3425641025641026" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3425641025641026" />
         <entry key="app/src/main/res/layout/activity_map.xml" value="0.34791666666666665" />
+        <entry key="app/src/main/res/layout/activity_news.xml" value="0.34791666666666665" />
         <entry key="app/src/main/res/layout/activity_news_info.xml" value="0.19375" />
+        <entry key="app/src/main/res/layout/activity_send_news.xml" value="0.3425641025641026" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.3425641025641026" />
         <entry key="app/src/main/res/layout/activity_venue_info.xml" value="0.34791666666666665" />
         <entry key="app/src/main/res/layout/activity_venues.xml" value="0.34791666666666665" />
@@ -25,6 +27,7 @@
         <entry key="app/src/main/res/layout/fragment_venue_info_meet.xml" value="0.34791666666666665" />
         <entry key="app/src/main/res/layout/row_event.xml" value="0.25" />
         <entry key="app/src/main/res/layout/row_event_band.xml" value="0.3425641025641026" />
+        <entry key="app/src/main/res/layout/row_news.xml" value="0.34791666666666665" />
         <entry key="app/src/main/res/menu/menu_main.xml" value="0.3425641025641026" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/img_logo_alcalasuena.xml" value="0.1" />
       </map>

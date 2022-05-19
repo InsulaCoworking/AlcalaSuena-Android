@@ -31,8 +31,6 @@ public class NewsActivity extends BaseActivity implements NewsView, NewsAdapter.
         setToolbarTitle(R.string.news);
 
         recyclerNews = (RecyclerView)findViewById(R.id.recycler_news);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerNews.setLayoutManager(layoutManager);
 
         tvEmptyList = (TextView) findViewById(R.id.tv_empty_list_news);
 

@@ -33,17 +33,17 @@
             <TextView
                 android:id="@+id/tv_news_title"
                 style="@style/TextBase"
-                android:layout_toRightOf="@+id/img_news"
                 android:layout_toLeftOf="@+id/img_arrow"
-                android:textSize="22sp"
-                android:lines="1"
-                android:singleLine="true"/>
+                android:layout_toRightOf="@+id/img_news"
+                android:maxLines="2"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
 
 
             <TextView
                 android:id="@+id/tv_news_text"
                 style="@style/TextBase"
-                android:lines="3"
+                android:lines="2"
                 android:textSize="14sp"
                 android:layout_alignLeft="@+id/tv_news_title"
                 android:layout_toLeftOf="@+id/img_arrow"
@@ -60,7 +60,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:src="@mipmap/ic_arrow_right_intro"
-                app:tint="@color/items_over_primary_color"/>
+                app:tint="@color/colorPrimary"/>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
