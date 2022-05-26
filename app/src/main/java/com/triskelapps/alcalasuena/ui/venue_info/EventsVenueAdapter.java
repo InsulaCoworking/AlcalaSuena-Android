@@ -2,6 +2,7 @@ package com.triskelapps.alcalasuena.ui.venue_info;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,6 +66,7 @@ public class EventsVenueAdapter extends RecyclerView.Adapter<EventsVenueAdapter.
 
         holder.binding.tvEventTime.setText(event.getTimeFormatted());
         holder.binding.imgStarred.setSelected(event.isStarred());
+        holder.binding.imgTickets.setVisibility(TextUtils.isEmpty(event.getTicketsUrl()) ? View.GONE : View.VISIBLE);
 
         holder.binding.tvEventVenue.setVisibility(View.GONE);
 

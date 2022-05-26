@@ -13,22 +13,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="-40dp"
-        app:cardBackgroundColor="@color/cardBackgroundEvent"
-        android:layout_toRightOf="@+id/img_band">
+        android:layout_toRightOf="@+id/img_band"
+        app:cardBackgroundColor="@color/cardBackgroundEvent">
 
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/cardBackgroundEvent"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="5dp"
             android:paddingLeft="50dp"
+            android:paddingTop="5dp"
             android:paddingRight="10dp"
-            android:paddingTop="5dp">
+            android:paddingBottom="5dp">
 
 
             <TextView
@@ -36,7 +36,7 @@
                 style="@style/TextBase"
                 android:layout_width="match_parent"
                 android:layout_marginRight="5dp"
-                android:layout_toLeftOf="@+id/img_starred"
+                android:layout_toLeftOf="@+id/view_starred"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textColor="#000"
@@ -47,85 +47,104 @@
                 android:id="@+id/view_genre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_alignRight="@+id/tv_band_name"
+                android:layout_below="@+id/tv_band_name"
                 android:layout_alignLeft="@+id/tv_band_name"
-                android:layout_below="@+id/tv_band_name">
+                android:layout_alignRight="@+id/tv_band_name"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/view_point_genre_color"
                     android:layout_width="15dp"
                     android:layout_height="15dp"
-                    android:src="@drawable/point_genre_color"
-                    android:layout_marginRight="8dp" />
+                    android:layout_marginRight="8dp"
+                    android:src="@drawable/point_genre_color" />
 
                 <TextView
                     android:id="@+id/tv_band_genre"
                     style="@style/TextBase"
-                    android:textSize="15dp"
                     android:ellipsize="end"
                     android:lines="1"
                     android:singleLine="true"
-                    android:text="Jazz"/>
+                    android:text="Jazz"
+                    android:textSize="15dp" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/tv_band_name_2"
                 style="@style/TextBase"
                 android:layout_width="match_parent"
-                android:layout_marginRight="5dp"
-                android:layout_toLeftOf="@+id/tv_event_time"
                 android:layout_below="@+id/view_genre"
                 android:layout_marginTop="8dp"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/tv_event_time"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:textStyle="bold"
                 android:textColor="#000"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:id="@+id/view_genre_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_alignRight="@+id/tv_band_name_2"
+                android:layout_below="@+id/tv_band_name_2"
                 android:layout_alignLeft="@+id/tv_band_name_2"
-                android:layout_below="@+id/tv_band_name_2">
+                android:layout_alignRight="@+id/tv_band_name_2"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/view_point_genre_color_2"
                     android:layout_width="15dp"
                     android:layout_height="15dp"
-                    android:src="@drawable/point_genre_color"
-                    android:layout_marginRight="8dp" />
+                    android:layout_marginRight="8dp"
+                    android:src="@drawable/point_genre_color" />
 
                 <TextView
                     android:id="@+id/tv_band_genre_2"
                     style="@style/TextBase"
-                    android:textSize="15dp"
                     android:ellipsize="end"
                     android:lines="1"
                     android:singleLine="true"
-                    android:text="Jazz"/>
+                    android:text="Jazz"
+                    android:textSize="15dp" />
             </LinearLayout>
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/img_starred"
+            <LinearLayout
+                android:id="@+id/view_starred"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:padding="7dp"
-                android:duplicateParentState="false"
-                android:src="@drawable/img_star_selectable"
-                app:tint="@color/colorPrimaryDark" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_tickets"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/tv_event_time"
+                    android:layout_alignParentRight="true"
+                    android:padding="7dp"
+                    android:src="@mipmap/ic_ticket"
+                    app:tint="@color/colorPrimaryDark"
+                    android:visibility="gone"/>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_starred"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:duplicateParentState="false"
+                    android:padding="7dp"
+                    android:src="@drawable/img_star_selectable"
+                    app:tint="@color/colorPrimaryDark" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tv_event_venue"
                 style="@style/TextBase"
-                android:layout_alignLeft="@+id/tv_band_name"
                 android:layout_below="@+id/view_genre_2"
+                android:layout_alignLeft="@+id/tv_band_name"
                 android:layout_toLeftOf="@+id/tv_event_time"
                 android:ellipsize="end"
                 android:gravity="bottom"
@@ -134,9 +153,9 @@
             <TextView
                 android:id="@+id/tv_event_time"
                 style="@style/TextBase"
+                android:layout_below="@+id/view_starred"
                 android:layout_alignBottom="@+id/tv_event_venue"
                 android:layout_alignParentRight="true"
-                android:layout_below="@+id/img_starred"
                 android:gravity="bottom"
                 android:text="20:00"
                 android:textSize="25sp" />

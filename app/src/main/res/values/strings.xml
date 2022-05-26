@@ -70,7 +70,7 @@
     <string name="telegram_channel">Canal de Telegram</string>
     <string name="news_channel">Canal de noticias</string>
     <string name="import_link_text">Manda este enlace a tus amigos para que marquen automáticamente tus favoritos y podáis ir juntos a los conciertos ;)\n\n%s</string>
-    <string name="download_app_text">(Si todavía no tienen la app diles que la descarguen gratuitamente:\n- Android: %s\n- iOS: %s)</string>
+    <string name="download_app_text">(Si todavía no tienen la app diles que la descarguen gratuitamente:\n\n- Android: %s\n\n- iOS: %s)</string>
     <string name="add_favs_events">Añadir conciertos favoritos</string>
     <string name="add">¡Añadir!</string>
     <string name="no_thanks">No, gracias</string>

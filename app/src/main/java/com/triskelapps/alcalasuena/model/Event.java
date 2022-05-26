@@ -3,6 +3,7 @@ package com.triskelapps.alcalasuena.model;
 
 import android.content.Context;
 import android.net.Uri;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
@@ -287,6 +288,6 @@ public class Event implements Comparable {
     }
 
     public boolean mustShowBandInfo() {
-        return getBands() != null && getBands().size() == 1;
+        return TextUtils.isEmpty(getTicketsUrl()) && getBands() != null && getBands().size() == 1;
     }
 }

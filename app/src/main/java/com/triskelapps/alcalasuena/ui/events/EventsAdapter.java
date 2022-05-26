@@ -8,6 +8,7 @@ import androidx.core.graphics.ColorUtils;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,6 +67,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
         holder.binding.tvEventTime.setText(event.getTimeFormatted());
         holder.binding.tvEventVenue.setText(event.getVenue().getName());
         holder.binding.imgStarred.setSelected(event.isStarred());
+        holder.binding.imgTickets.setVisibility(TextUtils.isEmpty(event.getTicketsUrl()) ? View.GONE : View.VISIBLE);
 
 
         Band band1 = bands.get(0);

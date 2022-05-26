@@ -53,6 +53,48 @@
             android:layout_marginTop="15dp"
             android:visibility="gone"/>
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btn_send_news"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_above="@+id/view_happening_now"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="15dp"
+            android:background="@drawable/bg_btn_send_news"
+            android:scaleType="centerInside"
+            android:src="@mipmap/ic_news"
+            android:visibility="gone"
+            app:tint="@color/items_over_primary_color" />
+
+        <RelativeLayout
+            android:id="@+id/view_happening_now"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/btn_happening_now"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:background="@drawable/bg_btn_send_news"
+                android:elevation="5dp"
+                android:padding="10dp"
+                android:scaleType="centerInside"
+                android:src="@mipmap/ic_happening_now_3"
+                android:visibility="visible"
+                app:tint="@color/items_over_primary_color" />
+
+            <ProgressBar
+                android:id="@+id/progress_happening_now"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="invisible" />
+        </RelativeLayout>
+
         <LinearLayout
             android:id="@+id/view_btn_share_favs"
             android:layout_width="match_parent"

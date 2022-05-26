@@ -3,6 +3,7 @@ package com.triskelapps.alcalasuena.model;
 import android.net.Uri;
 import android.webkit.URLUtil;
 
+import com.triskelapps.alcalasuena.App;
 import com.triskelapps.alcalasuena.api.common.ApiClient;
 
 import static android.webkit.URLUtil.isValidUrl;
@@ -21,7 +22,7 @@ import java.util.List;
 @Entity
 public class Band {
 
-    public static final String URL_BAND_WEB = "http://www.alcalasuena.es/bands/";
+    public static final String URL_BAND_WEB = App.WEB_URL + "bands/";
 
     @PrimaryKey
     private int id;

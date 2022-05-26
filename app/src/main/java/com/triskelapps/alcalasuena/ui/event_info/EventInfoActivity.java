@@ -3,6 +3,7 @@ package com.triskelapps.alcalasuena.ui.event_info;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -47,12 +48,18 @@ public class EventInfoActivity extends BaseActivity implements EventInfoView {
     @Override
     public void showEventInfo(Event event) {
 
-        Picasso.get()
-                .load(event.getImageUrlFull())
-                .placeholder(R.mipmap.img_default_grid)
-                .error(R.mipmap.img_default_grid)
-                .resizeDimen(R.dimen.width_image_small, R.dimen.height_image_small)
-                .into(binding.imgEvent);
+        if (TextUtils.isEmpty(event.getImage())) {
+            binding.imgEvent.setVisibility(View.GONE);
+        } else {
+            binding.imgEvent.setVisibility(View.VISIBLE);
+
+            Picasso.get()
+                    .load(event.getImageUrlFull())
+                    .placeholder(R.mipmap.img_default_grid)
+                    .error(R.mipmap.img_default_grid)
+                    .resizeDimen(R.dimen.width_image_small, R.dimen.height_image_small)
+                    .into(binding.imgEvent);
+        }
 
         if (adapter == null) {
             adapter = new BandsAdapter(this, event.getBands());

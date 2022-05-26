@@ -43,6 +43,7 @@ public class App extends MultiDexApplication {
         festDates.add("2022-06-05");
     }
 
+    public static final String WEB_URL = "https://alcalasuena.es/";
 
     public static final String PREFIX = BuildConfig.APPLICATION_ID + ".";
 
@@ -59,7 +60,7 @@ public class App extends MultiDexApplication {
     public static final String URL_APPLE_STORE_APP = "https://itunes.apple.com/es/app/Alcala-suena/id1458551516";
     public static final String URL_DIRECT_GOOGLE_PLAY_APP = "market://details?id=" + BuildConfig.APPLICATION_ID;
     public static final String TOPIC_NEWS = "news";
-    public static final String TOPIC_NEWS_TEST = "test_news3";
+    public static final String TOPIC_NEWS_TEST = "news_test";
 
 
     private static AppDatabase db;
@@ -98,10 +99,11 @@ public class App extends MultiDexApplication {
 //        String token = FirebaseInstanceId.getInstance().getToken();
 //        Log.d(TAG, "Refreshed token: " + token);
 
-        FirebaseMessaging.getInstance().subscribeToTopic(TOPIC_NEWS);
-
         if (BuildConfig.DEBUG) {
             FirebaseMessaging.getInstance().subscribeToTopic(TOPIC_NEWS_TEST);
+            FirebaseMessaging.getInstance().unsubscribeFromTopic(TOPIC_NEWS);
+        } else {
+            FirebaseMessaging.getInstance().subscribeToTopic(TOPIC_NEWS);
         }
 
     }

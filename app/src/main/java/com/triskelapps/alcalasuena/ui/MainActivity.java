@@ -81,8 +81,8 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
     private void configureClickListeners() {
 
         binding.contentMain.btnShareFavs.setOnClickListener(v -> presenter.onShareFavsButtonClicked());
-        binding.btnSendNews.setOnClickListener(v -> startActivity(new Intent(this, SendNewsActivity.class)));
-        binding.btnHappeningNow.setOnClickListener(v -> checkLocationPermission());
+        binding.contentMain.btnSendNews.setOnClickListener(v -> startActivity(new Intent(this, SendNewsActivity.class)));
+        binding.contentMain.btnHappeningNow.setOnClickListener(v -> checkLocationPermission());
 
     }
 
@@ -315,12 +315,12 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
 
     @Override
     public void showSendNewsButton() {
-        binding.btnSendNews.setVisibility(View.VISIBLE);
+        binding.contentMain.btnSendNews.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showProgressHappeningNow(boolean show) {
-        binding.progressHappeningNow.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
+        binding.contentMain.progressHappeningNow.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
     }
 
     @Override
