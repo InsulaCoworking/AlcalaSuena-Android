@@ -4,7 +4,7 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-import com.triskelapps.alcalasuena.api.common.ApiClient;
+import com.triskelapps.alcalasuena.api.common.ApiConfig;
 
 import java.io.Serializable;
 import java.util.List;
@@ -40,7 +40,7 @@ public class Venue implements Serializable {
 //            image = image.substring(1);
 //        }
 
-        String urlFull = ApiClient.BASE_URL + image;
+        String urlFull = ApiConfig.BASE_URL_MEDIA + image;
         return urlFull;
     }
 

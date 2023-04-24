@@ -6,7 +6,7 @@ import android.webkit.URLUtil;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.triskelapps.alcalasuena.api.common.ApiClient;
+import com.triskelapps.alcalasuena.api.common.ApiConfig;
 
 import java.io.Serializable;
 import java.text.DateFormat;
@@ -89,7 +89,7 @@ public class News implements Serializable {
 //            image = image.substring(1);
 //        }
 
-        String urlFull = ApiClient.BASE_URL + image;
+        String urlFull = ApiConfig.BASE_URL_MEDIA + image;
         urlFull.replace("//", "/");
         return Uri.parse(urlFull);
     }

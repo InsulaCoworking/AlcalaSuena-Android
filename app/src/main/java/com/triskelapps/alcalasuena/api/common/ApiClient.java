@@ -21,15 +21,6 @@ public class ApiClient {
     // Tutorial Retrofit 2.0
     // http://inthecheesefactory.com/blog/retrofit-2.0/en
 
-    public static final String BASE_URL_PRODUCTION = "https://alcalasuena.es";
-    public static final String BASE_URL_DEBUG = "https://alcalasuena.es";
-
-    public static final String BASE_URL =
-            (DebugHelper.SWITCH_PROD_ENVIRONMENT ? BASE_URL_PRODUCTION : BASE_URL_DEBUG);
-
-    public static final String BASE_URL_API = BASE_URL + "/api/v1/";
-
-
     private static Retrofit sharedInstance;
 
 //    private static JsonDeserializer<Date> jsonDateDeserializer = new JsonDeserializer<Date>() {
@@ -57,7 +48,7 @@ public class ApiClient {
 
 
             sharedInstance = new Retrofit.Builder()
-                    .baseUrl(BASE_URL_API)
+                    .baseUrl(ApiConfig.BASE_URL_API)
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .client(getOkHttpClient())
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())

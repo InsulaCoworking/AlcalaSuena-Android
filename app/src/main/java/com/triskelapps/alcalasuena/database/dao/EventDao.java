@@ -99,8 +99,13 @@ public abstract class EventDao implements BaseDao<Event> {
 
     public void addBandsToEvent(Event event) {
         String[] idsStr = event.getBandsIdsStr().split(",");
-        Arrays.stream(idsStr).forEach(idStr ->
-                event.addBand(App.getDB().bandDao().getBandWithTagById(Integer.parseInt(idStr.trim()))));
+        Arrays.stream(idsStr).forEach(idStr -> {
+            try {
+                event.addBand(App.getDB().bandDao().getBandWithTagById(Integer.parseInt(idStr.trim())));
+            } catch (Exception e) {
+
+            }
+        });
     }
 
 }

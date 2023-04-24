@@ -29,25 +29,24 @@ import java.util.List;
 
 public class App extends MultiDexApplication {
 
-    private static final String TAG = "App";
+    private static final String TAG = App.class.getSimpleName();
 
-    public static final int FEST_YEAR = 2022;
+    public static final int FEST_YEAR = 2023;
     public static final int CACHED_DATA_VERSION = 2;
-    public static final int INIT_DATA_VERSION = 3;
+    public static final int INIT_DATA_VERSION = 2;
 
     public static List<String> festDates = new ArrayList<>();
 
     static {
-        festDates.add("2022-06-03");
-        festDates.add("2022-06-04");
-        festDates.add("2022-06-05");
+        festDates.add("2023-06-02");
+        festDates.add("2023-06-03");
+        festDates.add("2023-06-04");
     }
 
     public static final String WEB_URL = "https://alcalasuena.es/";
 
     public static final String PREFIX = BuildConfig.APPLICATION_ID + ".";
 
-//    public static final String SHARED_FIRST_TIME = PREFIX + "first_time_7";
     public static final String SHARED_CURRENT_DATA_VERSION = PREFIX + "shared_current_data_version_" + FEST_YEAR;
     public static final String SHARED_FIRST_TIME_APP_LAUNCHING = PREFIX + "extra_first_time_app_lauching_" + FEST_YEAR;
     private static final String SHARED_CACHED_DATA_STORED = PREFIX + "shared_cached_data_stored_" + FEST_YEAR + "_" + INIT_DATA_VERSION;

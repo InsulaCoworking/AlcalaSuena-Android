@@ -12,7 +12,7 @@ import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
 import com.triskelapps.alcalasuena.R;
-import com.triskelapps.alcalasuena.api.common.ApiClient;
+import com.triskelapps.alcalasuena.api.common.ApiConfig;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -218,7 +218,7 @@ public class Event implements Comparable {
             return null;
         }
 
-        String urlFull = ApiClient.BASE_URL + getImage();
+        String urlFull = ApiConfig.BASE_URL_MEDIA + getImage();
         urlFull.replace("//", "/");
         return Uri.parse(urlFull);
     }

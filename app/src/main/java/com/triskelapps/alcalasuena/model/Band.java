@@ -4,16 +4,13 @@ import android.net.Uri;
 import android.webkit.URLUtil;
 
 import com.triskelapps.alcalasuena.App;
-import com.triskelapps.alcalasuena.api.common.ApiClient;
+import com.triskelapps.alcalasuena.api.common.ApiConfig;
 
 import static android.webkit.URLUtil.isValidUrl;
 
-import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
-
-import java.util.List;
 
 /**
  * Created by julio on 18/05/17.
@@ -46,7 +43,7 @@ public class Band {
             return null;
         }
 
-        String urlFull = ApiClient.BASE_URL + getProfile_image();
+        String urlFull = ApiConfig.BASE_URL_MEDIA + getProfile_image();
         urlFull.replace("//", "/");
         return Uri.parse(urlFull);
     }
@@ -58,13 +55,13 @@ public class Band {
             return getImageLogoUrlFull();
         }
 
-        String urlFull = ApiClient.BASE_URL + getBand_image();
+        String urlFull = ApiConfig.BASE_URL_MEDIA + getBand_image();
         return Uri.parse(urlFull);
     }
 
 
     public boolean hasValidImage() {
-        return getProfile_image() != null && URLUtil.isValidUrl(ApiClient.BASE_URL + getProfile_image());
+        return getProfile_image() != null && URLUtil.isValidUrl(ApiConfig.BASE_URL_MEDIA + getProfile_image());
     }
 
     public String getGenreOrTag() {
