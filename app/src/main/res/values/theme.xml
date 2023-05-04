@@ -18,11 +18,11 @@
     </style>
 
     <style name="NegativeButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
-        <item name="android:textColor">@color/grey_dark_general</item>
+        <item name="android:textColor">@color/gray_dark_general</item>
     </style>
 
     <style name="PositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
-        <item name="android:textColor">@color/grey_dark_general</item>
+        <item name="android:textColor">@color/gray_dark_general</item>
     </style>
 
 

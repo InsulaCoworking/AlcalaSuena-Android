@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey_light"
+    android:background="@color/gray_light"
     android:clickable="true"
     android:orientation="vertical">
 
@@ -180,7 +180,8 @@
 
                         <TextView
                             style="@style/TextBase.Inverted"
-                            android:text="@string/sponsor" />
+                            android:text="@string/sponsor"
+                            android:visibility="gone"/>
 
                         <ImageView
                             android:id="@+id/btn_logo_sziget"
@@ -199,13 +200,14 @@
 
                         <TextView
                             style="@style/TextBase.Inverted"
-                            android:text="@string/participate" />
+                            android:text="@string/participate"
+                            android:visibility="gone"/>
 
                         <ImageView
                             android:id="@+id/btn_logo_gigante"
                             style="@style/ImageLogo"
                             android:maxWidth="180dp"
-                            android:src="@mipmap/logo_gigante_2022"
+                            android:src="@mipmap/logo_gigante"
                             android:tag="https://festivalgigante.com/" />
                     </LinearLayout>
                 </LinearLayout>

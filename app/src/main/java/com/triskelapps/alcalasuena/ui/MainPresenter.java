@@ -142,10 +142,11 @@ public class MainPresenter extends BasePresenter {
         if (BuildConfig.MODE_PREPARING) {
             SplashPresenter.launchSplashActivity(context, SplashPresenter.NEXT_SCREEN_NONE);
             ((Activity) context).finish();
-        } else
-            if (getPrefs().getBoolean(SHARED_FIRST_TIME_APP_LAUNCHING, true) /*|| BuildConfig.DEBUG*/) {
+        } else if (getPrefs().getBoolean(SHARED_FIRST_TIME_APP_LAUNCHING, true) /*|| BuildConfig.DEBUG*/) {
             SplashPresenter.launchSplashActivity(context, SplashPresenter.NEXT_SCREEN_MAIN);
             getPrefs().edit().putBoolean(SHARED_FIRST_TIME_APP_LAUNCHING, false).commit();
+        } else {
+            view.checkNotificationsPermission();
         }
 
         checkSendNewsPermission();

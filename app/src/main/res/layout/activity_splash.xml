@@ -13,22 +13,42 @@
         android:scaleType="centerCrop"
         android:src="@mipmap/img_bg" />
 
-    <ImageView
-        android:id="@+id/img_alcalasuena_splash"
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:adjustViewBounds="true"
-        android:src="@mipmap/img_logo_splash" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_splash_info"
-        style="@style/TextBase"
+        android:layout_height="match_parent"
         android:gravity="center"
-        android:padding="20dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:textStyle="bold"
-        android:textSize="20sp"/>
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:adjustViewBounds="true"
+            android:src="@mipmap/img_logo_horizontal_letters"
+            android:maxHeight="180dp"/>
+
+        <ImageView
+            android:id="@+id/img_alcalasuena_splash"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:adjustViewBounds="true"
+            android:src="@mipmap/img_logo_splash"
+            android:maxHeight="220dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="@color/colorPrimary"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_splash_info"
+            style="@style/TextBase"
+            android:gravity="center"
+            android:padding="20dp"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </RelativeLayout>

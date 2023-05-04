@@ -10,8 +10,8 @@ android {
         applicationId "com.triskelapps.alcalasuena"
         minSdkVersion 19
         targetSdkVersion 33
-        versionCode 2300
-        versionName "23.0.0"
+        versionCode 2310
+        versionName "23.1.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
@@ -25,7 +25,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
 
-            buildConfigField "boolean", "MODE_PREPARING", "true"
+            buildConfigField "boolean", "MODE_PREPARING", "false"
             buildConfigField "boolean", "MOCK_CURRENT_DATETIME", "false"
         }
 

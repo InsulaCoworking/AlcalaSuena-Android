@@ -25,4 +25,6 @@ public interface MainView extends BaseView {
     void showProgressHappeningNow(boolean show);
 
     void showEventDataNotPreparedView(boolean show);
+
+    void checkNotificationsPermission();
 }

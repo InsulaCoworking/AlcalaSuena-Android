@@ -2,6 +2,7 @@ package com.triskelapps.alcalasuena.ui;
 
 import android.Manifest;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import com.google.android.material.tabs.TabLayout;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -331,6 +332,37 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
 
         binding.contentMain.tvEmptyMessage.setText(R.string.data_not_prepared);
         binding.contentMain.btnSeeBands.setOnClickListener(v -> startActivity(BandsPresenter.newBandsActivity(this)));
+
+    }
+
+    @Override
+    public void checkNotificationsPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+
+            Dexter.withActivity(this)
+                    .withPermission(Manifest.permission.POST_NOTIFICATIONS)
+                    .withListener(new PermissionListener() {
+                        @Override
+                        public void onPermissionGranted(PermissionGrantedResponse response) {
+                            toast(R.string.notifications_permission_granted);
+                        }
+
+                        @Override
+                        public void onPermissionDenied(PermissionDeniedResponse response) {
+                            toast(R.string.notifications_permission_denied);
+                        }
+
+                        @Override
+                        public void onPermissionRationaleShouldBeShown(PermissionRequest permission, final PermissionToken token) {
+                            new AlertDialog.Builder(MainActivity.this)
+                                    .setTitle(R.string.notifications_permission)
+                                    .setMessage(R.string.notifications_permission_rationale_msg)
+                                    .setPositiveButton(R.string.accept, (dialog, which) -> token.continuePermissionRequest())
+                                    .setNegativeButton(R.string.cancel, (dialog, which) -> token.cancelPermissionRequest())
+                                    .show();
+                        }
+                    }).check();
+        }
 
     }
 }

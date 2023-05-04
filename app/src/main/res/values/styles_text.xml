@@ -12,7 +12,7 @@
     </style>
 
     <style name="TextBase.Inverted">
-        <item name="android:textColor">@color/text_color_inverted</item>
+        <item name="android:textColor">@color/items_over_bg</item>
     </style>
 
 
@@ -24,13 +24,13 @@
     </style>
 
     <style name="TextTitle.Inverted">
-        <item name="android:textColor">@color/text_color_inverted</item>
+        <item name="android:textColor">@color/items_over_primary_color</item>
     </style>
 
 
     <style name="TextTitle.Header">
         <item name="android:background">@color/headers_main</item>
-        <item name="android:textColor">@color/text_color_inverted</item>
+        <item name="android:textColor">@color/items_over_header</item>
         <item name="android:textSize">25sp</item>
         <item name="android:paddingTop">5dp</item>
         <item name="android:paddingBottom">5dp</item>
@@ -57,12 +57,12 @@
 
     <style name="TextButton.OverBG">
         <item name="android:background">@drawable/bg_frame_over_bg</item>
-        <item name="android:textColor">@color/text_over_bg</item>
+        <item name="android:textColor">@color/items_over_bg</item>
     </style>
 
     <style name="TextButton.Dark">
         <item name="android:background">@drawable/bg_frame_dark</item>
-        <item name="android:textColor">@color/grey_dark_general</item>
+        <item name="android:textColor">@color/gray_dark_general</item>
     </style>
 
     <style name="TextTab" parent="TextBase">
@@ -73,7 +73,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:textSize">17sp</item>
         <item name="android:textAllCaps">false</item>
-        <item name="android:textColor">@color/grey_dark_general</item>
+        <item name="android:textColor">@color/gray_dark_general</item>
         <item name="android:layout_marginLeft">30dp</item>
     </style>
 

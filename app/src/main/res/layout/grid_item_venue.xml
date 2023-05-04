@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/img_venue"
                 android:layout_alignTop="@+id/img_venue"
-                android:background="@color/grey_dark_general"
+                android:background="@color/gray_dark_general"
                 android:alpha="0.5"/>
 
             <TextView

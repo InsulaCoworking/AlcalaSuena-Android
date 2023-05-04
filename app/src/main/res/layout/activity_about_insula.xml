@@ -52,7 +52,7 @@
                         style="@style/TextTitle"
                         android:layout_margin="10dp"
                         android:text="@string/developers"
-                        android:textColor="@color/grey_dark_general" />
+                        android:textColor="@color/gray_dark_general" />
 
                     <LinearLayout style="@style/LinearMenu">
 
@@ -129,7 +129,7 @@
                         style="@style/ImageMenuIcon"
                         android:layout_marginRight="20dp"
                         android:src="@mipmap/ic_social_github"
-                        app:tint="@color/text_over_bg" />
+                        app:tint="@color/items_over_bg" />
 
                     <TextView
                         style="@style/TextBase"

@@ -3,12 +3,22 @@
 
     <color name="colorPrimary">@color/headers_main</color>
     <color name="colorPrimaryDark">@color/headers_main_dark</color>
-    <!--<color name="colorAccent">#4beae2</color>-->
-    <color name="colorAccent">@color/white</color><!--ffff71-->
+    <color name="colorAccent">@color/items_over_primary_color</color>
 
-    <color name="items_over_primary_color">@color/white</color>
-    <color name="text_over_bg">@color/headers_main_dark</color>
+    <color name="headers_main">#e4cb64</color>
+    <color name="headers_main_semitransp">#63e4cb64</color>
+    <color name="headers_main_light">#DFCF8C</color>
+    <color name="headers_main_dark">#C6AE4C</color>
 
-    <color name="skyline">#649892</color>
+    <color name="items_over_primary_color">#706859</color>
+    <color name="items_over_header">#706859</color>
+    <color name="items_over_header_semitransp">#B9706859</color>
+    <color name="items_over_bg">@color/items_over_header</color>
+
+    <color name="skyline">#f2bcba</color>
+
+
+    <color name="tab_unselected">@color/items_over_primary_color</color>
+    <color name="tab_selected">@color/black</color>
 
 </resources>

@@ -52,8 +52,8 @@
             android:padding="10dp"
             android:inputType="textFilter"
             android:gravity="center_horizontal"
-            android:textColor="@color/text_color_inverted"
-            android:textColorHint="@color/text_color_inverted_semitransp"
+            android:textColor="@color/items_over_header"
+            android:textColorHint="@color/items_over_header_semitransp"
             android:textSize="20sp"
             android:textCursorDrawable="@null"
             app:backgroundTint="@color/items_over_primary_color"/>

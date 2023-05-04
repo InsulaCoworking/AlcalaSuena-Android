@@ -239,7 +239,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
 //        toolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white);
 
         final Drawable upArrow = AppCompatResources.getDrawable(this, R.drawable.ic_arrow_back);
-        upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        upArrow.setColorFilter(getResources().getColor(R.color.items_over_primary_color), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
     }
 

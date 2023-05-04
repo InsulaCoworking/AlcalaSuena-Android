@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import androidx.core.app.NotificationCompat;
 import android.util.Log;
@@ -143,6 +144,16 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     }
 
     private void sendNotification(String title, String text, String idNews, Bundle extras) {
+
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            if (!notificationManager.areNotificationsEnabled()) {
+                return;
+            }
+        }
+
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.setAction(App.ACTION_SHOW_NOTIFICATION);
@@ -171,9 +182,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         } else {
             extras.remove(FirebasePush.NOTIFICATION_CUSTOM_BUTTON_LINK);
         }
-
-        NotificationManager notificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
     }
