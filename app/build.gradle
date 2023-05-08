@@ -10,8 +10,8 @@ android {
         applicationId "com.triskelapps.alcalasuena"
         minSdkVersion 19
         targetSdkVersion 33
-        versionCode 2310
-        versionName "23.1.0"
+        versionCode 2312
+        versionName "23.1.2"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
@@ -35,7 +35,7 @@ android {
             versionNameSuffix " debug"
 
             buildConfigField "boolean", "MODE_PREPARING", "false"
-            buildConfigField "boolean", "MOCK_CURRENT_DATETIME", "true"
+            buildConfigField "boolean", "MOCK_CURRENT_DATETIME", "false"
         }
     }
     compileOptions {

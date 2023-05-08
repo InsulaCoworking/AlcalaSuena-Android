@@ -18,6 +18,9 @@ public interface NewsDao extends BaseDao<News> {
     @Query("SELECT * FROM news ORDER BY start_date DESC")
     List<News> getAllSorted();
 
+    @Query("SELECT * FROM news WHERE start_date LIKE :year || '-%' ORDER BY start_date DESC")
+    List<News> getAllSortedOfYear(int year);
+
     @Query("SELECT * FROM news WHERE id = :id")
     News getNewsById(int id);
 

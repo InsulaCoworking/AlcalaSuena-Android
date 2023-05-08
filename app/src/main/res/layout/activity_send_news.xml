@@ -36,8 +36,7 @@
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edit_send_news_title"
-                    style="@style/TextBase.Bold"
-                    android:textColor="@color/white"
+                    style="@style/TextBase.White"
                     android:layout_width="match_parent"
                     android:gravity="center_horizontal"
                     android:hint="@string/title"
@@ -49,7 +48,7 @@
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edit_send_news_text"
-                    style="@style/TextBase.Inverted"
+                    style="@style/TextBase.White"
                     android:layout_width="match_parent"
                     android:layout_marginTop="15dp"
                     android:textColorHint="@color/transp_white"
@@ -68,7 +67,7 @@
 
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/edit_link"
-                        style="@style/TextBase.Inverted"
+                        style="@style/TextBase.White"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:hint="@string/link"
@@ -79,7 +78,7 @@
 
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/edit_link_button_text"
-                        style="@style/TextBase.Inverted"
+                        style="@style/TextBase.White"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:hint="@string/link_button_text"

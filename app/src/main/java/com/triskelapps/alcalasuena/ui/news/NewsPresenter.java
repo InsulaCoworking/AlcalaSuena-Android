@@ -73,7 +73,7 @@ import java.util.List;
 
     private void showStoredNews() {
 
-        List<News> newsList = App.getDB().newsDao().getAllSorted();
+        List<News> newsList = App.getDB().newsDao().getAllSortedOfYear(App.FEST_YEAR);
         view.showNewsList(newsList);
     }
 
