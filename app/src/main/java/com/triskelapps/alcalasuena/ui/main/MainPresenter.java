@@ -1,10 +1,9 @@
-package com.triskelapps.alcalasuena.ui;
+package com.triskelapps.alcalasuena.ui.main;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.location.Location;
@@ -32,7 +31,6 @@ import com.triskelapps.alcalasuena.model.Filter;
 import com.triskelapps.alcalasuena.model.News;
 import com.triskelapps.alcalasuena.model.Venue;
 import com.triskelapps.alcalasuena.model.notification.FirebasePush;
-import com.triskelapps.alcalasuena.ui.about.AboutInsulaActivity;
 import com.triskelapps.alcalasuena.ui.band_info.BandInfoPresenter;
 import com.triskelapps.alcalasuena.ui.event_info.EventInfoPresenter;
 import com.triskelapps.alcalasuena.ui.info.WebViewActivity;
@@ -348,7 +346,7 @@ public class MainPresenter extends BasePresenter {
         List<Event> eventsFav = eventInteractor.getEventsDB(filter);
         String text = context.getString(R.string.share_favs_text_intro);
 
-        String importLink = "http://www.alcalasuena.es/?" + URL_QUERY_SHARE + "=";
+        String importLink = "https://alcalasuena.es/share/?" + URL_QUERY_SHARE + "=";
 
         for (Event eventFav : eventsFav) {
             text += "\n\n";

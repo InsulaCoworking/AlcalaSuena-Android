@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_color_main"
-    tools:context="com.triskelapps.alcalasuena.ui.MainActivity">
+    tools:context="com.triskelapps.alcalasuena.ui.main.MainActivity">
 
     <ImageView
         android:layout_width="match_parent"

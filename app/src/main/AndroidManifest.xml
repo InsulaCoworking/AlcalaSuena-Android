@@ -26,7 +26,7 @@
         <activity
             android:name=".ui.splash.SplashActivity"
             android:label="@string/app_name" />
-        <activity android:name=".ui.MainActivity"
+        <activity android:name=".ui.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,7 +35,6 @@
             </intent-filter>
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
@@ -43,6 +42,7 @@
                 <data android:scheme="https" />
                 <data android:host="www.alcalasuena.es" />
                 <data android:host="alcalasuena.es" />
+                <data android:pathPrefix="/share" />
             </intent-filter>
         </activity>
         <activity
@@ -71,7 +71,7 @@
         <activity android:name=".ui.news.send.SendNewsActivity" />
         <activity
             android:name=".ui.info.WebViewActivity"
-            android:parentActivityName=".ui.MainActivity" />
+            android:parentActivityName=".ui.main.MainActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

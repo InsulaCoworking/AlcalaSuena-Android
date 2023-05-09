@@ -26,10 +26,10 @@ public class NewsInfoActivity extends BaseActivity implements NewsInfoView {
     private Button btnNewsLink;
 
     private void findViews() {
-        tvNewsTitle = (TextView)findViewById( R.id.tv_news_title );
-        imgNews = (ImageView)findViewById( R.id.img_news );
-        tvNewsText = (TextView)findViewById( R.id.tv_news_text );
-        btnNewsLink = (Button)findViewById( R.id.btn_news_link );
+        tvNewsTitle = (TextView) findViewById(R.id.tv_news_title);
+        imgNews = (ImageView) findViewById(R.id.img_news);
+        tvNewsText = (TextView) findViewById(R.id.tv_news_text);
+        btnNewsLink = (Button) findViewById(R.id.btn_news_link);
 
     }
 
@@ -67,12 +67,8 @@ public class NewsInfoActivity extends BaseActivity implements NewsInfoView {
 
         if (news.hasValidLinkButton()) {
             btnNewsLink.setText(news.getBtn_text());
-            btnNewsLink.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    WebViewActivity.startRemoteUrl(NewsInfoActivity.this, null, news.getBtn_link());
-                }
-            });
+            btnNewsLink.setOnClickListener(v ->
+                    WebViewActivity.startRemoteUrl(NewsInfoActivity.this, null, news.getBtn_link()));
         } else {
             btnNewsLink.setVisibility(View.GONE);
         }

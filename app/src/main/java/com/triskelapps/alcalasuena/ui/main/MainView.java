@@ -1,4 +1,4 @@
-package com.triskelapps.alcalasuena.ui;
+package com.triskelapps.alcalasuena.ui.main;
 
 import com.triskelapps.alcalasuena.base.BaseView;
 import com.triskelapps.alcalasuena.model.Event;

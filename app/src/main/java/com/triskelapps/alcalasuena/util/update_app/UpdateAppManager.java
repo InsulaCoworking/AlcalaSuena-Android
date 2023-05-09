@@ -46,7 +46,7 @@ public class UpdateAppManager {
                 .build();
 
         PeriodicWorkRequest updateAppCheckWork = new PeriodicWorkRequest.Builder(UpdateAppCheckWorker.class,
-                1, TimeUnit.HOURS,15, TimeUnit.MINUTES)
+                2, TimeUnit.HOURS,30, TimeUnit.MINUTES)
                 .setConstraints(constraints)
                 .build();
 

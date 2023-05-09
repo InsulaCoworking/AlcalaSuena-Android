@@ -7,8 +7,8 @@ import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.interactor.BandInteractor;
 import com.triskelapps.alcalasuena.model.Filter;
 import com.triskelapps.alcalasuena.model.Tag;
-import com.triskelapps.alcalasuena.ui.MainActivity;
-import com.triskelapps.alcalasuena.ui.MainPresenter;
+import com.triskelapps.alcalasuena.ui.main.MainActivity;
+import com.triskelapps.alcalasuena.ui.main.MainPresenter;
 
 import java.util.List;
 

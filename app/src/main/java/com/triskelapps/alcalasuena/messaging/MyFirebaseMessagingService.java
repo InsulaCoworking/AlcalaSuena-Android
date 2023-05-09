@@ -25,7 +25,7 @@ import com.triskelapps.alcalasuena.App;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.model.News;
 import com.triskelapps.alcalasuena.model.notification.FirebasePush;
-import com.triskelapps.alcalasuena.ui.MainActivity;
+import com.triskelapps.alcalasuena.ui.main.MainActivity;
 import com.triskelapps.alcalasuena.util.NotificationHelper;
 
 import java.util.Map;

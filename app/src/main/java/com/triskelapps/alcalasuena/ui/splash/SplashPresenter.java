@@ -3,14 +3,12 @@ package com.triskelapps.alcalasuena.ui.splash;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 
 import com.triskelapps.alcalasuena.BuildConfig;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BasePresenter;
-import com.triskelapps.alcalasuena.ui.MainPresenter;
 import com.triskelapps.alcalasuena.ui.about.AboutAlcalaSuenaActivity;
 import com.triskelapps.alcalasuena.ui.intro.IntroPresenter;
 import com.triskelapps.alcalasuena.util.Util;

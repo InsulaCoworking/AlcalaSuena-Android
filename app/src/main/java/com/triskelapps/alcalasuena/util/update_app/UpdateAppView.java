@@ -5,27 +5,39 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleObserver;
-import androidx.lifecycle.OnLifecycleEvent;
+import androidx.lifecycle.LifecycleOwner;
 
 import com.triskelapps.alcalasuena.BuildConfig;
-import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.databinding.ViewUpdateAppBinding;
 
 
-public class UpdateAppView extends FrameLayout implements LifecycleObserver {
+public class UpdateAppView extends FrameLayout {
 
     private static final String TAG = UpdateAppView.class.getSimpleName();
 
     private UpdateAppManager updateAppManager;
     private ViewUpdateAppBinding binding;
+
+    private LifecycleObserver lifecycleObserver = new DefaultLifecycleObserver() {
+        @Override
+        public void onResume(@NonNull LifecycleOwner owner) {
+            DefaultLifecycleObserver.super.onResume(owner);
+
+            if (BuildConfig.DEBUG) {
+                return;
+            }
+
+            updateAppManager.onResume();
+
+        }
+
+    };
 
     public UpdateAppView(Context context) {
         super(context);
@@ -70,7 +82,7 @@ public class UpdateAppView extends FrameLayout implements LifecycleObserver {
         super.onAttachedToWindow();
         Log.i(TAG, "onAttachedToWindow: ");
         if (getContext() instanceof AppCompatActivity) {
-            ((AppCompatActivity) getContext()).getLifecycle().addObserver(this);
+            ((AppCompatActivity) getContext()).getLifecycle().addObserver(lifecycleObserver);
         }
     }
 
@@ -79,21 +91,10 @@ public class UpdateAppView extends FrameLayout implements LifecycleObserver {
         Log.i(TAG, "onDetachedFromWindow: ");
         super.onDetachedFromWindow();
         if (getContext() instanceof AppCompatActivity) {
-            ((AppCompatActivity) getContext()).getLifecycle().removeObserver(this);
+            ((AppCompatActivity) getContext()).getLifecycle().removeObserver(lifecycleObserver);
         }
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    public void checkUpdateInProgress() {
-        Log.i(TAG, "checkUpdateInProgress: ");
-
-        if (BuildConfig.DEBUG) {
-            return;
-        }
-
-        updateAppManager.onResume();
-
-    }
 
     private void checkUpdateAvailable() {
 

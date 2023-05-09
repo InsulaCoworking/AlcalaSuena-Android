@@ -24,7 +24,7 @@ import androidx.work.impl.utils.futures.SettableFuture;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.triskelapps.alcalasuena.BuildConfig;
 import com.triskelapps.alcalasuena.R;
-import com.triskelapps.alcalasuena.ui.MainActivity;
+import com.triskelapps.alcalasuena.ui.main.MainActivity;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
 
