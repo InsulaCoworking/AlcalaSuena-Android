@@ -74,7 +74,7 @@ public class App extends MultiDexApplication {
         db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, DB_NAME)
 //                .addMigrations(DBMigrationBase.MIGRATION_5_6)
-                .fallbackToDestructiveMigration()
+//                .fallbackToDestructiveMigration()
                 .allowMainThreadQueries()
                 .build();
 

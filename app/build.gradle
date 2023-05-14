@@ -10,8 +10,8 @@ android {
         applicationId "com.triskelapps.alcalasuena"
         minSdkVersion 19
         targetSdkVersion 33
-        versionCode 2313
-        versionName "23.1.3"
+        versionCode 2315
+        versionName "23.1.5"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
@@ -46,7 +46,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    buildFeatures.viewBinding = true
+    viewBinding.enabled = true
     namespace 'com.triskelapps.alcalasuena'
 }
 
@@ -61,6 +61,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.cardview:cardview:1.0.0'
 
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava:2.4.0'
@@ -72,6 +74,7 @@ dependencies {
     implementation 'io.reactivex:rxandroid:1.2.1'
     implementation 'io.reactivex:rxjava:1.3.0'
 
+    // Update app view
     implementation 'com.google.android.play:core:1.10.3'
     implementation "androidx.work:work-runtime:2.8.1"
 

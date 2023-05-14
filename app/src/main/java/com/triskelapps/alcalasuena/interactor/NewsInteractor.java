@@ -1,6 +1,7 @@
 package com.triskelapps.alcalasuena.interactor;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.triskelapps.alcalasuena.App;
@@ -104,6 +105,14 @@ public class NewsInteractor extends BaseInteractor {
 
         if (!Util.isConnected(context)) {
             return;
+        }
+
+        if (link == null) {
+            link = "";
+        }
+
+        if (linkButtonText == null) {
+            linkButtonText = "";
         }
 
         Map<String, RequestBody> params = new HashMap<>();

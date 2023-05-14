@@ -137,7 +137,7 @@
                     android:duplicateParentState="false"
                     android:padding="7dp"
                     android:src="@drawable/img_star_selectable"
-                    app:tint="@color/colorPrimaryDark" />
+                    app:tint="@color/items_over_primary_color" />
             </LinearLayout>
 
             <TextView
