@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/img_star_selectable"
             android:padding="10dp"
-            app:tint="@color/colorPrimaryDark"/>
+            app:tint="@color/favourites_star"/>
 
     </LinearLayout>
 

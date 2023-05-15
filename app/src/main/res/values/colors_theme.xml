@@ -20,5 +20,6 @@
 
     <color name="tab_unselected">@color/items_over_primary_color</color>
     <color name="tab_selected">@color/black</color>
+    <color name="favourites_star">@color/items_over_primary_color</color>
 
 </resources>
