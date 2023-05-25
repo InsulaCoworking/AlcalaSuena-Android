@@ -95,8 +95,6 @@ public class WebViewActivity extends BaseActivity {
 
         notificationManager.cancel(0);
 
-        sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
-
         WebUtils.openCustomTab(this, url);
         finish();
 

@@ -110,8 +110,11 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
 
             holder.binding.cardEvent.setCardBackgroundColor(Color.parseColor(band1.getTag().getColor()));
         } else {
-            throw new IllegalStateException("Not prepared for more than 2 bands in each event");
+            int moreBands = bands.size() - 1;
+            holder.binding.tvMoreBands.setText(context.getString(R.string.more_bands_x, moreBands));
         }
+
+        holder.binding.tvMoreBands.setVisibility(bands.size() >= 2 ? View.VISIBLE : View.GONE);
     }
 
 

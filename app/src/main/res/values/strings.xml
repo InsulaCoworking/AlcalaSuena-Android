@@ -133,5 +133,6 @@
     <string name="notifications_permission">Permiso de notificaciones</string>
     <string name="notifications_permission_denied">Has desactivado las notificaciones de AlcalaSuena</string>
     <string name="notifications_permission_granted">¡Notificaciones activadas!</string>
+    <string name="more_bands_x">Y otras %d bandas...\n</string>
 
 </resources>

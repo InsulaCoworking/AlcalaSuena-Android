@@ -63,9 +63,7 @@ public class EventInfoActivity extends BaseActivity implements EventInfoView {
 
         if (adapter == null) {
             adapter = new BandsAdapter(this, event.getBands());
-            adapter.setOnItemClickListener((view, position, id) -> {
-                presenter.onBandClick(id);
-            });
+            adapter.setOnItemClickListener((view, position, id) -> presenter.onBandClick(id));
             binding.recyclerBandsEvent.setAdapter(adapter);
         } else {
             adapter.notifyDataSetChanged();
@@ -82,5 +80,8 @@ public class EventInfoActivity extends BaseActivity implements EventInfoView {
 
         binding.imgEvent.setOnClickListener(v ->
                 startActivity(ImageFullActivity.newImageFullActivity(this, event.getImageUrlFull().toString())));
+
+
+        binding.btnBuyTickets.setVisibility(TextUtils.isEmpty(event.getTicketsUrl()) ? View.GONE : View.VISIBLE);
     }
 }

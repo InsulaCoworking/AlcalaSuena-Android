@@ -141,9 +141,18 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tv_more_bands"
+                style="@style/TextBase"
+                android:textColor="#000"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:layout_below="@+id/view_genre_2" />
+
+            <TextView
                 android:id="@+id/tv_event_venue"
                 style="@style/TextBase"
-                android:layout_below="@+id/view_genre_2"
+                android:layout_below="@+id/tv_more_bands"
                 android:layout_alignLeft="@+id/tv_band_name"
                 android:layout_toLeftOf="@+id/tv_event_time"
                 android:ellipsize="end"

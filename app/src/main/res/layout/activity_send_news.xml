@@ -44,6 +44,7 @@
                     android:padding="10dp"
                     android:textColorHint="@color/transp_white"
                     android:textSize="18sp"
+                    android:textCursorDrawable="@null"
                     app:backgroundTint="@color/white"/>
 
                 <androidx.appcompat.widget.AppCompatEditText
@@ -56,6 +57,7 @@
                     android:gravity="top|left"
                     android:hint="@string/text"
                     android:minLines="5"
+                    android:textCursorDrawable="@null"
                     android:inputType="textCapSentences|textMultiLine"
                     android:padding="10dp" />
 
