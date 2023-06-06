@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.model.News;
+import com.triskelapps.alcalasuena.util.DateUtils;
 
 import java.util.List;
 
@@ -23,9 +24,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     private List<News> newsList;
     private Context context;
     private OnItemClickListener itemClickListener;
-
-    private Integer selectedNumber = -1;
-
 
     public NewsAdapter(Context context, List<News> newsList) {
         this.context = context;
@@ -49,6 +47,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
         holder.tvNewsTitle.setText(news.getTitle());
         holder.tvNewsText.setText(news.getText());
+        holder.tvNewsDate.setText(DateUtils.convertDateTimeApiToUserFormat(news.getStart_date()));
         Picasso.get()
                 .load(news.getImageUrlFull())
                 .placeholder(R.mipmap.img_default_grid)
@@ -88,6 +87,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
         private final TextView tvNewsText;
         public TextView tvNewsTitle;
+        public TextView tvNewsDate;
         public ImageView imgNews;
         public View rootView;
 
@@ -97,6 +97,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
             tvNewsTitle = (TextView) itemView.findViewById(R.id.tv_news_title);
             tvNewsText = (TextView) itemView.findViewById(R.id.tv_news_text);
+            tvNewsDate = (TextView) itemView.findViewById(R.id.tv_news_date);
             imgNews = (ImageView) itemView.findViewById(R.id.img_news);
 
             rootView = itemView;

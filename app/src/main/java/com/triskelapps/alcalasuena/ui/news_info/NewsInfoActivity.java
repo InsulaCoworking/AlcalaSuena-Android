@@ -16,6 +16,7 @@ import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.model.News;
 import com.triskelapps.alcalasuena.ui.image_full.ImageFullActivity;
 import com.triskelapps.alcalasuena.ui.info.WebViewActivity;
+import com.triskelapps.alcalasuena.util.DateUtils;
 
 public class NewsInfoActivity extends BaseActivity implements NewsInfoView {
 
@@ -24,12 +25,14 @@ public class NewsInfoActivity extends BaseActivity implements NewsInfoView {
     private ImageView imgNews;
     private TextView tvNewsText;
     private Button btnNewsLink;
+    private TextView tvNewsDate;
 
     private void findViews() {
         tvNewsTitle = (TextView) findViewById(R.id.tv_news_title);
         imgNews = (ImageView) findViewById(R.id.img_news);
         tvNewsText = (TextView) findViewById(R.id.tv_news_text);
         btnNewsLink = (Button) findViewById(R.id.btn_news_link);
+        tvNewsDate = findViewById(R.id.tv_news_date);
 
     }
 
@@ -55,6 +58,7 @@ public class NewsInfoActivity extends BaseActivity implements NewsInfoView {
     public void showNews(final News news) {
         tvNewsTitle.setText(news.getTitle());
         tvNewsText.setText(news.getText());
+        tvNewsDate.setText(DateUtils.convertDateTimeApiToUserFormat(news.getStart_date()));
 
         if (news.getImage() != null) {
 
