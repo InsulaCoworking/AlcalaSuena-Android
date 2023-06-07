@@ -87,6 +87,7 @@ public class MainPresenter extends BasePresenter {
     private Integer newDataVersion;
     private List<Event> events = new ArrayList<>();
     private boolean searchingLocation;
+    private boolean autoTimeScroll;
 
     public static Intent newMainActivity(Context context) {
 
@@ -148,6 +149,8 @@ public class MainPresenter extends BasePresenter {
         }
 
         checkSendNewsPermission();
+
+        autoTimeScroll = true;
 
     }
 
@@ -277,22 +280,25 @@ public class MainPresenter extends BasePresenter {
         view.showEvents(events, emptyMessage);
 
         // Little extra: scroll to events happening now
-        try {
-            if (isCurrentTabDay()) {
-                String hourNow = new SimpleDateFormat("HH").format(new Date());
-                for (int i = 0; i < events.size(); i++) {
-                    Event event = events.get(i);
-                    if (event.getTime().startsWith(hourNow)) {
-                        view.goToEventsTakingPlaceNow(i);
-                        break;
+        if (autoTimeScroll) {
+            try {
+                if (isCurrentTabDay()) {
+                    String hourNow = new SimpleDateFormat("HH").format(new Date());
+                    for (int i = 0; i < events.size(); i++) {
+                        Event event = events.get(i);
+                        if (event.getTime().startsWith(hourNow)) {
+                            view.goToEventsTakingPlaceNow(i);
+                            break;
+                        }
                     }
                 }
+            } catch (Exception e) {
+                // Bad idea if this little extra make an app crash :S
+                FirebaseCrashlytics.getInstance().recordException(e);
             }
-        } catch (Exception e) {
-            // Bad idea if this little extra make an app crash :S
-            FirebaseCrashlytics.getInstance().recordException(e);
         }
 
+        autoTimeScroll = false;
     }
 
 
