@@ -5,13 +5,13 @@ apply plugin: 'com.google.firebase.crashlytics'
 def buildType
 
 android {
-    compileSdkVersion 33
     defaultConfig {
+        compileSdk 34
         applicationId "com.triskelapps.alcalasuena"
         minSdkVersion 19
-        targetSdkVersion 33
-        versionCode 2317
-        versionName "23.1.7"
+        targetSdkVersion 34
+        versionCode 2400
+        versionName "24.0.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
@@ -58,7 +58,7 @@ dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.cardview:cardview:1.0.0'
 
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
@@ -76,24 +76,24 @@ dependencies {
 
     // Update app view
     implementation 'com.google.android.play:core:1.10.3'
-    implementation "androidx.work:work-runtime:2.8.1"
+    implementation "androidx.work:work-runtime:2.9.0"
 
     implementation 'com.karumi:dexter:6.0.0'
 
     implementation 'ca.barrenechea.header-decor:header-decor:0.2.8'
 
-    implementation platform('com.google.firebase:firebase-bom:27.1.0')
+    implementation platform('com.google.firebase:firebase-bom:32.7.4')
     implementation 'com.google.firebase:firebase-messaging'
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'com.google.firebase:firebase-analytics'
 
-    def room_version = "2.5.1"
+    def room_version = "2.6.1"
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
 
     implementation 'io.nlopez.smartlocation:library:3.3.3'
     implementation 'com.google.android.gms:play-services-location:19.0.1'
-    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+    implementation 'com.google.android.gms:play-services-maps:18.2.0'
     implementation 'com.google.maps.android:android-maps-utils:0.6.2'
 
     implementation 'com.romandanylyk:pageindicatorview:1.0.1'

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
@@ -31,16 +32,16 @@ public class App extends MultiDexApplication {
 
     private static final String TAG = App.class.getSimpleName();
 
-    public static final int FEST_YEAR = 2023;
-    public static final int CACHED_DATA_VERSION = 2;
-    public static final int INIT_DATA_VERSION = 2;
+    public static final int FEST_YEAR = 2024;
+    public static final int CACHED_DATA_VERSION = 1;
+    public static final int INIT_DATA_VERSION = 1;
 
     public static List<String> festDates = new ArrayList<>();
 
     static {
-        festDates.add("2023-06-02");
-        festDates.add("2023-06-03");
-        festDates.add("2023-06-04");
+        festDates.add("2024-06-07");
+        festDates.add("2024-06-08");
+        festDates.add("2024-06-09");
     }
 
     public static final String WEB_URL = "https://alcalasuena.es/";
@@ -95,8 +96,14 @@ public class App extends MultiDexApplication {
 
 //        updateDataFromApi();
 
-//        String token = FirebaseInstanceId.getInstance().getToken();
-//        Log.d(TAG, "Refreshed token: " + token);
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Log.d(TAG, "Refreshed token: " + task.getResult());
+            } else {
+                Log.d(TAG, "Refreshed token: ERROR\n" + task.getException().getMessage());
+            }
+        });
+
 
         if (BuildConfig.DEBUG) {
             FirebaseMessaging.getInstance().subscribeToTopic(TOPIC_NEWS_TEST);

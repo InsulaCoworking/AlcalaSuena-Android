@@ -54,7 +54,7 @@ public abstract class BaseFragment extends Fragment implements BaseView {
 
 
     @Override
-    public void setRefresing(boolean refresing) {
+    public void setRefreshing(boolean refresing) {
 
     }
 

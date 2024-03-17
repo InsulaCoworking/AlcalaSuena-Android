@@ -48,7 +48,7 @@ public class EventInteractor extends BaseInteractor {
     private List<Event> removeEventsWithNoTagsActive(List<Event> events) {
 
         return events.stream().filter(event ->
-                event.getBands().stream().anyMatch(band ->
+                event.getBands() != null && event.getBands().stream().anyMatch(band ->
                         App.getDB().tagStateDao().isTagActive(band.getIdTag())))
                 .collect(Collectors.toList());
 

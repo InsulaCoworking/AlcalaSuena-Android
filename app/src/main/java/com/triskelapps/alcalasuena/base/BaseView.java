@@ -5,7 +5,7 @@ package com.triskelapps.alcalasuena.base;
  */
 public interface BaseView {
 
-    void setRefresing(boolean refresing);
+    void setRefreshing(boolean refresing);
 
     void showProgressDialog(String message);
 

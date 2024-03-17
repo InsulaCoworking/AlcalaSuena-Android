@@ -188,7 +188,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     }
 
     @Override
-    public void setRefresing(boolean refresing) {
+    public void setRefreshing(boolean refresing) {
 
         if (progressBar != null) {
             progressBar.setVisibility(refresing ? View.VISIBLE : View.INVISIBLE);

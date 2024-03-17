@@ -154,14 +154,22 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
 
     private View getTabView(int day) {
         View tabView = View.inflate(this, R.layout.view_tab, null);
-        TextView tvDayWeek = (TextView) tabView.findViewById(R.id.tv_tab_day_week);
-        TextView tvDayMonth = (TextView) tabView.findViewById(R.id.tv_tab_day_month);
+        TextView tvDayWeek = tabView.findViewById(R.id.tv_tab_day_week);
+        TextView tvDayMonth = tabView.findViewById(R.id.tv_tab_day_month);
 
         tvDayWeek.setText(presenter.getWeekDayForTabPosition(day));
         tvDayMonth.setText(presenter.getDayMonthForTabPosition(day));
 
         return tabView;
     }
+
+    @Override
+    public void updatingData(boolean updating) {
+
+        binding.contentMain.progressSync.setVisibility(updating ? View.VISIBLE : View.GONE);
+        binding.contentMain.tvEmptyMessage.setVisibility(updating ? View.GONE : View.VISIBLE);
+    }
+
 
     // INTERACTIONS
     @Override
@@ -227,6 +235,7 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
             super.onBackPressed();
         }
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 

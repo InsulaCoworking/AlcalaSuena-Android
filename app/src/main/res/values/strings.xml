@@ -1,3 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE resources [<!ENTITY year "2024"> ]>
+
 <resources>
     <string name="app_name">AlcalaSuena</string>
     <string name="title_home">Home</string>
@@ -59,7 +61,7 @@
     <string name="about_app">Sobre la app</string>
     <string name="insula_coworking">Ínsula Coworking</string>
 
-    <string name="text_about_insula">Esta aplicación de Android y la web interactiva www.alcalasuena.es nacieron en 2017 por iniciativa colectiva de un grupo de informáticos y diseñadores de la Ínsula Coworking.\n\nGracias a la buena acogida y los comentarios positivos que nos habéis dado, este año cuenta con el apoyo del Ayuntamiento de Alcalá para seguir mejorando. Como gran novedad, en esta edición de 2019 ¡por fin estará la tan esperada aplicación para iOS!</string>
+    <string name="text_about_insula">Esta aplicación de Android y la web interactiva www.alcalasuena.es nacieron en 2017 por iniciativa colectiva de un grupo de informáticos y diseñadores de la Ínsula Coworking.\n\nGracias a la buena acogida y los comentarios positivos que nos habéis dado, este año cuenta con el apoyo del Ayuntamiento de Alcalá para seguir mejorando.</string>
 
     <string name="joseba_info">Joseba Saenz de Navarrete\nBackend y página web</string>
     <string name="roberto_info">Roberto Román Moran\nApp iOS</string>
@@ -108,7 +110,7 @@
     <string name="amstel_recomends">Amstel recomienda\nel consumo responsable</string>
     <string name="enter_excl">¡Entrar!</string>
     <string name="empty_list_news">De momento en este año no hay noticias. ¡Pronto te avisaremos de todas las novedades!</string>
-    <string name="preparing_app_edition_current_year">Preparando aplicación para la edición de 2023....\n¡Te avisaremos cuando esté lista!</string>
+    <string name="preparing_app_edition_current_year">Preparando aplicación para la edición de &year;....\n¡Te avisaremos cuando esté lista!</string>
     <string name="new_version_available">¡Aplicación preparada!\nPulsa aquí para actualizar</string>
     <string name="location_wont_show">No se mostrará tu ubicación (puedes cambiar esta configuración en los ajustes)</string>
     <string name="location_permission">Permiso de acceso a localización</string>
@@ -122,7 +124,7 @@
     <string name="location_permission_rationale_happening_now_message">Para detectar el escenario más cercano es necesario que la app sepa donde te encuentras</string>
     <string name="link_error">Hay un error con este enlace</string>
     <string name="event_info">Información del evento</string>
-    <string name="app_name_year">AlcaláSuena 2023</string>
+    <string name="app_name_year">AlcaláSuena &year;</string>
     <string name="date_time_info_format">Día: %s\nHora: %s\nDuración: %s</string>
     <string name="buy_ticekts">Comprar entradas</string>
     <string name="data_not_prepared">Los horarios de los conciertos se están preparando todavía, avisaremos cuando estén listos.\n\n¡Lo que sí está lista es la información de las bandas que participan!\nPulsa el siguiente botón para verlas.</string>
@@ -134,5 +136,6 @@
     <string name="notifications_permission_denied">Has desactivado las notificaciones de AlcalaSuena</string>
     <string name="notifications_permission_granted">¡Notificaciones activadas!</string>
     <string name="more_bands_x">Y otras %d bandas...\n</string>
+    <string name="no_events_yet">Todavía no está creada la programación de conciertos. ¡En breve te avisaremos!</string>
 
 </resources>

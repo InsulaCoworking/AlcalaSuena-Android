@@ -12,6 +12,8 @@ import java.util.List;
 public interface MainView extends BaseView {
 
 
+    void updatingData(boolean updating);
+
     void showEvents(List<Event> events, String emptyMessage);
 
     void goToTop();

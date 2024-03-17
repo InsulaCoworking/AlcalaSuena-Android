@@ -5,21 +5,21 @@
     <color name="colorPrimaryDark">@color/headers_main_dark</color>
     <color name="colorAccent">@color/items_over_primary_color</color>
 
-    <color name="headers_main">#e4cb64</color>
-    <color name="headers_main_semitransp">#63e4cb64</color>
-    <color name="headers_main_light">#DFCF8C</color>
-    <color name="headers_main_dark">#C6AE4C</color>
+    <color name="headers_main">#d82956</color>
+    <color name="headers_main_semitransp">#63d82956</color>
+    <color name="headers_main_light">#D54C6F</color>
+    <color name="headers_main_dark">#B60F3A</color>
 
-    <color name="items_over_primary_color">#706859</color>
-    <color name="items_over_header">#706859</color>
-    <color name="items_over_header_semitransp">#B9706859</color>
-    <color name="items_over_bg">@color/items_over_header</color>
+    <color name="items_over_primary_color">#fff</color>
+    <color name="items_over_header">#fff</color>
+    <color name="items_over_header_semitransp">#B9ffffff</color>
+    <color name="items_over_bg">@color/black</color>
 
-    <color name="skyline">#f2bcba</color>
+    <color name="skyline">#726459</color>
 
 
     <color name="tab_unselected">@color/items_over_primary_color</color>
-    <color name="tab_selected">@color/black</color>
-    <color name="favourites_star">@color/items_over_primary_color</color>
+    <color name="tab_selected">#e4cb64</color>
+    <color name="favourites_star">@color/black</color>
 
 </resources>

@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:adjustViewBounds="true"
-            android:src="@mipmap/img_logo_splash"
+            android:src="@mipmap/img_logo"
             android:maxHeight="220dp" />
 
         <View

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.location.Location;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -119,7 +120,11 @@ public class MainPresenter extends BasePresenter {
 
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(App.ACTION_REFRESH_DATA);
-        context.registerReceiver(receiverRefreshData, intentFilter);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            context.registerReceiver(receiverRefreshData, intentFilter, Context.RECEIVER_NOT_EXPORTED);
+        } else {
+            context.registerReceiver(receiverRefreshData, intentFilter);
+        }
 
         filter = new Filter();
 
@@ -200,13 +205,15 @@ public class MainPresenter extends BasePresenter {
 
             @Override
             public void onError(String error) {
-
+                Log.e(TAG, "checkDataVersionAndUpdate onError: " + error);
             }
         });
     }
 
 
     private void updateBandsFromApi() {
+
+        view.updatingData(true);
 
         Log.i(TAG, "---> update start");
         bandInteractor.getBands(new BandInteractor.BandsCallback() {
@@ -222,6 +229,7 @@ public class MainPresenter extends BasePresenter {
                 FirebaseCrashlytics.getInstance().recordException(new Error("Error updating bands from API: " + error));
 //                Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
                 Log.i(TAG, "---> update bands error");
+                view.updatingData(false);
             }
         });
     }
@@ -232,11 +240,17 @@ public class MainPresenter extends BasePresenter {
             @Override
             public void onResponse(List<Venue> venues) {
 
+                view.updatingData(false);
                 sendUpdateDataBroadcast();
+
+                boolean hasEvents = venues.stream().anyMatch(venue -> venue.getEvents() != null && !venue.getEvents().isEmpty());
+                if (!hasEvents) {
+                    view.alert(getString(R.string.no_events_yet));
+                }
 
                 Log.i(TAG, "---> update end");
 
-                getPrefs().edit().putInt(App.SHARED_CURRENT_DATA_VERSION, newDataVersion).commit();
+                getPrefs().edit().putInt(App.SHARED_CURRENT_DATA_VERSION, newDataVersion).apply();
             }
 
             @Override
@@ -245,6 +259,7 @@ public class MainPresenter extends BasePresenter {
 //                Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
 
                 Log.i(TAG, "---> update venues error");
+                view.updatingData(false);
             }
         });
     }
