@@ -127,7 +127,8 @@
     <string name="app_name_year">AlcaláSuena &year;</string>
     <string name="date_time_info_format">Día: %s\nHora: %s\nDuración: %s</string>
     <string name="buy_ticekts">Comprar entradas</string>
-    <string name="data_not_prepared">Los horarios de los conciertos se están preparando todavía, avisaremos cuando estén listos.\n\n¡Lo que sí está lista es la información de las bandas que participan!\nPulsa el siguiente botón para verlas.</string>
+    <string name="data_not_prepared">Todavía no está creada la programación de conciertos. ¡Avisaremos cuando estén listos!</string>
+    <string name="data_not_prepared_bands_ready">Lo que sí puedes ver son las bandas que participan\nPulsa el siguiente botón para verlas.</string>
     <string name="see_bands">Ver bandas</string>
     <string name="no_venues_data">Los datos de escenario se están preparando. ¡Te avisaremos cuando estén listos!</string>
     <string name="participate">Participa</string>
@@ -136,6 +137,6 @@
     <string name="notifications_permission_denied">Has desactivado las notificaciones de AlcalaSuena</string>
     <string name="notifications_permission_granted">¡Notificaciones activadas!</string>
     <string name="more_bands_x">Y otras %d bandas...\n</string>
-    <string name="no_events_yet">Todavía no está creada la programación de conciertos. ¡En breve te avisaremos!</string>
+<!--    <string name="no_events_yet">Todavía no está creada la programación de conciertos. ¡En breve te avisaremos!</string>-->
 
 </resources>

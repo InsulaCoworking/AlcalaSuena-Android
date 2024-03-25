@@ -243,11 +243,6 @@ public class MainPresenter extends BasePresenter {
                 view.updatingData(false);
                 sendUpdateDataBroadcast();
 
-                boolean hasEvents = venues.stream().anyMatch(venue -> venue.getEvents() != null && !venue.getEvents().isEmpty());
-                if (!hasEvents) {
-                    view.alert(getString(R.string.no_events_yet));
-                }
-
                 Log.i(TAG, "---> update end");
 
                 getPrefs().edit().putInt(App.SHARED_CURRENT_DATA_VERSION, newDataVersion).apply();
@@ -273,13 +268,25 @@ public class MainPresenter extends BasePresenter {
 
         events.clear();
 
-        if (App.getDB().venueDao().getAll().isEmpty()) {
+        List<Event> eventsFull = App.getDB().eventDao().getAllFull();
+        boolean hasEvents = !eventsFull.isEmpty();
+        if (!hasEvents) {
             view.showEvents(events, "");
-            view.showEventDataNotPreparedView(true);
+            List<Band> bands = App.getDB().bandDao().getAll();
+            boolean hasBands = !bands.isEmpty();
+            view.showEventDataNotPreparedView(true, hasBands);
             return;
         } else {
-            view.showEventDataNotPreparedView(false);
+            view.showEventDataNotPreparedView(false, false);
         }
+
+//        if (App.getDB().venueDao().getAll().isEmpty()) {
+//            view.showEvents(events, "");
+//            view.showEventDataNotPreparedView(true);
+//            return;
+//        } else {
+//            view.showEventDataNotPreparedView(false);
+//        }
 
         events.addAll(eventInteractor.getEventsDB(filter));
 

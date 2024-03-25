@@ -167,7 +167,10 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
     public void updatingData(boolean updating) {
 
         binding.contentMain.progressSync.setVisibility(updating ? View.VISIBLE : View.GONE);
-        binding.contentMain.tvEmptyMessage.setVisibility(updating ? View.GONE : View.VISIBLE);
+        if (updating) {
+            binding.contentMain.tvEmptyMessage.setVisibility(View.GONE);
+            binding.contentMain.btnSeeBands.setVisibility(View.GONE);
+        }
     }
 
 
@@ -334,12 +337,17 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
     }
 
     @Override
-    public void showEventDataNotPreparedView(boolean show) {
+    public void showEventDataNotPreparedView(boolean show, boolean hasBands) {
 
         binding.contentMain.tvEmptyMessage.setVisibility(show ? View.VISIBLE : View.GONE);
-        binding.contentMain.btnSeeBands.setVisibility(show ? View.VISIBLE : View.GONE);
+        binding.contentMain.btnSeeBands.setVisibility(show && hasBands ? View.VISIBLE : View.GONE);
 
-        binding.contentMain.tvEmptyMessage.setText(R.string.data_not_prepared);
+        String message = getString(R.string.data_not_prepared);
+        if (hasBands) {
+            message += "\n\n" + getString(R.string.data_not_prepared_bands_ready);
+        }
+
+        binding.contentMain.tvEmptyMessage.setText(message);
         binding.contentMain.btnSeeBands.setOnClickListener(v -> startActivity(BandsPresenter.newBandsActivity(this)));
 
     }

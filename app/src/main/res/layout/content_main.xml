@@ -58,6 +58,7 @@
             android:text="@string/see_bands"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
+            android:labelFor="@id/tv_empty_message"
             android:visibility="gone"/>
 
         <androidx.appcompat.widget.AppCompatImageView

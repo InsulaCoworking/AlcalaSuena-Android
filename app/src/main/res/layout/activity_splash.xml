@@ -34,7 +34,7 @@
             android:layout_centerInParent="true"
             android:adjustViewBounds="true"
             android:src="@mipmap/img_logo"
-            android:maxHeight="220dp" />
+            android:maxHeight="320dp" />
 
         <View
             android:layout_width="match_parent"

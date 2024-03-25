@@ -31,7 +31,7 @@ public class DebugHelper {
     private static final boolean FORZE_MASTER = false;
     private static final boolean FORZE_ALARM = true;
 
-    private static final boolean FORZE_BETA_ENV_APK = true;
+    private static final boolean FORZE_BETA_ENV_APK = false;
 
     public static final boolean BILLING_TESTING = false;
 
