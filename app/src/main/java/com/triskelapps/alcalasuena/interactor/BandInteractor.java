@@ -43,27 +43,6 @@ public class BandInteractor extends BaseInteractor {
 
     }
 
-    public void initializeBandsFirstTime() {
-        Log.i(TAG, "initializeBandsFirstTime: start");
-
-        final Gson gson = new GsonBuilder().create();
-
-        try {
-
-            final String jsonTotal = Util.getStringFromAssets(context, "bands.json");
-            Type listType = new TypeToken<List<Band>>() {
-            }.getType();
-            final List<Band> bands = gson.fromJson(jsonTotal, listType);
-            storeBands(bands);
-
-            Log.i(TAG, "initializeBandsFirstTime: end");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-    }
 
     public void getBands(final BandsCallback callback) {
 

@@ -93,7 +93,7 @@ dependencies {
 
     implementation 'io.nlopez.smartlocation:library:3.3.3'
     implementation 'com.google.android.gms:play-services-location:19.0.1'
-    implementation 'com.google.android.gms:play-services-maps:18.2.0'
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
     implementation 'com.google.maps.android:android-maps-utils:0.6.2'
 
     implementation 'com.romandanylyk:pageindicatorview:1.0.1'

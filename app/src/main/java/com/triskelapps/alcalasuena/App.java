@@ -50,7 +50,6 @@ public class App extends MultiDexApplication {
 
     public static final String SHARED_CURRENT_DATA_VERSION = PREFIX + "shared_current_data_version_" + FEST_YEAR;
     public static final String SHARED_FIRST_TIME_APP_LAUNCHING = PREFIX + "extra_first_time_app_lauching_" + FEST_YEAR;
-    private static final String SHARED_CACHED_DATA_STORED = PREFIX + "shared_cached_data_stored_" + FEST_YEAR + "_" + INIT_DATA_VERSION;
     public static final String SHARED_PIN_SEND_NEWS_ENCRIPT = PREFIX + "shared_pin_send_news_encript";
 
     public static final String ACTION_REFRESH_DATA = PREFIX + "action_refresh_data";
@@ -90,8 +89,6 @@ public class App extends MultiDexApplication {
         built.setLoggingEnabled(true);
         Picasso.setSingletonInstance(built);
 
-        initializeDataFirstTime();
-
         UpdateAppManager.scheduleAppUpdateCheckWork(this);
 
 //        updateDataFromApi();
@@ -114,15 +111,6 @@ public class App extends MultiDexApplication {
 
     }
 
-    private void initializeDataFirstTime() {
-
-        if (!getPrefs(this).getBoolean(SHARED_CACHED_DATA_STORED, false)) {
-            new BandInteractor(this, null).initializeBandsFirstTime();
-            new VenueInteractor(this,null).initializeVenuesFirstTime();
-            getPrefs(this).edit().putBoolean(SHARED_CACHED_DATA_STORED, true).commit();
-        }
-
-    }
 
     public static AppDatabase getDB() {
         return db;

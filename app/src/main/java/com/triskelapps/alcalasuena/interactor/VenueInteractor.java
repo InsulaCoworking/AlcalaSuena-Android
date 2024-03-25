@@ -43,28 +43,6 @@ public class VenueInteractor extends BaseInteractor {
     }
 
 
-    public void initializeVenuesFirstTime() {
-        Log.i(TAG, "initializeVenuesFirstTime: start");
-        String filePath = "venues.json";
-        try {
-
-            final String jsonTotal = Util.getStringFromAssets(context, filePath);
-            final Gson gson = new GsonBuilder().create();
-
-            Type listType = new TypeToken<List<Venue>>() {}.getType();
-            final List<Venue> venues = gson.fromJson(jsonTotal, listType);
-
-            storeVenues(venues);
-
-            Log.i(TAG, "initializeVenuesFirstTime: end");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-    }
-
-
     public void getVenuesApi(final VenuesCallback callback) {
 
         if (!Util.isConnected(context)) {
