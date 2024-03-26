@@ -89,6 +89,10 @@ public class BandInteractor extends BaseInteractor {
 
     }
 
+    public boolean hasBands() {
+        return !App.getDB().bandDao().getAll().isEmpty();
+    }
+
 
     private Api getApi() {
         return getApi(Api.class);

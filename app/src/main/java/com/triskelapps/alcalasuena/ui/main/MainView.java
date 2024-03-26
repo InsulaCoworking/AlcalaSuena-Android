@@ -14,7 +14,7 @@ public interface MainView extends BaseView {
 
     void updatingData(boolean updating);
 
-    void showEvents(List<Event> events, String emptyMessage);
+    void showEvents(List<Event> events, MainPresenter.EmptyState emptyState);
 
     void goToTop();
 
@@ -25,8 +25,6 @@ public interface MainView extends BaseView {
     void showSendNewsButton();
 
     void showProgressHappeningNow(boolean show);
-
-    void showEventDataNotPreparedView(boolean show, boolean hasBands);
 
     void checkNotificationsPermission();
 

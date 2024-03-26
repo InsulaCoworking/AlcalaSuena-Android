@@ -49,6 +49,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import io.nlopez.smartlocation.SmartLocation;
 
@@ -75,6 +76,10 @@ public class MainPresenter extends BasePresenter {
     private final VenueInteractor venueInteractor;
 
     private Filter filter;
+
+    enum EmptyState {
+        NONE, NO_DATA, ONLY_BANDS, NO_FAVS, FILTERING_ALL
+    }
 
     private BroadcastReceiver receiverRefreshData = new BroadcastReceiver() {
         @Override
@@ -130,7 +135,7 @@ public class MainPresenter extends BasePresenter {
 
         // During the festival go directly to current day
         Calendar midnightSafeCalendar = Calendar.getInstance();
-        midnightSafeCalendar.add(Calendar.HOUR_OF_DAY, -5); // This way we considere "next day" after 5:00am
+        midnightSafeCalendar.add(Calendar.HOUR_OF_DAY, -5); // This way we consider "next day" after 5:00am
 
         String currentDay = Event.dateFormatApi.format(new Date(midnightSafeCalendar.getTimeInMillis()));
         int tabPosition = 0;
@@ -268,44 +273,34 @@ public class MainPresenter extends BasePresenter {
 
         events.clear();
 
-        List<Event> eventsFull = App.getDB().eventDao().getAllFull();
-        boolean hasEvents = !eventsFull.isEmpty();
-        if (!hasEvents) {
-            view.showEvents(events, "");
-            List<Band> bands = App.getDB().bandDao().getAll();
-            boolean hasBands = !bands.isEmpty();
-            view.showEventDataNotPreparedView(true, hasBands);
-            return;
-        } else {
-            view.showEventDataNotPreparedView(false, false);
-        }
-
-//        if (App.getDB().venueDao().getAll().isEmpty()) {
-//            view.showEvents(events, "");
-//            view.showEventDataNotPreparedView(true);
-//            return;
-//        } else {
-//            view.showEventDataNotPreparedView(false);
-//        }
-
         events.addAll(eventInteractor.getEventsDB(filter));
 
-        String emptyMessage = null;
+        EmptyState emptyState = EmptyState.NONE;
         if (events.isEmpty()) {
-            if (filter.isStarred()) {
-                emptyMessage = context.getString(R.string.no_favourites);
+
+            if (!eventInteractor.hasEvents()) {
+                if (bandInteractor.hasBands()) {
+                    emptyState = EmptyState.ONLY_BANDS;
+                } else {
+                    emptyState = EmptyState.NO_DATA;
+                }
             } else {
-                emptyMessage = context.getString(R.string.no_results_for_tags);
+                if (filter.isStarred()) {
+                    emptyState = EmptyState.NO_FAVS;
+                } else {
+                    emptyState = EmptyState.FILTERING_ALL;
+                }
             }
+
         }
 
-        view.showEvents(events, emptyMessage);
+        view.showEvents(events, emptyState);
 
         // Little extra: scroll to events happening now
         if (autoTimeScroll) {
             try {
                 if (isCurrentTabDay()) {
-                    String hourNow = new SimpleDateFormat("HH").format(new Date());
+                    String hourNow = new SimpleDateFormat("HH", Locale.getDefault()).format(new Date());
                     for (int i = 0; i < events.size(); i++) {
                         Event event = events.get(i);
                         if (event.getTime().startsWith(hourNow)) {

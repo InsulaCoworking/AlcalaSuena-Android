@@ -11,6 +11,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
+
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -272,7 +274,7 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
 
     // PRESENTER CALLBACKS
     @Override
-    public void showEvents(List<Event> events, String emptyMessage) {
+    public void showEvents(List<Event> events, MainPresenter.EmptyState emptyState) {
 
         if (adapter == null) {
 
@@ -292,13 +294,37 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
                 adapter.notifyDataSetChanged();
                 binding.contentMain.recyclerEvents.post(() -> animationAdapter.setDuration(AnimationAdapter.DEFAULT_DURATION));
             } catch (Exception e) {
-                e.printStackTrace();
+                Log.e(TAG, "showEvents: ", e);
                 FirebaseCrashlytics.getInstance().recordException(e);
             }
         }
 
-        binding.contentMain.tvEmptyMessage.setVisibility(emptyMessage != null ? View.VISIBLE : View.GONE);
-        binding.contentMain.tvEmptyMessage.setText(emptyMessage);
+        binding.contentMain.tvEmptyMessage.setVisibility(
+                emptyState == MainPresenter.EmptyState.NONE ? View.GONE : View.VISIBLE);
+
+        binding.contentMain.btnSeeBands.setVisibility(
+                emptyState == MainPresenter.EmptyState.ONLY_BANDS ? View.VISIBLE : View.GONE);
+
+        String emptyStateMessage = null;
+        switch (emptyState) {
+            case NO_DATA:
+                emptyStateMessage = getString(R.string.data_not_prepared);
+                break;
+            case ONLY_BANDS:
+                emptyStateMessage = getString(R.string.data_not_prepared) +
+                        "\n\n" + getString(R.string.data_not_prepared_bands_ready);
+                binding.contentMain.btnSeeBands.setOnClickListener(v -> startActivity(BandsPresenter.newBandsActivity(this)));
+                break;
+            case NO_FAVS:
+                emptyStateMessage = getString(R.string.no_favourites);
+                break;
+            case FILTERING_ALL:
+                emptyStateMessage = getString(R.string.no_results_for_tags);
+                break;
+
+        }
+
+        binding.contentMain.tvEmptyMessage.setText(emptyStateMessage);
 
         refreshShareFavsVisibility();
 
@@ -336,21 +362,6 @@ public class MainActivity extends BaseActivity implements MainView, TabLayout.On
         binding.contentMain.progressHappeningNow.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
     }
 
-    @Override
-    public void showEventDataNotPreparedView(boolean show, boolean hasBands) {
-
-        binding.contentMain.tvEmptyMessage.setVisibility(show ? View.VISIBLE : View.GONE);
-        binding.contentMain.btnSeeBands.setVisibility(show && hasBands ? View.VISIBLE : View.GONE);
-
-        String message = getString(R.string.data_not_prepared);
-        if (hasBands) {
-            message += "\n\n" + getString(R.string.data_not_prepared_bands_ready);
-        }
-
-        binding.contentMain.tvEmptyMessage.setText(message);
-        binding.contentMain.btnSeeBands.setOnClickListener(v -> startActivity(BandsPresenter.newBandsActivity(this)));
-
-    }
 
     @Override
     public void checkNotificationsPermission() {

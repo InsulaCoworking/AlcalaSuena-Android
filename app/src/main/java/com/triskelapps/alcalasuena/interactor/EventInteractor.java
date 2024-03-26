@@ -2,7 +2,6 @@ package com.triskelapps.alcalasuena.interactor;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.triskelapps.alcalasuena.App;
@@ -13,12 +12,9 @@ import com.triskelapps.alcalasuena.model.Band;
 import com.triskelapps.alcalasuena.model.Event;
 import com.triskelapps.alcalasuena.model.Favourite;
 import com.triskelapps.alcalasuena.model.Filter;
-import com.triskelapps.alcalasuena.model.TagState;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -36,20 +32,27 @@ public class EventInteractor extends BaseInteractor {
 
     public List<Event> getEventsDB(Filter filter) {
 
-        if (filter.isStarred()) {
-            return App.getDB().eventDao().getEventsForDayStarredFull(filter.getDay());
+        if (filter == null) {
+            return App.getDB().eventDao().getAllFull();
         } else {
-            List<Event> events = App.getDB().eventDao().getEventsForDayFull(filter.getDay());
-            return removeEventsWithNoTagsActive(events);
+            if (filter.isStarred()) {
+                return App.getDB().eventDao().getEventsForDayStarredFull(filter.getDay());
+            } else {
+                List<Event> events = App.getDB().eventDao().getEventsForDayFull(filter.getDay());
+                return removeEventsWithNoTagsActive(events);
+            }
         }
+    }
 
+    public boolean hasEvents() {
+        return !getEventsDB(null).isEmpty();
     }
 
     private List<Event> removeEventsWithNoTagsActive(List<Event> events) {
 
         return events.stream().filter(event ->
-                event.getBands() != null && event.getBands().stream().anyMatch(band ->
-                        App.getDB().tagStateDao().isTagActive(band.getIdTag())))
+                        event.getBands() != null && event.getBands().stream().anyMatch(band ->
+                                App.getDB().tagStateDao().isTagActive(band.getIdTag())))
                 .collect(Collectors.toList());
 
     }
@@ -95,7 +98,7 @@ public class EventInteractor extends BaseInteractor {
         Event event = getEventById(idEvent);
 
         Bundle bundle = new Bundle();
-        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, event.getId()+"");
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, event.getId() + "");
         bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, event.getBandsNames());
         bundle.putString(FirebaseAnalytics.Param.SCORE, favourite == null || !favourite.isStarred() ? "1" : "-1"); // is toggling
         FirebaseAnalytics.getInstance(context).logEvent(FirebaseAnalytics.Event.ADD_TO_WISHLIST, bundle);
