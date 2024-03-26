@@ -10,11 +10,11 @@ public class DebugHelper {
     // Trues in production apk (automatic)
     private static final boolean CRASH_REPORT_ENABLED = false;
     private static final boolean FINAL_TTF = true;
-    private static final boolean PROD_ENVIRONMENT = true;
+    private static final boolean PROD_ENVIRONMENT = false;
 
 
     // Falses
-    private static final boolean FORZE_DATA_SYNC = false;
+    private static final boolean FORZE_DATA_SYNC = true;
     private static final boolean MOCK_NOTIF_NEWS = false;
 
 

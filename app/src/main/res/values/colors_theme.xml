@@ -12,7 +12,6 @@
 
     <color name="items_over_primary_color">#fff</color>
     <color name="items_over_header">#fff</color>
-    <color name="items_over_header_semitransp">#B9ffffff</color>
     <color name="items_over_bg">@color/black</color>
 
     <color name="skyline">#726459</color>
@@ -21,5 +20,7 @@
     <color name="tab_unselected">@color/items_over_primary_color</color>
     <color name="tab_selected">#e4cb64</color>
     <color name="favourites_star">@color/black</color>
+
+    <color name="text_hint">#94FFFFFF</color>
 
 </resources>

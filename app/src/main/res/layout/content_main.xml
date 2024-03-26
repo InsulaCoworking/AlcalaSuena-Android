@@ -119,6 +119,8 @@
                 android:id="@+id/btn_share_favs"
                 style="@style/TextButton"
                 android:textSize="16sp"
+                android:textColor="@color/items_over_bg"
+                android:background="@drawable/bg_frame_over_bg"
                 android:text="@string/share_favs_with_friends"
                 android:layout_margin="5dp"/>
         </LinearLayout>
