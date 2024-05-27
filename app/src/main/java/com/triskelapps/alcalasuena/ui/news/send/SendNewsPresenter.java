@@ -196,9 +196,10 @@ public class SendNewsPresenter extends BasePresenter {
             news.setId(0);
         }
 
+        String message = text.substring(0, Math.min(text.length(), 900));
 
         view.showProgressDialog(context.getString(R.string.sending_notification));
-        newsInteractor.sendNewsNotification(title, text, link, linkButtonText, news, new BaseInteractor.BasePOSTCallback() {
+        newsInteractor.sendNewsNotification(title, message, link, linkButtonText, news, new BaseInteractor.BasePOSTCallback() {
             @Override
             public void onSuccess(Integer id) {
                 view.toast(R.string.notification_sent);
