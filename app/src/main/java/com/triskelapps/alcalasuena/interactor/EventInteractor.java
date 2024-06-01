@@ -15,6 +15,7 @@ import com.triskelapps.alcalasuena.model.Filter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -62,16 +63,12 @@ public class EventInteractor extends BaseInteractor {
 
         List<Event> events = App.getDB().eventDao().getAllFull();
 
-        List<Event> eventsBand = new ArrayList<>();
-        for (Event event : events) {
-            for (Band band : event.getBands()) {
-                if (band.getId() == idBand) {
-                    eventsBand.add(event);
-                }
-            }
-        }
+        return events.stream().filter(event ->
+                event.getBands() != null &&
+                event.getBands().stream().anyMatch(band ->
+                        band.getId() == idBand))
+                .collect(Collectors.toList());
 
-        return eventsBand;
     }
 
 
