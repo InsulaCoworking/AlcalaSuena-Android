@@ -92,13 +92,12 @@ public class NewsInteractor extends BaseInteractor {
             news.configureDatesTime();
         }
 
+        App.getDB().newsDao().deleteAll();
         App.getDB().newsDao().insertAll(newsList);
     }
 
     public void storeNewsIndividual(News news) {
-        List<News> newsList = new ArrayList<>();
-        newsList.add(news);
-        storeNews(newsList);
+        App.getDB().newsDao().insert(news);
     }
 
     public void sendNews(String title, String text, String link, String linkButtonText, String imagePath, final BasePOSTFullEntityCallback<News> callback) {
