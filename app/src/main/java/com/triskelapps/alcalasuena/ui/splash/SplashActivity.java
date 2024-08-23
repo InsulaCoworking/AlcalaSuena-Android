@@ -8,7 +8,6 @@ import com.triskelapps.alcalasuena.R;
 import com.triskelapps.alcalasuena.base.BaseActivity;
 import com.triskelapps.alcalasuena.base.BasePresenter;
 import com.triskelapps.alcalasuena.databinding.ActivitySplashBinding;
-import com.triskelapps.alcalasuena.util.update_app.UpdateAppManager;
 
 /**
  * Created by julio on 29/05/17.

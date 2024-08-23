@@ -2,7 +2,6 @@ package com.triskelapps.alcalasuena.database;
 
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
-import androidx.work.impl.model.WorkTagDao;
 
 import com.triskelapps.alcalasuena.database.dao.BandDao;
 import com.triskelapps.alcalasuena.database.dao.EventDao;

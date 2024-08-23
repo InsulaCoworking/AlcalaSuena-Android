@@ -16,13 +16,14 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 import com.triskelapps.alcalasuena.database.AppDatabase;
-import com.triskelapps.alcalasuena.interactor.BandInteractor;
-import com.triskelapps.alcalasuena.interactor.VenueInteractor;
 import com.triskelapps.alcalasuena.util.NotificationHelper;
-import com.triskelapps.alcalasuena.util.update_app.UpdateAppManager;
+import com.triskelapps.simpleappupdate.SimpleAppUpdate;
+import com.triskelapps.simpleappupdate.config.NotificationStyle;
+import com.triskelapps.simpleappupdate.config.WorkerConfig;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by julio on 17/06/16.
@@ -89,7 +90,12 @@ public class App extends MultiDexApplication {
         built.setLoggingEnabled(true);
         Picasso.setSingletonInstance(built);
 
-        UpdateAppManager.scheduleAppUpdateCheckWork(this);
+        // Periodic app update configuration
+        new SimpleAppUpdate(this).cancelWork("appUpdateCheckWork");
+        NotificationStyle notificationStyle = new NotificationStyle(R.mipmap.img_logo_alcalasuena_notif, R.color.red);
+        WorkerConfig workerConfig = new WorkerConfig(2, TimeUnit.HOURS, 30, TimeUnit.MINUTES);
+        SimpleAppUpdate.schedulePeriodicChecks(this, BuildConfig.VERSION_CODE, notificationStyle, workerConfig);
+
 
 //        updateDataFromApi();
 

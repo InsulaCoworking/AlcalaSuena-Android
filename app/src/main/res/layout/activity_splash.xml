@@ -17,7 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_above="@id/tv_splash_info">
 
         <ImageView
             android:layout_width="match_parent"
@@ -31,7 +32,6 @@
             android:id="@+id/img_alcalasuena_splash"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
             android:adjustViewBounds="true"
             android:src="@mipmap/img_logo"
             android:maxHeight="320dp" />
@@ -41,14 +41,18 @@
             android:layout_height="20dp"
             android:background="@color/colorPrimary"/>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_splash_info"
-            style="@style/TextBase"
-            android:gravity="center"
-            android:padding="20dp"
-            android:textStyle="bold"
-            android:textSize="20sp"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_splash_info"
+        style="@style/TextBase"
+        android:gravity="center"
+        android:padding="20dp"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        tools:text="Texto info"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
 </RelativeLayout>

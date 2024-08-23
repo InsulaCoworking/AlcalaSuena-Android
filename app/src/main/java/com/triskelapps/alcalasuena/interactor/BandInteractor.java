@@ -80,6 +80,7 @@ public class BandInteractor extends BaseInteractor {
 
     private void storeBands(List<Band> bands) {
         App.getDB().bandDao().deleteAll();
+        App.getDB().tagDao().deleteAll();
         bands.stream().forEach(band -> {
             band.setIdTag(band.getTag().getId());
             App.getDB().tagDao().insert(band.getTag());

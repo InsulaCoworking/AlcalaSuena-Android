@@ -13,7 +13,9 @@ import com.triskelapps.alcalasuena.ui.about.AboutAlcalaSuenaActivity;
 import com.triskelapps.alcalasuena.ui.intro.IntroPresenter;
 import com.triskelapps.alcalasuena.util.Util;
 import com.triskelapps.alcalasuena.util.WebUtils;
-import com.triskelapps.alcalasuena.util.update_app.UpdateAppManager;
+import com.triskelapps.simpleappupdate.SimpleAppUpdate;
+
+import kotlin.Unit;
 
 /**
  * Created by julio on 29/05/17.
@@ -31,7 +33,7 @@ public class SplashPresenter extends BasePresenter {
 
     private final SplashView view;
     private Handler handler;
-    private UpdateAppManager updateAppManager;
+    private SimpleAppUpdate simpleAppUpdate;
 
     public static void launchSplashActivity(Context context, int nextScreen) {
 
@@ -70,9 +72,12 @@ public class SplashPresenter extends BasePresenter {
         if (nextScreen == NEXT_SCREEN_NONE) {
             view.showTvInfoText(getString(R.string.preparing_app_edition_current_year), false);
 
-            updateAppManager = new UpdateAppManager(context);
-            updateAppManager.setUpdateAvailableListener(() -> onUpdateAvailable());
-            updateAppManager.checkUpdateAvailable();
+            simpleAppUpdate = new SimpleAppUpdate(context);
+            simpleAppUpdate.setUpdateAvailableListener(() -> {
+                onUpdateAvailable();
+                return Unit.INSTANCE;
+            });
+            simpleAppUpdate.checkUpdateAvailable("");
         }
 
         handler = new Handler(Looper.getMainLooper());
@@ -83,8 +88,8 @@ public class SplashPresenter extends BasePresenter {
 
         handler.postDelayed(runnableNextScreen, 3000);
 
-        if (updateAppManager != null) {
-            updateAppManager.onResume();
+        if (simpleAppUpdate != null) {
+            simpleAppUpdate.onResume();
         }
     }
 
@@ -130,6 +135,6 @@ public class SplashPresenter extends BasePresenter {
     }
 
     public void onUpdateVersionClick() {
-        updateAppManager.onUpdateVersionClick();
+        simpleAppUpdate.launchUpdate();
     }
 }
